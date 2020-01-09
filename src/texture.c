@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 13:45:19 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 14:38:05 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,4 +43,12 @@ void	load_texture(t_env *env)
 							&a, &b);
 	env->text[3].data = mlx_get_data_addr(env->text[3].img, &env->text[3].bpp,
 							&env->text[3].size_line, &env->text[3].endian);
+	env->text[4].img = mlx_xpm_file_to_image(env->mlx_ptr, "texture/wood.xpm",
+							&a, &b);
+	env->text[4].data = mlx_get_data_addr(env->text[4].img, &env->text[4].bpp,
+							&env->text[4].size_line, &env->text[4].endian);
+	env->text[5].img = mlx_xpm_file_to_image(env->mlx_ptr, "texture/sky.xpm",
+							&a, &b);
+	env->text[5].data = mlx_get_data_addr(env->text[5].img, &env->text[5].bpp,
+							&env->text[5].size_line, &env->text[5].endian);
 }
