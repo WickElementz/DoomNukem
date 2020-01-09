@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2019/12/18 15:41:35 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/09 12:16:36 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,7 +17,6 @@ SRC_P		= src
 SRC_N		= main.c \
 				parsing.c \
 				save_map.c \
-				utility.c \
 				event.c \
 				manage_key.c \
 				raycasting.c \

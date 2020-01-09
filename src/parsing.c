@@ -6,14 +6,14 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 14:27:12 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 11:10:36 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 12:24:06 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	set_map_null(t_env *env)
+static void		set_map_null(t_env *env)
 {
 	int i;
 
@@ -30,7 +30,7 @@ void	set_map_null(t_env *env)
 		env->map[i++] = NULL;
 }
 
-int		second_open(char *file, t_env *env)
+static int		second_open(char *file, t_env *env)
 {
 	int		y;
 	int		fd;
@@ -50,7 +50,7 @@ int		second_open(char *file, t_env *env)
 	return (1);
 }
 
-int		valid_char(char *str, int x, t_env *env)
+static int		valid_char(char *str, int x, t_env *env)
 {
 	int		i;
 
@@ -69,7 +69,7 @@ int		valid_char(char *str, int x, t_env *env)
 	return (1);
 }
 
-int		first_open(char *file, t_env *env, int x, int fd)
+static int		first_open(char *file, t_env *env, int x, int fd)
 {
 	char	tmp;
 	char	*line;
@@ -97,7 +97,7 @@ int		first_open(char *file, t_env *env, int x, int fd)
 	return (1);
 }
 
-int		parsing(char *file, t_env *env)
+int				parsing(char *file, t_env *env)
 {
 	init_info(env);
 	if (!first_open(file, env, 0, 0))

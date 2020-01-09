@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 13:47:20 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 12:24:17 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		init_mlx(t_env *env)
+static void		init_mlx(t_env *env)
 {
 	env->mlx_ptr = mlx_init();
 	env->win_ptr = mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Wolf");
@@ -23,20 +23,7 @@ void		init_mlx(t_env *env)
 	load_texture(env);
 }
 
-void		init_info(t_env *env)
-{
-	env->k_ev = 0;
-	env->f_mini = 0;
-	env->tn = 48;
-	env->ts = 83;
-	env->to = 139;
-	env->te = 54;
-	env->map_y_max = -1;
-	env->cam.speed = 3;
-	env->map_x_max = 1;
-}
-
-int			loop_mlx(t_env *env)
+static int		loop_mlx(t_env *env)
 {
 	raycasting(env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
@@ -46,12 +33,26 @@ int			loop_mlx(t_env *env)
 	return (0);
 }
 
-int			main(int ac, char **av)
+void			init_info(t_env *env)
+{
+	env->k_ev = 0;
+	env->f_mini = 0;
+	env->tn = 48;
+	env->ts = 83;
+	env->to = 139;
+	env->te = 54;
+	env->map_y_max = -1;
+	env->cam.speed = 4;
+	env->map_x_max = 1;
+}
+
+int				main(int ac, char **av)
 {
 	int		fd;
 	t_env	*env;
 
 	fd = 0;
+	dprintf(1, "1");
 	if (((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1))
 		error(1);
 	if (ac != 2)
@@ -59,8 +60,11 @@ int			main(int ac, char **av)
 	if (!(env = malloc(sizeof(t_env))))
 		error(3);
 	parsing(av[1], env);
+	dprintf(1, "2");
 	close(fd);
 	init_mlx(env);
+	dprintf(1, "3");
 	loop_mlx(env);
+	dprintf(1, "4");
 	return (0);
 }

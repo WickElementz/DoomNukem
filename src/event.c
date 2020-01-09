@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 17:27:30 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 11:49:40 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
 	}
 	if (way == -1)
 	{
-		tmp = (cam->angle < 90) ? cam->angle - 90  + 360: cam->angle - 90;
+		tmp = (cam->angle < 90) ? cam->angle - 90 + 360 : cam->angle - 90;
 		rad = tmp * M_PI / 180;
 	}
 	new[0] = cam->y + (cos(rad) * cam->speed);

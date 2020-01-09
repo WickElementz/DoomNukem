@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 12:29:20 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 12:19:04 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,8 +60,8 @@ typedef struct		s_block
 
 typedef struct		s_position
 {
-	double				x;
-	double				y;
+	double			x;
+	double			y;
 	int				speed;
 	double			angle;
 }					t_position;
@@ -78,7 +78,6 @@ typedef struct		s_texture
 	int				endian;
 	int				size_line;
 }					t_texture;
-
 
 /*
 **	map_y_max	= Ligne la plus longue
