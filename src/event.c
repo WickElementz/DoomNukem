@@ -1,0 +1,77 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   event.c                                          .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/18 17:27:30 by jominodi    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+#include "wolf3d.h"
+
+void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
+{
+	double	rad;
+	double	new[2];
+	double	tmp;
+
+	if (way == 1)
+	{
+		tmp = (cam->angle > 270) ? cam->angle + 90 - 360 : cam->angle + 90;
+		rad = tmp * M_PI / 180;
+	}
+	if (way == -1)
+	{
+		tmp = (cam->angle < 90) ? cam->angle - 90  + 360: cam->angle - 90;
+		rad = tmp * M_PI / 180;
+	}
+	new[0] = cam->y + (cos(rad) * cam->speed);
+	new[1] = cam->x + (sin(rad) * cam->speed);
+	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
+		if (map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F' &&
+			map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F')
+			cam->x = new[1];
+	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
+		if (map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type == 'F' &&
+			map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type == 'F')
+			cam->y = new[0];
+}
+
+void		ft_move_z(t_block **map, t_position *cam, int way, int max[2])
+{
+	double	new[2];
+	double	rad;
+	double	tmp;
+
+	if (way == 1)
+		rad = (cam->angle) * M_PI / 180;
+	if (way == -1)
+	{
+		tmp = (cam->angle > 180) ? cam->angle - 180 : cam->angle + 180;
+		rad = tmp * M_PI / 180;
+	}
+	new[0] = cam->y + cos(rad) * cam->speed;
+	new[1] = cam->x + sin(rad) * cam->speed;
+	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
+		if (map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F' &&
+			map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F')
+			cam->x = new[1];
+	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
+		if (map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type == 'F' &&
+			map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type == 'F')
+			cam->y = new[0];
+}
+
+void		anglemove(t_position *cam, int way)
+{
+	if (cam->angle == 357 && way == 3)
+		cam->angle = 0;
+	else if (cam->angle == 0 && way == -3)
+		cam->angle = 357;
+	else
+		cam->angle += way;
+}
