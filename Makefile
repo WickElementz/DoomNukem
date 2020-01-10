@@ -3,16 +3,30 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/12/10 15:05:58 by videloff     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/09 16:19:09 by videloff    ###    #+. /#+    ###.fr      #
+#    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
+#    Updated: 2020/01/10 14:17:36 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME		= wolf3d
 USER		= $(shell whoami)
+UNAME		:= $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+MNLBX		= ./mlx_include
+MNLBX_A		= $(MNLBX)/libmlx.a
+FRKS		= -lmlx -framework OpenGL -framework AppKit
+endif
+
+ifeq ($(UNAME), Linux)
+MNLBX		= ./minilibx
+MNLBX_A		= $(MNLBX)/libmlx.a
+FRKS 		=  minilibx/libmlx.a `gnustep-config --objc-flags` -lgnustep-base -lGL -lXext -lX11 -lm
+endif
+
 SRC_P		= src
 SRC_N		= main.c \
 				parsing.c \
@@ -33,14 +47,13 @@ OBJ_N		= $(SRC_N:.c=.o)
 SRCS		= $(addprefix $(SRC_P)/,$(SRC_N))
 INCS		= $(addprefix $(INC_P)/,$(INC_N))
 OBJS		= $(addprefix $(OBJ_P)/,$(OBJ_N))
-MNLBX		= ./mlx_include
-MNLBX_A		= $(MNLBX)/libmlx.a
+
 GCC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 LIB			= librairies
 LIBFT		= libft/
 LIBFT_A		= $(LIBFT)/libft.a
-FRKS		= -lmlx -framework OpenGL -framework AppKit
+
 
 all : $(NAME)
 $(NAME): $(OBJS) $(MNLBX_A) $(LIBFT_A)
