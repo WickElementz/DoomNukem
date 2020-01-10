@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 14:27:12 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 12:24:06 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 16:29:58 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,13 +19,7 @@ static void		set_map_null(t_env *env)
 
 	i = 0;
 	if (env->f_mini != 1)
-	{
-		if (env->map)
-			free(env->map);
-		if (env)
-			free(env);
-		error(2);
-	}
+		free_env(env, 2);
 	while (i <= env->map_x_max)
 		env->map[i++] = NULL;
 }
@@ -102,14 +96,13 @@ int				parsing(char *file, t_env *env)
 	init_info(env);
 	if (!first_open(file, env, 0, 0))
 	{
-		free(env);
+		free_env(env, 3);
 		error(1);
 	}
 	env->f_mini = 0;
 	if (!second_open(file, env))
 	{
-		free(env->map);
-		free(env);
+		free_env(env, 1);
 		error(1);
 	}
 	set_angle(env, 0);
