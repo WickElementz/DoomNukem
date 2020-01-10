@@ -46,7 +46,7 @@ static void		draw(t_env *env, float view[3], int xy[2])
 
 void			draw_column(t_env *env, float view[WIN_WIDTH][3], int xy[2])
 {
-	while (xy[0]++ < WIN_WIDTH)
+	while (++xy[0] < WIN_WIDTH)
 	{
 		xy[1] = 0;
 		draw(env, view[xy[0]], xy);

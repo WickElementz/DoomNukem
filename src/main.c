@@ -27,8 +27,8 @@ static int		loop_mlx(t_env *env)
 {
 	raycasting(env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
-	mlx_hook(env->win_ptr, 2, 0, hold_key, env);
-	mlx_hook(env->win_ptr, 3, 0, unhold_key, env);
+	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
+	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_loop(env->mlx_ptr);
 	return (0);
 }
