@@ -6,12 +6,12 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 15:31:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 15:37:50 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 static void		put_pxl(t_env *env, int x, int y, unsigned int color)
 {

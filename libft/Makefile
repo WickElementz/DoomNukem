@@ -6,7 +6,7 @@
 #    By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/05 15:42:02 by videloff     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/05 18:06:19 by videloff    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/10 15:10:58 by videloff    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -87,11 +87,18 @@ SRC	= ft_memset.c\
 	get_next_line.c
 OBJ	= $(SRC:.c=.o)
 
+CLEAR		= \033[0m
+GREEN		= \033[33m
+COLOR		= \033
+BOLD		= \033[1m
+SQUARE		= $(BOLD)$(GREEN)\033[43m $(CLEAR)
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 
 %.o:%.c
+	@echo "$(SQUARE)\c"
 	@$(CC) $(CFLAGS) -c $^ -o $@
 	@ar rc $(NAME) $@
 

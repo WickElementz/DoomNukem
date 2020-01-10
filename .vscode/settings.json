@@ -3,6 +3,7 @@
         "array": "c",
         "string_view": "c",
         "string": "c",
-        "vector": "c"
+        "vector": "c",
+        "doom_nukem.h": "c"
     }
 }

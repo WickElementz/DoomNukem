@@ -6,12 +6,12 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 16:19:25 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:15 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 float	give_value(float ang, int dif)
 {

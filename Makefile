@@ -6,12 +6,12 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/10 14:17:36 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/10 15:37:41 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME		= wolf3d
+NAME		= doom-nukem
 USER		= $(shell whoami)
 UNAME		:= $(shell uname)
 
@@ -38,7 +38,7 @@ SRC_N		= main.c \
 				error.c \
 				draw.c
 INC_P		= include/
-INC_N		= wolf3d.h \
+INC_N		= doom_nukem.h \
 				struct.h \
 				proto.h \
 				define.h
@@ -54,18 +54,24 @@ LIB			= librairies
 LIBFT		= libft/
 LIBFT_A		= $(LIBFT)/libft.a
 
+CLEAR		= \033[0m
+GREEN		= \033[33m
+COLOR		= \033
+BOLD		= \033[1m
+START		= $(BOLD)\033[43m[START]$(CLEAR)\c
+DONE		= $(BOLD)\033[43m[DONE]$(CLEAR)
 
 all : $(NAME)
 $(NAME): $(OBJS) $(MNLBX_A) $(LIBFT_A)
 	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
-	@echo "Compilation: \033[36m\033[1m[DONE]\033[0m"
+	@echo "$(DONE)"
 $(OBJ_P)/%.o: $(SRC_P)/%.c $(INCS)
 	@mkdir $(OBJ_P) 2> /dev/null || true
 	@$(GCC) -I $(MNLBX) -I $(LIBFT) -I $(INC_P) $(CFLAGS) -c $< -o $@
 $(MNLBX_A) :
+	@echo "Compilation: $(START)"
 	@make -C $(MNLBX)
 $(LIBFT_A) :
-	@echo "Compilation: \033[36m\033[1m[START]\033[0m"
 	@make -C $(LIBFT)
 
 clean :
@@ -73,13 +79,13 @@ clean :
 	@rm -rf $(MNLBX)*.o
 	@make -C $(LIBFT) clean
 	@rm -rf $(OBJ_P) 2>/dev/null || true
-	@echo "Clean: \033[36m\033[1m[DONE]\033[0m"
+	@echo "Clean: $(BOLD)$(GREEN)[DONE]$(CLEAR)"
 
 fclean :
 	@make -C $(LIBFT) fclean
 	@make -C $(MNLBX) clean
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_P)
-	@echo "Extra maked files got successfully \033[33m\033[1mdeleted\033[0m"
+	@echo "Extra maked files got successfully $(BOLD)$(GREEN)deleted$(CLEAR)"
 
 re : fclean all

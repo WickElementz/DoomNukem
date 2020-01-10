@@ -6,12 +6,12 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/10 13:03:11 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 16:19:52 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:20 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 int		set_angle(t_env *env, int x)
 {

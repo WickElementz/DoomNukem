@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   parsing.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 14:27:12 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 16:29:58 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:10 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 static void		set_map_null(t_env *env)
 {

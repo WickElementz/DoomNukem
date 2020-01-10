@@ -6,12 +6,12 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/18 15:41:02 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 16:21:11 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:27:12 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	usage(void)
 {
