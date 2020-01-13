@@ -19,9 +19,20 @@ static void		event_key2(t_env *env)
 		anglemove(&env->cam, 3);
 	if (env->ev.s_left == 1)
 		anglemove(&env->cam, -3);
+	if (env->ev.uparrow == 1 && env->up > 0)
+	{
+		env->up -= 4;
+		env->down += 4;
+	}
+	if (env->ev.downarrow == 1 && env->down > 0)
+	{
+		env->up += 4;
+		env->down -= 4;
+	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
-				env->ev.s_right == 1 || env->ev.s_left == 1)
+			env->ev.s_right == 1 || env->ev.s_left == 1 ||
+			env->ev.downarrow == 1 || env->ev.uparrow == 1)
 		raycasting(env);
 }
 
@@ -73,6 +84,10 @@ int				hold_key(int key, t_env *env)
 		env->ev.walk = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
+	if (key == KEY_UP)
+		env->ev.uparrow = 1;
+	if (key == KEY_DOWN)
+		env->ev.downarrow = 1;
 	return (0);
 }
 
@@ -90,5 +105,9 @@ int				unhold_key(int key, t_env *env)
 		env->ev.left = 0;
 	if (key == KEY_D)
 		env->ev.right = 0;
+	if (key == KEY_UP)
+		env->ev.uparrow = 0;
+	if (key == KEY_DOWN)
+		env->ev.downarrow = 0;
 	return (0);
 }

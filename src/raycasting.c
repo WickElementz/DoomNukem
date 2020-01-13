@@ -114,11 +114,18 @@ void	closest_wall(t_env *env, int ray, float (*distance)[3])
 
 void	raycasting(t_env *env)
 {
-	float	distance[WIN_WIDTH][3];
+	float	distance[3];
+	int		xy[3];
 	int		ray;
 
 	ray = -1;
 	while (++ray < WIN_WIDTH)
-		closest_wall(env, ray, &distance[ray]);
-	draw_column(env, distance);
+	{
+		closest_wall(env, ray, &distance);
+		xy[0] = ray;
+		xy[1] = 0;
+		xy[2] = 0;
+		draw_column(env, &distance, &xy);
+	}
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }
