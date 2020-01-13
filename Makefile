@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/10 15:37:41 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/13 12:58:52 by videloff    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -54,12 +54,13 @@ LIB			= librairies
 LIBFT		= libft/
 LIBFT_A		= $(LIBFT)/libft.a
 
-CLEAR		= \033[0m
-GREEN		= \033[33m
+WHITE		= \033[37m
+GREEN		= \033[32m
 COLOR		= \033
 BOLD		= \033[1m
-START		= $(BOLD)\033[43m[START]$(CLEAR)\c
-DONE		= $(BOLD)\033[43m[DONE]$(CLEAR)
+BACK_GR		= \033[7;49;32m
+START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
+DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 
 all : $(NAME)
 $(NAME): $(OBJS) $(MNLBX_A) $(LIBFT_A)
@@ -79,13 +80,13 @@ clean :
 	@rm -rf $(MNLBX)*.o
 	@make -C $(LIBFT) clean
 	@rm -rf $(OBJ_P) 2>/dev/null || true
-	@echo "Clean: $(BOLD)$(GREEN)[DONE]$(CLEAR)"
+	@echo "Clean: $(DONE)"
 
 fclean :
 	@make -C $(LIBFT) fclean
 	@make -C $(MNLBX) clean
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_P)
-	@echo "Extra maked files got successfully $(BOLD)$(GREEN)deleted$(CLEAR)"
+	@echo "Extra maked files got successfully $(BOLD)$(GREEN)deleted$(WHITE)"
 
 re : fclean all
