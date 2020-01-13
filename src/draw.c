@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 15:37:50 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:54:46 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ static void		draw(t_env *env, float view[3], int xy[2])
 	int				wall;
 	int				cmpt;
 	unsigned int	color;
-	int mrg;
+	int				mrg;
 
 	wall = (64 / view[0]) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
 	cmpt = (wall <= WIN_HEIGHT) ? 0 : wall / 2 - WIN_HEIGHT / 2;
@@ -47,7 +47,6 @@ static void		draw(t_env *env, float view[3], int xy[2])
 
 void			draw_column(t_env *env, float view[WIN_WIDTH][3], int xy[2])
 {
-//	dprintf(1, "%f\n", env->cam.angle);
 	while (++xy[0] < WIN_WIDTH)
 	{
 		xy[1] = 0;

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 16:22:01 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:55:21 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,22 +26,6 @@ typedef struct		s_event
 	int				walk;
 	int				escape;
 }					t_event;
-
-typedef struct		s_rect
-{
-	int				x;
-	int				y;
-	int				w;
-	int				h;
-}					t_rect;
-
-typedef struct		s_surface
-{
-	int				w;
-	int				h;
-	void			*pixels;
-	t_rect			*boomer;
-}					t_surface;
 
 /*
 **	type		= mur / sol / void / end
@@ -108,7 +92,7 @@ typedef	struct		s_env
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
-	t_texture		text[4];
+	t_texture		text[6];
 }					t_env;
 
 #endif
