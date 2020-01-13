@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 12:20:47 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:06 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 static void		event_key2(t_env *env)
 {
@@ -72,7 +72,7 @@ int				hold_key(int key, t_env *env)
 	if (key == KEY_CTRL_LEFT)
 		env->ev.walk = 1;
 	if (key == KEY_ESCAPE)
-		free_env(env);
+		free_env(env, 0);
 	return (0);
 }
 

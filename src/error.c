@@ -3,29 +3,21 @@
 /*                                                              /             */
 /*   error.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/18 15:41:02 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 15:41:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/18 15:41:02 by yalabidi     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/10 14:27:12 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	usage(void)
 {
 	ft_putstr("Usage: ./wolf3d [map]\n");
 	ft_putstr("You can only use one map which are located in \"./map/\"\n");
 	exit(-1);
-}
-
-void	free_env(t_env *env)
-{
-	while (env->map_x_max >= 0)
-		free(env->map[env->map_x_max--]);
-	free(env->map);
-	exit(0);
 }
 
 void	error(int error)
@@ -44,6 +36,11 @@ void	error(int error)
 	if (error == 3)
 	{
 		ft_putstr("A malloc error occured\n");
+		exit(-1);
+	}
+	if (error == 4)
+	{
+		ft_putstr("An error occured while the Mnilibix initialization\n");
 		exit(-1);
 	}
 }

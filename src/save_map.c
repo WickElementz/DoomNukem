@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   save_map.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/10 13:03:11 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 11:16:15 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:20 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 int		set_angle(t_env *env, int x)
 {

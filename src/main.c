@@ -3,34 +3,40 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 12:24:17 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 14:24:01 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
-static void		init_mlx(t_env *env)
+static int		init_mlx(t_env *env)
 {
-	env->mlx_ptr = mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT - 200, "Wolf");
-	env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT - 200);
+	if (!(env->mlx_ptr = mlx_init()))
+		return (-1);
+	if (!(env->win_ptr =
+		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Wolf")))
+		return (-1);
+	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT)))
+		return (-1);
 	env->data_ptr = (unsigned int *)mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
+	if (env->data_ptr == NULL)
+		return (-1);
 	load_texture(env);
+	return (0);
 }
 
-static int		loop_mlx(t_env *env)
+static void		loop_mlx(t_env *env)
 {
 	raycasting(env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
-	mlx_hook(env->win_ptr, 2, 0, hold_key, env);
-	mlx_hook(env->win_ptr, 3, 0, unhold_key, env);
+	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
+	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_loop(env->mlx_ptr);
-	return (0);
 }
 
 void			init_info(t_env *env)
@@ -47,6 +53,21 @@ void			init_info(t_env *env)
 	env->map_x_max = 1;
 }
 
+void			free_env(t_env *env, int set)
+{
+	if (env)
+	{
+		if (env->map)
+			while (env->map_x_max >= 0)
+				if (env->map[env->map_x_max])
+					free(env->map[env->map_x_max--]);
+		free(env);
+	}
+	if (set > 0 && set <= 4)
+		error(set);
+	exit(0);
+}
+
 int				main(int ac, char **av)
 {
 	int		fd;
@@ -61,7 +82,9 @@ int				main(int ac, char **av)
 		error(3);
 	parsing(av[1], env);
 	close(fd);
-	init_mlx(env);
+	if ((init_mlx(env)) < 0)
+		free_env(env, 4);
 	loop_mlx(env);
+	free_env(env, 0);
 	return (0);
 }

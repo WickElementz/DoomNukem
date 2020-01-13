@@ -3,15 +3,15 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/28 13:51:12 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 12:23:49 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/10 14:24:15 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 float	give_value(float ang, int dif)
 {
