@@ -16,8 +16,8 @@
 static void		init_mlx(t_env *env)
 {
 	env->mlx_ptr = mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Wolf");
-	env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	env->win_ptr = mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT - 200, "Wolf");
+	env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT - 200);
 	env->data_ptr = (unsigned int *)mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
 	load_texture(env);
@@ -43,6 +43,7 @@ void			init_info(t_env *env)
 	env->te = 54;
 	env->map_y_max = -1;
 	env->cam.speed = 4;
+	env->caca = 100;
 	env->map_x_max = 1;
 }
 
@@ -52,7 +53,6 @@ int				main(int ac, char **av)
 	t_env	*env;
 
 	fd = 0;
-	dprintf(1, "1");
 	if (((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1))
 		error(1);
 	if (ac != 2)
@@ -60,11 +60,8 @@ int				main(int ac, char **av)
 	if (!(env = malloc(sizeof(t_env))))
 		error(3);
 	parsing(av[1], env);
-	dprintf(1, "2");
 	close(fd);
 	init_mlx(env);
-	dprintf(1, "3");
 	loop_mlx(env);
-	dprintf(1, "4");
 	return (0);
 }

@@ -19,7 +19,7 @@ static void		put_pxl(t_env *env, int x, int y, unsigned int color)
 		env->data_ptr[y * WIN_WIDTH + x] = color;
 }
 
-static void		draw(t_env *env, float view[3], int xy[2])
+static void		draw(t_env *env, float view[3], int (*xy)[3])
 {
 	int				wall;
 	int				cmpt;
@@ -27,29 +27,42 @@ static void		draw(t_env *env, float view[3], int xy[2])
 
 	wall = (64 / view[0]) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
 	cmpt = (wall <= WIN_HEIGHT) ? 0 : wall / 2 - WIN_HEIGHT / 2;
-	while (xy[1] < WIN_HEIGHT && cmpt < wall)
+	while ((*xy)[2] < WIN_HEIGHT && cmpt < wall)
 	{
-		if (xy[1] < (WIN_HEIGHT - wall) / 2 && wall < WIN_HEIGHT &&
-				xy[1] < WIN_HEIGHT)
-			put_pxl(env, xy[0], xy[1]++, 0x3498DB);
-		else if (xy[1] < WIN_HEIGHT)
+		if ((*xy)[2] < (WIN_HEIGHT - wall) / 2 && wall < WIN_HEIGHT)
+		{
+			if ((*xy)[1] < WIN_HEIGHT - 200 + env->caca && (*xy)[1] >= env->caca)
+			{
+				put_pxl(env, (*xy)[0], (*xy)[1], 0x3498DB);
+			}
+			(*xy)[1]++;
+		}
+		else if ((*xy)[1] < WIN_HEIGHT - 200 + env->caca && (*xy)[1] >= env->caca)
 		{
 			ft_memcpy(&color, &env->text[(int)view[2]].data[(((int)view[1]) +
 						64 * (64 * cmpt / wall)) * 4], sizeof(int));
-			put_pxl(env, xy[0], xy[1]++, color);
+			put_pxl(env, (*xy)[0], (*xy)[1]++, color);
 			cmpt++;
 		}
 	}
-	while (xy[1] < WIN_HEIGHT)
-		put_pxl(env, xy[0], xy[1]++, 0xE67E22);
+	while ((*xy)[1] < WIN_HEIGHT)
+	{
+		if ((*xy)[1] >= env->caca && (*xy)[1] < WIN_HEIGHT - 200 + env->caca)
+			put_pxl(env, (*xy)[0], (*xy)[1], 0xE67E22);
+		(*xy)[1]++;
+	}
 }
 
-void			draw_column(t_env *env, float view[WIN_WIDTH][3], int xy[2])
+void			draw_column(t_env *env, float view[WIN_WIDTH][3])
 {
-	while (xy[0]++ < WIN_WIDTH)
+	int		xy[3];
+	
+	xy[0] = -1;
+	xy[2] = env->caca;
+	while (++xy[0] < WIN_WIDTH)
 	{
 		xy[1] = 0;
-		draw(env, view[xy[0]], xy);
+		draw(env, view[xy[0]], &xy);
 	}
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }

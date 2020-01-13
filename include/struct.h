@@ -96,6 +96,7 @@ typedef	struct		s_env
 	int				to;
 	int				te;
 	int				y;
+	int				caca;
 	int				y_max;
 	int				bpp;
 	int				endian;
@@ -108,7 +109,7 @@ typedef	struct		s_env
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
-	t_texture		text[4];
+	t_texture		text[6];
 }					t_env;
 
 #endif

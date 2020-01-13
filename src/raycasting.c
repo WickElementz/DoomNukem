@@ -116,12 +116,9 @@ void	raycasting(t_env *env)
 {
 	float	distance[WIN_WIDTH][3];
 	int		ray;
-	int		xy[2];
 
 	ray = -1;
-	xy[0] = -1;
-	xy[1] = 0;
 	while (++ray < WIN_WIDTH)
 		closest_wall(env, ray, &distance[ray]);
-	draw_column(env, distance, xy);
+	draw_column(env, distance);
 }
