@@ -20,15 +20,9 @@ static void		event_key2(t_env *env)
 	if (env->ev.s_left == 1)
 		anglemove(&env->cam, -3);
 	if (env->ev.uparrow == 1 && env->up > 0)
-	{
 		env->up -= 4;
-		env->down += 4;
-	}
-	if (env->ev.downarrow == 1 && env->down > 0)
-	{
+	if (env->ev.downarrow == 1 && env->up < 600)
 		env->up += 4;
-		env->down -= 4;
-	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 			env->ev.s_right == 1 || env->ev.s_left == 1 ||

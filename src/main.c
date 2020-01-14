@@ -18,9 +18,9 @@ static int		init_mlx(t_env *env)
 	if (!(env->mlx_ptr = mlx_init()))
 		return (-1);
 	if (!(env->win_ptr =
-		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Wolf")))
+		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Wolf")))
 		return (-1);
-	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT)))
+	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2)))
 		return (-1);
 	env->data_ptr = (unsigned int *)mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
@@ -49,7 +49,6 @@ void			init_info(t_env *env)
 	env->te = 54;
 	env->map_y_max = -1;
 	env->up = 300;
-	env->down = 300;
 	env->cam.speed = 4;
 	env->map_x_max = 1;
 }

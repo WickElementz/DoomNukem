@@ -83,7 +83,6 @@ typedef	struct		s_env
 	int				te;
 	int				y;
 	int				up;
-	int				down;
 	int				y_max;
 	int				bpp;
 	int				endian;
