@@ -13,17 +13,38 @@
 
 #include "doom_nukem.h"
 
-static void		put_pxl(t_env *env, int x, int y, unsigned int color)
+t_clr	gclr(unsigned int color)
 {
-	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
-		env->data_ptr[y * WIN_WIDTH + x] = color;
+	t_clr	clr;
+
+	clr.r = (color & 0xFF0000) >> 16;
+	clr.g = (color & 0x00FF00) >> 8;
+	clr.b = (color & 0x0000FF);
+	clr.a = 0;
+	return (clr);
 }
 
-void		draw_column(t_env *env, float (*view)[3], int (*xy)[3])
+static void		put_pxl(t_env *env, int x, int y, unsigned int color[2])
+{
+	t_clr	clr;
+
+	if (env->sick == 1)
+		color[0] *= 1000 + 255;
+	clr = gclr(color[0]);
+	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	{
+		env->data_ptr[(y * WIN_WIDTH + x) * 4] = clr.b;
+		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 1] = clr.g;
+		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 2] = clr.r;
+		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 3] = (color[1] == 0) ? clr.a : clr.a + 105;
+	}
+}
+
+void		draw_column(t_env *env, float (*view)[4], int (*xy)[3])
 {
 	int				wall;
 	int				cmpt;
-	unsigned int	color;
+	unsigned int	color[2];
 	int				mrg;
 
 	wall = (64 / (*view)[0]) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
@@ -32,19 +53,30 @@ void		draw_column(t_env *env, float (*view)[3], int (*xy)[3])
 	mrg = wall + (*xy)[1];
 	while ((*xy)[1] < WIN_HEIGHT && cmpt < wall)
 	{
-		ft_memcpy(&color, &env->text[(int)(*view)[2]].data[(((int)(*view)[1]) +
+		ft_memcpy(&color[0], &env->text[(int)(*view)[2]].data[(((int)(*view)[1]) +
 					64 * (64 * cmpt / wall)) * 4], sizeof(int));
 		if ((*xy)[1] - env->up >= 0 && (*xy)[1] - env->up <= WIN_HEIGHT / 2)
+		{
+			color[1] = 0;
 			put_pxl(env, (*xy)[0], (*xy)[1] - env->up, color);
+		}
 		(*xy)[1]++;
 		cmpt++;
 	}
 	while ((*xy)[1] < WIN_HEIGHT)
 	{
 		if ((*xy)[1] - env->up >= 0 && (*xy)[1] - env->up <= WIN_HEIGHT / 2)
-			put_pxl(env, (*xy)[0], (*xy)[1] - env->up, 0x95671F);
+		{
+			color[0] = 0x95671F;
+			color[1] = 0;
+			put_pxl(env, (*xy)[0], (*xy)[1] - env->up, color);
+		}
 		if ((*xy)[1] - env->up  - mrg >= 0 && (*xy)[1] - env->up -mrg <= WIN_HEIGHT / 2)
-			put_pxl(env, (*xy)[0], (*xy)[1] - env->up - mrg, 0x308FC9);
+		{
+			color[0] = 0x308FC9;
+			color[1] = 0;
+			put_pxl(env, (*xy)[0], (*xy)[1] - env->up - mrg, color);
+		}
 		(*xy)[1]++;
 	}
 }

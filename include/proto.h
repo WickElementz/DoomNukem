@@ -29,6 +29,6 @@ void		usage();
 void		error(int error);
 void		load_texture(t_env *env);
 void		raycasting(t_env *env);
-void		draw_column(t_env *env, float view[WIN_WIDTH][3], int (*xy)[3]);
+void		draw_column(t_env *env, float (*view)[4], int (*xy)[3]);
 
 #endif

@@ -22,7 +22,7 @@ static int		init_mlx(t_env *env)
 		return (-1);
 	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2)))
 		return (-1);
-	env->data_ptr = (unsigned int *)mlx_get_data_addr(env->img_ptr, &env->bpp,
+	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
 	if (env->data_ptr == NULL)
 		return (-1);
@@ -46,6 +46,7 @@ void			init_info(t_env *env)
 	env->map_y_max = -1;
 	env->up = 300;
 	env->cam.speed = 4;
+	env->sick = 0;
 	env->map_x_max = 1;
 }
 

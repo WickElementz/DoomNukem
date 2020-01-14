@@ -27,7 +27,7 @@ float	give_value(float ang, int dif)
 	return (ya);
 }
 
-void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[3])
+void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[4])
 {
 	float	xy[2];
 
@@ -44,8 +44,9 @@ void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[3])
 	{
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
-				(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
-			break ;
+			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
+//			if ()
+				break ;
 		xy[1] += (*xaya)[1];
 		xy[0] += (*xaya)[0];
 	}
@@ -54,7 +55,7 @@ void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[3])
 	(*ver)[1] = (int)xy[1] % 64;
 }
 
-void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[3])
+void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[4])
 {
 	float	xy[2];
 
@@ -71,8 +72,9 @@ void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[3])
 	{
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
-				(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
-			break ;
+			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
+//			if ()
+				break ;
 		xy[1] += (*xaya)[1];
 		xy[0] += (*xaya)[0];
 	}
@@ -87,10 +89,10 @@ void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[3])
 ** dist[2] = Orientation du mur
 */
 
-void	closest_wall(t_env *env, int ray, float (*distance)[3])
+void	closest_wall(t_env *env, int ray, float (*distance)[4])
 {
-	float	hori[3];
-	float	verti[3];
+	float	hori[4];
+	float	verti[4];
 	float	xaya[2];
 	float	ang;
 	float	cone;
@@ -110,11 +112,12 @@ void	closest_wall(t_env *env, int ray, float (*distance)[3])
 	(*distance)[0] = (hori[0] < verti[0]) ? hori[0] : verti[0];
 	(*distance)[1] = (hori[0] < verti[0]) ? hori[1] : verti[1];
 	(*distance)[2] = (hori[0] < verti[0]) ? hori[2] : verti[2];
+	(*distance)[3] = (hori[3] < verti[3]) ? hori[3] : verti[3];
 }
 
 void	raycasting(t_env *env)
 {
-	float	distance[3];
+	float	distance[4];
 	int		xy[3];
 	int		ray;
 

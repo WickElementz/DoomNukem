@@ -65,6 +65,14 @@ typedef struct		s_texture
 	int				size_line;
 }					t_texture;
 
+typedef struct		s_clr
+{
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+}					t_clr;
+
 /*
 **	map_y_max	= Ligne la plus longue
 **	map_x_max	= colonne la plus grande
@@ -81,13 +89,14 @@ typedef	struct		s_env
 	int				up;
 	int				y_max;
 	int				bpp;
+	int				sick;
 	int				endian;
 	int				size_line;
 	int				k_ev;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
-	unsigned int	*data_ptr;
+	char			*data_ptr;
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
