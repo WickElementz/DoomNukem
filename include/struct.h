@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 13:04:56 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/14 13:34:04 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,10 +75,6 @@ typedef	struct		s_env
 	int				map_y_max;
 	int				map_x_max;
 	int				f_mini;
-	int				tn;
-	int				ts;
-	int				to;
-	int				te;
 	int				y;
 	int				y_max;
 	int				bpp;

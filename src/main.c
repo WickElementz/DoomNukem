@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:24:01 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/14 13:35:42 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,10 +43,6 @@ void			init_info(t_env *env)
 {
 	env->k_ev = 0;
 	env->f_mini = 0;
-	env->tn = 48;
-	env->ts = 83;
-	env->to = 139;
-	env->te = 54;
 	env->map_y_max = -1;
 	env->cam.speed = 4;
 	env->map_x_max = 1;
