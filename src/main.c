@@ -44,6 +44,8 @@ void			init_info(t_env *env)
 	env->k_ev = 0;
 	env->f_mini = 0;
 	env->map_y_max = -1;
+	env->up = 300;
+	env->down = 300;
 	env->cam.speed = 4;
 	env->map_x_max = 1;
 }

@@ -23,6 +23,8 @@ typedef struct		s_event
 	int				left;
 	int				right;
 	int				run;
+	int				uparrow;
+	int				downarrow;
 	int				walk;
 	int				escape;
 }					t_event;
@@ -76,6 +78,8 @@ typedef	struct		s_env
 	int				map_x_max;
 	int				f_mini;
 	int				y;
+	int				up;
+	int				down;
 	int				y_max;
 	int				bpp;
 	int				endian;
