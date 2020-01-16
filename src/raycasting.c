@@ -27,7 +27,7 @@ float	give_value(float ang, int dif)
 	return (ya);
 }
 
-void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[4])
+void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], t_ray *ver)
 {
 	float	xy[2];
 
@@ -45,7 +45,6 @@ void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[4])
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
-//			if ()
 				break ;
 		xy[1] += (*xaya)[1];
 		xy[0] += (*xaya)[0];
@@ -55,7 +54,7 @@ void	find_ver_wall(t_env *env, float ang, float (*xaya)[2], float (*ver)[4])
 	(*ver)[1] = (int)xy[1] % 64;
 }
 
-void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[4])
+void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], t_ray *hor)
 {
 	float	xy[2];
 
@@ -73,7 +72,6 @@ void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[4])
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
-//			if ()
 				break ;
 		xy[1] += (*xaya)[1];
 		xy[0] += (*xaya)[0];
@@ -89,10 +87,10 @@ void	find_hor_wall(t_env *env, float ang, float (*xaya)[2], float (*hor)[4])
 ** dist[2] = Orientation du mur
 */
 
-void	closest_wall(t_env *env, int ray, float (*distance)[4])
+void	closest_wall(t_env *env, int ray, t_ray *distance)
 {
-	float	hori[4];
-	float	verti[4];
+	t_ray	*hori;
+	t_ray	*verti;
 	float	xaya[2];
 	float	ang;
 	float	cone;
@@ -101,6 +99,9 @@ void	closest_wall(t_env *env, int ray, float (*distance)[4])
 	ang = env->cam.angle + (ray * cone) - 30;
 	ang = (ang > 359) ? ang - 360 : ang;
 	ang = (ang < 0) ? ang + 360 : ang;
+	if (!(hori = (t_ray*)malloc(sizeof(t_ray)) 
+		&& verti = (t_ray)malloc(sizeof(t_ray))))
+		return ;
 	if (ang != 0 && ang != 180)
 		find_hor_wall(env, ang, &xaya, &hori);
 	else
@@ -117,18 +118,20 @@ void	closest_wall(t_env *env, int ray, float (*distance)[4])
 
 void	raycasting(t_env *env)
 {
-	float	distance[4];
+	t_ray	*distance;
 	int		xy[3];
 	int		ray;
 
 	ray = -1;
+	if (!(distance = (t_ray*)malloc(sizeof(t_ray))))
+		return ;
 	while (++ray < WIN_WIDTH)
 	{
-		closest_wall(env, ray, &distance);
+		closest_wall(env, ray, distance);
 		xy[0] = ray;
 		xy[1] = 0;
 		xy[2] = 0;
-		draw_column(env, &distance, &xy);
+		draw_column(env, distance, &xy);
 	}
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }

@@ -52,6 +52,14 @@ typedef struct		s_position
 	double			angle;
 }					t_position;
 
+typedef struct		s_ray
+{
+	float			dist;
+	float			mod;
+	float			id;
+	t_ray			next;
+}					t_ray;
+
 /*
 ** Structure de texture
 */
