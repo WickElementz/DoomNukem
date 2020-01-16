@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:24:06 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/16 12:35:13 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,17 +16,29 @@
 static void		event_key2(t_env *env)
 {
 	if (env->ev.s_right == 1)
-		anglemove(&env->cam, 3);
+	{
+		anglemove(&env->cam, SENSI);
+		env->ev.s_right = 0;
+	}
 	if (env->ev.s_left == 1)
-		anglemove(&env->cam, -3);
+	{
+		anglemove(&env->cam, -SENSI);
+		env->ev.s_left = 0;
+	}
 	if (env->ev.uparrow == 1 && env->up > 0)
-		env->up -= 4;
+	{
+		env->up -= 40;
+		env->ev.uparrow = 0;
+	}
 	if (env->ev.downarrow == 1 && env->up < 600)
-		env->up += 4;
+	{
+		env->up += 40;
+		env->ev.downarrow = 0;
+	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
-			env->ev.s_right == 1 || env->ev.s_left == 1 ||
-			env->ev.downarrow == 1 || env->ev.uparrow == 1)
+				env->ev.s_right == 0 || env->ev.s_left == 0 ||
+					env->ev.downarrow == 0 || env->ev.uparrow == 0)
 		raycasting(env);
 }
 
@@ -64,10 +76,6 @@ int				hold_key(int key, t_env *env)
 		env->ev.forward = 1;
 	else if (key == KEY_S)
 		env->ev.back = 1;
-	if (key == KEY_LEFT)
-		env->ev.s_left = 1;
-	else if (key == KEY_RIGHT)
-		env->ev.s_right = 1;
 	if (key == KEY_A)
 		env->ev.left = 1;
 	if (key == KEY_D)
@@ -78,19 +86,11 @@ int				hold_key(int key, t_env *env)
 		env->ev.walk = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
-	if (key == KEY_UP)
-		env->ev.uparrow = 1;
-	if (key == KEY_DOWN)
-		env->ev.downarrow = 1;
 	return (0);
 }
 
 int				unhold_key(int key, t_env *env)
 {
-	if (key == KEY_LEFT)
-		env->ev.s_left = 0;
-	else if (key == KEY_RIGHT)
-		env->ev.s_right = 0;
 	if (key == KEY_W)
 		env->ev.forward = 0;
 	if (key == KEY_S)
@@ -99,9 +99,5 @@ int				unhold_key(int key, t_env *env)
 		env->ev.left = 0;
 	if (key == KEY_D)
 		env->ev.right = 0;
-	if (key == KEY_UP)
-		env->ev.uparrow = 0;
-	if (key == KEY_DOWN)
-		env->ev.downarrow = 0;
 	return (0);
 }

@@ -127,7 +127,7 @@ void	raycasting(t_env *env)
 		return ;
 	while (++ray < WIN_WIDTH)
 	{
-		closest_wall(env, ray, distance);
+		distance = closest_wall(env, ray);
 		xy[0] = ray;
 		xy[1] = 0;
 		xy[2] = 0;

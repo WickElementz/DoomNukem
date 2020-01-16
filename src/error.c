@@ -44,3 +44,5 @@ void	error(int error)
 		exit(-1);
 	}
 }
+
+t_ray	create_ray()

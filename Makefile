@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/14 12:46:28 by videloff    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/14 13:59:18 by kanne       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -33,6 +33,7 @@ SRC_N		= main.c \
 				save_map.c \
 				event.c \
 				manage_key.c \
+				manage_mouse.c \
 				raycasting.c \
 				texture.c \
 				error.c \
