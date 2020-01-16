@@ -40,20 +40,20 @@ static void		put_pxl(t_env *env, int x, int y, unsigned int color[2])
 	}
 }
 
-void		draw_column(t_env *env, float (*view)[4], int (*xy)[3])
+void		draw_column(t_env *env, t_ray *ray, int (*xy)[3])
 {
 	int				wall;
 	int				cmpt;
 	unsigned int	color[2];
 	int				mrg;
 
-	wall = (64 / (*view)[0]) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
+	wall = (64 / ray->dist) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
 	cmpt = (wall <= WIN_HEIGHT) ? 0 : wall / 2 - WIN_HEIGHT / 2;
 	(*xy)[1] = (wall <= WIN_HEIGHT) ? (WIN_HEIGHT - wall) / 2 : 0;
 	mrg = wall + (*xy)[1];
 	while ((*xy)[1] < WIN_HEIGHT && cmpt < wall)
 	{
-		ft_memcpy(&color[0], &env->text[(int)(*view)[2]].data[(((int)(*view)[1]) +
+		ft_memcpy(&color[0], &env->text[(int)ray->id].data[(((int)ray->mod) +
 					64 * (64 * cmpt / wall)) * 4], sizeof(int));
 		if ((*xy)[1] - env->up >= 0 && (*xy)[1] - env->up <= WIN_HEIGHT / 2)
 		{

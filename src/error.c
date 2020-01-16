@@ -40,9 +40,19 @@ void	error(int error)
 	}
 	if (error == 4)
 	{
-		ft_putstr("An error occured while the Mnilibix initialization\n");
+		ft_putstr("An error occured while the Minilibix initialization\n");
 		exit(-1);
 	}
 }
 
-t_ray	create_ray()
+t_ray	*create_ray(float dist, float mod, float id)
+{
+	t_ray	*ray;
+	
+	if (!(ray = (t_ray*)malloc(sizeof(t_ray))))
+		return (NULL);
+	ray->dist = dist;
+	ray->mod = mod;
+	ray->id = id;
+	return (ray);
+}

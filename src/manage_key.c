@@ -27,12 +27,12 @@ static void		event_key2(t_env *env)
 	}
 	if (env->ev.uparrow == 1 && env->up > 0)
 	{
-		env->up -= 40;
+		env->up -= 10;
 		env->ev.uparrow = 0;
 	}
 	if (env->ev.downarrow == 1 && env->up < 600)
 	{
-		env->up += 40;
+		env->up += 10;
 		env->ev.downarrow = 0;
 	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||

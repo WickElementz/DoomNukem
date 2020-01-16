@@ -29,7 +29,8 @@ void		init_info(t_env *env);
 void		usage();
 void		error(int error);
 void		load_texture(t_env *env);
+t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
-void		draw_column(t_env *env, float (*view)[4], int (*xy)[3]);
+void		draw_column(t_env *env, t_ray *ray, int (*xy)[3]);
 
 #endif

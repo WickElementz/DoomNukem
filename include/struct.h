@@ -57,7 +57,7 @@ typedef struct		s_ray
 	float			dist;
 	float			mod;
 	float			id;
-	t_ray			next;
+	struct s_ray	*next;
 }					t_ray;
 
 /*
