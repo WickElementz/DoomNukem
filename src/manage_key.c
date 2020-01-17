@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:35:13 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 12:32:20 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,27 +18,27 @@ static void		event_key2(t_env *env)
 	if (env->ev.s_right == 1)
 	{
 		anglemove(&env->cam, SENSI);
-		env->ev.s_right = 0;
+	//	env->ev.s_right = 0;
 	}
 	if (env->ev.s_left == 1)
 	{
 		anglemove(&env->cam, -SENSI);
-		env->ev.s_left = 0;
+	//	env->ev.s_left = 0;
 	}
 	if (env->ev.uparrow == 1 && env->up > 0)
 	{
-		env->up -= 10;
-		env->ev.uparrow = 0;
+		env->up -= 5;
+	//	env->ev.uparrow = 0;
 	}
 	if (env->ev.downarrow == 1 && env->up < 600)
 	{
-		env->up += 10;
-		env->ev.downarrow = 0;
+		env->up += 5;
+	//	env->ev.downarrow = 0;
 	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
-				env->ev.s_right == 0 || env->ev.s_left == 0 ||
-					env->ev.downarrow == 0 || env->ev.uparrow == 0)
+				env->ev.s_right == 1 || env->ev.s_left == 1 ||
+					env->ev.downarrow == 1 || env->ev.uparrow == 1)
 		raycasting(env);
 }
 
@@ -84,6 +84,14 @@ int				hold_key(int key, t_env *env)
 		env->ev.run = 1;
 	if (key == KEY_CTRL_LEFT)
 		env->ev.walk = 1;
+	if (key == KEY_UP)
+		env->ev.uparrow = 1;
+	else if (key == KEY_DOWN)
+		env->ev.downarrow = 1;
+	if (key == KEY_LEFT)
+		env->ev.s_left = 1;
+	else if (key == KEY_RIGHT)
+		env->ev.s_right = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
 	return (0);
@@ -99,5 +107,13 @@ int				unhold_key(int key, t_env *env)
 		env->ev.left = 0;
 	if (key == KEY_D)
 		env->ev.right = 0;
+	if (key == KEY_UP)
+		env->ev.uparrow = 0;
+	else if (key == KEY_DOWN)
+		env->ev.downarrow = 0;
+	if (key == KEY_LEFT)
+		env->ev.s_left = 0;
+	else if (key == KEY_RIGHT)
+		env->ev.s_right = 0;
 	return (0);
 }

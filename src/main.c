@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:58:43 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 12:38:28 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static void		loop_mlx(t_env *env)
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
-	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
+//	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
 	mlx_loop(env->mlx_ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 13:49:17 by kanne        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:27:43 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 12:38:03 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,9 +18,13 @@ static void		horizontal_move(int x, t_env *env)
 	static int o_x;
 
 	if (x < o_x)
+	{
 		env->ev.s_left = 1;
+	}
 	else if (x > o_x)
+	{
 		env->ev.s_right = 1;
+	}
 	o_x = x;
 }
 
