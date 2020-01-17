@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 13:03:09 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 13:53:25 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,22 +40,16 @@ int				event_key(t_env *env)
 	max[1] = env->map_x_max - 1;
 	if (env->ev.forward == 1)
 		ft_move_z(env->map, &env->cam, 1, max);
-	if (env->ev.back == 1)
+	else if (env->ev.back == 1)
 		ft_move_z(env->map, &env->cam, -1, max);
 	if (env->ev.left == 1)
 		ft_move_x(env->map, &env->cam, -1, max);
-	if (env->ev.right == 1)
+	else if (env->ev.right == 1)
 		ft_move_x(env->map, &env->cam, 1, max);
-	if (env->ev.run == 1)
-	{
-		env->cam.speed = (env->cam.speed == 6 || env->cam.speed == 2) ? 4 : 6;
-		env->ev.run = 0;
-	}
 	if (env->ev.walk == 1)
-	{
-		env->cam.speed = (env->cam.speed == 2 || env->cam.speed == 6) ? 4 : 2;
-		env->ev.walk = 0;
-	}
+		env->cam.speed = 2;
+	if (env->ev.run == 1)
+		env->cam.speed = 6;
 	event_mouse(env);
 	event_key2(env);
 	return (0);
@@ -69,11 +63,11 @@ int				hold_key(int key, t_env *env)
 		env->ev.back = 1;
 	if (key == KEY_A)
 		env->ev.left = 1;
-	if (key == KEY_D)
+	else if (key == KEY_D)
 		env->ev.right = 1;
 	if (key == KEY_SHIFT_LEFT)
 		env->ev.run = 1;
-	if (key == KEY_CTRL_LEFT)
+	else if (key == KEY_ALT)
 		env->ev.walk = 1;
 	if (key == KEY_UP)
 		env->ev.uparrow = 1;
@@ -90,6 +84,16 @@ int				hold_key(int key, t_env *env)
 
 int				unhold_key(int key, t_env *env)
 {
+	if (key == KEY_SHIFT_LEFT)
+	{
+		env->cam.speed = 4;
+		env->ev.run = 0;
+	}
+	else if (key == KEY_ALT)
+	{
+		env->cam.speed = 4;
+		env->ev.walk = 0;
+	}
 	if (key == KEY_W)
 		env->ev.forward = 0;
 	if (key == KEY_S)
