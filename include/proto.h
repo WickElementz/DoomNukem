@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 14:16:19 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:25:57 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@ int			event_key(t_env *env);
 int			hold_key(int key, t_env *env);
 int			unhold_key(int key, t_env *env);
 int			mouse_move(int x, int y, t_env *env);
+void		event_mouse(t_env *env);
 void		free_env(t_env *env, int set);
 void		anglemove(t_position *cam, int way);
 void		ft_move_z(t_block **map, t_position *cam, int way, int max[2]);

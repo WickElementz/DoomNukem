@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 13:00:45 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:26:48 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,14 @@ typedef struct		s_event
 	int				s_right;
 	int				left;
 	int				right;
-	int				run;
+	int				m_left;
+	int				m_right;
+	int				m_up;
+	int				m_down;
 	int				uparrow;
 	int				downarrow;
 	int				walk;
+	int				run;
 	int				escape;
 }					t_event;
 

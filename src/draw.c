@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 14:23:31 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:27:37 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,15 +38,16 @@ static void		put_pxl(t_env *env, int x, int y, unsigned int color[2])
 		env->data_ptr[(y * WIN_WIDTH + x) * 4] = clr.b;
 		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 1] = clr.g;
 		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 2] = clr.r;
-		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 3] = (color[1] == 0) ? clr.a : clr.a + 105;
+		env->data_ptr[(y * WIN_WIDTH + x) * 4 + 3] = (color[1] == 0) ?
+						clr.a : clr.a + 105;
 	}
 }
 
 void		draw_gun(t_env *env, int xy[2])
 {
-	int y;
-	int x;
-	unsigned int color[2];
+	int 			x;
+	int 			y;
+	unsigned int	color[2];
 
 	xy[0] = 351;
 	x = 0;
@@ -56,7 +57,8 @@ void		draw_gun(t_env *env, int xy[2])
 		y = 0;
 		while (xy[1] < 600)
 		{
-			ft_memcpy(&color[0], &env->sprite[0].data[(x + 86 * (86 * y / 258)) * 4], sizeof(int));
+			ft_memcpy(&color[0], &env->sprite[0].data[(x + 86 *
+						(86 * y / 258)) * 4], sizeof(int));
 			color[1] = 0;
 			if (color[0] != 0xFFFFFF)
 				put_pxl(env, xy[0], xy[1], color);
