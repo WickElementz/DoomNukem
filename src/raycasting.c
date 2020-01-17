@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:24:15 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:16:47 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -128,6 +128,8 @@ void	raycasting(t_env *env)
 
 	ray = -1;
 	cone = (float)FOV / (float)WIN_WIDTH;
+	xy[1] = 0;
+	xy[2] = 0;
 	while (++ray < WIN_WIDTH)
 	{
 		ang = env->cam.angle + (ray * cone) - 30;
@@ -136,10 +138,9 @@ void	raycasting(t_env *env)
 		distance = closest_wall(env, ang);;
 		//distance = list_sprite();
 		xy[0] = ray;
-		xy[1] = 0;
-		xy[2] = 0;
-		draw_column(env, distance, &xy);
+		draw_column(env, distance, xy);
 		free(distance);
 	}
+	draw_gun(env, xy);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }

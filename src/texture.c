@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   texture.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 13:04:46 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 13:32:49 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,14 @@ void	load_texture2(t_env *env, int a, int b)
 	env->text[5].img = mlx_xpm_file_to_image(env->mlx_ptr, "texture/sky.xpm",
 							&a, &b);
 	env->text[5].data = mlx_get_data_addr(env->text[5].img, &env->text[5].bpp,
-							&env->text[5].size_line, &env->text[5].endian);	
+							&env->text[5].size_line, &env->text[5].endian);
+	a = 86;
+	b = 86;
+	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr, "Sprites/gun.xpm",
+							&a, &b);
+	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img, &env->sprite[0].bpp,
+							&env->sprite[0].size_line, &env->sprite[0].endian);
+	
 }
 
 void	load_texture(t_env *env)

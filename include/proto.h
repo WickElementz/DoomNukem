@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   proto.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:55:47 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:16:19 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,9 +28,10 @@ void		ft_move_x(t_block **map, t_position *cam, int way, int max[2]);
 void		init_info(t_env *env);
 void		usage();
 void		error(int error);
+void        draw_gun(t_env *env, int xy[2]);
 void		load_texture(t_env *env);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
-void		draw_column(t_env *env, t_ray *ray, int (*xy)[3]);
+void		draw_column(t_env *env, t_ray *ray, int xy[3]);
 
 #endif
