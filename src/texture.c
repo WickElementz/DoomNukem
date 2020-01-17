@@ -32,7 +32,7 @@ void	load_texture2(t_env *env, int a, int b)
 							&env->text[5].size_line, &env->text[5].endian);
 	a = 86;
 	b = 86;
-	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr, "Sprites/gun.xpm",
+	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr, "sprites/gun.xpm",
 							&a, &b);
 	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img, &env->sprite[0].bpp,
 							&env->sprite[0].size_line, &env->sprite[0].endian);
