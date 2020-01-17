@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   proto.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:55:47 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 12:57:21 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@ int			event_key(t_env *env);
 int			hold_key(int key, t_env *env);
 int			unhold_key(int key, t_env *env);
 int			mouse_move(int x, int y, t_env *env);
+void		event_mouse(t_env *env);
 void		free_env(t_env *env, int set);
 void		anglemove(t_position *cam, int way);
 void		ft_move_z(t_block **map, t_position *cam, int way, int max[2]);

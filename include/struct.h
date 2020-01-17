@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/14 13:34:04 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 12:47:07 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,10 @@ typedef struct		s_event
 	int				s_right;
 	int				left;
 	int				right;
+	int				m_left;
+	int				m_right;
+	int				m_up;
+	int				m_down;
 	int				run;
 	int				uparrow;
 	int				downarrow;

@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 12:32:20 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 13:03:09 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,29 +16,19 @@
 static void		event_key2(t_env *env)
 {
 	if (env->ev.s_right == 1)
-	{
 		anglemove(&env->cam, SENSI);
-	//	env->ev.s_right = 0;
-	}
 	if (env->ev.s_left == 1)
-	{
 		anglemove(&env->cam, -SENSI);
-	//	env->ev.s_left = 0;
-	}
 	if (env->ev.uparrow == 1 && env->up > 0)
-	{
 		env->up -= 5;
-	//	env->ev.uparrow = 0;
-	}
 	if (env->ev.downarrow == 1 && env->up < 600)
-	{
 		env->up += 5;
-	//	env->ev.downarrow = 0;
-	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||
-					env->ev.downarrow == 1 || env->ev.uparrow == 1)
+					env->ev.downarrow == 1 || env->ev.uparrow == 1 ||
+						env->ev.m_right == 1 || env->ev.m_left == 1 ||
+							env->ev.m_down == 1 || env->ev.m_up == 1)
 		raycasting(env);
 }
 
@@ -66,6 +56,7 @@ int				event_key(t_env *env)
 		env->cam.speed = (env->cam.speed == 2 || env->cam.speed == 6) ? 4 : 2;
 		env->ev.walk = 0;
 	}
+	event_mouse(env);
 	event_key2(env);
 	return (0);
 }
