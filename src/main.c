@@ -36,7 +36,7 @@ static void		loop_mlx(t_env *env)
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
-	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
+	mlx_hook(env->win_ptr, 6, 1L<<6, mouse_move, env);
 	mlx_loop(env->mlx_ptr);
 }
 
