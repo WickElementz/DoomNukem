@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/14 13:34:04 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:26:48 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,14 @@ typedef struct		s_event
 	int				s_right;
 	int				left;
 	int				right;
-	int				run;
+	int				m_left;
+	int				m_right;
+	int				m_up;
+	int				m_down;
 	int				uparrow;
 	int				downarrow;
 	int				walk;
+	int				run;
 	int				escape;
 }					t_event;
 
@@ -73,6 +77,15 @@ typedef struct		s_texture
 	int				size_line;
 }					t_texture;
 
+typedef struct		s_sprite
+{
+	void			*img;
+	char			*data;
+	int				bpp;
+	int				endian;
+	int				size_line;
+}					t_sprite;
+
 typedef struct		s_clr
 {
 	int				r;
@@ -109,6 +122,7 @@ typedef	struct		s_env
 	t_position		cam;
 	t_event			ev;
 	t_texture		text[6];
+	t_sprite		sprite[1];
 }					t_env;
 
 #endif

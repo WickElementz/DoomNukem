@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:58:43 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 13:41:48 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ static int		init_mlx(t_env *env)
 	if (!(env->mlx_ptr = mlx_init()))
 		return (-1);
 	if (!(env->win_ptr =
-		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Wolf")))
+		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Doom-Nukem")))
 		return (-1);
 	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2)))
 		return (-1);
@@ -33,10 +33,10 @@ static int		init_mlx(t_env *env)
 static void		loop_mlx(t_env *env)
 {
 	raycasting(env);
-	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_hook(env->win_ptr, 6, 1L<<6, mouse_move, env);
+	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_loop(env->mlx_ptr);
 }
 

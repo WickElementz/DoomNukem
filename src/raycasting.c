@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:24:15 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:24:31 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,9 +31,11 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
+	t_ray	*sprite;
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
+	sprite = ver;
 	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
@@ -45,6 +47,12 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
+			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		{
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 0);
+			sprite = sprite->next;
+		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
@@ -62,9 +70,11 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
+	t_ray	*sprite;
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
+	sprite = hor;
 	hor->id = (ang < 180) ? 0 : 2;
 	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
 		(int)(env->cam.x / 64) * 64 - 1;
@@ -76,6 +86,12 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
+			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		{
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, 0);
+			sprite = sprite->next;
+		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
@@ -113,8 +129,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->dist = (hor->dist < ver->dist) ? hor->dist : ver->dist;
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
-	free (hor);
-	free (ver);
+	distance->next = sprite_list(hor, ver);
 	return (distance);
 }
 
@@ -128,18 +143,18 @@ void	raycasting(t_env *env)
 
 	ray = -1;
 	cone = (float)FOV / (float)WIN_WIDTH;
+	xy[1] = 0;
+	xy[2] = 0;
 	while (++ray < WIN_WIDTH)
 	{
 		ang = env->cam.angle + (ray * cone) - 30;
 		ang = (ang > 359) ? ang - 360 : ang;
 		ang = (ang < 0) ? ang + 360 : ang;
 		distance = closest_wall(env, ang);;
-		//distance = list_sprite();
 		xy[0] = ray;
-		xy[1] = 0;
-		xy[2] = 0;
-		draw_column(env, distance, &xy);
+		draw_column(env, distance, xy);
 		free(distance);
 	}
+	draw_gun(env, xy);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }

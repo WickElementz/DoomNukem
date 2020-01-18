@@ -54,5 +54,6 @@ t_ray	*create_ray(float dist, float mod, float id)
 	ray->dist = dist;
 	ray->mod = mod;
 	ray->id = id;
+	ray->next = NULL;
 	return (ray);
 }

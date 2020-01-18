@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:35:13 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 14:25:48 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,29 +16,19 @@
 static void		event_key2(t_env *env)
 {
 	if (env->ev.s_right == 1)
-	{
 		anglemove(&env->cam, SENSI);
-		env->ev.s_right = 0;
-	}
 	if (env->ev.s_left == 1)
-	{
 		anglemove(&env->cam, -SENSI);
-		env->ev.s_left = 0;
-	}
 	if (env->ev.uparrow == 1 && env->up > 0)
-	{
-		env->up -= 10;
-		env->ev.uparrow = 0;
-	}
+		env->up -= 5;
 	if (env->ev.downarrow == 1 && env->up < 600)
-	{
-		env->up += 10;
-		env->ev.downarrow = 0;
-	}
+		env->up += 5;
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
-				env->ev.s_right == 0 || env->ev.s_left == 0 ||
-					env->ev.downarrow == 0 || env->ev.uparrow == 0)
+				env->ev.s_right == 1 || env->ev.s_left == 1 ||
+					env->ev.downarrow == 1 || env->ev.uparrow == 1 ||
+						env->ev.m_right == 1 || env->ev.m_left == 1 ||
+							env->ev.m_down == 1 || env->ev.m_up == 1)
 		raycasting(env);
 }
 
@@ -50,22 +40,17 @@ int				event_key(t_env *env)
 	max[1] = env->map_x_max - 1;
 	if (env->ev.forward == 1)
 		ft_move_z(env->map, &env->cam, 1, max);
-	if (env->ev.back == 1)
+	else if (env->ev.back == 1)
 		ft_move_z(env->map, &env->cam, -1, max);
 	if (env->ev.left == 1)
 		ft_move_x(env->map, &env->cam, -1, max);
-	if (env->ev.right == 1)
+	else if (env->ev.right == 1)
 		ft_move_x(env->map, &env->cam, 1, max);
-	if (env->ev.run == 1)
-	{
-		env->cam.speed = (env->cam.speed == 6 || env->cam.speed == 2) ? 4 : 6;
-		env->ev.run = 0;
-	}
 	if (env->ev.walk == 1)
-	{
-		env->cam.speed = (env->cam.speed == 2 || env->cam.speed == 6) ? 4 : 2;
-		env->ev.walk = 0;
-	}
+		env->cam.speed = 2;
+	if (env->ev.run == 1)
+		env->cam.speed = 6;
+	event_mouse(env);
 	event_key2(env);
 	return (0);
 }
@@ -78,12 +63,20 @@ int				hold_key(int key, t_env *env)
 		env->ev.back = 1;
 	if (key == KEY_A)
 		env->ev.left = 1;
-	if (key == KEY_D)
+	else if (key == KEY_D)
 		env->ev.right = 1;
 	if (key == KEY_SHIFT_LEFT)
 		env->ev.run = 1;
-	if (key == KEY_CTRL_LEFT)
+	else if (key == KEY_ALT)
 		env->ev.walk = 1;
+	if (key == KEY_UP)
+		env->ev.uparrow = 1;
+	else if (key == KEY_DOWN)
+		env->ev.downarrow = 1;
+	if (key == KEY_LEFT)
+		env->ev.s_left = 1;
+	else if (key == KEY_RIGHT)
+		env->ev.s_right = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
 	return (0);
@@ -91,6 +84,16 @@ int				hold_key(int key, t_env *env)
 
 int				unhold_key(int key, t_env *env)
 {
+	if (key == KEY_SHIFT_LEFT)
+	{
+		env->cam.speed = 4;
+		env->ev.run = 0;
+	}
+	else if (key == KEY_ALT)
+	{
+		env->cam.speed = 4;
+		env->ev.walk = 0;
+	}
 	if (key == KEY_W)
 		env->ev.forward = 0;
 	if (key == KEY_S)
@@ -99,5 +102,13 @@ int				unhold_key(int key, t_env *env)
 		env->ev.left = 0;
 	if (key == KEY_D)
 		env->ev.right = 0;
+	if (key == KEY_UP)
+		env->ev.uparrow = 0;
+	else if (key == KEY_DOWN)
+		env->ev.downarrow = 0;
+	if (key == KEY_LEFT)
+		env->ev.s_left = 0;
+	else if (key == KEY_RIGHT)
+		env->ev.s_right = 0;
 	return (0);
 }

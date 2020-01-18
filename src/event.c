@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 12:32:30 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 11:55:03 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,10 +68,10 @@ void		ft_move_z(t_block **map, t_position *cam, int way, int max[2])
 
 void		anglemove(t_position *cam, int way)
 {
-	if (cam->angle == 355 && way == SENSI)
+	if (cam->angle == 357 && way == SENSI)
 		cam->angle = 0;
 	else if (cam->angle == 0 && way == -SENSI)
-		cam->angle = 355;
+		cam->angle = 357;
 	else
 		cam->angle += way;
 }
