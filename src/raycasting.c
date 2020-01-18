@@ -53,7 +53,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 0);
 			sprite = sprite->next;
 		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
 				break ;
@@ -92,7 +92,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, 0);
 			sprite = sprite->next;
 		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'F' ||
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
 				break ;
@@ -129,7 +129,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->dist = (hor->dist < ver->dist) ? hor->dist : ver->dist;
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
-	distance->next = sprite_list(hor, ver);
+	//distance->next = sprite_list(hor, ver);
 	return (distance);
 }
 
