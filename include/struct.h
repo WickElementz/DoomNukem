@@ -62,8 +62,19 @@ typedef struct		s_ray
 	float			mod;
 	float			id;
 	float			ang;
-	struct s_ray	*next;
+	struct s_spr	*next;
 }					t_ray;
+
+typedef struct		s_spr
+{
+	int				type;
+	float			dist;
+	float			mod;
+	float			id;
+	int				mapy;
+	int				mapx;
+	struct s_spr	*next;
+}					t_spr;
 
 /*
 ** Structure de texture

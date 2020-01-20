@@ -32,6 +32,7 @@ SRC_N		= main.c \
 				parsing.c \
 				save_map.c \
 				event.c \
+				sprite.c \
 				manage_key.c \
 				manage_mouse.c \
 				raycasting.c \
