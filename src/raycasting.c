@@ -146,7 +146,6 @@ void	raycasting(t_env *env)
 
 	ray = -1;
 	cone = (float)FOV / (float)WIN_WIDTH;
-	xy[1] = 0;
 	xy[2] = 0;
 	while (++ray < WIN_WIDTH)
 	{
@@ -155,6 +154,7 @@ void	raycasting(t_env *env)
 		ang = (ang < 0) ? ang + 360 : ang;
 		distance = closest_wall(env, ang);;
 		xy[0] = ray;
+		xy[1] = 0;
 		draw_column(env, distance, xy);
 		free(distance);
 	}

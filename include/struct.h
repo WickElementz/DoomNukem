@@ -104,6 +104,7 @@ typedef struct		s_clr
 	int				g;
 	int				b;
 	int				a;
+	struct s_clr	*next;
 }					t_clr;
 
 /*

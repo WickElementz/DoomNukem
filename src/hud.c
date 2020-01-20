@@ -49,6 +49,8 @@
 
 static void		helmet(t_env *env, int drawxy[2], unsigned int color[2])
 {
+	t_clr	clr;
+
 	drawxy[0] = 0;
 	while (drawxy[0] < 960)
 	{
@@ -57,8 +59,9 @@ static void		helmet(t_env *env, int drawxy[2], unsigned int color[2])
 		{
 			ft_memcpy(&color[0], &env->sprite[1].data[(drawxy[0] + 960 *
 						drawxy[1]) * 4], sizeof(int));
+			clr = gclr(color[0]);
 			if ((int)color[0] != NONE)
-				put_pxl(env, drawxy[0], drawxy[1], color);
+				put_pxl(env, drawxy[0], drawxy[1], clr);
 			drawxy[1]++;
 		}
 		drawxy[0]++;
@@ -69,6 +72,7 @@ static void		gun(t_env *env, int drawxy[2], unsigned int color[2])
 {
 	int 			x;
 	int 			y;
+	t_clr			clr;
 
 	drawxy[0] = 351;
 	x = 0;
@@ -80,8 +84,9 @@ static void		gun(t_env *env, int drawxy[2], unsigned int color[2])
 		{
 			ft_memcpy(&color[0], &env->sprite[0].data[(x + 86 *
 						(86 * y / 258)) * 4], sizeof(int));
+			clr = gclr(color[0]);
 			if ((int)color[0] != NONE)
-				put_pxl(env, drawxy[0], drawxy[1], color);
+				put_pxl(env, drawxy[0], drawxy[1], clr);
 			y++;
 			drawxy[1]++;
 		}
