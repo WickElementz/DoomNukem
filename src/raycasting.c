@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 14:24:31 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/20 12:52:15 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -156,6 +156,6 @@ void	raycasting(t_env *env)
 		draw_column(env, distance, xy);
 		free(distance);
 	}
-	draw_gun(env, xy);
+	draw_hud(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }

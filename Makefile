@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+      #
+#    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/14 13:59:18 by kanne       ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/20 12:47:41 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -37,6 +37,7 @@ SRC_N		= main.c \
 				raycasting.c \
 				texture.c \
 				error.c \
+				hud.c \
 				draw.c
 INC_P		= include/
 INC_N		= doom_nukem.h \

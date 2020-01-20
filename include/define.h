@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 15:31:43 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 13:56:55 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/20 14:18:56 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,5 +21,6 @@
 # define HORIZON    100
 # define SCREEN     831
 # define SENSI      3
+# define NONE       -16777216
 
 #endif

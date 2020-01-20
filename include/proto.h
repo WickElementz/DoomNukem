@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/17 14:25:57 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/20 12:52:21 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,8 +29,9 @@ void		ft_move_x(t_block **map, t_position *cam, int way, int max[2]);
 void		init_info(t_env *env);
 void		usage();
 void		error(int error);
-void        draw_gun(t_env *env, int xy[2]);
+void        draw_hud(t_env *env);
 void		load_texture(t_env *env);
+void		put_pxl(t_env *env, int x, int y, unsigned int color[2]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);
