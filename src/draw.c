@@ -13,7 +13,7 @@
 
 #include "doom_nukem.h"
 
-t_clr	gclr(unsigned int color)
+/*t_clr	gclr(unsigned int color)
 {
 	t_clr	clr;
 
@@ -21,6 +21,17 @@ t_clr	gclr(unsigned int color)
 	clr.g = (color & 0x00FF0000) >> 16;
 	clr.b = (color & 0x0000FF00) >> 8;
 	clr.a = (color & 0x000000FF);
+	return (clr);
+}*/
+
+t_clr	gclr(unsigned int color)
+{
+	t_clr	clr;
+
+	clr.r = (color & 0xFF0000) >> 16;
+	clr.g = (color & 0x00FF00) >> 8;
+	clr.b = (color & 0x0000FF);
+	clr.a = 0;
 	return (clr);
 }
 
@@ -50,7 +61,7 @@ void		draw_column(t_env *env, t_ray *ray, int xy[3])
 	{
 		if (xy[1] < mrg)
 		{
-			color = 0x308FC900;
+			color = 0x308FC9;
 		}
 		else if (xy[1] > mrg && xy[1] < mrg + wall)
 		{
@@ -60,7 +71,7 @@ void		draw_column(t_env *env, t_ray *ray, int xy[3])
 		}
 		else if (xy[1] > mrg + wall)
 		{
-			color = 0x95671F00;
+			color = 0x95671F;
 		}
 		// add_sprite(ray, )
 		if (env->sick == 1)
