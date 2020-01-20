@@ -31,11 +31,10 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
-	t_ray	*sprite;
+	t_spr	*sprite;
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
-	sprite = ver;
 	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
@@ -50,7 +49,9 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 0);
+			sprite = create_spr(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, (int)xy[0] / 64, (int)xy[1] / 64);
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
+			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -70,11 +71,10 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
-	t_ray	*sprite;
+	t_spr	*sprite;
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
-	sprite = hor;
 	hor->id = (ang < 180) ? 0 : 2;
 	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
 		(int)(env->cam.x / 64) * 64 - 1;
@@ -89,7 +89,9 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, 0);
+			sprite = create_spr(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, (int)xy[0] / 64, (int)xy[1] / 64);
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
+			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -130,7 +132,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->dist = (hor->dist < ver->dist) ? hor->dist : ver->dist;
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
-	//distance->next = sprite_list(hor, ver);
+	distance->next = sprite_list(hor, ver);
 	return (distance);
 }
 

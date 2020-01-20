@@ -57,3 +57,17 @@ t_ray	*create_ray(float dist, float mod, float id)
 	ray->next = NULL;
 	return (ray);
 }
+
+t_spr	*create_spr(float dist, float mod, int mapy, int mapx)
+{
+	t_spr	*spr;
+	
+	if (!(spr = (t_spr*)malloc(sizeof(t_spr))))
+		return (NULL);
+	spr->dist = dist;
+	spr->mod = mod;
+	spr->mapy = mapy;
+	spr->mapx = mapx;
+	spr->next = NULL;
+	return (spr);
+}

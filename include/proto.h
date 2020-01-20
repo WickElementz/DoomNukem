@@ -31,6 +31,8 @@ void		usage();
 void		error(int error);
 void        draw_gun(t_env *env, int xy[2]);
 void		load_texture(t_env *env);
+t_spr       *sprite_list(t_ray *hor, t_ray *ver);
+t_spr   	*create_spr(float dist, float mod, int mapy, int mapx);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);
