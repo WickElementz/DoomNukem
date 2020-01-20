@@ -14,10 +14,15 @@
 #include "doom_nukem.h"
 
 /*
-** text[0] = brick
-** text[1] = wood
-** text[2] = brick2
-** text[3] = concrete
+** text[0] = Mossy
+** text[1] = Bricks
+** text[2] = Red Bricks
+** text[3] = GreyStone
+** text[4] = Wood
+** text[5] = Sky
+** sprite[0] = Gun
+** sprite[1] = Helmet
+
 */
 
 void	load_texture2(t_env *env, int a, int b)
@@ -30,6 +35,10 @@ void	load_texture2(t_env *env, int a, int b)
 							&a, &b);
 	env->text[5].data = mlx_get_data_addr(env->text[5].img, &env->text[5].bpp,
 							&env->text[5].size_line, &env->text[5].endian);
+	env->sprite[2].img = mlx_xpm_file_to_image(env->mlx_ptr, "sprites/sprite.xpm",
+							&a, &b);
+	env->sprite[2].data = mlx_get_data_addr(env->sprite[2].img, &env->sprite[2].bpp,
+							&env->sprite[2].size_line, &env->sprite[2].endian);
 	a = 86;
 	b = 86;
 	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr, "sprites/gun.xpm",
