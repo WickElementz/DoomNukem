@@ -13,3 +13,14 @@
 
 #include "doom_nukem.h"
 
+t_ray   *sprite_list(t_ray *hor, t_ray *ver)
+{
+    t_ray     *move_ver;
+    t_ray     *move_hor;
+    t_ray     *move_base;
+    t_ray     *base;
+
+    move_ver = ver->next;
+    move_hor = hor->next;
+    
+}

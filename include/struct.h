@@ -61,6 +61,7 @@ typedef struct		s_ray
 	float			dist;
 	float			mod;
 	float			id;
+	float			ang;
 	struct s_ray	*next;
 }					t_ray;
 

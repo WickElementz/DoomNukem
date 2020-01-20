@@ -118,6 +118,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	t_ray	*ver;
 
 	distance = create_ray(0, 0, 0);
+	distance->ang = ang;
 	if (ang != 0 && ang != 180)
 		hor = find_hor_wall(env, ang);
 	else
