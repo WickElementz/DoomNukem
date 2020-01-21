@@ -6,23 +6,23 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:45:36 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/21 16:55:03 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-/*t_clr	gclr(unsigned int color)
+t_clr	gclra(unsigned int color)
 {
 	t_clr	clr;
 
-	clr.r = (color & 0xFF000000) >> 24;
-	clr.g = (color & 0x00FF0000) >> 16;
-	clr.b = (color & 0x0000FF00) >> 8;
-	clr.a = (color & 0x000000FF);
+	clr.r = (color & 0xFF0000) >> 16;
+	clr.g = (color & 0x00FF00) >> 8;
+	clr.b = (color & 0x0000FF);
+	clr.a = 255;
 	return (clr);
-}*/
+}
 
 t_clr	gclr(unsigned int color)
 {
@@ -31,7 +31,7 @@ t_clr	gclr(unsigned int color)
 	clr.r = (color & 0xFF0000) >> 16;
 	clr.g = (color & 0x00FF00) >> 8;
 	clr.b = (color & 0x0000FF);
-	clr.a = 0;
+	clr.a = 155;
 	return (clr);
 }
 

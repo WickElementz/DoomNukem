@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 16:54:17 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/21 16:54:34 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,11 @@ static void		helmet(t_env *env, int drawxy[2])
 	}
 }*/
 
+<<<<<<< HEAD
 static void		gun(t_env *env, int xy[6], int id)
+=======
+ static void		helmet(t_env *env, int drawxy[2], unsigned int color[2])
+>>>>>>> 69487b7c8cfba76ae6128524cefb40e325d80122
 {
 	unsigned int 	color;
 	t_clr			clr;
@@ -95,6 +99,7 @@ static void		print_hud(t_env *env, int xy[6], int id)
 		tmp = xy[3];
 		while (xy[1] < xy[5])
 		{
+<<<<<<< HEAD
 			ft_memcpy(&color, &env->sprite[id].data[(xy[0] + xy[4] *
 			 			xy[1]) * 4], sizeof(int));
 			clr = gclr(color);
@@ -102,6 +107,15 @@ static void		print_hud(t_env *env, int xy[6], int id)
 				put_pxl(env, xy[2], tmp, clr);
 			xy[1]++;
 			tmp++;
+=======
+			ft_memcpy(&color[0], &env->sprite[0].data[(x + 86 *
+						(86 * y / 258)) * 4], sizeof(int));
+			clr = gclra(color[0]);
+			if ((int)color[0] != NONE)
+				put_pxl(env, drawxy[0], drawxy[1], clr);
+			y++;
+			drawxy[1]++;
+>>>>>>> 69487b7c8cfba76ae6128524cefb40e325d80122
 		}
 		xy[0]++;
 		xy[2]++;
