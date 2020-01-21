@@ -35,6 +35,7 @@ void		put_pxl(t_env *env, int x, int y, t_clr clr);
 t_spr       *sprite_list(t_ray *hor, t_ray *ver);
 t_spr   	*create_spr(float dist, float mod, int mapy, int mapx);
 t_clr	    gclr(unsigned int color);
+t_clr	    gclra(unsigned int color);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);

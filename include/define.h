@@ -21,6 +21,11 @@
 # define HORIZON    100
 # define SCREEN     831
 # define SENSI      3
-# define NONE       -16777216
+
+# if defined __linux__
+#  define NONE      0
+# elif __APPLE__
+#  define NONE      -16777216
+# endif
 
 #endif
