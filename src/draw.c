@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 16:55:03 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/21 16:59:25 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ t_clr	gclra(unsigned int color)
 	clr.r = (color & 0xFF0000) >> 16;
 	clr.g = (color & 0x00FF00) >> 8;
 	clr.b = (color & 0x0000FF);
-	clr.a = 255;
+	clr.a = 0;
 	return (clr);
 }
 
@@ -72,7 +72,7 @@ void		draw_column(t_env *env, t_ray *ray, int xy[3])
 		// add_sprite(ray, )
 		if (env->sick == 1)
 			color *= 12 + 255;
-		clr = gclr(color);
+		clr = gclra(color);
 		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
 			put_pxl(env, xy[0], xy[1] - env->up, clr);
 		xy[1]++;
