@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 14:30:05 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/21 14:45:36 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,9 +60,7 @@ void		draw_column(t_env *env, t_ray *ray, int xy[3])
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
 		if (xy[1] < mrg)
-		{
 			color = 0x308FC9;
-		}
 		else if (xy[1] > mrg && xy[1] < mrg + wall)
 		{
 			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
@@ -70,9 +68,7 @@ void		draw_column(t_env *env, t_ray *ray, int xy[3])
 			cmpt++;
 		}
 		else if (xy[1] > mrg + wall)
-		{
 			color = 0x95671F;
-		}
 		// add_sprite(ray, )
 		if (env->sick == 1)
 			color *= 12 + 255;
