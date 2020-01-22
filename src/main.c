@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:41:51 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 16:16:29 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ static int		init_mlx(t_env *env)
 	if (!(env->win_ptr =
 		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Doom-Nukem")))
 		return (-1);
-	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2)))
+	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
 		return (-1);
 	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
@@ -35,8 +35,8 @@ static void		loop_mlx(t_env *env)
 	raycasting(env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
-	mlx_hook(env->win_ptr, 6, 1<<2, mouse_move, env);
 	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
+	mlx_hook(env->win_ptr, 6, 1L << 6, mouse_move, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_loop(env->mlx_ptr);
 }
@@ -47,9 +47,11 @@ void			init_info(t_env *env)
 	env->f_mini = 0;
 	env->map_y_max = -1;
 	env->up = 300;
-	env->cam.speed = 4;
+	env->cam.speed = 6;
 	env->map_x_max = 1;
 	env->p_health = 100;
+	env->ammo = 6;
+	env->r_ammo = 12;
 }
 
 void			free_env(t_env *env, int set)
