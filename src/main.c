@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 07:15:06 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 15:41:51 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,7 @@ static void		loop_mlx(t_env *env)
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_hook(env->win_ptr, 6, 1<<2, mouse_move, env);
+	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_loop(env->mlx_ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   hud.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 07:30:35 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 12:31:18 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,7 +49,7 @@ static void		draw_life(t_env *env, int drawxy[2])
 		drawxy[1] = 4;
 		while (drawxy[1] < 18)
 		{
-			color = 0xFF3232;
+			color = 0xD1E7C3;
 			clr = gclr(color);
 			if (drawxy[0] < env->p_health + 809)
 				put_pxl(env, drawxy[0], drawxy[1], clr);
