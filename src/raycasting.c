@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 16:57:00 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 09:05:26 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -136,6 +136,15 @@ t_ray	*closest_wall(t_env *env, float ang)
 	return (distance);
 }
 
+static void		check_status(t_env *env)
+{
+	if (env->p_health <= 0)
+	{
+		mlx_clear_window(env->mlx_ptr, env->win_ptr);
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 440, 300, 0xFF0000, "GAME OVER");
+	}
+}
+
 void	raycasting(t_env *env)
 {
 	t_ray	*distance;
@@ -152,7 +161,7 @@ void	raycasting(t_env *env)
 		ang = env->cam.angle + (ray * cone) - 30;
 		ang = (ang > 359) ? ang - 360 : ang;
 		ang = (ang < 0) ? ang + 360 : ang;
-		distance = closest_wall(env, ang);;
+		distance = closest_wall(env, ang);
 		xy[0] = ray;
 		xy[1] = 0;
 		draw_column(env, distance, xy);
@@ -160,4 +169,5 @@ void	raycasting(t_env *env)
 	}
 	draw_hud(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	check_status(env);
 }

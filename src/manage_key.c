@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:17:56 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 07:28:31 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,11 @@ static void		event_key2(t_env *env)
 		env->up -= 5;
 	if (env->ev.downarrow == 1 && env->up < 600)
 		env->up += 5;
+	if (env->ev.hp_down == 1)
+	{
+		env->p_health -= 10;
+		env->ev.hp_down = 0;
+	}
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||
@@ -77,6 +82,8 @@ int				hold_key(int key, t_env *env)
 		env->ev.s_left = 1;
 	else if (key == KEY_RIGHT)
 		env->ev.s_right = 1;
+	if (key == KEY_MINUS && env->p_health > 0)
+		env->ev.hp_down = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
 	return (0);

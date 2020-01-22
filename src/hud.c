@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   hud.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 16:58:37 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 07:30:35 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,28 @@ static void		helmet(t_env *env, int drawxy[2])
 		drawxy[0]++;
 	}
 }*/
+
+static void		draw_life(t_env *env, int drawxy[2])
+{
+	unsigned int	color;
+	t_clr 			clr;
+
+	// draw life
+	drawxy[0] = 809;
+	while (drawxy[0] < 910)
+	{
+		drawxy[1] = 4;
+		while (drawxy[1] < 18)
+		{
+			color = 0xFF3232;
+			clr = gclr(color);
+			if (drawxy[0] < env->p_health + 809)
+				put_pxl(env, drawxy[0], drawxy[1], clr);
+			drawxy[1]++;
+		}
+		drawxy[0]++;
+	}
+}
 
 static void		gun(t_env *env, int xy[6], int id)
 {
@@ -167,7 +189,7 @@ void			draw_hud(t_env *env)
 	xy[5] = 80;
 	print_hud(env, xy, 4);
 	draw_hud2(env, xy);
-//	life_and_mun(env, drawxy, color);
+	draw_life(env, xy);
 }
 /*
 void			draw_hud(t_env *env)

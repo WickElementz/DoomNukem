@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 16:17:12 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 07:22:36 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ typedef struct		s_event
 	int				m_right;
 	int				m_up;
 	int				m_down;
+	int				hp_down;
 	int				uparrow;
 	int				downarrow;
 	int				walk;
@@ -127,6 +128,7 @@ typedef	struct		s_env
 	int				endian;
 	int				size_line;
 	int				k_ev;
+	int				p_health;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

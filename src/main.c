@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:17:46 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 07:15:06 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,7 @@ void			init_info(t_env *env)
 	env->up = 300;
 	env->cam.speed = 4;
 	env->map_x_max = 1;
+	env->p_health = 100;
 }
 
 void			free_env(t_env *env, int set)
