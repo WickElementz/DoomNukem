@@ -48,15 +48,14 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 	t_clr	res;
 	t_clr 	clr;
 	t_ray	*list;
-
-
+		
 	ray->wall = (64 / ray->dist) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
 	ray->cmpt = (ray->wall <= WIN_HEIGHT) ? 0 : ray->wall / 2 - WIN_HEIGHT / 2;
 	ray->mrg = (ray->wall <= WIN_HEIGHT) ? (WIN_HEIGHT - ray->wall) / 2 : 0;
 	list = ray;
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		ray = list;
+		ray = (list->next != NULL) ? list : list;
 		while (ray)
 		{
 			clr = add_sprite(env, ray, xy);
