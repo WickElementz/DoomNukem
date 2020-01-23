@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 11:40:20 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:28:53 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		{
 			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle)
-				* M_PI / 180), (int)xy[1] % 64, 5);
+				* M_PI / 180), (int)xy[1] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
@@ -93,7 +93,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		{
 			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
-				M_PI / 180), (int)xy[0] % 64, 5);
+				M_PI / 180), (int)xy[0] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
