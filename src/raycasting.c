@@ -51,7 +51,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		{
 			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle)
-				* M_PI / 180), (int)xy[1] % 64, 5);
+				* M_PI / 180), (int)xy[1] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
@@ -93,7 +93,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		{
 			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
-				M_PI / 180), (int)xy[0] % 64, 5);
+				M_PI / 180), (int)xy[0] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;

@@ -123,5 +123,9 @@ void		load_texture(t_env *env)
 		"textures/gstone.xpm", &a, &b);
 	env->text[3].data = mlx_get_data_addr(env->text[3].img,
 		&env->text[3].bpp, &env->text[3].size_line, &env->text[3].endian);
+	env->text[6].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"textures/glass_o_pipi.xpm", &a, &b);
+	env->text[6].data = mlx_get_data_addr(env->text[6].img,
+		&env->text[6].bpp, &env->text[6].size_line, &env->text[6].endian);
 	load_texture2(env, a, b);
 }

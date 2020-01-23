@@ -132,7 +132,7 @@ typedef	struct		s_env
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
-	t_texture		text[6];
+	t_texture		text[7];
 	t_sprite		sprite[9];
 }					t_env;
 
