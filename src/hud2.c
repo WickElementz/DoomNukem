@@ -20,7 +20,7 @@ void		print_bullet(t_env *env, int xy[6], int id, int tmp)
 
 	ft_memcpy(&color, &env->sprite[id].data[(xy[0] + xy[4] *
 				xy[1]) * 4], sizeof(int));
-	clr = gclra(color);
+	clr = gclr(color);
 	if ((int)color != NONE)
 		put_pxl(env, xy[2], tmp, clr);
 }
@@ -67,7 +67,7 @@ void		gun(t_env *env, int xy[6], int id)
 		{
 			ft_memcpy(&color, &env->sprite[id].data[(xy[0] + 86 *
 						(86 * xy[1] / 258)) * 4], sizeof(int));
-			clr = gclra(color);
+			clr = gclr(color);
 			if ((int)color != NONE)
 				put_pxl(env, xy[2], xy[3], clr);
 			xy[1]++;
