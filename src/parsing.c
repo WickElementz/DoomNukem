@@ -55,7 +55,7 @@ static int		valid_char(char *str, int x, t_env *env)
 			i++;
 		if (str[i] == 'F')
 			env->f_mini = 1;
-		if (str[i] != 'W' && str[i] != 'F' && str[i])
+		if (str[i] != 'W' && str[i] != 'F' && str[i] != 'G' && str[i])
 			return (-1);
 	}
 	if (x != env->map_y_max)

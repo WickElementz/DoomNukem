@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/18 15:41:02 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:45:08 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 15:47:18 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,22 +52,15 @@ t_ray	*create_ray(float dist, float mod, float id)
 	if (!(ray = (t_ray*)malloc(sizeof(t_ray))))
 		return (NULL);
 	ray->dist = dist;
+	ray->type = -1;
+	ray->ang = 0;
+	ray->wall = 0;
+	ray->mrg = 0;
+	ray->cmpt = 0;
 	ray->mod = mod;
 	ray->id = id;
+	ray->mapy = -1;
+	ray->mapx = -1;
 	ray->next = NULL;
 	return (ray);
-}
-
-t_spr	*create_spr(float dist, float mod, int mapy, int mapx)
-{
-	t_spr	*spr;
-
-	if (!(spr = (t_spr*)malloc(sizeof(t_spr))))
-		return (NULL);
-	spr->dist = dist;
-	spr->mod = mod;
-	spr->mapy = mapy;
-	spr->mapx = mapx;
-	spr->next = NULL;
-	return (spr);
 }

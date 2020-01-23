@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 13:44:00 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 16:05:49 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
-	t_spr	*sprite;
+	t_ray	*sprite;
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
@@ -49,7 +49,9 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite = create_spr(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, (int)xy[0] / 64, (int)xy[1] / 64);
+			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
+				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle)
+				* M_PI / 180), (int)xy[1] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
@@ -71,7 +73,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 {
 	float	xy[2];
 	float	xaya[2];
-	t_spr	*sprite;
+	t_ray	*sprite;
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
@@ -89,7 +91,9 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite = create_spr(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, (int)xy[0] / 64, (int)xy[1] / 64);
+			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
+				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
+				M_PI / 180), (int)xy[0] % 64, 6);
 			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
 			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
 			sprite = sprite->next;
@@ -139,10 +143,9 @@ t_ray	*closest_wall(t_env *env, float ang)
 static void		check_status(t_env *env)
 {
 	if (env->p_health <= 0)
-	{
-		mlx_clear_window(env->mlx_ptr, env->win_ptr);
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 440, 300, 0xFF0000, "GAME OVER");
-	}
+		print_last_screen(env, 10);
+	if (env->win == 1)
+		print_last_screen(env, 9);
 }
 
 void	raycasting(t_env *env)
@@ -165,10 +168,11 @@ void	raycasting(t_env *env)
 		xy[0] = ray;
 		xy[1] = 0;
 		draw_column(env, distance, xy);
-		free(distance);
+		free_listr(distance);
 	}
 	draw_hud(env);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 60, 0xD1E7C3, ft_itoa(env->r_ammo));
 	check_status(env);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	if(env->win != 1 && env->p_health > 0)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 60, 0xD1E7C3, ft_itoa(env->r_ammo));	
 }

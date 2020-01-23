@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:55:33 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 16:03:20 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,8 @@ void		event_mouse(t_env *env);
 void		free_env(t_env *env, int set);
 void		anglemove(t_position *cam, int way);
 void		ft_move_z(t_block **map, t_position *cam, int way, int max[2]);
+void		free_listr(t_ray *list);
+void		free_listc(t_clr *list);
 void		ft_move_x(t_block **map, t_position *cam, int way, int max[2]);
 void		init_info(t_env *env);
 void		usage();
@@ -38,10 +40,10 @@ void		put_pxl(t_env *env, int x, int y, t_clr clr);
 void		print_bullet(t_env *env, int xy[6], int id, int tmp);
 void		bullet(t_env *env, int xy[6], int id);
 void		gun(t_env *env, int id, int xy[6]);
-t_spr       *sprite_list(t_ray *hor, t_ray *ver);
-t_spr   	*create_spr(float dist, float mod, int mapy, int mapx);
+void		print_last_screen(t_env *env, int id);
+t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color);
-t_clr	    gclra(unsigned int color);
+t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);

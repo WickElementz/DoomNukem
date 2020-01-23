@@ -48,8 +48,8 @@ static void		print_hud(t_env *env, int xy[6], int id)
 		while (xy[1] < xy[5])
 		{
 			ft_memcpy(&color, &env->sprite[id].data[(xy[0] + xy[4] *
-						xy[1]) * 4], sizeof(int));
-			clr = gclra(color);
+			 			xy[1]) * 4], sizeof(int));
+			clr = gclr(color);
 			if ((int)color != NONE)
 				put_pxl(env, xy[2], tmp, clr);
 			xy[1]++;

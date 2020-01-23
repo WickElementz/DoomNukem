@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 15:12:23 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 16:06:15 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,16 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/bullet.xpm", &a, &b);
 	env->sprite[8].data = mlx_get_data_addr(env->sprite[8].img,
 		&env->sprite[8].bpp, &env->sprite[8].size_line, &env->sprite[8].endian);
+	a = 960;
+	b = 600;
+	env->sprite[9].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/win.xpm", &a, &b);
+	env->sprite[9].data = mlx_get_data_addr(env->sprite[9].img,
+		&env->sprite[8].bpp, &env->sprite[9].size_line, &env->sprite[9].endian);
+	env->sprite[10].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/lose.xpm", &a, &b);
+	env->sprite[10].data = mlx_get_data_addr(env->sprite[10].img,
+		&env->sprite[10].bpp, &env->sprite[10].size_line, &env->sprite[10].endian);
 	load_texture5(env, a, b);
 }
 
@@ -86,6 +96,10 @@ static void	load_texture2(t_env *env, int a, int b)
 		"textures/sky.xpm", &a, &b);
 	env->text[5].data = mlx_get_data_addr(env->text[5].img,
 		&env->text[5].bpp, &env->text[5].size_line, &env->text[5].endian);
+	env->text[6].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"textures/glass_o_pipi.xpm", &a, &b);
+	env->text[6].data = mlx_get_data_addr(env->text[6].img,
+		&env->text[6].bpp, &env->text[6].size_line, &env->text[6].endian);
 	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/sprite.xpm", &a, &b);
 	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img,
