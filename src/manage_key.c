@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:26:07 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:39:42 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,7 @@ static void		event_key2(t_env *env)
 	{
 		env->p_health -= 10;
 		env->ev.hp_down = 0;
+		raycasting(env);
 	}
 	if (env->ev.win == 1)
 		env->win = 1;
@@ -35,7 +36,8 @@ static void		event_key2(t_env *env)
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||
 					env->ev.downarrow == 1 || env->ev.uparrow == 1 ||
 						env->ev.m_right == 1 || env->ev.m_left == 1 ||
-							env->ev.m_down == 1 || env->ev.m_up == 1)
+							env->ev.m_down == 1 || env->ev.m_up == 1 ||
+							env->ev.win == 1)
 		raycasting(env);
 }
 
