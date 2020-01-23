@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   draw.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:24:51 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 16:09:55 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,15 +48,14 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 	t_clr	res;
 	t_clr 	clr;
 	t_ray	*list;
-
-
+		
 	ray->wall = (64 / ray->dist) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
 	ray->cmpt = (ray->wall <= WIN_HEIGHT) ? 0 : ray->wall / 2 - WIN_HEIGHT / 2;
 	ray->mrg = (ray->wall <= WIN_HEIGHT) ? (WIN_HEIGHT - ray->wall) / 2 : 0;
 	list = ray;
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		ray = list;
+		ray = (list->next != NULL) ? list : list;
 		while (ray)
 		{
 			clr = add_sprite(env, ray, xy);
