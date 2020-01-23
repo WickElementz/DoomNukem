@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   texture.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:42:09 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:12:23 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,7 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/bullet.xpm", &a, &b);
 	env->sprite[8].data = mlx_get_data_addr(env->sprite[8].img,
 		&env->sprite[8].bpp, &env->sprite[8].size_line, &env->sprite[8].endian);
+	load_texture5(env, a, b);
 }
 
 static void	load_texture3(t_env *env, int a, int b)
@@ -89,10 +90,10 @@ static void	load_texture2(t_env *env, int a, int b)
 		"sprites/sprite.xpm", &a, &b);
 	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img,
 		&env->sprite[0].bpp, &env->sprite[0].size_line, &env->sprite[0].endian);
-	a = 86;
+	a = 100;
 	b = 86;
 	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/gun.xpm", &a, &b);
+		"sprites/base.xpm", &a, &b);
 	env->sprite[1].data = mlx_get_data_addr(env->sprite[1].img,
 		&env->sprite[1].bpp, &env->sprite[1].size_line, &env->sprite[1].endian);
 	a = 126;

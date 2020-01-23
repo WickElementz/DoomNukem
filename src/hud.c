@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 16:15:40 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:24:11 by videloff    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,6 +85,7 @@ static void		draw_hud2(t_env *env, int xy[6])
 	bullet(env, xy, 8);
 }
 
+
 /*
 ** 0 = Parcourt le XPM		X
 ** 1 = Parcourt le XPM		Y
@@ -96,15 +97,11 @@ static void		draw_hud2(t_env *env, int xy[6])
 
 void			draw_hud(t_env *env)
 {
-	int				xy[6];
+	int		i;
+	int		xy[6];
 
-	xy[0] = 0;
-	xy[1] = 0;
-	xy[2] = 350;
-	xy[3] = 342;
-	xy[4] = 86;
-	xy[5] = 86;
-	gun(env, xy, 1);
+	i = gun_phase(env, &xy);
+	gun(env, i, xy);
 	xy[2] = 0;
 	xy[3] = 0;
 	xy[4] = 126;
