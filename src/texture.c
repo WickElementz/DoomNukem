@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:42:09 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 11:34:26 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,16 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/bullet.xpm", &a, &b);
 	env->sprite[8].data = mlx_get_data_addr(env->sprite[8].img,
 		&env->sprite[8].bpp, &env->sprite[8].size_line, &env->sprite[8].endian);
+	a = 960;
+	b = 600;
+	env->sprite[9].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/win.xpm", &a, &b);
+	env->sprite[9].data = mlx_get_data_addr(env->sprite[9].img,
+		&env->sprite[8].bpp, &env->sprite[9].size_line, &env->sprite[9].endian);
+	env->sprite[10].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/lose.xpm", &a, &b);
+	env->sprite[10].data = mlx_get_data_addr(env->sprite[10].img,
+		&env->sprite[10].bpp, &env->sprite[10].size_line, &env->sprite[10].endian);
 }
 
 static void	load_texture3(t_env *env, int a, int b)

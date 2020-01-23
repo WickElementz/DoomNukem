@@ -6,12 +6,30 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:17:51 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 13:11:35 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+void	jump(t_env *env)
+{
+	int i = 0;
+	
+	while (i++ < 32)
+	{
+		env->jump[0] += 5;
+		env->jump[1] -= 5;
+		raycasting(env);
+	}
+	while (i-- > 0)
+	{
+		env->jump[0] -= 5;
+		env->jump[1] += 5;
+		raycasting(env);
+	}
+}
 
 void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
 {

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:04:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 11:43:56 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,8 @@ void		put_pxl(t_env *env, int x, int y, t_clr clr);
 void		print_bullet(t_env *env, int xy[6], int id, int tmp);
 void		bullet(t_env *env, int xy[6], int id);
 void		gun(t_env *env, int xy[6], int id);
+void        jump(t_env *env);
+void		print_last_screen(t_env *env, int id);
 t_spr       *sprite_list(t_ray *hor, t_ray *ver);
 t_spr   	*create_spr(float dist, float mod, int mapy, int mapx);
 t_clr	    gclr(unsigned int color);

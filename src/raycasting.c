@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 13:44:00 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 11:40:20 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -139,10 +139,9 @@ t_ray	*closest_wall(t_env *env, float ang)
 static void		check_status(t_env *env)
 {
 	if (env->p_health <= 0)
-	{
-		mlx_clear_window(env->mlx_ptr, env->win_ptr);
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 440, 300, 0xFF0000, "GAME OVER");
-	}
+		print_last_screen(env, 10);
+	if (env->win == 1)
+		print_last_screen(env, 9);
 }
 
 void	raycasting(t_env *env)
@@ -168,7 +167,8 @@ void	raycasting(t_env *env)
 		free(distance);
 	}
 	draw_hud(env);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 60, 0xD1E7C3, ft_itoa(env->r_ammo));
 	check_status(env);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	if(env->win != 1 && env->p_health > 0)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 60, 0xD1E7C3, ft_itoa(env->r_ammo));	
 }
