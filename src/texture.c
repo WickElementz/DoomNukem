@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 11:34:26 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:27:31 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,10 @@ static void	load_texture2(t_env *env, int a, int b)
 		"textures/sky.xpm", &a, &b);
 	env->text[5].data = mlx_get_data_addr(env->text[5].img,
 		&env->text[5].bpp, &env->text[5].size_line, &env->text[5].endian);
+	env->text[6].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"textures/glass_o_pipi.xpm", &a, &b);
+	env->text[6].data = mlx_get_data_addr(env->text[6].img,
+		&env->text[6].bpp, &env->text[6].size_line, &env->text[6].endian);
 	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/sprite.xpm", &a, &b);
 	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img,

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 12:33:43 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:26:07 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,14 +30,12 @@ static void		event_key2(t_env *env)
 	}
 	if (env->ev.win == 1)
 		env->win = 1;
-	if (env->ev.space == 1)
-		jump(env);
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||
 					env->ev.downarrow == 1 || env->ev.uparrow == 1 ||
 						env->ev.m_right == 1 || env->ev.m_left == 1 ||
-							env->ev.m_down == 1 || env->ev.m_up == 1 || env->ev.space == 1)
+							env->ev.m_down == 1 || env->ev.m_up == 1)
 		raycasting(env);
 }
 
@@ -90,8 +88,6 @@ int				hold_key(int key, t_env *env)
 		env->ev.hp_down = 1;
 	if (key == KEY_EQUAL && env->p_health > 0)
 		env->ev.win = 1;
-	if (key == KEY_SPACEBAR)
-		env->ev.space = 1;
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
 	return (0);
@@ -115,8 +111,6 @@ int				unhold_key(int key, t_env *env)
 		env->ev.uparrow = 0;
 	else if (key == KEY_DOWN)
 		env->ev.downarrow = 0;
-	if (key == KEY_SPACEBAR)
-		env->ev.space = 0;
 	if (key == KEY_LEFT)
 		env->ev.s_left = 0;
 	else if (key == KEY_RIGHT)

@@ -6,14 +6,14 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 13:11:35 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:24:43 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void	jump(t_env *env)
+/*void	jump(t_env *env)
 {
 	int i = 0;
 	
@@ -29,7 +29,7 @@ void	jump(t_env *env)
 		env->jump[1] += 5;
 		raycasting(env);
 	}
-}
+}*/
 
 void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
 {

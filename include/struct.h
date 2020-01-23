@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 11:42:43 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 14:27:38 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,23 +61,18 @@ typedef struct		s_position
 
 typedef struct		s_ray
 {
-	float			dist;
-	float			mod;
-	float			id;
-	float			ang;
-	struct s_spr	*next;
-}					t_ray;
-
-typedef struct		s_spr
-{
 	int				type;
 	float			dist;
 	float			mod;
 	float			id;
+	float			ang;
+	int				wall;
+	int				cmpt;
+	int				mrg;
 	int				mapy;
 	int				mapx;
-	struct s_spr	*next;
-}					t_spr;
+	struct s_ray	*next;
+}					t_ray;
 
 /*
 ** Structure de texture
@@ -107,7 +102,6 @@ typedef struct		s_clr
 	int				g;
 	int				b;
 	int				a;
-	struct s_clr	*next;
 }					t_clr;
 
 /*
@@ -134,8 +128,6 @@ typedef	struct		s_env
 	int				ammo;
 	int				r_ammo;
 	int				win;
-	int				mrg[2];
-	int				jump[2];
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
@@ -143,7 +135,7 @@ typedef	struct		s_env
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
-	t_texture		text[6];
+	t_texture		text[7];
 	t_sprite		sprite[11];
 }					t_env;
 
