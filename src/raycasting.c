@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 09:05:26 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 13:44:00 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -173,5 +173,6 @@ void	raycasting(t_env *env)
 	}
 	draw_hud(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 60, 0xD1E7C3, ft_itoa(env->r_ammo));
 	check_status(env);
 }

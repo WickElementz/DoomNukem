@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 07:22:36 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 13:26:49 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -123,6 +123,8 @@ typedef	struct		s_env
 	int				size_line;
 	int				k_ev;
 	int				p_health;
+	int				ammo;
+	int				r_ammo;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

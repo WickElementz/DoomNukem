@@ -6,12 +6,28 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 13:49:17 by kanne        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:30:36 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 15:38:45 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+int				mouse_hook(int click, int x, int y, t_env *env)
+{
+	x = y;
+	if (click == 1 && env->r_ammo > 0)
+	{
+		env->ammo--;
+		if (env->ammo == 0 && env->r_ammo > 0)
+		{
+			//set reload + print du 0 bullet chargeur
+			env->ammo = env->r_ammo > 5 ? 6 : env->r_ammo - 1;
+		}
+		env->r_ammo--;
+	}
+	return (0);
+}
 
 static void		horizontal_move(int x, t_env *env)
 {

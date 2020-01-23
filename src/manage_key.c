@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_key.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 07:28:31 by kanne       ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 15:14:55 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,9 +52,9 @@ int				event_key(t_env *env)
 	else if (env->ev.right == 1)
 		ft_move_x(env->map, &env->cam, 1, max);
 	if (env->ev.walk == 1)
-		env->cam.speed = 2;
+		env->cam.speed = 3;
 	if (env->ev.run == 1)
-		env->cam.speed = 6;
+		env->cam.speed = 9;
 	event_mouse(env);
 	event_key2(env);
 	return (0);
@@ -91,16 +91,10 @@ int				hold_key(int key, t_env *env)
 
 int				unhold_key(int key, t_env *env)
 {
-	if (key == KEY_SHIFT_LEFT)
-	{
-		env->cam.speed = 4;
+	if (key == KEY_SHIFT_LEFT && (env->cam.speed = 6))
 		env->ev.run = 0;
-	}
-	else if (key == KEY_ALT)
-	{
-		env->cam.speed = 4;
+	else if (key == KEY_ALT && (env->cam.speed = 6))
 		env->ev.walk = 0;
-	}
 	if (key == KEY_W)
 		env->ev.forward = 0;
 	if (key == KEY_S)

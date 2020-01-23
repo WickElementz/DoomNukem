@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   error.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/18 15:41:02 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 13:04:51 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 15:45:08 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ void	error(int error)
 t_ray	*create_ray(float dist, float mod, float id)
 {
 	t_ray	*ray;
-	
+
 	if (!(ray = (t_ray*)malloc(sizeof(t_ray))))
 		return (NULL);
 	ray->dist = dist;
