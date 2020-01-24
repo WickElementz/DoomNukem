@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 15:18:15 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:43:15 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,7 @@ void		gun(t_env *env, int id, int xy[6]);
 void		print_last_screen(t_env *env, int id);
 void		print_hud(t_env *env, int id);
 void		print_gun(t_env *env, int id);
+void		print_gun_animation(t_env *env, int id);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color);
 t_clr	    gclra(unsigned int color);

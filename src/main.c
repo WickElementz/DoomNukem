@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 15:19:36 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 16:12:25 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ void			init_info(t_env *env)
 	env->p_health = 100;
 	env->ammo = 6;
 	env->r_ammo = 12;
-	env->phase = 1;
+	env->delay = 1;
 }
 
 void			free_env(t_env *env, int set)

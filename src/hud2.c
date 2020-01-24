@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 15:02:28 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 15:31:33 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:40:47 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,37 +51,38 @@ void		bullet(t_env *env, int xy[6], int id)
 	}
 }
 
-void		gun(t_env *env, int id, int xy[6])
+void		print_gun_animation(t_env *env, int id)
 {
-	unsigned int	color;
-	t_clr			clr;
+	int xy[4];
+	t_clr clr;
+	unsigned int color;
 
-	xy[0] = 0;
-	xy[2] = (960 / 2) - xy[4];
-	while (xy[2] < ((960 / 2) + xy[4]))
+	xy[0] = 210;
+	xy[2] = 0;
+	while (xy[0] < 554)
 	{
-		xy[3] = 600 - (xy[5] * 2);
-		xy[1] = 0;
-		while (xy[3] < 600)
+		xy[1] = 234;
+		xy[3] = 0;
+		while (xy[1] < 600)
 		{
-			ft_memcpy(&color, &env->sprite[id].data[(xy[0] + xy[4] *
-						(xy[5] * xy[1] / (xy[5] * 2))) * 4], sizeof(int));
+			ft_memcpy(&color, &env->sprite[id].data[(xy[2] + 171 *
+					(171 * xy[3] / 342)) * 4], sizeof(int));
 			if ((int)color != NONE)
-			{	
+			{
 				clr = gclr(color);
-				put_pxl2(env, xy[2], xy[3], clr);
+				put_pxl2(env, xy[0], xy[1], clr);
 			}
 			else
 			{
 				clr = gclra(color);
-				put_pxl2(env, xy[2], xy[3], clr);
+				put_pxl2(env, xy[0], xy[1], clr);
 			}
-			xy[1]++;
 			xy[3]++;
+			xy[1]++;
 		}
-		if (xy[2] % 2 == 0)
-			xy[0]++;
-		xy[2]++;
+		xy[0]++;
+		if (xy[0] > 210 && xy[0] < 554 && xy[0] % 2 == 0)
+			xy[2]++;
 	}
 }
 

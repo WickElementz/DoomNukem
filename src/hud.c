@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 13:23:07 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:37:19 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,34 +64,6 @@ void		print_hud(t_env *env, int id)
 		x++;
 	}
 }
-/*
-static void		print_hud(t_env *env, int xy[6], int id)
-{
-	t_clr			clr;
-	unsigned int	color;
-	int				tmp;
-
-	xy[0] = 0;
-	while (xy[0] < xy[4])
-	{
-		xy[1] = 0;
-		tmp = xy[3];
-		while (xy[1] < xy[5])
-		{
-			ft_memcpy(&color, &env->sprite[id].data[(xy[0] + xy[4] *
-			 			xy[1]) * 4], sizeof(int));
-			clr = gclr(color);
-			if ((int)color != NONE)
-				put_pxl2(env, xy[2], tmp, clr);
-			xy[1]++;
-			tmp++;
-		}
-		xy[0]++;
-		xy[2]++;
-	}
-}*/
-
-
 
 /*
 ** 0 = Parcourt le XPM		X

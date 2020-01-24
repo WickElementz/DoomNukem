@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/24 12:59:41 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/24 16:13:48 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -37,9 +37,7 @@ SRC_N		= main.c \
 				manage_mouse.c \
 				raycasting.c \
 				texture.c \
-				texture2.c \
 				fire.c\
-				gun_phase.c\
 				error.c \
 				hud.c \
 				hud2.c \
