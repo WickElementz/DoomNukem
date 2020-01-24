@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 11:15:28 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:28:23 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 12:51:35 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@
 
 static void	load_texture4(t_env *env, int a, int b)
 {
-	a = 280;
+/*	a = 280;
 	b = 12;
 	env->sprite[6].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/bot_helmet.xpm", &a, &b);
@@ -39,7 +39,7 @@ static void	load_texture4(t_env *env, int a, int b)
 	env->sprite[7].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/right_hud.xpm", &a, &b);
 	env->sprite[7].data = mlx_get_data_addr(env->sprite[7].img,
-		&env->sprite[7].bpp, &env->sprite[7].size_line, &env->sprite[7].endian);
+		&env->sprite[7].bpp, &env->sprite[7].size_line, &env->sprite[7].endian);*/
 	a = 6;
 	b = 20;
 	env->sprite[8].img = mlx_xpm_file_to_image(env->mlx_ptr,
@@ -56,11 +56,15 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/lose.xpm", &a, &b);
 	env->sprite[10].data = mlx_get_data_addr(env->sprite[10].img,
 		&env->sprite[10].bpp, &env->sprite[10].size_line, &env->sprite[10].endian);
+	env->sprite[11].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/full_hud.xpm", &a, &b);
+	env->sprite[11].data = mlx_get_data_addr(env->sprite[11].img,
+		&env->sprite[11].bpp, &env->sprite[11].size_line, &env->sprite[11].endian);
 }
 
 static void	load_texture3(t_env *env, int a, int b)
 {
-	env->sprite[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
+/*	env->sprite[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/glass.xpm", &a, &b);
 	env->sprite[2].data = mlx_get_data_addr(env->sprite[2].img,
 		&env->sprite[2].bpp, &env->sprite[2].size_line, &env->sprite[2].endian);
@@ -81,7 +85,7 @@ static void	load_texture3(t_env *env, int a, int b)
 	env->sprite[5].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/left_hud.xpm", &a, &b);
 	env->sprite[5].data = mlx_get_data_addr(env->sprite[5].img,
-		&env->sprite[5].bpp, &env->sprite[5].size_line, &env->sprite[5].endian);
+		&env->sprite[5].bpp, &env->sprite[5].size_line, &env->sprite[5].endian);*/
 	load_texture4(env, a, b);
 }
 

@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/22 15:03:46 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/24 11:47:07 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -68,7 +68,7 @@ DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 
 all : $(NAME)
 $(NAME): $(OBJS) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -fsanitize=address -g
+	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
 	@echo "$(DONE)"
 $(OBJ_P)/%.o: $(SRC_P)/%.c $(INCS)
 	@mkdir $(OBJ_P) 2> /dev/null || true

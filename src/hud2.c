@@ -6,36 +6,12 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 15:02:28 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:40:09 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 12:51:29 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
-void		print_last_screen(t_env *env, int id)
-{
-	int x;
-	int y;
-	t_clr clr;
-	unsigned int color;
-
-	x = 0;
-	while (x < 960)
-	{
-		y = 0;
-		while (y < 600)
-		{
-			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
-					y) * 4], sizeof(int));
-			clr = gclr(color);
-			if ((int)color != NONE)
-				put_pxl(env, x, y, clr);
-			y++;
-		}
-		x++;
-	}
-}
 
 void		print_bullet(t_env *env, int xy[6], int id, int tmp)
 {

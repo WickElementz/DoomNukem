@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:25:04 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 12:51:40 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,12 +35,15 @@ void		error(int error);
 void        draw_hud(t_env *env);
 void		load_texture(t_env *env);
 void		put_pxl(t_env *env, int x, int y, t_clr clr);
+void		put_pxl2(t_env *env, int x, int y, t_clr clr);
 void		print_bullet(t_env *env, int xy[6], int id, int tmp);
 void		bullet(t_env *env, int xy[6], int id);
 void		gun(t_env *env, int xy[6], int id);
 void		print_last_screen(t_env *env, int id);
+void		print_hud(t_env *env, int id);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color);
+t_clr	    gclra(unsigned int color);
 t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);

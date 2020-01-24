@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 14:28:07 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 11:52:16 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,11 +132,13 @@ typedef	struct		s_env
 	void			*win_ptr;
 	void			*img_ptr;
 	char			*data_ptr;
+	void			*img_ptr2;
+	char			*data_ptr2;
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
 	t_texture		text[7];
-	t_sprite		sprite[11];
+	t_sprite		sprite[12];
 }					t_env;
 
 #endif

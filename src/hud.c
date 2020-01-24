@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:06:22 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 12:50:28 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,15 +18,15 @@ static void		draw_life(t_env *env, int xy[2])
 	unsigned int	color;
 	t_clr			clr;
 
-	xy[0] = 809;
-	while (xy[0] < 910)
+	xy[0] = 805;
+	while (xy[0] < 908)
 	{
-		xy[1] = 4;
-		while (xy[1] < 18)
+		xy[1] = 8;
+		while (xy[1] < 22)
 		{
 			color = 0xD1E7C3;
 			clr = gclr(color);
-			if (xy[0] < env->p_health + 809)
+			if (xy[0] < env->p_health + 805)
 				put_pxl(env, xy[0], xy[1], clr);
 			xy[1]++;
 		}
@@ -34,6 +34,37 @@ static void		draw_life(t_env *env, int xy[2])
 	}
 }
 
+void		print_hud(t_env *env, int id)
+{
+	int x;
+	int y;
+	t_clr clr;
+	unsigned int color;
+
+	x = 0;
+	while (x < 960)
+	{
+		y = 0;
+		while (y < 600)
+		{
+			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
+					y) * 4], sizeof(int));
+			if ((int)color != NONE)
+			{
+				clr = gclr(color);
+				put_pxl2(env, x, y, clr);
+			}
+			else
+			{
+				clr = gclra(color);
+				put_pxl2(env, x, y, clr);
+			}
+			y++;
+		}
+		x++;
+	}
+}
+/*
 static void		print_hud(t_env *env, int xy[6], int id)
 {
 	t_clr			clr;
@@ -51,39 +82,15 @@ static void		print_hud(t_env *env, int xy[6], int id)
 			 			xy[1]) * 4], sizeof(int));
 			clr = gclr(color);
 			if ((int)color != NONE)
-				put_pxl(env, xy[2], tmp, clr);
+				put_pxl2(env, xy[2], tmp, clr);
 			xy[1]++;
 			tmp++;
 		}
 		xy[0]++;
 		xy[2]++;
 	}
-}
+}*/
 
-static void		draw_hud2(t_env *env, int xy[6])
-{
-	xy[2] = 0;
-	xy[3] = 365;
-	xy[4] = 251;
-	xy[5] = 235;
-	print_hud(env, xy, 5);
-	xy[2] = 340;
-	xy[3] = 588;
-	xy[4] = 280;
-	xy[5] = 12;
-	print_hud(env, xy, 6);
-	xy[2] = 709;
-	xy[3] = 262;
-	xy[4] = 251;
-	xy[5] = 338;
-	print_hud(env, xy, 7);
-	draw_life(env, xy);
-	xy[2] = 920;
-	xy[3] = 24;
-	xy[4] = 6;
-	xy[5] = 20;
-	bullet(env, xy, 8);
-}
 
 /*
 ** 0 = Parcourt le XPM		X
@@ -100,25 +107,10 @@ void			draw_hud(t_env *env)
 
 	xy[0] = 0;
 	xy[1] = 0;
-	xy[2] = 350;
-	xy[3] = 342;
-	xy[4] = 86;
-	xy[5] = 86;
-	gun(env, xy, 1);
-	xy[2] = 0;
-	xy[3] = 0;
-	xy[4] = 126;
-	xy[5] = 98;
-	print_hud(env, xy, 2);
-	xy[2] = 315;
-	xy[3] = 0;
-	xy[4] = 331;
-	xy[5] = 37;
-	print_hud(env, xy, 3);
-	xy[2] = 784;
-	xy[3] = 0;
-	xy[4] = 176;
-	xy[5] = 80;
-	print_hud(env, xy, 4);
-	draw_hud2(env, xy);
+	draw_life(env, xy);
+	xy[2] = 915;
+	xy[3] = 28;
+	xy[4] = 6;
+	xy[5] = 20;
+	bullet(env, xy, 8);
 }
