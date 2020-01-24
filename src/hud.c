@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 12:50:28 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 13:23:07 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,12 +52,12 @@ void		print_hud(t_env *env, int id)
 			if ((int)color != NONE)
 			{
 				clr = gclr(color);
-				put_pxl2(env, x, y, clr);
+				put_pxl3(env, x, y, clr);
 			}
 			else
 			{
 				clr = gclra(color);
-				put_pxl2(env, x, y, clr);
+				put_pxl3(env, x, y, clr);
 			}
 			y++;
 		}
@@ -92,6 +92,7 @@ static void		print_hud(t_env *env, int xy[6], int id)
 }*/
 
 
+
 /*
 ** 0 = Parcourt le XPM		X
 ** 1 = Parcourt le XPM		Y
@@ -103,7 +104,7 @@ static void		print_hud(t_env *env, int xy[6], int id)
 
 void			draw_hud(t_env *env)
 {
-	int				xy[6];
+	int		xy[6];
 
 	xy[0] = 0;
 	xy[1] = 0;
@@ -112,5 +113,5 @@ void			draw_hud(t_env *env)
 	xy[3] = 28;
 	xy[4] = 6;
 	xy[5] = 20;
-	bullet(env, xy, 8);
+	bullet(env, xy, 2);
 }

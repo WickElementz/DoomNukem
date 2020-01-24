@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 12:51:02 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:24:02 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -143,9 +143,9 @@ t_ray	*closest_wall(t_env *env, float ang)
 static void		check_status(t_env *env)
 {
 	if (env->p_health <= 0)
-		print_hud(env, 10);
+		print_hud(env, 4);
 	if (env->win == 1)
-		print_hud(env, 9);
+		print_hud(env, 3);
 }
 
 void	raycasting(t_env *env)
@@ -174,6 +174,13 @@ void	raycasting(t_env *env)
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if(env->win != 1 && env->p_health > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 62, 0xD1E7C3, ft_itoa(env->r_ammo));	
 }
+
+/*
+** IMG1 = Raycasting + vie + munitions
+** IMG 2 = GUN
+** IMG3 = HUD
+*/

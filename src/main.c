@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 12:45:33 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:19:36 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,10 +28,15 @@ static int		init_mlx(t_env *env)
 		return (-1);
 	env->data_ptr2 = mlx_get_data_addr(env->img_ptr2, &env->bpp,
 					&env->size_line, &env->endian);
+	if (!(env->img_ptr3 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
+		return (-1);
+	env->data_ptr3 = mlx_get_data_addr(env->img_ptr3, &env->bpp,
+					&env->size_line, &env->endian);
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env);
-	print_hud(env, 11);
+	print_hud(env, 5);
+	print_gun(env, 1);
 	return (0);
 }
 
@@ -57,6 +62,7 @@ void			init_info(t_env *env)
 	env->p_health = 100;
 	env->ammo = 6;
 	env->r_ammo = 12;
+	env->phase = 1;
 }
 
 void			free_env(t_env *env, int set)

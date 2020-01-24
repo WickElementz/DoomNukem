@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 11:52:16 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:17:07 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -127,6 +127,7 @@ typedef	struct		s_env
 	int				p_health;
 	int				ammo;
 	int				r_ammo;
+	int				phase;
 	int				win;
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -134,11 +135,13 @@ typedef	struct		s_env
 	char			*data_ptr;
 	void			*img_ptr2;
 	char			*data_ptr2;
+	void			*img_ptr3;
+	char			*data_ptr3;
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
 	t_texture		text[7];
-	t_sprite		sprite[12];
+	t_sprite		sprite[13];
 }					t_env;
 
 #endif

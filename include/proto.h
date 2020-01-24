@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 12:51:40 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 15:18:15 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@ int			hold_key(int key, t_env *env);
 int			unhold_key(int key, t_env *env);
 int			mouse_move(int x, int y, t_env *env);
 int			mouse_hook(int click, int x, int y, t_env *env);
+int	    	gun_phase(t_env *env, int (*xy)[6]);
 void		event_mouse(t_env *env);
 void		free_env(t_env *env, int set);
 void		anglemove(t_position *cam, int way);
@@ -36,11 +37,13 @@ void        draw_hud(t_env *env);
 void		load_texture(t_env *env);
 void		put_pxl(t_env *env, int x, int y, t_clr clr);
 void		put_pxl2(t_env *env, int x, int y, t_clr clr);
+void		put_pxl3(t_env *env, int x, int y, t_clr clr);
 void		print_bullet(t_env *env, int xy[6], int id, int tmp);
 void		bullet(t_env *env, int xy[6], int id);
-void		gun(t_env *env, int xy[6], int id);
+void		gun(t_env *env, int id, int xy[6]);
 void		print_last_screen(t_env *env, int id);
 void		print_hud(t_env *env, int id);
+void		print_gun(t_env *env, int id);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color);
 t_clr	    gclra(unsigned int color);
