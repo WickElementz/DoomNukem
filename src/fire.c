@@ -64,7 +64,8 @@ void	fire_animation(t_env *env)
 
 int		mouse_hook(int key, int x, int y, t_env *env)
 {
-	x = y;
+//	x = y;
+	dprintf(0, "%d%d", x, y);
 	if (key == 1 && env->ammo > 0)
 	{
 		env->ammo--;

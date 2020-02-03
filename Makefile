@@ -70,7 +70,7 @@ DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 
 all : $(NAME)
 $(NAME): $(OBJS) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
+	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -g3 -fsanitize=address
 	@echo "$(DONE)"
 $(OBJ_P)/%.o: $(SRC_P)/%.c $(INCS)
 	@mkdir $(OBJ_P) 2> /dev/null || true

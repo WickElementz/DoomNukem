@@ -51,7 +51,7 @@ void		print_hud(t_env *env, int id)
 					y) * 4], sizeof(int));
 			if ((int)color != NONE)
 			{
-				clr = gclr(color);
+				clr = gclra(color);
 				put_pxl3(env, x, y, clr);
 			}
 			else

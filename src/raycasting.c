@@ -35,6 +35,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
+	sprite = ver;
 	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
@@ -46,14 +47,12 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
 		{
-			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
-				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle)
-				* M_PI / 180), (int)xy[1] % 64, 6);
-			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
-			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
+//			add_end_lst(ver, sprite);
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'G') ? 0 : 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -77,6 +76,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
+	sprite = hor;
 	hor->id = (ang < 180) ? 0 : 2;
 	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
 		(int)(env->cam.x / 64) * 64 - 1;
@@ -91,11 +91,10 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
-			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
-			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'G') ? 0 : 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -140,7 +139,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	return (distance);
 }
 
-static void		check_status(t_env *env)
+void		check_status(t_env *env)
 {
 	if (env->p_health <= 0)
 		print_hud(env, 4);
@@ -170,13 +169,13 @@ void	raycasting(t_env *env)
 		draw_column(env, distance, xy);
 		free_listr(distance);
 	}
-	draw_hud(env);
-	check_status(env);
+//	draw_hud(env);
+//	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
-	if(env->win != 1 && env->p_health > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 62, 0xD1E7C3, ft_itoa(env->r_ammo));	
+//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
+//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
+//	if(env->win != 1 && env->p_health > 0)
+//		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 62, 0xD1E7C3, ft_itoa(env->r_ammo));	
 }
 
 /*

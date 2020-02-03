@@ -21,33 +21,46 @@ void			free_listr(t_ray *list)
 		free(list);
 }
 
+void			set_sprite(t_ray *maillon)
+{
+	if (maillon->next)
+		set_sprite(maillon->next);
+	if (maillon)
+	{
+		maillon->wall = (64 / maillon->dist) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
+		maillon->cmpt = (maillon->wall <= WIN_HEIGHT) ? 0 : maillon->wall / 2 - WIN_HEIGHT / 2;
+		maillon->mrg = (maillon->wall <= WIN_HEIGHT) ? (WIN_HEIGHT - maillon->wall) / 2 : 0;
+	}
+}
+
 void			draw_column(t_env *env, t_ray *ray, int xy[3])
 {
 	t_clr	res;
 	t_clr 	clr;
 	t_ray	*list;
-		
-	ray->wall = (64 / ray->dist) * ((WIN_WIDTH / 2) / tan(FOV / 2 * M_PI / 180));
-	ray->cmpt = (ray->wall <= WIN_HEIGHT) ? 0 : ray->wall / 2 - WIN_HEIGHT / 2;
-	ray->mrg = (ray->wall <= WIN_HEIGHT) ? (WIN_HEIGHT - ray->wall) / 2 : 0;
-	list = ray;
+	
+	set_sprite(ray);
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		ray = (list->next != NULL) ? list : list;
-		while (ray)
+		if (ray->next == NULL || ray->dist < ray->next->dist)
+			res = add_sprite(env, ray, xy);
+		else
 		{
-			clr = add_sprite(env, ray, xy);
-			if (clr.r != 0 || clr.g != 0 || clr.b != 0)
+			list = ray->next;
+			while (list)
 			{
-				res = clr;
-				break;
+				clr = add_sprite(env, list, xy);
+				if (clr.r != 0 && clr.g != 0 && clr.b != 0)
+				{
+					res = clr;
+					break;
+				}
+				list = list->next;
 			}
-			ray = ray->next;
 		}
-		xy[1]++;
 		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
 			put_pxl(env, xy[0], xy[1] - env->up, res);
-//		dprintf(1, "ca\n");
+		xy[1]++;
 	}
 }
 

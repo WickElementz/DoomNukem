@@ -43,6 +43,7 @@ void		bullet(t_env *env, int xy[6], int id);
 void		gun(t_env *env, int id, int xy[6]);
 void		print_last_screen(t_env *env, int id);
 void		print_hud(t_env *env, int id);
+void    	add_end_lst(t_ray *base, t_ray *new);
 void		print_gun(t_env *env, int id);
 void		print_gun_animation(t_env *env, int id);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
