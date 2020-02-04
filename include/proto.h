@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 15:43:15 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/30 13:21:44 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,16 +38,16 @@ void		load_texture(t_env *env);
 void		put_pxl(t_env *env, int x, int y, t_clr clr);
 void		put_pxl2(t_env *env, int x, int y, t_clr clr);
 void		put_pxl3(t_env *env, int x, int y, t_clr clr);
-void		print_bullet(t_env *env, int xy[6], int id, int tmp);
-void		bullet(t_env *env, int xy[6], int id);
-void		gun(t_env *env, int id, int xy[6]);
-void		print_last_screen(t_env *env, int id);
+void		gun(t_env *env, int id);
 void		print_hud(t_env *env, int id);
-void		print_gun(t_env *env, int id);
 void		print_gun_animation(t_env *env, int id);
+void		print_reload_animation(t_env *env, int id);
+void        reload(t_env *env);
+void        fire(t_env *env);
+void        display(t_env *env);
+void        check_status(t_env *env);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
-t_clr	    gclr(unsigned int color);
-t_clr	    gclra(unsigned int color);
+t_clr	    gclr(unsigned int color, int a);
 t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);

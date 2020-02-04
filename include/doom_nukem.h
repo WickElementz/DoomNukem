@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   doom_nukem.h                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:03:15 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:16:11 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 13:42:48 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@
 #  include "../minilibx/mlx.h"
 # elif __APPLE__
 #  include "keys.h"
-#  include "../mlx_include/mlx.h"
+#  include "../mlx_include_new/mlx.h"
 # endif
 
 /*
@@ -40,6 +40,7 @@
 **  ******************
 */
 
+# include <time.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

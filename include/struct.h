@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 16:11:39 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 12:39:44 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,8 +83,8 @@ typedef struct		s_texture
 	void			*img;
 	char			*data;
 	int				bpp;
-	int				endian;
-	int				size_line;
+	int				end;
+	int				sl;
 }					t_texture;
 
 typedef struct		s_sprite
@@ -92,8 +92,8 @@ typedef struct		s_sprite
 	void			*img;
 	char			*data;
 	int				bpp;
-	int				endian;
-	int				size_line;
+	int				end;
+	int				sl;
 }					t_sprite;
 
 typedef struct		s_clr
@@ -103,6 +103,21 @@ typedef struct		s_clr
 	int				b;
 	int				a;
 }					t_clr;
+
+typedef struct		s_gun
+{
+	int				obj;
+	int				time;
+	int				id;
+	t_sprite		spr[8];
+}					t_gun;
+
+typedef struct		s_reload
+{
+	int				time;
+	int				id;
+	t_sprite		spr[6];
+}					t_reload;
 
 /*
 **	map_y_max	= Ligne la plus longue
@@ -116,32 +131,32 @@ typedef	struct		s_env
 	int				map_y_max;
 	int				map_x_max;
 	int				f_mini;
-	int				y;
 	int				up;
-	int				y_max;
 	int				bpp;
 	int				sick;
 	int				endian;
 	int				size_line;
-	int				k_ev;
 	int				p_health;
 	int				ammo;
 	int				r_ammo;
 	int				win;
-	float			delay;
+	int				clock;
+	unsigned long	t;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
-	char			*data_ptr;
 	void			*img_ptr2;
-	char			*data_ptr2;
 	void			*img_ptr3;
+	char			*data_ptr;
+	char			*data_ptr2;
 	char			*data_ptr3;
+	t_reload		reload;
+	t_gun			gun;
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
 	t_texture		text[7];
-	t_sprite		sprite[13];
+	t_sprite		sprite[5];
 }					t_env;
 
 #endif

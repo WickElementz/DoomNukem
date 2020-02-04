@@ -6,12 +6,20 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 12:53:20 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/30 13:23:07 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+void		check_status(t_env *env)
+{
+	if (env->p_health <= 0)
+		print_hud(env, 3);
+	if (env->win == 1)
+		print_hud(env, 2);
+}
 
 void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
 {
@@ -68,10 +76,10 @@ void		ft_move_z(t_block **map, t_position *cam, int way, int max[2])
 
 void		anglemove(t_position *cam, int way)
 {
-	if (cam->angle == 357 && way == SENSI)
+	if (cam->angle == 360 - SENSI && way == SENSI)
 		cam->angle = 0;
 	else if (cam->angle == 0 && way == -SENSI)
-		cam->angle = 357;
+		cam->angle = 360 - SENSI;
 	else
 		cam->angle += way;
 }

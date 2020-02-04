@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/24 16:13:48 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/30 13:42:39 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,8 +16,8 @@ USER		= $(shell whoami)
 UNAME		:= $(shell uname)
 
 ifeq ($(UNAME), Darwin)
-MNLBX		= ./mlx_include
-MNLBX_A		= $(MNLBX)/libmlx.a
+MNLBX		= ./mlx_include_new
+MNLBX_A		= $(MNLBX)/libmlx.dylib
 FRKS		= -lmlx -framework OpenGL -framework AppKit
 endif
 

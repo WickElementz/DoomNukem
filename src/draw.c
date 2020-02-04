@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 13:25:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 13:20:08 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,7 +47,6 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 		xy[1]++;
 		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
 			put_pxl(env, xy[0], xy[1] - env->up, res);
-//		dprintf(1, "ca\n");
 	}
 }
 
@@ -68,6 +67,6 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 		color = 0x95671F;
 	if (env->sick == 1)
 		color *= 12 + 255;
-	clr = gclr(color);
+	clr = gclr(color, 0);
 	return(clr);
 }

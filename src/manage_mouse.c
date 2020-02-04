@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   manage_mouse.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 13:49:17 by kanne        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:05:42 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 12:40:10 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,6 +61,7 @@ void			event_mouse(t_env *env)
 
 int				mouse_move(int x, int y, t_env *env)
 {
+	dprintf(1, "d");
 	vertical_move(y, env);
 	horizontal_move(x, env);
 	return (0);

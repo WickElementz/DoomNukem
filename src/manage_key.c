@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 16:05:02 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 11:16:12 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,10 +27,11 @@ static void		event_key2(t_env *env)
 	{
 		env->p_health -= 10;
 		env->ev.hp_down = 0;
-		raycasting(env);
+		display(env);
 	}
 	if (env->ev.win == 1)
 		env->win = 1;
+	event_mouse(env);
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||
@@ -38,7 +39,7 @@ static void		event_key2(t_env *env)
 						env->ev.m_right == 1 || env->ev.m_left == 1 ||
 							env->ev.m_down == 1 || env->ev.m_up == 1 ||
 							env->ev.win == 1)
-		raycasting(env);
+		display(env);
 }
 
 int				event_key(t_env *env)
@@ -59,7 +60,6 @@ int				event_key(t_env *env)
 		env->cam.speed = 3;
 	if (env->ev.run == 1)
 		env->cam.speed = 9;
-	event_mouse(env);
 	event_key2(env);
 	return (0);
 }
@@ -84,6 +84,8 @@ int				hold_key(int key, t_env *env)
 		env->ev.downarrow = 1;
 	if (key == KEY_LEFT)
 		env->ev.s_left = 1;
+	if (key == KEY_R && env->reload.id == 0 && env->ammo < env->r_ammo)
+		env->reload.id = 1;
 	else if (key == KEY_RIGHT)
 		env->ev.s_right = 1;
 	if (key == KEY_MINUS && env->p_health > 0)

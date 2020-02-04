@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 15:42:39 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 13:19:11 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -140,14 +140,6 @@ t_ray	*closest_wall(t_env *env, float ang)
 	return (distance);
 }
 
-static void		check_status(t_env *env)
-{
-	if (env->p_health <= 0)
-		print_hud(env, 4);
-	if (env->win == 1)
-		print_hud(env, 3);
-}
-
 void	raycasting(t_env *env)
 {
 	t_ray	*distance;
@@ -170,13 +162,22 @@ void	raycasting(t_env *env)
 		draw_column(env, distance, xy);
 		free_listr(distance);
 	}
+}
+
+void	display(t_env *env)
+{
+	raycasting(env);
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	if (env->gun.id != 0)
+		fire(env);
+	else if (env->reload.id != 0)
+		reload(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if(env->win != 1 && env->p_health > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 62, 0xD1E7C3, ft_itoa(env->r_ammo));	
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
 }
 
 /*

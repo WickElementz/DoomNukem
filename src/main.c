@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 16:12:25 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 12:41:36 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,26 +35,27 @@ static int		init_mlx(t_env *env)
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env);
-	print_hud(env, 5);
-	print_gun(env, 1);
+	print_hud(env, 4);
+	gun(env, 0);
 	return (0);
 }
 
 static void		loop_mlx(t_env *env)
 {
-	raycasting(env);
+	display(env);
+	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
+	dprintf(1, "a");
+	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
 	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
-	mlx_hook(env->win_ptr, 6, 1L << 6, mouse_move, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_loop(env->mlx_ptr);
 }
 
 void			init_info(t_env *env)
 {
-	env->k_ev = 0;
-	env->f_mini = 0;
+	ft_bzero(env, sizeof(t_env));
 	env->map_y_max = -1;
 	env->up = 300;
 	env->cam.speed = 6;
@@ -62,7 +63,9 @@ void			init_info(t_env *env)
 	env->p_health = 100;
 	env->ammo = 6;
 	env->r_ammo = 12;
-	env->delay = 1;
+	env->gun.obj = 8;
+	env->gun.time = 80000;
+	env->reload.time = 80000;
 }
 
 void			free_env(t_env *env, int set)
