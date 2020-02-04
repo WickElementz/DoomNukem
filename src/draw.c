@@ -49,12 +49,15 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 			list = ray->next;
 			while (list)
 			{
+				res = add_sprite(env, ray, xy);
 				clr = add_sprite(env, list, xy);
 				if (clr.r != 0 && clr.g != 0 && clr.b != 0)
 				{
 					res = clr;
 					break;
 				}
+				else if (list->next == NULL)
+					break;
 				list = list->next;
 			}
 		}
@@ -77,7 +80,7 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 			64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 	}
-	else// if (xy[1] > ray->mrg + ray->wall)
+	else
 		color = 0x95671F;
 	if (env->sick == 1)
 		color *= 12 + 255;
