@@ -53,14 +53,14 @@ t_ray	*create_ray(float dist, float mod, float id)
 		return (NULL);
 	ray->dist = dist;
 	ray->type = -1;
-	ray->ang = 0;
-	ray->wall = 0;
-	ray->mrg = 0;
-	ray->cmpt = 0;
+	ray->ang = -1;
+	ray->wall = -1;
+	ray->mrg = -1;
+	ray->cmpt = -1;
 	ray->mod = mod;
 	ray->id = id;
 	ray->mapy = -1;
 	ray->mapx = -1;
-	ray->next = NULL;
+	ray->next = NULL ;
 	return (ray);
 }

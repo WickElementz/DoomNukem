@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 13:19:11 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 12:45:56 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
+	sprite = ver;
 	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
@@ -46,14 +47,12 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
 		{
-			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
-				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle)
-				* M_PI / 180), (int)xy[1] % 64, 6);
-			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
-			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
+//			add_end_lst(ver, sprite);
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'G') ? 0 : 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -77,6 +76,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
+	sprite = hor;
 	hor->id = (ang < 180) ? 0 : 2;
 	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
 		(int)(env->cam.x / 64) * 64 - 1;
@@ -91,11 +91,10 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
-			sprite = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
-			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G') ? 0 : 1;
-			sprite->dist += (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S') ? 32 : 0;
+			sprite->type = (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type != 'G') ? 0 : 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||

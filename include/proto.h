@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/30 13:21:44 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 12:44:27 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,6 +40,7 @@ void		put_pxl2(t_env *env, int x, int y, t_clr clr);
 void		put_pxl3(t_env *env, int x, int y, t_clr clr);
 void		gun(t_env *env, int id);
 void		print_hud(t_env *env, int id);
+void    	add_end_lst(t_ray *base, t_ray *new);
 void		print_gun_animation(t_env *env, int id);
 void		print_reload_animation(t_env *env, int id);
 void        reload(t_env *env);

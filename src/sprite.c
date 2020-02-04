@@ -28,6 +28,13 @@ t_ray	*cpy_spr(t_ray *spr)
 	return (new);
 }
 
+void	add_end_lst(t_ray *base, t_ray *new)
+{
+	while (base->next)
+		base = base->next;
+	base->next = new;
+}
+
 t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 {
 	t_ray     *move_ver;
@@ -39,24 +46,39 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 		return (NULL);
 	move_ver = ver->next;
 	move_hor = hor->next;
-	base = create_ray(0, 0, 0);
+	if (move_hor && move_ver)
+		base = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+	else
+		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
 	move_base = base;
 	while (move_hor || move_ver)
 	{
-		if ((move_hor->dist > move_ver->dist) || (!move_hor && move_ver))
+		if (move_hor && move_ver)
 		{
-			move_base = cpy_spr(move_ver);
+			if (move_hor->dist > move_ver->dist)
+			{
+				move_base->next = cpy_spr(move_ver);
+				move_ver = move_ver->next;
+			}
+			else 
+			{
+				move_base->next = cpy_spr(move_hor);
+				move_hor = move_hor->next;
+			}
+		}
+		else if (!move_hor && move_ver)
+		{
+			move_base->next = cpy_spr(move_ver);
 			move_ver = move_ver->next;
 		}
-		else if ((move_hor->dist < move_ver->dist) || (!move_ver && move_hor))
+		else if (move_hor && !move_ver)
 		{
-			move_base = cpy_spr(move_hor);
+			move_base->next = cpy_spr(move_hor);
 			move_hor = move_hor->next;
 		}
 		move_base = move_base->next;
-		move_base = create_ray(0, 0, 0);
 	}
-	free(move_base);
-	move_base = NULL;
+	free_listr(hor);
+	free_listr(ver);
 	return (base);
 }
