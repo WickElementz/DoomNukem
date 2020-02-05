@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 12:41:36 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 10:24:51 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,10 +91,11 @@ int				main(int ac, char **av)
 	fd = 0;
 	if (((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1))
 		error(1);
-	if (ac != 2)
+	if (ac < 2 || ac > 4)
 		usage();
 	if (!(env = malloc(sizeof(t_env))))
 		error(3);
+//	if (ac == 3 && ft_strcmp("edit", av[1]) == 1)
 	parsing(av[1], env);
 	close(fd);
 	if ((init_mlx(env)) < 0)
