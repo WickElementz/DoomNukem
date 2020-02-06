@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 15:31:43 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 14:18:56 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 14:55:07 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,25 @@
 # define HORIZON    100
 # define SCREEN     831
 # define SENSI      3
+
+/*
+** Color - Editeur
+*/
+
+# define FLOOR		0xD39523
+# define WALL 		0x727272
+# define PANE		0xCECECE
+# define DOOR		0x7A511C
+# define BEGINNING	0x71C34F
+# define ENDING		0x580D0D
+# define LIFE		0xC33030
+# define AMMO		0xAC9E52
+# define GUNNER		0x5F165D
+# define PILLAR		0x126B99
+# define KEY		0xAF7819
+# define CORONA		0xA3C463
+
+
 
 # if defined __linux__
 #  define NONE      0

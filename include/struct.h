@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 12:39:44 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 13:04:24 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -133,9 +133,9 @@ typedef	struct		s_env
 	int				f_mini;
 	int				up;
 	int				bpp;
-	int				sick;
 	int				endian;
 	int				size_line;
+	int				sick;
 	int				p_health;
 	int				ammo;
 	int				r_ammo;
@@ -158,5 +158,21 @@ typedef	struct		s_env
 	t_texture		text[7];
 	t_sprite		sprite[5];
 }					t_env;
+
+typedef struct 		s_edit
+{
+	int				bpp;
+	int				end;
+	int				sl;
+	char			id;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img;
+	char			*data;
+	void			*img_ptr;
+	char			*data_ptr;
+	t_sprite		spr[1];
+}					t_edit;
+
 
 #endif

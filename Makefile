@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/04 12:46:06 by jominodi    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/06 14:57:47 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -42,6 +42,8 @@ SRC_N		= main.c \
 				hud.c \
 				hud2.c \
 				print.c \
+				editor.c \
+				editor2.c \
 				draw.c
 INC_P		= include/
 INC_N		= doom_nukem.h \

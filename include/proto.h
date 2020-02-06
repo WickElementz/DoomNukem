@@ -6,13 +6,17 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 12:44:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 14:58:33 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef PROTO_H
 # define PROTO_H
+
+/*
+** GAME
+*/
 
 int			parsing(char *file, t_env *env);
 int			set_line(char *line, int z, t_env *env, int len);
@@ -53,5 +57,16 @@ t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);
+
+/*
+** EDITOR
+*/
+
+int			mouse_hook_editor(int key, int x, int y, t_edit *edit);
+void        editor();
+void		load_texture_editor(t_edit *edit);
+void		put_pxl_editor(t_edit *edit, int x, int y, t_clr clr);
+void		print_hud_editor(t_edit *edit);
+void	    display_editor(t_edit *edit);
 
 #endif
