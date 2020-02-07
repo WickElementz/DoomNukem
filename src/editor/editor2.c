@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/06 14:55:34 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 14:13:40 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 16:33:10 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,10 +30,10 @@ void			put_pxl_editor2(t_edit *edit, int x, int y, t_clr clr)
 {
 	if (x >= 0 && x < 500 && y >= 0 && y < 500)
 	{
-		edit->data_ptr2[(y * 500 + x) * 4] = clr.b;
-		edit->data_ptr2[(y * 500 + x) * 4 + 1] = clr.g;
-		edit->data_ptr2[(y * 500 + x) * 4 + 2] = clr.r;
-		edit->data_ptr2[(y * 500 + x) * 4 + 3] = clr.a;
+		edit->data_ptr2[(y *  WIN_WIDTH + x) * 4] = clr.b;
+		edit->data_ptr2[(y *  WIN_WIDTH + x) * 4 + 1] = clr.g;
+		edit->data_ptr2[(y *  WIN_WIDTH + x) * 4 + 2] = clr.r;
+		edit->data_ptr2[(y *  WIN_WIDTH + x) * 4 + 3] = clr.a;
 	}
 }
 
@@ -70,10 +70,9 @@ int				mouse_hook_editor(int key, int x, int y, t_edit *edit)
 	if (key == 1 && y > 82 && y < 515 && ((x > 15 && x < 185) || (x > 773 && x < 943)))
 		choose_block(x, y, edit);
 	else if (key == 1 && x > 229 && x < 731 && y > 49 && y < 551)
-		place_block(x, y, edit);
-/*	if (key == 2)// && x > && x < && y > && y < )
-		remove_block(int x, int y, edit);
-	*/
+		place_block(x, y, edit, 1);
+	if (key == 2 && x > 229 && x < 731 && y > 49 && y < 551)
+		place_block(x, y, edit, 2);
 //	dprintf(1, "x: %d ||y: %d\n", x, y);
 	display_editor(edit);
 	return (0);

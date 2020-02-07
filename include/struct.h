@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 14:45:54 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 16:36:20 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -175,6 +175,7 @@ typedef struct 		s_edit
 	int				tmpy;
 	int				mapx;
 	int				mapy;
+	int				zoom;
 	unsigned int	color;
 	char			id;
 	void			*mlx_ptr;

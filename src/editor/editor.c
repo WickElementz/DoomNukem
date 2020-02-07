@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 10:31:34 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 14:46:45 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 16:46:27 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,20 +15,40 @@
 
 int			hold_key2(int key, t_edit *edit)
 {
+	static int posx = 0;
+	static int posy = 0;
 	if (key == KEY_ESCAPE)
 	{
 		if (edit)
 			free(edit);
 		exit(0);
 	}
-	if (key == KEY_LEFT)
-		edit->mapx -= 25;
-	if (key == KEY_UP)
-		edit->mapy += 25;
-	if (key == KEY_RIGHT)
-		edit->mapx += 25;
-	if (key == KEY_DOWN)
-		edit->mapy -= 25;
+	if (key == KEY_LEFT && edit->mapx > 0 && edit->zoom == 25)
+		edit->mapx -= 1;
+	if (key == KEY_UP && edit->mapy > 0 && edit->zoom == 25)
+		edit->mapy -= 1;
+	if (key == KEY_RIGHT && edit->mapx < 30 && edit->zoom == 25)
+		edit->mapx += 1;
+	if (key == KEY_DOWN && edit->mapy < 30 && edit->zoom == 25)
+		edit->mapy += 1;
+	if (key == KEY_TAB)
+	{
+		if (edit->zoom == 10)
+		{
+			edit->mapx = posx;
+			edit->mapy = posy;
+		}
+		else
+		{
+			posx = edit->mapx;
+			posy = edit->mapy;
+			edit->mapx = 0;
+			edit->mapy = 0;
+		}
+		
+		edit->zoom = edit->zoom == 10 ? 25 : 10;
+
+	}
 	display_editor(edit);
 	return (0);
 }
@@ -44,69 +64,52 @@ static int        init_mlx_editor(t_edit *edit)
 		return (-1);
 	edit->data_ptr = mlx_get_data_addr(edit->img_ptr, &edit->bpp,
 					&edit->sl, &edit->end);
-	if (!(edit->img_ptr2 = mlx_new_image(edit->mlx_ptr, 500, 500)))
+	if (!(edit->img_ptr2 = mlx_new_image(edit->mlx_ptr, 960, 600)))
 		return (-1);
 	edit->data_ptr2 = mlx_get_data_addr(edit->img_ptr2, &edit->bpp,
 					&edit->sl, &edit->end);
 	return (0);
 }
 
-void	print_block(t_edit *edit, int xy[2])
-{
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	t_clr clr;
-
-	x2 = xy[0] * 25 + 25;
-	x1 = x2 - 25;
-	y2 = xy[1] * 25;
-	dprintf(1, "%d || %d || %d || %d\n", x1, x2, y2, y2 + 25);
-	while (x1 < x2)
-	{
-		y1 = y2;
-		while (y1 < y2 + 25)
-		{
-			clr = gclr(edit->color, 0);
-			put_pxl_editor2(edit, y1, x1, clr);
-			y1++;
-		}
-		x1++;
-	}
-
-}
-
-void	read_tab(t_edit *edit)
+t_clr	get_color(t_edit *edit, int x, int y)
 {
 	const char	id[12] = {'F', 'W', 'P', 'D', 'B', 'E',
 						'L', 'A', 'G', 'Z', 'K', 'C'};
 	const int	clrtab[12] = {FLOOR, WALL, PANE, DOOR, BEGINNING, ENDING,
 					LIFE, AMMO, GUNNER, PILLAR, KEY, CORONA};
-	int			xy[4];
-	int			corr;
+	int corr;
 
-	edit->color = NONE;
-	xy[0] = edit->mapx / 25;
-	xy[2] = xy[0] + 20;
-	xy[3] = edit->mapy / 25 + 20;
-
-	while (xy[0] < xy[2])
+	corr = 0;
+	while(corr < 12)
 	{
-		xy[1] = edit->mapy / 25;
-		while(xy[1] < xy[3])
+		if (edit->tab[x][y].type == id[corr])
 		{
-			corr = 0;
-			while (corr < 12)
-			{
-				if (edit->tab[xy[0]][xy[1]].type == id[corr])
-					edit->color = clrtab[corr];
-				corr++;
-			}
-			print_block(edit, xy);
-			xy[1]++;
+			edit->color = clrtab[corr];
+			break ;
 		}
-		xy[0]++;
+		corr++;
+	}
+	return (gclr(edit->color, 0));
+}
+
+void	read_tab(t_edit *edit)
+{
+	int		x;
+	int		y;
+	t_clr	clr;
+
+	x = 0;
+	while (x < 500)
+	{
+		y = 0;
+		while (y < 500)
+		{
+			if (y % edit->zoom == 0)
+				clr = get_color(edit, x / edit->zoom + edit->mapx, y / edit->zoom + edit->mapy);
+			put_pxl_editor2(edit, x, y, clr);
+			y++;
+		}
+		x++;
 	}
 }
 
@@ -160,6 +163,7 @@ void        editor()
 			free(edit);
 		exit(0);
 	}
+	edit->zoom = 25;
 	initialise_tab(edit);
 	load_texture_editor(edit);
 	print_hud_editor(edit);
