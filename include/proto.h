@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 14:58:33 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 11:42:03 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,7 +66,9 @@ int			mouse_hook_editor(int key, int x, int y, t_edit *edit);
 void        editor();
 void		load_texture_editor(t_edit *edit);
 void		put_pxl_editor(t_edit *edit, int x, int y, t_clr clr);
+void		put_pxl_editor2(t_edit *edit, int x, int y, t_clr clr);
 void		print_hud_editor(t_edit *edit);
 void	    display_editor(t_edit *edit);
+void        place_block(int x, int y, t_edit *edit);
 
 #endif

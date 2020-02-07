@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 13:04:24 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 14:45:54 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -159,18 +159,33 @@ typedef	struct		s_env
 	t_sprite		sprite[5];
 }					t_env;
 
+typedef struct 		s_tab_edit
+{
+	char	type;
+	int		id;
+}					t_tab_edit;
+
+
 typedef struct 		s_edit
 {
 	int				bpp;
 	int				end;
 	int				sl;
+	int				tmpx;
+	int				tmpy;
+	int				mapx;
+	int				mapy;
+	unsigned int	color;
 	char			id;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img;
 	char			*data;
 	void			*img_ptr;
+	void			*img_ptr2;
 	char			*data_ptr;
+	char			*data_ptr2;
+	t_tab_edit		tab[50][50];
 	t_sprite		spr[1];
 }					t_edit;
 
