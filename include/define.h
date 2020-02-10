@@ -17,9 +17,9 @@
 # define BLOCK      64
 # define FOV        60
 # define WIN_WIDTH  960
-# define WIN_HEIGHT 1200
+# define WIN_HEIGHT 1200.0
 # define HORIZON    100
-# define SCREEN     831
+# define SCREEN     831.0
 # define SENSI      3
 
 /*

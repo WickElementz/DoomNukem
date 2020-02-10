@@ -56,6 +56,7 @@ void			init_info(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
 	env->map_y_max = -1;
+	env->cam.z = 32;
 	env->up = 300;
 	env->cam.speed = 6;
 	env->map_x_max = 1;
