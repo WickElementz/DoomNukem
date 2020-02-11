@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 15:29:10 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 16:29:58 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 11:38:18 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ void			reload(t_env *env)
 		{
 			if (env->ammo == 6 && env->ammo <= env->r_ammo)
 				env->reload.id = 1;
-			else if (env->ammo < 6 && env->ammo < env->r_ammo &&
+			if (env->ammo < 6 && env->ammo < env->r_ammo &&
 						env->reload.id == 5)
 				env->reload.id = 2;
 			else if (env->reload.id != 5)
@@ -69,6 +69,7 @@ void			reload(t_env *env)
 			env->t += env->reload.time;
 		}
 	}
+	dprintf(1, "%lu || %lu\n", env->t, t2);
 	if (env->ammo == 6 || env->ammo == env->r_ammo)
 		reload2(env);
 }

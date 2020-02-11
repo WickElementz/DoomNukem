@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 12:51:27 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 11:40:59 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,7 @@ static void		loop_mlx(t_env *env)
 	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
 	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
+	mlx_mouse_hide();
 	mlx_loop(env->mlx_ptr);
 }
 
@@ -88,12 +89,14 @@ int				main(int ac, char **av)
 	t_env	*env;
 
 	fd = 0;
-	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1)) && ac == 2)
+	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1)) && ac == 2 && ft_strcmp("create", av[1]) != 0)
 		error(1);
 	if (ac < 2 || ac >= 4)
 		usage();
 	if (ac == 3 && ft_strcmp("edit", av[1]) == 0)
-		editor();
+		editor(av[2], ac);
+	else if (ac == 2 && ft_strcmp("create", av[1]) == 0)
+		editor(av[1], ac);
 	else if (ac == 2)
 	{
 		if (!(env = malloc(sizeof(t_env))))

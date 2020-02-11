@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/12/10 15:05:58 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/07 13:43:33 by jominodi    ###    #+. /#+    ###.fr      #
+#    Created: 2020/02/11 10:04:45 by jominodi     #+#   ##    ##    #+#        #
+#    Updated: 2020/02/11 10:05:24 by jominodi    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -46,8 +46,12 @@ GAME_N		= main.c \
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
 EDIT_N		= editor.c \
-				editor2.c \
-				editor3.c
+				event_keyboard.c \
+				event_mouse.c \
+				init.c \
+				parser.c \
+				print2.c \
+				tools.c
 # fichiers headers
 INC_P		= include/
 INC_N		= doom_nukem.h \
