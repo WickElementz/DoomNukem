@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 16:15:16 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 16:33:52 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:27:43 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,20 +56,26 @@ t_clr	    gclr(unsigned int color, int a);
 t_clr		add_color(t_env *env, t_ray *ray, int xy[3]);
 t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
-void		raycasting(t_env *env);
+void	    *raycasting(void *data);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);
 
 /*
 ** EDITOR
 */
 
-int			mouse_hook_editor(int key, int x, int y, t_edit *edit);
-void        editor();
+int         hold_key_editor(int key, t_edit *edit);
+int         mouse_hook_editor(int key, int x, int y, t_edit *edit);
+int			init_mlx_editor(t_edit *edit);
+void        editor(char *file, int ac);
+void	    init_edit_info(t_edit *edit);
+void		initialise_tab(t_edit *edit);
 void		load_texture_editor(t_edit *edit);
-void		put_pxl_editor(t_edit *edit, int x, int y, t_clr clr);
-void		put_pxl_editor2(t_edit *edit, int x, int y, t_clr clr);
 void		print_hud_editor(t_edit *edit);
-void	    display_editor(t_edit *edit);
-void        place_block(int x, int y, t_edit *edit, int click);
+void        put_pxl_editor(t_edit *edit, int x, int y, t_clr clr);
+void        put_pxl_editor2(t_edit *edit, int x, int y, t_clr clr);
+void		display_editor(t_edit *edit);
+void        parsing_editor(char *file, t_edit *edit);
+void	    save_map(t_edit *edit);
+t_clr       get_color(t_edit *edit, int x, int y);
 
 #endif

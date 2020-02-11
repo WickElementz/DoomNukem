@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 12:45:56 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:26:58 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
 				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
 			sprite->type = 1;
+			sprite->id = 0;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -94,6 +95,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
 			sprite->type = 1;
+			sprite->id = 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -138,33 +140,71 @@ t_ray	*closest_wall(t_env *env, float ang)
 	return (distance);
 }
 
-void	raycasting(t_env *env)
+void	*raycasting(void	*data)
 {
 	t_ray	*distance;
 	float	ang;
 	int		xy[3];
 	int		ray;
 	float	cone;
+	t_thread	*thread;
 
-	ray = -1;
+	thread = (t_thread *)data;
+	ray = thread->start - 1;
 	cone = (float)FOV / (float)WIN_WIDTH;
 	xy[2] = 0;
-	while (++ray < WIN_WIDTH)
+	while (++ray < thread->end)
 	{
-		ang = env->cam.angle + (ray * cone) - 30;
+		ang = thread->env->cam.angle + (ray * cone) - 30;
 		ang = (ang > 359) ? ang - 360 : ang;
 		ang = (ang < 0) ? ang + 360 : ang;
-		distance = closest_wall(env, ang);
+		distance = closest_wall(thread->env, ang);
 		xy[0] = ray;
 		xy[1] = 0;
-		draw_column(env, distance, xy);
+		draw_column(thread->env, distance, xy);
 		free_listr(distance);
 	}
+	return (NULL);
+}
+
+t_thread	*init_thread(t_env *env)
+{
+	t_thread	*tab;
+	int			i;
+
+	i = 0;
+	tab = malloc(sizeof(t_thread) * 8);
+	while (i < 8)
+	{
+		tab[i].start = 120 * i;
+		tab[i].end = 120 * i + 120;
+		tab[i].env = env;
+		i++;
+	}
+	return (tab);
+}
+
+void	ray_multi_thread(t_env *env)
+{
+	static t_thread	*tab = NULL;
+	int				i;
+
+	i = 0;
+	if (tab == NULL)
+		tab = init_thread(env);
+	while (i < 8)
+	{
+		pthread_create(&tab[i].t, NULL, raycasting, &tab[i]);
+		i++;
+	}
+	while (i--)
+		pthread_join(tab[i].t, NULL);
 }
 
 void	display(t_env *env)
 {
-	raycasting(env);
+	ray_multi_thread(env);
+//	raycasting(env);
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);

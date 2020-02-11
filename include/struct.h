@@ -6,13 +6,15 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 16:36:20 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:23:51 by jominodi    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# include <pthread.h>
 
 typedef struct		s_event
 {
@@ -160,6 +162,15 @@ typedef	struct		s_env
 	t_sprite		sprite[5];
 }					t_env;
 
+typedef struct 		s_thread
+{
+	pthread_t		t;
+	short			start;	
+	short			end;
+	t_env			*env;
+}					t_thread;
+
+
 typedef struct 		s_tab_edit
 {
 	char	type;
@@ -177,6 +188,8 @@ typedef struct 		s_edit
 	int				mapx;
 	int				mapy;
 	int				zoom;
+	int				size_x;
+	int				size_y;
 	unsigned int	color;
 	char			id;
 	void			*mlx_ptr;
