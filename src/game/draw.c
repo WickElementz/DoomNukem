@@ -42,7 +42,7 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 	set_sprite(ray);
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		res = add_sprite(env, ray, xy);
+		res = add_color(env, ray, xy);
 		list = ray->next;
 		while (list && list->dist < ray->dist)
 		{
@@ -53,7 +53,8 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 				break;
 			}
 			else
-				break;
+				while (list->next && list->next->dist == list->dist)
+					list = list->next;
 			list = list->next;
 		}
 		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
@@ -62,7 +63,7 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 	}
 }
 
-t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
+t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 {
 	unsigned int	color;
 	float			s;
@@ -73,7 +74,7 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	{
 		c = ((env->cam.z / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * cos(ray->ang * M_PI / 180);
 		s = ((env->cam.z / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * sin(ray->ang * M_PI / 180);
-		ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + s) % 64 + 2 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
+		ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + s) % 64 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
 	}
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
 	{
@@ -85,10 +86,30 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	{
 		c = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * cos(ray->ang * M_PI / 180);
 		s = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * sin(ray->ang * M_PI / 180);
-		ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + s) % 64 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
+		ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + s) % 64 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
 	}
 	if (env->sick == 1)
 		color *= 12 + 255;
+	clr = gclr(color, 0);
+	return(clr);
+}
+
+t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
+{
+	unsigned int	color;
+	t_clr			clr;
+
+
+	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
+	{
+		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
+			64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+		ray->cmpt++;
+		if (env->sick == 1)
+			color *= 12 + 255;
+	}
+	else
+		color = 0;
 	clr = gclr(color, 0);
 	return(clr);
 }

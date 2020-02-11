@@ -53,6 +53,7 @@ void        display(t_env *env);
 void        check_status(t_env *env);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color, int a);
+t_clr		add_color(t_env *env, t_ray *ray, int xy[3]);
 t_clr		add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray       *create_ray(float dist, float mod, float id);
 void		raycasting(t_env *env);

@@ -61,7 +61,6 @@ void			event_mouse(t_env *env)
 
 int				mouse_move(int x, int y, t_env *env)
 {
-	dprintf(1, "d");
 	vertical_move(y, env);
 	horizontal_move(x, env);
 	return (0);

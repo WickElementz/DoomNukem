@@ -73,7 +73,6 @@ int				mouse_hook_editor(int key, int x, int y, t_edit *edit)
 		place_block(x, y, edit, 1);
 	if (key == 2 && x > 229 && x < 731 && y > 49 && y < 551)
 		place_block(x, y, edit, 2);
-//	dprintf(1, "x: %d ||y: %d\n", x, y);
 	display_editor(edit);
 	return (0);
 }
