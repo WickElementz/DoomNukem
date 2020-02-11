@@ -59,6 +59,7 @@ typedef struct		s_position
 	double			y;
 	int				speed;
 	double			angle;
+	double			z;
 }					t_position;
 
 typedef struct		s_ray

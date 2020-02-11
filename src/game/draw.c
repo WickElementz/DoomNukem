@@ -65,10 +65,16 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 {
 	unsigned int	color;
+	float			s;
+	float			c;
 	t_clr			clr;
 
 	if (xy[1] < ray->mrg)
-		color = 0x308FC9;
+	{
+		c = ((env->cam.z / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * cos(ray->ang * M_PI / 180);
+		s = ((env->cam.z / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * sin(ray->ang * M_PI / 180);
+		ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + s) % 64 + 2 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
+	}
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
 	{
 		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
@@ -76,7 +82,11 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 		ray->cmpt++;
 	}
 	else
-		color = 0x95671F;
+	{
+		c = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * cos(ray->ang * M_PI / 180);
+		s = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) / cos((env->cam.angle - ray->ang) * M_PI / 180) * sin(ray->ang * M_PI / 180);
+		ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + s) % 64 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
+	}
 	if (env->sick == 1)
 		color *= 12 + 255;
 	clr = gclr(color, 0);
