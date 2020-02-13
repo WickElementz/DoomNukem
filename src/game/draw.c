@@ -98,8 +98,7 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 
 	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
 	{
-		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-			64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) + 64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 		if (env->sick == 1)
 			color *= 12 + 255;
