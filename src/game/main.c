@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 11:40:59 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:28:51 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,8 +65,8 @@ void			init_info(t_env *env)
 	env->ammo = 6;
 	env->r_ammo = 12;
 	env->gun.obj = 8;
-	env->gun.time = 80000;
-	env->reload.time = 80000;
+	env->gun.time = 220000;
+	env->reload.time = 220000;
 }
 
 void			free_env(t_env *env, int set)

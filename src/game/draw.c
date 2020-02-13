@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   draw.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:42:26 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 11:17:12 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,10 +48,7 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 		{
 			clr = add_sprite(env, list, xy);
 			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
-			{
 				res = clr;
-				break;
-			}
 			else
 				while (list->next && list->next->dist == list->dist)
 					list = list->next;
@@ -98,7 +95,6 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 {
 	unsigned int	color;
 	t_clr			clr;
-
 
 	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
 	{

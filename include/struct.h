@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   struct.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:23:51 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 08:22:49 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -158,7 +158,7 @@ typedef	struct		s_env
 	t_block			**map;
 	t_position		cam;
 	t_event			ev;
-	t_texture		text[7];
+	t_texture		text[8];
 	t_sprite		sprite[5];
 }					t_env;
 

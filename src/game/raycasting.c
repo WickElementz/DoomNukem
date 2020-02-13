@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:26:58 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 11:20:27 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,12 +47,19 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		{
+			sprite->next = create_ray(sqrt(pow((int) xy[1] - env->cam.y, 2) + pow((int)xy[0] + 0.5 - env->cam.x, 2)), (int)xy[0] % 64 ,7);
+		//	sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+		//		(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 7);
+			sprite->next->type = 2;
+			sprite = sprite->next;
+		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
 		{
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
 				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
-			sprite->type = 1;
-			sprite->id = 0;
+			sprite->next->type = 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -88,14 +95,20 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
 	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
+		{
+			sprite->next = create_ray(sqrt(pow((int) xy[1] - env->cam.y, 2) + pow((int)xy[0] + 0.5 - env->cam.x, 2)), (int)xy[0] % 64 ,7);
+		//	sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+		//		(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[0] % 64, 7);
+			sprite->next->type = 2;
+			sprite = sprite->next;
+		}
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
 		{
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
-			sprite->type = 1;
-			sprite->id = 1;
+			sprite->next->type = 1;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
