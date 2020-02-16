@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   parsing.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: videloff <videloff@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/08 14:27:12 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 14:24:10 by videloff    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 08:20:12 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,7 @@ static int		valid_char(char *str, int x, t_env *env)
 			i++;
 		if (str[i] == 'F')
 			env->f_mini = 1;
-		if (str[i] != 'W' && str[i] != 'F' && str[i] != 'G' && str[i])
+		if (str[i] != 'W' && str[i] != 'F' && str[i] != 'G' && str[i] != 'S' && str[i])
 			return (-1);
 	}
 	if (x != env->map_y_max)

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   draw.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 13:14:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:42:26 by jominodi    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 11:17:12 by kanne       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,11 +49,8 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 		while (list && list->dist <= ray->dist)
 		{
 			clr = add_sprite(env, list, xy);
-			if (clr.r != 0 && clr.g != 0 && clr.b != 0 && i == 0)
-			{
+			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
 				res = clr;
-				i = 1; 
-			}
 			list = list->next;
 		}
 		if (res.r == 0 && res.g == 0 && res.b == 0)
@@ -100,11 +97,9 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	unsigned int	color;
 	t_clr			clr;
 
-
 	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall)
 	{
-		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-			64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) + 64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 		if (env->sick == 1)
 			color *= 12 + 255;
