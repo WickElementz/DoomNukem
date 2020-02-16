@@ -13,7 +13,7 @@
 
 #include "doom_nukem.h"
 
-void			fire(t_env *env)
+/*void			fire(t_env *env)
 {
 	clock_t t2;
 
@@ -87,3 +87,4 @@ int				mouse_hook(int key, int x, int y, t_env *env)
 		env->reload.id = 1;
 	return (0);
 }
+*/

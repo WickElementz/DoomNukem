@@ -52,7 +52,8 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
 				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
 			sprite->type = 1;
-			sprite->id = 0;
+			sprite->mapx = (int)xy[0] / 64;
+			sprite->mapy = (int)xy[1] / 64;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -95,7 +96,8 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
 			sprite->type = 1;
-			sprite->id = 1;
+			sprite->mapx = (int)xy[0] / 64;
+			sprite->mapy = (int)xy[1] / 64;
 			sprite = sprite->next;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
@@ -208,14 +210,14 @@ void	display(t_env *env)
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	if (env->gun.id != 0)
-		fire(env);
-	else if (env->reload.id != 0)
-		reload(env);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
-	if(env->win != 1 && env->p_health > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
+//	if (env->gun.id != 0)
+//		fire(env);
+//	else if (env->reload.id != 0)
+//		reload(env);
+//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
+//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
+//	if(env->win != 1 && env->p_health > 0)
+//		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
 }
 
 /*

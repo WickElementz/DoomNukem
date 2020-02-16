@@ -36,27 +36,28 @@ void			set_sprite(t_ray *maillon)
 void			draw_column(t_env *env, t_ray *ray, int xy[3])
 {
 	t_clr	res;
-	t_clr 	clr;
+	t_clr	clr;
+	int		i;
 	t_ray	*list;
 	
 	set_sprite(ray);
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		res = add_color(env, ray, xy);
+		i = 0;
+		res = add_sprite(env, ray, xy);
 		list = ray->next;
-		while (list && list->dist < ray->dist)
+		while (list && list->dist <= ray->dist)
 		{
 			clr = add_sprite(env, list, xy);
-			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
+			if (clr.r != 0 && clr.g != 0 && clr.b != 0 && i == 0)
 			{
 				res = clr;
-				break;
+				i = 1; 
 			}
-			else
-				while (list->next && list->next->dist == list->dist)
-					list = list->next;
 			list = list->next;
 		}
+		if (res.r == 0 && res.g == 0 && res.b == 0)
+			res = add_color(env, ray, xy);
 		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
 			put_pxl(env, xy[0], xy[1] - env->up, res);
 		xy[1]++;

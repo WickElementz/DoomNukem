@@ -21,7 +21,7 @@ t_ray	*cpy_spr(t_ray *spr)
 		return (NULL);
 	new->dist = spr->dist;
 	new->mod = spr->mod;
-	new->id = spr->id;
+		new->id = spr->id;
 	new->mapy = spr->mapy;
 	new->mapx = spr->mapx;
 	new->next = NULL;
@@ -58,22 +58,40 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 			if (move_hor->dist > move_ver->dist)
 			{
 				move_base->next = cpy_spr(move_ver);
+				while (move_ver->next || move_hor->next)
+				{
+					if (move_ver->next && move_ver->mapy - move_ver->next->mapy <= 1)
+						move_ver = move_ver->next;
+					if (move_hor->next && move_hor->mapx - move_hor->next->mapx <= 1)
+						move_hor = move_hor->next;
+				}
 				move_ver = move_ver->next;
 			}
-			else 
+			else
 			{
 				move_base->next = cpy_spr(move_hor);
+				while (move_ver->next || move_hor->next)
+				{
+					if (move_ver->next && move_ver->mapy - move_ver->next->mapy <= 1)
+						move_ver = move_ver->next;
+					if (move_hor->next && move_hor->mapx - move_hor->next->mapx <= 1)
+						move_hor = move_hor->next;
+				}
 				move_hor = move_hor->next;
-			}
+			} 
 		}
 		else if (!move_hor && move_ver)
 		{
 			move_base->next = cpy_spr(move_ver);
+			while (move_ver->next && move_ver->mapy - move_ver->next->mapy <= 1)
+				move_ver = move_ver->next;
 			move_ver = move_ver->next;
 		}
 		else if (move_hor && !move_ver)
 		{
 			move_base->next = cpy_spr(move_hor);
+			while (move_hor->next && move_hor->mapx - move_hor->next->mapx <= 1)
+				move_hor = move_hor->next;
 			move_hor = move_hor->next;
 		}
 		move_base = move_base->next;
