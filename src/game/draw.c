@@ -37,13 +37,11 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 {
 	t_clr	res;
 	t_clr	clr;
-	int		i;
 	t_ray	*list;
 	
 	set_sprite(ray);
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
-		i = 0;
 		res = add_sprite(env, ray, xy);
 		list = ray->next;
 		while (list && list->dist <= ray->dist)

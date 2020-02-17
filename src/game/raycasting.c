@@ -111,12 +111,6 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
 				M_PI / 180), (int)xy[0] % 64, 6);
-<<<<<<< HEAD
-			sprite->type = 1;
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-=======
->>>>>>> 62c56b74478cb73832375b461cb154dfbe4dc600
 			sprite = sprite->next;
 			sprite->type = 1;		
 			sprite->mapx = (int)xy[0] / 64;

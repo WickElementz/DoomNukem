@@ -29,7 +29,7 @@ t_ray	*cpy_spr(t_ray *spr)
 	return (new);
 }
 
-static t_ray	*del_glass(t_ray *base)
+/*static t_ray	*del_glass(t_ray *base)
 {
 	t_ray	*clean;
 	t_ray	*c;
@@ -53,13 +53,13 @@ static t_ray	*del_glass(t_ray *base)
 	}
 	free_listr(base);
 	return (clean);
-}
+}*/
 
 t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 {
 	t_ray     *move_ver;
 	t_ray     *move_hor;
-	t_ray     *move_base;
+//	t_ray     *move_base;
 	t_ray     *base;
 
 	if (!hor->next && !ver->next)
@@ -70,32 +70,7 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 		base = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
 	else
 		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
-	move_base = base;
 	while (move_hor || move_ver)
-	{
-		if (move_hor && move_ver)
-		{
-			move_base->next = (move_hor->dist > move_ver->dist) ? cpy_spr(move_ver) : cpy_spr(move_ver);
-			move_ver = move_ver->next;
-			move_hor = move_hor->next;
-		}
-		else if (!move_hor && move_ver)
-		{
-			move_base->next = cpy_spr(move_ver);
-			while (move_ver->next && move_ver->mapy - move_ver->next->mapy <= 1)
-				move_ver = move_ver->next;
-			move_ver = move_ver->next;
-		}
-		else if (move_hor && !move_ver)
-		{
-			move_base->next = cpy_spr(move_hor);
-			while (move_hor->next && move_hor->mapx - move_hor->next->mapx <= 1)
-				move_hor = move_hor->next;
-			move_hor = move_hor->next;
-		}
-		move_base = move_base->next;
-	}
-	base = del_glass(base);
 	free_listr(hor);
 	free_listr(ver);
 	return (base);
