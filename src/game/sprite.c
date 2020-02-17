@@ -17,49 +17,53 @@ t_ray	*cpy_spr(t_ray *spr)
 {
 	t_ray	*new;
 	
+	if (!spr)
+		return (NULL);
 	if (!(new = (t_ray*)malloc(sizeof(t_ray))))
 		return (NULL);
 	new->dist = spr->dist;
 	new->type = spr->type;
 	new->mod = spr->mod;
-		new->id = spr->id;
+	new->id = spr->id;
 	new->mapy = spr->mapy;
 	new->mapx = spr->mapx;
 	new->next = NULL;
 	return (new);
 }
 
-/*static t_ray	*del_glass(t_ray *base)
+static t_ray	*del_glass(t_ray *base)
 {
 	t_ray	*clean;
 	t_ray	*c;
 	t_ray	*b;
+	int		i;
 
+	i = 1;
 	clean = cpy_spr(base);
 	c = clean;
 	b = base;
 	while (b)
 	{
-		while (b->next && (b->mapx - b->next->mapx <= 1 ||
-			b->mapx - b->next->mapx >= -1 || 
-			b->mapy - b->next->mapy <= 1 ||
-			b->mapy - b->next->mapy >= -1))
-			{
-				b = b->next;
-			}
-		c->next = cpy_spr(b);
+		if (b->next && ((b->mapx - b->next->mapx >= -1 && b->mapx - b->next->mapx <= 1 && b->mapy - b->next->mapy == 0) ||
+			(b->mapy - b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 && b->mapx - b->next->mapx == 0)))
+			i = 0;
+		if (i == 1 && b->next)
+		{
+			c->next = cpy_spr(b->next);
+			c = c->next;
+		}
 		b = b->next;
-		c = c->next;
+		i = 1;
 	}
 	free_listr(base);
 	return (clean);
-}*/
+}
 
 t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 {
 	t_ray     *move_ver;
 	t_ray     *move_hor;
-//	t_ray     *move_base;
+	t_ray     *move_base;
 	t_ray     *base;
 
 	if (!hor->next && !ver->next)
@@ -70,7 +74,28 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 		base = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
 	else
 		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+	move_base = base;
 	while (move_hor || move_ver)
+	{
+		if (move_hor && move_ver)
+		{
+			move_base->next = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+			if (move_hor->dist < move_ver->dist)
+				move_hor = move_hor->next;
+			else
+				move_ver = move_ver->next;
+		}
+		else
+		{
+			move_base->next = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+			if (move_hor)
+				move_hor = move_hor->next;
+			else
+				move_ver = move_ver->next;
+		}
+		move_base = move_base->next;
+	}
+	base = del_glass(base);
 	free_listr(hor);
 	free_listr(ver);
 	return (base);

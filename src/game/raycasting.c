@@ -222,18 +222,18 @@ void	ray_multi_thread(t_env *env)
 void	display(t_env *env)
 {
 	ray_multi_thread(env);
-//	raycasting(env);
+	raycasting(env);
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-//	if (env->gun.id != 0)
-//		fire(env);
-//	else if (env->reload.id != 0)
-//		reload(env);
-//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
-//	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
-//	if(env->win != 1 && env->p_health > 0)
-//		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
+	if (env->gun.id != 0)
+		fire(env);
+	else if (env->reload.id != 0)
+		reload(env);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
+	if(env->win != 1 && env->p_health > 0)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
 }
 
 /*
