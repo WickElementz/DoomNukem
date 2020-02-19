@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   raycasting.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/28 13:51:12 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 11:20:27 by kanne       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 11:06:07 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -44,8 +44,8 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(ang * M_PI / 180);
 	xaya[1] = give_value(ang, 1);
 	xaya[0] = (ang > 270 || ang < 90) ? 64 : -64;
-	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
-		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
+	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
+		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
@@ -65,8 +65,8 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->mapy = (int)xy[1] / 64;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
+			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
+			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 				break ;
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
@@ -94,8 +94,8 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			tan(ang * M_PI / 180);
 	xaya[0] = give_value(ang, 2);
 	xaya[1] = (ang < 180) ? 64 : -64;
-	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < env->map_y_max &&
-		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < env->map_x_max)
+	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
+		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
@@ -117,8 +117,8 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			sprite->mapy = (int)xy[1] / 64;
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= env->map_y_max &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= env->map_x_max))
+			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
+			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 				break ;
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];

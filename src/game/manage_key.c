@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   manage_key.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/10 14:44:27 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:10:55 by kanne       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage_key.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 10:34:34 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -46,8 +46,8 @@ int				event_key(t_env *env)
 {
 	int		max[2];
 
-	max[0] = env->map_y_max - 1;
-	max[1] = env->map_x_max - 1;
+	max[0] = SIZE_MAP - 1;
+	max[1] = SIZE_MAP - 1;
 	if (env->ev.forward == 1)
 		ft_move_z(env->map, &env->cam, 1, max);
 	else if (env->ev.back == 1)

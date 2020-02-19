@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/01 10:59:05 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 11:28:51 by kanne       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 10:55:47 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -43,24 +43,21 @@ static int		init_mlx(t_env *env)
 static void		loop_mlx(t_env *env)
 {
 	display(env);
-//	mlx_mouse_move(env->win_ptr, 500, -320);
+	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
-//	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
+	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
-//	mlx_mouse_hide();
 	mlx_loop(env->mlx_ptr);
 }
 
 void			init_info(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
-	env->map_y_max = -1;
 	env->cam.z = 32;
 	env->up = 300;
 	env->cam.speed = 6;
-	env->map_x_max = 1;
 	env->p_health = 100;
 	env->ammo = 6;
 	env->r_ammo = 12;
@@ -72,13 +69,7 @@ void			init_info(t_env *env)
 void			free_env(t_env *env, int set)
 {
 	if (env)
-	{
-		if (env->map)
-			while (env->map_x_max >= 0)
-				if (env->map[env->map_x_max])
-					free(env->map[env->map_x_max--]);
 		free(env);
-	}
 	if (set > 0 && set <= 4)
 		error(set);
 	exit(0);
@@ -90,20 +81,20 @@ int				main(int ac, char **av)
 	t_env	*env;
 
 	fd = 0;
-	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1)) && ac == 2 && ft_strcmp("create", av[1]) != 0)
+	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1)) && ac == 2)
 		error(1);
 	if (ac < 2 || ac >= 4)
 		usage();
 	if (ac == 3 && ft_strcmp("edit", av[1]) == 0)
-		editor(av[2], ac);
-	else if (ac == 2 && ft_strcmp("create", av[1]) == 0)
-		editor(av[1], ac);
+		editor(av[1], av[2]);
+	else if (ac == 3 && ft_strcmp("create", av[1]) == 0)
+		editor(av[1], av[2]);
 	else if (ac == 2)
 	{
 		if (!(env = malloc(sizeof(t_env))))
 			error(3);
-		parsing(av[1], env);
-		close(fd);
+		init_info(env);
+		parsing(av[1], env, 0);
 		if ((init_mlx(env)) < 0)
 			free_env(env, 4);
 		loop_mlx(env);

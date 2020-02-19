@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   define.h                                         .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/08 15:31:43 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 14:55:07 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
+/*   Updated: 2020/02/19 11:31:21 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
@@ -21,6 +20,7 @@
 # define HORIZON    100
 # define SCREEN     831.0
 # define SENSI      3
+# define SIZE_MAP   50
 
 /*
 ** Color - Editeur
@@ -39,7 +39,16 @@
 # define KEY		0xAF7819
 # define CORONA		0xA3C463
 
+/*
+** Erreur - Editeur
+*/
 
+# define ERR_VALID_DOOR "La porte doit etre entoure de 2 murs + 2 objets non Mur / vitre"
+# define ERR_NUM_DK "Le nombre de clefs doit etre egal au nombre de porte"
+# define ERR_LINK_DK "Les portes et / ou clefs ne sont pas link correctement"
+# define ERR_START "Il doit y'avoir un point de depart"
+# define ERR_END "Il doit y'avoir un point d'arrivee"
+# define ERR_WALL "La map doit etre entouree de murs"
 
 # if defined __linux__
 #  define NONE      0

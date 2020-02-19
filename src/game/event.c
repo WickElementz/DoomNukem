@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   event.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 11:00:54 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/30 13:23:07 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
+/*   Updated: 2020/02/19 10:55:41 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -21,7 +21,7 @@ void		check_status(t_env *env)
 		print_hud(env, 2);
 }
 
-void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
+void		ft_move_x(t_block map[50][50], t_position *cam, int way, int max[2])
 {
 	double	rad;
 	double	new[2];
@@ -40,16 +40,16 @@ void		ft_move_x(t_block **map, t_position *cam, int way, int max[2])
 	new[0] = cam->y + (cos(rad) * cam->speed);
 	new[1] = cam->x + (sin(rad) * cam->speed);
 	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
-		if (map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F' &&
-			map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F')
+		if (map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W' &&
+			map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W')
 			cam->x = new[1];
 	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
-		if (map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type == 'F' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type == 'F')
+		if (map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'W' &&
+			map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'W')
 			cam->y = new[0];
 }
 
-void		ft_move_z(t_block **map, t_position *cam, int way, int max[2])
+void		ft_move_z(t_block map[50][50], t_position *cam, int way, int max[2])
 {
 	double	new[2];
 	double	rad;
@@ -65,12 +65,12 @@ void		ft_move_z(t_block **map, t_position *cam, int way, int max[2])
 	new[0] = cam->y + cos(rad) * cam->speed;
 	new[1] = cam->x + sin(rad) * cam->speed;
 	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
-		if (map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F' &&
-			map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type == 'F')
+		if (map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W' &&
+			map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W')
 			cam->x = new[1];
 	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
-		if (map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type == 'F' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type == 'F')
+		if (map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'W' &&
+			map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'W')
 			cam->y = new[0];
 }
 

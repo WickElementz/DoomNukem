@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   struct.h                                         .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/01 11:09:49 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 08:22:49 by kanne       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 10:51:29 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
@@ -46,7 +45,7 @@ typedef struct		s_event
 typedef struct		s_block
 {
 	char			type;
-	char			txtr;
+	char			id;
 }					t_block;
 
 /*
@@ -122,6 +121,18 @@ typedef struct		s_reload
 	t_sprite		spr[6];
 }					t_reload;
 
+typedef struct		s_verif
+{
+	int				beginning;
+	int				ending;
+	int				door;
+	int				key;
+	int				ver_p_we;
+	int				ver_p_sn;
+	int				ver_door;
+	int				err;
+}					t_verif;
+
 /*
 **	map_y_max	= Ligne la plus longue
 **	map_x_max	= colonne la plus grande
@@ -131,15 +142,16 @@ typedef struct		s_reload
 
 typedef	struct		s_env
 {
-	int				map_y_max;
-	int				map_x_max;
-	int				f_mini;
 	int				up;
 	int				bpp;
 	int				endian;
 	int				size_line;
+	int				size_x;
 	int				sick;
 	int				p_health;
+	int				num_key;
+	int				num_door;
+	int				link_dk;
 	int				ammo;
 	int				r_ammo;
 	int				win;
@@ -155,7 +167,8 @@ typedef	struct		s_env
 	char			*data_ptr3;
 	t_reload		reload;
 	t_gun			gun;
-	t_block			**map;
+	t_verif			verif;
+	t_block			map[50][50];
 	t_position		cam;
 	t_event			ev;
 	t_texture		text[8];
@@ -170,13 +183,11 @@ typedef struct 		s_thread
 	t_env			*env;
 }					t_thread;
 
-
-typedef struct 		s_tab_edit
+typedef struct 		s_tab
 {
-	char	type;
-	int		id;
-}					t_tab_edit;
-
+	char			type;
+	char			id;
+}					t_tab;
 
 typedef struct 		s_edit
 {
@@ -190,6 +201,11 @@ typedef struct 		s_edit
 	int				zoom;
 	int				size_x;
 	int				size_y;
+	int				num_key;
+	int				num_door;
+	int				link_door;
+	int				link_dk;
+	int				write;
 	unsigned int	color;
 	char			id;
 	void			*mlx_ptr;
@@ -200,7 +216,9 @@ typedef struct 		s_edit
 	void			*img_ptr2;
 	char			*data_ptr;
 	char			*data_ptr2;
-	t_tab_edit		tab[50][50];
+	char			*filename;
+	t_tab			tab[50][50];
+	t_verif			verif;
 	t_sprite		spr[1];
 }					t_edit;
 

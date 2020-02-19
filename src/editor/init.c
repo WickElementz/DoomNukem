@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   init.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/07 17:03:32 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 10:45:55 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/07 17:03:32 by jominodi          #+#    #+#             */
+/*   Updated: 2020/02/18 11:20:13 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
@@ -34,7 +33,18 @@ int		init_mlx_editor(t_edit *edit)
 void	init_edit_info(t_edit *edit)
 {
 	ft_bzero(edit, sizeof(t_edit));
+	edit->size_x = -1;
 	edit->zoom = 25;
+	edit->id = 'W';
+}
+
+void	init_verif_value(t_verif *verif)
+{
+	verif->beginning = 0;
+	verif->door = 0;
+	verif->ending = 0;
+	verif->key = 0;
+	verif->err = 0;
 }
 
 void	load_texture_editor(t_edit *edit)
@@ -43,31 +53,9 @@ void	load_texture_editor(t_edit *edit)
 	int b;
 
 	a = 960;
-	b = 960;
+	b = 600;
 	edit->spr[0].img = mlx_xpm_file_to_image(edit->mlx_ptr,
 		"sprites/map_editor.xpm", &a, &b);
 	edit->spr[0].data = mlx_get_data_addr(edit->spr[0].img,
 		&edit->spr[0].bpp, &edit->spr[0].sl, &edit->spr[0].end);
 }
-
-void	initialise_tab(t_edit *edit)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while (x < 50)
-	{
-		y = 0;
-		while (y < 50)
-		{
-			if (x == 0 || y == 0 || x == 49 || y == 49)
-				edit->tab[x][y].type = 'W';
-			else
-				edit->tab[x][y].type = 'F';
-			y++;
-		}
-		x++;
-	}
-}
-

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   fire.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/22 15:29:10 by videloff     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 11:38:18 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fire.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/22 15:29:10 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 10:56:18 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
-/*void			fire(t_env *env)
+void			fire(t_env *env)
 {
 	clock_t t2;
 
@@ -69,7 +69,6 @@ void			reload(t_env *env)
 			env->t += env->reload.time;
 		}
 	}
-	dprintf(1, "%lu || %lu\n", env->t, t2);
 	if (env->ammo == 6 || env->ammo == env->r_ammo)
 		reload2(env);
 }
@@ -87,4 +86,3 @@ int				mouse_hook(int key, int x, int y, t_env *env)
 		env->reload.id = 1;
 	return (0);
 }
-*/

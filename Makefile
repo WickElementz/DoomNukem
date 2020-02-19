@@ -1,14 +1,13 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2020/02/11 10:04:45 by jominodi     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/11 10:05:24 by jominodi    ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
+#    Updated: 2020/02/19 10:40:57 by jominodi         ###   ########lyon.fr    #
+#                                                                              #
 # **************************************************************************** #
 
 NAME		= doom-nukem
@@ -30,7 +29,6 @@ endif
 GAME_P		= src/game
 GAME_N		= main.c \
 				parsing.c \
-				save_map.c \
 				event.c \
 				sprite.c \
 				manage_key.c \
@@ -42,6 +40,7 @@ GAME_N		= main.c \
 				hud.c \
 				hud2.c \
 				print.c \
+				verif_map.c \
 				draw.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
@@ -50,7 +49,11 @@ EDIT_N		= editor.c \
 				event_mouse.c \
 				init.c \
 				parser.c \
-				print2.c \
+				print_editor.c \
+				verif.c \
+				save_key_door.c \
+				tab.c \
+				blocs.c \
 				tools.c
 # fichiers headers
 INC_P		= include/

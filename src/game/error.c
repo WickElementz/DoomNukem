@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   error.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: kanne <kanne@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/18 15:41:02 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 11:09:59 by kanne       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/18 15:41:02 by yalabidi          #+#    #+#             */
+/*   Updated: 2020/02/19 11:36:16 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -43,6 +43,24 @@ void	error(int error)
 		ft_putstr("An error occured while the Minilibix initialization\n");
 		exit(-1);
 	}
+}
+
+void	error_valid_map(t_env *env, int error)
+{
+	if (error == 1)
+		ft_putstr_fd(ERR_VALID_DOOR, 2);
+	else if (error == 2)
+		ft_putstr_fd(ERR_NUM_DK, 2);
+	else if (error == 3)
+		ft_putstr_fd(ERR_LINK_DK, 2);
+	else if (error == 4)
+		ft_putstr_fd(ERR_START, 2);
+	else if (error == 5)
+		ft_putstr_fd(ERR_END, 2);
+	else if (error == 5)
+		ft_putstr_fd(ERR_WALL, 2);
+	free(env);
+	exit(-1);
 }
 
 t_ray	*create_ray(float dist, float mod, float id)
