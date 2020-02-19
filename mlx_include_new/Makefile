@@ -16,17 +16,24 @@ NAME=libmlx.dylib
 
 INC=-I.
 
+WHITE		= \033[0m
+GREEN		= \033[32m
+COLOR		= \033
+BOLD		= \033[1m
+BACK_GR		= \033[7;49;32m
+SQUARE		= $(BOLD)$(BACK_GR)\033[43m $(WHITE)
+
 all: $(NAME)
 
 $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
 	swiftc $(INC) -o $(NAME) -emit-library $(OBJ) $(C_OBJ) -lz
 
-
-
 %.o: %.swift
+	@echo "$(SQUARE)\c"
 	swiftc $(INC) -parse-as-library -c $< -o $@
 
 %.swiftmodule: %.swift
+	@echo "$(SQUARE)\c"
 	swiftc $(INC) -parse-as-library -c $< -o $@ -emit-module -module-name $(patsubst %.swift,%,$<) -module-link-name $(patsubst %.swift,%,$<)
 
 clean:
