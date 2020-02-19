@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:33:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 11:29:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 13:05:56 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ void		check_map_editor(t_edit *edit)
 		edit->verif.err = 4;
 	else if (edit->verif.ending == 0)
 		edit->verif.err = 5;
+	dprintf(1, "%d || %d\n", edit->num_door, edit->num_key);
 }

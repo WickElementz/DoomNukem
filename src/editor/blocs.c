@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   blocs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 11:38:51 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 10:37:30 by jominodi         ###   ########lyon.fr   */
+/*   Created: 2020/02/19 12:40:36 by videloff          #+#    #+#             */
+/*   Updated: 2020/02/19 12:40:40 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 

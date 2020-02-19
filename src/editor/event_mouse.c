@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/18 13:02:37 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 13:32:14 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 	if (key == 3)
 		link_door_key_editor(edit, (x - 230) / edit->zoom + edit->mapx,
 						(y - 50) / edit->zoom + edit->mapy);
-	if (key != 4)
-		display_editor(edit);
+	display_editor(edit);
 	return (0);
 }

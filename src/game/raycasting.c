@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/19 11:06:07 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 14:36:28 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->next->type = 2;
 			sprite = sprite->next;
 		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
 		{
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
 				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
@@ -106,7 +106,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			sprite->next->id = 7;
 			sprite = sprite->next;
 		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
 		{
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
