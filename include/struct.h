@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/19 11:37:45 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 12:42:59 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ typedef struct		s_verif
 	int				ending;
 	int				door;
 	int				key;
-	int				ver_p_we;
-	int				ver_p_sn;
 	int				ver_door;
 	int				err;
 }					t_verif;
@@ -156,6 +154,7 @@ typedef	struct		s_env
 	int				r_ammo;
 	int				win;
 	int				clock;
+	int				editor;
 	unsigned long	t;
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -165,6 +164,7 @@ typedef	struct		s_env
 	char			*data_ptr;
 	char			*data_ptr2;
 	char			*data_ptr3;
+	char			*filename;
 	t_reload		reload;
 	t_gun			gun;
 	t_verif			verif;
@@ -182,12 +182,6 @@ typedef struct 		s_thread
 	short			end;
 	t_env			*env;
 }					t_thread;
-
-typedef struct 		s_tab
-{
-	char			type;
-	char			id;
-}					t_tab;
 
 typedef struct 		s_edit
 {
@@ -217,7 +211,7 @@ typedef struct 		s_edit
 	char			*data_ptr;
 	char			*data_ptr2;
 	char			*filename;
-	t_tab			tab[50][50];
+	t_block			map[50][50];
 	t_verif			verif;
 	t_sprite		spr[1];
 }					t_edit;

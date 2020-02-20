@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/19 11:31:21 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 13:22:58 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define ERR_START "Il doit y'avoir un point de depart"
 # define ERR_END "Il doit y'avoir un point d'arrivee"
 # define ERR_WALL "La map doit etre entouree de murs"
+# define ERR_WALL2 " et ou avoir une taille de 50x50"
+# define ERR_SUP_DK "Il ne doit y'avoir que 10 portes / clefs maximum"
 
 # if defined __linux__
 #  define NONE      0

@@ -6,13 +6,13 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 11:10:56 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 13:00:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void			display_error(t_edit *edit)
+void	display_error(t_edit *edit)
 {
 	if (edit->verif.err == 1)
 		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
@@ -32,9 +32,12 @@ void			display_error(t_edit *edit)
 	else if (edit->verif.err == 6)
 		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
 						ERR_WALL);
+	else if (edit->verif.err == 7)
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+						ERR_SUP_DK);
 }
 
-void			display_editor(t_edit *edit)
+void	display_editor(t_edit *edit)
 {
 	read_tab_editor(edit);
 	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr2,
@@ -43,7 +46,7 @@ void			display_editor(t_edit *edit)
 	display_error(edit);
 }
 
-static void		loop_mlx_editor(t_edit *edit)
+void	loop_mlx_editor(t_edit *edit)
 {
 	display_editor(edit);
 	mlx_mouse_move(edit->win_ptr, 500, -320);
@@ -52,7 +55,7 @@ static void		loop_mlx_editor(t_edit *edit)
 	mlx_loop(edit->mlx_ptr);
 }
 
-void			editor(char *mode, char *file)
+void	editor(char *mode, char *file)
 {
 	t_edit	*edit;
 

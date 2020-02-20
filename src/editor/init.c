@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:32 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/18 11:20:13 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 10:35:46 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		init_mlx_editor(t_edit *edit)
 		return (-1);
 	edit->data_ptr2 = mlx_get_data_addr(edit->img_ptr2, &edit->bpp,
 					&edit->sl, &edit->end);
+	load_texture_editor(edit);
+	print_hud_editor(edit);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/19 14:36:28 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 13:19:30 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,6 @@ void	ray_multi_thread(t_env *env)
 void	display(t_env *env)
 {
 	ray_multi_thread(env);
-	raycasting(env);
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
@@ -235,9 +234,3 @@ void	display(t_env *env)
 	if(env->win != 1 && env->p_health > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
 }
-
-/*
-** IMG1 = Raycasting + vie + munitions
-** IMG 2 = GUN
-** IMG3 = HUD
-*/

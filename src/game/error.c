@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:41:02 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/19 11:36:16 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 13:21:59 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,14 @@ void	error_valid_map(t_env *env, int error)
 		ft_putstr_fd(ERR_START, 2);
 	else if (error == 5)
 		ft_putstr_fd(ERR_END, 2);
-	else if (error == 5)
+	else if (error == 6)
+	{
 		ft_putstr_fd(ERR_WALL, 2);
+		ft_putstr_fd(ERR_WALL2, 2);
+	}
+	else if (error == 7)
+		ft_putstr_fd(ERR_SUP_DK, 2);
+	ft_putchar_fd('\n', 2);
 	free(env);
 	exit(-1);
 }

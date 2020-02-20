@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 10:34:00 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 13:00:04 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			unhold_key(int key, t_env *env);
 int			mouse_move(int x, int y, t_env *env);
 int			mouse_hook(int click, int x, int y, t_env *env);
 int	    	gun_phase(t_env *env, int (*xy)[6]);
+int		    init_mlx(t_env *env);
 void        parsing(char *filename, t_env *env, int fd);
 void		event_mouse(t_env *env);
 void		free_env(t_env *env, int set);
@@ -51,6 +52,10 @@ void        fire(t_env *env);
 void        display(t_env *env);
 void        check_status(t_env *env);
 void		check_map(t_env *env);
+void        error_valid_map(t_env *env, int error);
+void		loop_mlx(t_env *env);
+void		set_spawn(t_env *env, int x, int y);
+void	    game_to_editor(t_env *env);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color, int a);
 t_clr		add_color(t_env *env, t_ray *ray, int xy[3]);
@@ -67,6 +72,7 @@ int         hold_key_editor(int key, t_edit *edit);
 int         mouse_hook_editor(int key, int x, int y, t_edit *edit);
 int			init_mlx_editor(t_edit *edit);
 int			valid_char_new(char *line);
+int			open_file_editor(t_edit *edit, int fd);
 void        editor(char *mode, char *file);
 void	    init_edit_info(t_edit *edit);
 void		initialise_tab_editor(t_edit *edit);
@@ -84,7 +90,8 @@ void    	fill_tab_editor(t_edit *edit);
 void        check_map_editor(t_edit *edit);
 void		init_verif_value(t_verif *verif);
 void		error_editor(t_edit *edit, int error);
-int			open_file_editor(t_edit *edit, int fd);
+void		editor_to_game(t_edit *edit);
+void        loop_mlx_editor(t_edit *edit);
 void		remove_block(int o_x, int o_y, t_edit *edit);
 void		place_block(int o_x, int o_y, t_edit *edit);
 void		choose_block(int x, int y, t_edit *edit);
