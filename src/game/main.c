@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:01:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:15:13 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ void			init_info(t_env *env)
 	env->cam.speed = 6;
 	env->player.life = 100;
 	env->player.ammo = 6;
-	env->player.r_ammo = 12;
+	env->player.stock = 12;
 	env->gun.obj = 8;
 	env->gun.time = 220000;
-	env->reload.time = 220000;
+	env->reload.time = 250000;
+	env->player.ammo = 6;
+	env->player.life = 100;
 }
 
 void			free_env(t_env *env, int set)

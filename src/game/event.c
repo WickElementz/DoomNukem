@@ -6,10 +6,9 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/21 13:02:42 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:11:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -27,7 +26,7 @@ void		check_status(t_env *env)
 	}
 	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'A')
 	{
-		env->player.r_ammo += 6;
+		env->player.stock += 6;
 		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
 	}
 	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'K')
@@ -38,7 +37,7 @@ void		check_status(t_env *env)
 	}
 }
 
-void		ft_move_x(t_block map[50][50], t_position *cam, int way, int max[2])
+void		ft_move_x(t_block map[50][50], t_position *cam, int way)
 {
 	double	rad;
 	double	new[2];
@@ -56,21 +55,10 @@ void		ft_move_x(t_block map[50][50], t_position *cam, int way, int max[2])
 	}
 	new[0] = cam->y + (cos(rad) * cam->speed);
 	new[1] = cam->x + (sin(rad) * cam->speed);
-	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
-		if ((map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W' &&
-			map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W') &&
-			(map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'P' &&
-			map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'P'))
-			cam->x = new[1];
-	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
-		if ((map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'W' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'W') &&
-			(map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'P' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'P'))
-			cam->y = new[0];
+	walkable_block_x(new, map, cam);
 }
 
-void		ft_move_z(t_block map[50][50], t_position *cam, int way, int max[2])
+void		ft_move_z(t_block map[50][50], t_position *cam, int way)
 {
 	double	new[2];
 	double	rad;
@@ -85,18 +73,7 @@ void		ft_move_z(t_block map[50][50], t_position *cam, int way, int max[2])
 	}
 	new[0] = cam->y + cos(rad) * cam->speed;
 	new[1] = cam->x + sin(rad) * cam->speed;
-	if (new[0] + 2 <= max[0] * 100 && new[0] - 2 >= 0)
-		if ((map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W' &&
-			map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'W') &&
-			(map[(int)(new[1] + 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'P' &&
-			map[(int)(new[1] - 2) / BLOCK][(int)(cam->y) / BLOCK].type != 'P'))
-			cam->x = new[1];
-	if (new[1] + 2 <= max[1] * 100 && new[1] - 2 >= 0)
-		if ((map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'W' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'W') &&
-			(map[(int)(cam->x) / BLOCK][(int)(new[0] + 2) / BLOCK].type != 'P' &&
-			map[(int)(cam->x) / BLOCK][(int)(new[0] - 2) / BLOCK].type != 'P'))
-			cam->y = new[0];
+	walkable_block_z(new, map, cam);
 }
 
 void		anglemove(t_position *cam, int way)

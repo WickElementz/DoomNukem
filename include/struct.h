@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:01:52 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:13:46 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define STRUCT_H
 
 # include <pthread.h>
+
+/*
+**	*********
+**	 TOUCHES
+**	*********
+*/
 
 typedef struct		s_event
 {
@@ -38,18 +44,9 @@ typedef struct		s_event
 }					t_event;
 
 /*
-**	type		= mur / sol / void / end
-**	txtr		= texture de mur / sol
-*/
-
-typedef struct		s_block
-{
-	char			type;
-	char			id;
-}					t_block;
-
-/*
-**	position de la camera
+**	********
+**	 CAMERA
+**	********
 */
 
 typedef struct		s_position
@@ -77,8 +74,16 @@ typedef struct		s_ray
 }					t_ray;
 
 /*
-** Structure de texture
+**	************
+**	 RESSOURCES
+**	************
 */
+
+typedef struct		s_block
+{
+	char			type;
+	char			id;
+}					t_block;
 
 typedef struct		s_texture
 {
@@ -98,28 +103,11 @@ typedef struct		s_sprite
 	int				sl;
 }					t_sprite;
 
-typedef struct		s_clr
-{
-	int				r;
-	int				g;
-	int				b;
-	int				a;
-}					t_clr;
-
-typedef struct		s_gun
-{
-	int				obj;
-	int				time;
-	int				id;
-	t_sprite		spr[8];
-}					t_gun;
-
-typedef struct		s_reload
-{
-	int				time;
-	int				id;
-	t_sprite		spr[6];
-}					t_reload;
+/*
+**	****************
+**	 EDITEUR DE MAP
+**	****************
+*/
 
 typedef struct		s_verif
 {
@@ -127,65 +115,11 @@ typedef struct		s_verif
 	int				ending;
 	int				door;
 	int				key;
+	int				ver_p_we;
+	int				ver_p_sn;
 	int				ver_door;
 	int				err;
 }					t_verif;
-
-typedef struct		s_player
-{
-	int				life;
-	int				ammo;
-	int				r_ammo;
-	int				keyid;
-	char			*key;
-}					t_player;
-
-
-typedef	struct		s_env
-{
-	int				up;
-	int				bpp;
-	int				endian;
-	int				size_line;
-	int				size_x;
-	int				sick;
-	int				p_health;
-	int				num_key;
-	int				num_door;
-	int				link_dk;
-	int				ammo;
-	int				r_ammo;
-	int				win;
-	int				clock;
-	int				editor;
-	unsigned long	t;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*img_ptr;
-	void			*img_ptr2;
-	void			*img_ptr3;
-	char			*data_ptr;
-	char			*data_ptr2;
-	char			*data_ptr3;
-	char			*filename;
-	t_player		player;
-	t_reload		reload;
-	t_gun			gun;
-	t_verif			verif;
-	t_block			map[50][50];
-	t_position		cam;
-	t_event			ev;
-	t_texture		text[8];
-	t_sprite		sprite[5];
-}					t_env;
-
-typedef struct 		s_thread
-{
-	pthread_t		t;
-	short			start;	
-	short			end;
-	t_env			*env;
-}					t_thread;
 
 typedef struct 		s_edit
 {
@@ -220,5 +154,93 @@ typedef struct 		s_edit
 	t_sprite		spr[1];
 }					t_edit;
 
+/*
+**	*****
+**	 JEU
+**	*****
+*/
+
+typedef struct		s_player
+{
+	int				life;
+	int				ammo;
+	int				stock;
+	int				corona;
+	int				keyid;
+	char			key[10];
+}					t_player;
+
+
+typedef struct		s_clr
+{
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+}					t_clr;
+
+typedef struct		s_gun
+{
+	int				obj;
+	int				time;
+	int				id;
+	t_sprite		spr[8];
+}					t_gun;
+
+typedef struct		s_reload
+{
+	int				time;
+	int				id;
+	t_sprite		spr[6];
+}					t_reload;
+
+typedef	struct		s_env
+{
+	int				up;
+	int				bpp;
+	int				endian;
+	int				size_line;
+	int				size_x;
+	int				sick;
+	int				num_key;
+	int				num_door;
+	int				link_dk;
+	int				win;
+	int				clock;
+	int				editor;
+	unsigned long	t;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img_ptr;
+	void			*img_ptr2;
+	void			*img_ptr3;
+	char			*data_ptr;
+	char			*data_ptr2;
+	char			*data_ptr3;
+	char			*filename;
+	t_player		player;
+	t_reload		reload;
+	t_gun			gun;
+	t_verif			verif;
+	t_block			map[50][50];
+	t_position		cam;
+	t_event			ev;
+	t_texture		text[8];
+	t_sprite		sprite[5];
+}					t_env;
+
+/*
+**	****************
+**	 MULTITHREADING
+**	****************
+*/
+
+typedef struct 		s_thread
+{
+	pthread_t		t;
+	short			start;	
+	short			end;
+	t_env			*env;
+}					t_thread;
 
 #endif

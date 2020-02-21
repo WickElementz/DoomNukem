@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:01:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:11:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,14 @@ static void		event_key2(t_env *env)
 
 int				event_key(t_env *env)
 {
-	int		max[2];
-
-	max[0] = SIZE_MAP - 1;
-	max[1] = SIZE_MAP - 1;
 	if (env->ev.forward == 1)
-		ft_move_z(env->map, &env->cam, 1, max);
+		ft_move_z(env->map, &env->cam, 1);
 	else if (env->ev.back == 1)
-		ft_move_z(env->map, &env->cam, -1, max);
+		ft_move_z(env->map, &env->cam, -1);
 	if (env->ev.left == 1)
-		ft_move_x(env->map, &env->cam, -1, max);
+		ft_move_x(env->map, &env->cam, -1);
 	else if (env->ev.right == 1)
-		ft_move_x(env->map, &env->cam, 1, max);
+		ft_move_x(env->map, &env->cam, 1);
 	if (env->ev.walk == 1)
 		env->cam.speed = 3;
 	if (env->ev.run == 1)
@@ -84,7 +80,7 @@ int				hold_key(int key, t_env *env)
 		env->ev.downarrow = 1;
 	if (key == KEY_LEFT)
 		env->ev.s_left = 1;
-	if (key == KEY_R && env->reload.id == 0 && env->player.ammo < env->player.r_ammo)
+	if (key == KEY_R && env->reload.id == 0 && env->player.ammo < env->player.stock)
 		env->reload.id = 1;
 	else if (key == KEY_RIGHT)
 		env->ev.s_right = 1;
