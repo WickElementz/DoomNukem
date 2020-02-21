@@ -49,7 +49,7 @@ void	display_editor(t_edit *edit)
 void	loop_mlx_editor(t_edit *edit)
 {
 	display_editor(edit);
-	mlx_mouse_move(edit->win_ptr, 500, -320);
+//	mlx_mouse_move(edit->win_ptr, 500, -320);
 	mlx_hook(edit->win_ptr, 2, 1, hold_key_editor, edit);
 	mlx_hook(edit->win_ptr, 4, 0, mouse_hook_editor, edit);
 	mlx_loop(edit->mlx_ptr);

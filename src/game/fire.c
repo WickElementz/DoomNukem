@@ -13,7 +13,7 @@
 
 #include "doom_nukem.h"
 
-void			fire(t_env *env)
+/*void			fire(t_env *env)
 {
 	clock_t t2;
 
@@ -71,11 +71,12 @@ void			reload(t_env *env)
 	}
 	if (env->ammo == 6 || env->ammo == env->r_ammo)
 		reload2(env);
-}
+}*/
 
 int				mouse_hook(int key, int x, int y, t_env *env)
 {
 	x = y;
+	dprintf(0, "%d%d", x, y);
 	if (key == 1 && env->ammo > 0 && env->gun.id == 0)
 	{
 		env->ammo--;

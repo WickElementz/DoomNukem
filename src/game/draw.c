@@ -40,6 +40,17 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 	t_ray	*list;
 	
 	set_sprite(ray);
+	while (xy[1] - env->up < 0)
+	{
+		list = ray;
+		while (list)
+		{
+			if (xy[1] > list->mrg)
+				list->cmpt++;
+			list = list->next;
+		}
+		xy[1]++;
+	}
 	while (xy[1] - env->up < WIN_HEIGHT / 2)
 	{
 		res = add_sprite(env, ray, xy);
@@ -48,7 +59,16 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 		{
 			clr = add_sprite(env, list, xy);
 			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
+			{
 				res = clr;
+				list = list->next;
+				break;
+			}
+			list = list->next;
+		}
+		while (list && xy[1] > list->mrg && xy[1] < list->mrg + list->wall)
+		{
+			list->cmpt++;
 			list = list->next;
 		}
 		if (res.r == 0 && res.g == 0 && res.b == 0)

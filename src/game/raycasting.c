@@ -47,6 +47,17 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' &&
+			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
+			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
+		{
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
+				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[1] + xaya[1] / 2) % 64, 4);
+			sprite = sprite->next;
+			sprite->type = 3;
+			sprite->mapx = (int)xy[0] / 64;
+			sprite->mapy = (int)xy[1] / 64;
+		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
 		//	sprite->next = create_ray(sqrt(pow((int) xy[1] - env->cam.y, 2) + pow((int)xy[0] + 0.5 - env->cam.x, 2)), (int)xy[0] % 64 ,7);
@@ -97,6 +108,17 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' &&
+			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
+			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
+		{
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
+				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[0] + xaya[0] / 2) % 64, 4);
+			sprite = sprite->next;
+			sprite->type = 3;
+			sprite->mapx = (int)xy[0] / 64;
+			sprite->mapy = (int)xy[1] / 64;
+		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'S')
 		{
 		//	sprite->next = create_ray(sqrt(pow((int) xy[1] - env->cam.y, 2) + pow((int)xy[0] + 0.5 - env->cam.x, 2)), (int)xy[0] % 64 ,7);
@@ -225,12 +247,12 @@ void	display(t_env *env)
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	if (env->gun.id != 0)
+/*	if (env->gun.id != 0)
 		fire(env);
 	else if (env->reload.id != 0)
 		reload(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if(env->win != 1 && env->p_health > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->r_ammo));*/
 }
