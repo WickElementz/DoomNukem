@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/20 12:42:59 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:01:52 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,15 @@ typedef struct		s_verif
 	int				err;
 }					t_verif;
 
-/*
-**	map_y_max	= Ligne la plus longue
-**	map_x_max	= colonne la plus grande
-**	w_mini		= nombre de mur minimum
-**	f_mini		= nombre de floor minimum
-*/
+typedef struct		s_player
+{
+	int				life;
+	int				ammo;
+	int				r_ammo;
+	int				keyid;
+	char			*key;
+}					t_player;
+
 
 typedef	struct		s_env
 {
@@ -165,6 +168,7 @@ typedef	struct		s_env
 	char			*data_ptr2;
 	char			*data_ptr3;
 	char			*filename;
+	t_player		player;
 	t_reload		reload;
 	t_gun			gun;
 	t_verif			verif;

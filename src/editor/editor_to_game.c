@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 13:23:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 12:42:28 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	save_edit_to_env(t_edit *edit, t_env *env)
 
 void	editor_to_game(t_edit *edit)
 {
-	t_env	*env;
+	t_env		*env;
+//	static char c = 0;
 	check_map_editor(edit);
 	if (edit->verif.err == 0)
 	{
@@ -46,8 +47,13 @@ void	editor_to_game(t_edit *edit)
 		init_info(env);
 		init_mlx(env);
 		save_edit_to_env(edit, env);
+		env->editor = 1;
 		env->filename = edit->filename;
-		loop_mlx(env);
+	/*	if (c == 0)
+		{
+			loop_mlx(env);
+			c = 1;
+		}*/
 		free(edit);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/20 13:19:46 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:01:33 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		event_key2(t_env *env)
 		env->up += 5;
 	if (env->ev.hp_down == 1)
 	{
-		env->p_health -= 10;
+		env->player.life -= 10;
 		env->ev.hp_down = 0;
 		display(env);
 	}
@@ -84,13 +84,13 @@ int				hold_key(int key, t_env *env)
 		env->ev.downarrow = 1;
 	if (key == KEY_LEFT)
 		env->ev.s_left = 1;
-	if (key == KEY_R && env->reload.id == 0 && env->ammo < env->r_ammo)
+	if (key == KEY_R && env->reload.id == 0 && env->player.ammo < env->player.r_ammo)
 		env->reload.id = 1;
 	else if (key == KEY_RIGHT)
 		env->ev.s_right = 1;
-	if (key == KEY_MINUS && env->p_health > 0)
+	if (key == KEY_MINUS && env->player.life > 0)
 		env->ev.hp_down = 1;
-	if (key == KEY_EQUAL && env->p_health > 0)
+	if (key == KEY_EQUAL && env->player.life > 0)
 		env->ev.win = 1;
 	if (key == KEY_TILDE)
 		game_to_editor(env);

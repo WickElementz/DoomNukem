@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/20 12:52:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:01:33 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int		init_mlx(t_env *env)
 
 void		loop_mlx(t_env *env)
 {
+
 	display(env);
-	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
@@ -58,9 +58,9 @@ void			init_info(t_env *env)
 	env->cam.z = 32;
 	env->up = 300;
 	env->cam.speed = 6;
-	env->p_health = 100;
-	env->ammo = 6;
-	env->r_ammo = 12;
+	env->player.life = 100;
+	env->player.ammo = 6;
+	env->player.r_ammo = 12;
 	env->gun.obj = 8;
 	env->gun.time = 220000;
 	env->reload.time = 220000;

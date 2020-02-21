@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/19 15:06:50 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:02:42 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,27 @@
 
 void		check_status(t_env *env)
 {
-	if (env->p_health <= 0)
+	if (env->player.life <= 0)
 		print_hud(env, 3);
-	if (env->win == 1)
+	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'E')
 		print_hud(env, 2);
+	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'L')
+	{
+		env->player.life += 20;
+		env->player.life = env->player.life >= 100 ? 100 : env->player.life;
+		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+	}
+	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'A')
+	{
+		env->player.r_ammo += 6;
+		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+	}
+	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'K')
+	{
+		env->player.key[env->player.keyid] = env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].id;
+		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+		env->player.keyid++;
+	}
 }
 
 void		ft_move_x(t_block map[50][50], t_position *cam, int way, int max[2])
