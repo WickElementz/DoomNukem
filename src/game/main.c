@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/19 10:55:47 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 12:55:13 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void			init_info(t_env *env)
 	env->cam.z = 32;
 	env->up = 300;
 	env->cam.speed = 6;
-	env->p_health = 100;
-	env->ammo = 6;
-	env->r_ammo = 12;
 	env->gun.obj = 8;
 	env->gun.time = 220000;
-	env->reload.time = 220000;
+	env->reload.time = 250000;
+	env->player.ammo = 6;
+	env->player.stock = 24;
+	env->player.life = 100;
 }
 
 void			free_env(t_env *env, int set)

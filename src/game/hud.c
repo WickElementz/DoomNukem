@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   hud.c                                            .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/20 12:47:10 by jominodi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 17:21:05 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hud.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/20 12:47:10 by jominodi          #+#    #+#             */
+/*   Updated: 2020/02/21 12:41:19 by videloff         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "doom_nukem.h"
 
@@ -26,7 +26,7 @@ static void		draw_life(t_env *env, int xy[2])
 		{
 			color = 0xD1E7C3;
 			clr = gclr(color, 0);
-			if (xy[0] < env->p_health + 805)
+			if (xy[0] < env->player.life + 805)
 				put_pxl3(env, xy[0], xy[1], clr);
 			xy[1]++;
 		}
@@ -52,7 +52,7 @@ static void		bullet(t_env *env, int xy[6], int id)
 	int				ammo_tmp;
 
 	ammo_tmp = 0;
-	while (ammo_tmp++ < env->ammo)
+	while (ammo_tmp++ < env->player.ammo)
 	{
 		xy[0] = 0;
 		xy[2] -= 12;
