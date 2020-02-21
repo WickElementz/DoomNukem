@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 10:33:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void		save_tab_editor(char *line, t_edit *edit, int i)
 	x = 0;
 	while (y < edit->size_y)
 	{
-		edit->tab[x][i].type = line[y];
+		edit->map[x][i].type = line[y];
 		if (line[y] == 'K')
 		{
 			edit->num_key++;
-			edit->tab[x][i].id = line[y + 1];
+			edit->map[x][i].id = line[y + 1];
 			y += 2;
 		}
 		else if (line[y] == 'D')
 		{
 			edit->num_door++;
-			edit->tab[x][i].id = line[y + 1];
+			edit->map[x][i].id = line[y + 1];
 			y += 2;
 		}
 		else

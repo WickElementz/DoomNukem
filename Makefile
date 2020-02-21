@@ -6,7 +6,7 @@
 #    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/02/20 13:08:05 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/02/21 13:01:54 by videloff         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ GAME_N		= main.c \
 				print.c \
 				verif_map.c \
 				draw.c \
-				manage_blocks.c
+				manage_blocks.c \
+				game_to_editor.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
 EDIT_N		= editor.c \
@@ -55,6 +56,7 @@ EDIT_N		= editor.c \
 				save_key_door.c \
 				tab.c \
 				blocs.c \
+				editor_to_game.c \
 				tools.c
 # fichiers headers
 INC_P		= include/

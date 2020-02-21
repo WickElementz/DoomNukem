@@ -6,14 +6,14 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 12:55:13 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:03:13 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "doom_nukem.h"
 
-static int		init_mlx(t_env *env)
+int		init_mlx(t_env *env)
 {
 	if (!(env->mlx_ptr = mlx_init()))
 		return (-1);
@@ -40,7 +40,7 @@ static int		init_mlx(t_env *env)
 	return (0);
 }
 
-static void		loop_mlx(t_env *env)
+void		loop_mlx(t_env *env)
 {
 	display(env);
 	mlx_mouse_move(env->win_ptr, 500, -320);

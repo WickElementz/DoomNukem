@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 12:39:11 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:03:01 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int				hold_key(int key, t_env *env)
 		env->ev.hp_down = 1;
 	if (key == KEY_EQUAL && env->player.life > 0)
 		env->ev.win = 1;
+	if (key == KEY_TILDE)
+		game_to_editor(env);
 	if (key == KEY_ESCAPE)
 		free_env(env, 0);
 	return (0);

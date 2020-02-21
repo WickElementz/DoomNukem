@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 13:34:55 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ char	*ctoa(t_edit *edit, int i)
 	edit->write = 51;
 	while (edittmp < 50)
 	{
-		str[strtmp] = edit->tab[edittmp][i].type;
+		str[strtmp] = edit->map[edittmp][i].type;
 		strtmp++;
-		if (edit->tab[edittmp][i].type == 'D' ||
-			edit->tab[edittmp][i].type == 'K')
+		if (edit->map[edittmp][i].type == 'D' ||
+			edit->map[edittmp][i].type == 'K')
 		{
-			str[strtmp] = (char)edit->tab[edittmp][i].id;
+			str[strtmp] = (char)edit->map[edittmp][i].id;
 			strtmp++;
 			edit->write++;
 		}
@@ -69,7 +69,7 @@ t_clr	gclr_editor(t_edit *edit, int x, int y)
 	corr = 0;
 	while (corr < 12)
 	{
-		if (edit->tab[x][y].type == id[corr])
+		if (edit->map[x][y].type == id[corr])
 		{
 			edit->color = clrtab[corr];
 			break ;

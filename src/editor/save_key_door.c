@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_key_door.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 13:10:49 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/19 13:34:24 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	down_link_dk_editor(t_edit *edit, int value)
 		y = 0;
 		while (y < 50)
 		{
-			if (edit->tab[x][y].type == 'D' || edit->tab[x][y].type == 'K')
-				if (edit->tab[x][y].id > (char)value + 48)
-					edit->tab[x][y].id--;
+			if (edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K')
+				if (edit->map[x][y].id > (char)value + 48)
+					edit->map[x][y].id--;
 			y++;
 		}
 		x++;
@@ -44,14 +44,14 @@ void	check_link_dk_editor(t_edit *edit, int save_x, int save_y, char c)
 		y = 0;
 		while (y < 50)
 		{
-			if (edit->tab[x][y].type == c)
+			if (edit->map[x][y].type == c)
 			{
-				if (edit->tab[x][y].id == edit->tab[save_x][save_y].id)
+				if (edit->map[x][y].id == edit->map[save_x][save_y].id)
 				{
 					c == 'K' ? edit->num_key-- : 0;
 					c == 'D' ? edit->num_door-- : 0;
-					edit->tab[x][y].type = 'F';
-					down_link_dk_editor(edit, (int)edit->tab[x][y].id - 48);
+					edit->map[x][y].type = 'F';
+					down_link_dk_editor(edit, (int)edit->map[x][y].id - 48);
 					return ;
 				}
 			}
@@ -63,16 +63,16 @@ void	check_link_dk_editor(t_edit *edit, int save_x, int save_y, char c)
 
 void	link_door_key_editor(t_edit *edit, int x, int y)
 {
-	if (edit->tab[x][y].id < '0' || edit->tab[x][y].id > '9')
+	if (edit->map[x][y].id < '0' || edit->map[x][y].id > '9')
 	{
-		if (edit->tab[x][y].type == 'D' && edit->link_door == 0)
+		if (edit->map[x][y].type == 'D' && edit->link_door == 0)
 		{
-			edit->tab[x][y].id = (char)edit->link_dk + 48;
+			edit->map[x][y].id = (char)edit->link_dk + 48;
 			edit->link_door = 1;
 		}
-		if (edit->tab[x][y].type == 'K' && edit->link_door == 1)
+		if (edit->map[x][y].type == 'K' && edit->link_door == 1)
 		{
-			edit->tab[x][y].id = (char)edit->link_dk + 48;	
+			edit->map[x][y].id = (char)edit->link_dk + 48;	
 			edit->link_dk++;
 			edit->link_door = 0;
 		}

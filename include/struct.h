@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 12:37:31 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/02/21 13:00:07 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ typedef	struct		s_env
 	int				link_dk;
 	int				win;
 	int				clock;
+	int				editor;
 	unsigned long	t;
 	void			*mlx_ptr;
 	void			*win_ptr;
