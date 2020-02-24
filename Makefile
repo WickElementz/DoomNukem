@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/02/21 13:01:54 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/02/24 10:38:57 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ GAME_N		= main.c \
 				verif_map.c \
 				draw.c \
 				manage_blocks.c \
+				door.c \
 				game_to_editor.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor

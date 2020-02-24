@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/21 13:11:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 10:38:41 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		check_status(t_env *env)
 	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'K')
 	{
 		env->player.key[env->player.keyid] = env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].id;
+		dprintf(1, "%c", env->player.key[env->player.keyid]);
 		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
 		env->player.keyid++;
 	}

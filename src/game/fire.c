@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:29:10 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:11:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 10:01:54 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			reload(t_env *env)
 int				mouse_hook(int key, int x, int y, t_env *env)
 {
 	x = y;
-	if (key == 1 && env->ammo > 0 && env->gun.id == 0)
+	if (key == 1 && env->player.ammo > 0 && env->gun.id == 0)
 	{
 		env->player.ammo--;
 		env->player.stock--;

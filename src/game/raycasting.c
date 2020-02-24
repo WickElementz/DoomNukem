@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:11:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 11:17:01 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	t_ray	*hor;
 	t_ray	*ver;
 
+	dprintf(1, "caca");
 	distance = create_ray(0, 0, 0);
 	distance->ang = ang;
 	if (ang != 0 && ang != 180)
