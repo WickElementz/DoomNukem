@@ -85,6 +85,7 @@ t_ray	*create_ray(float dist, float mod, float id)
 	ray->id = id;
 	ray->mapy = -1;
 	ray->mapx = -1;
+	ray->door = -1;
 	ray->next = NULL ;
 	return (ray);
 }

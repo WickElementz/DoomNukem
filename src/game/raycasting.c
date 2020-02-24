@@ -54,6 +54,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
 				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[1] + xaya[1] / 2) % 64, 4);
 			sprite = sprite->next;
+			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] / 64].id - 60;
 			sprite->type = 3;
 			sprite->mapx = (int)xy[0] / 64;
 			sprite->mapy = (int)xy[1] / 64;
@@ -116,6 +117,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[0] + xaya[0] / 2) % 64, 4);
 			sprite = sprite->next;
 			sprite->type = 3;
+			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] / 64].id - 60;
 			sprite->mapx = (int)xy[0] / 64;
 			sprite->mapy = (int)xy[1] / 64;
 		}
@@ -163,7 +165,6 @@ t_ray	*closest_wall(t_env *env, float ang)
 	t_ray	*hor;
 	t_ray	*ver;
 
-	dprintf(1, "caca");
 	distance = create_ray(0, 0, 0);
 	distance->ang = ang;
 	if (ang != 0 && ang != 180)

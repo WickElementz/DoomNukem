@@ -42,8 +42,16 @@ void		open_door(t_env *env)
 //	clock = clock();
 	x = (env->cam.x + sin(env->cam.angle * M_PI / 180) * 32) / 64;
 	y = (env->cam.y + cos(env->cam.angle * M_PI / 180) * 32) / 64;
-	if (env->map[x][y].type == 'D' && check_key(env->player.key, env->map[x][y].id) != -1)
+	if (env->map[x][y].type == 'D' && check_key(env->player.key,
+		env->map[x][y].id) != -1 && env->map[x][y].id < 60)
 	{
-		dprintf(1, "lol");
+		env->map[x][y].id = 60;
+	}
+	else if (env->map[x][y].type == 'D' && env->map[x][y].id >= 60 && env->map[x][y].id < 124)
+		env->map[x][y].id++;
+	else if (env->map[x][y].type == 'D' && env->map[x][y].id == 124)
+	{
+		env->map[x][y].type = 'F';
+		env->map[x][y].id = -1;
 	}
 }
