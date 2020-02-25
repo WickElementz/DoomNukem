@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 13:15:12 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 10:47:24 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	initialise_tab_editor(t_edit *edit)
 				edit->map[x][y].type = 'W';
 			else
 				edit->map[x][y].type = 'F';
+			edit->map[x][y].id = '0';
 			y++;
 		}
 		x++;
@@ -67,6 +68,7 @@ void	fill_tab_editor(t_edit *edit)
 		while (y < 50)
 		{
 			edit->map[x][y].type = 'W';
+			edit->map[x][y].id = '0';
 			y++;
 		}
 		x++;

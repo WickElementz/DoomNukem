@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 09:48:43 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 14:02:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void		error_pars(t_env *env, int error)
 		ft_putstr_fd("Un caractere de la map n'est pas valide\n", 2);
 	else if (error == 3)
 		ft_putstr_fd("Il y a un nombre different de clefs / portes", 2);
+	else if (error == 4)
+		ft_putstr_fd("Le nombre de ligne du fichier doit etre egal a 50\n", 2);
 	free(env);
 	exit(-1);
 }
@@ -39,23 +41,16 @@ void		save_map(char *line, t_env *env, int y)
 	x = 0;
 	while (i < env->size_x)
 	{
-		env->map[y][x].type = line[i];
 		if (line[i] == 'K')
-		{
 			env->num_key++;
-			env->map[y][x].id = line[i + 1];
-			i += 2;
-		}
 		else if (line[i] == 'D')
-		{
 			env->num_door++;
-			env->map[y][x].id = line[i + 1];
-			i += 2;
-		}
-		else
-			i++;
+		env->map[y][x].type = line[i];
 		if (line[i] == 'B')
-			set_spawn(env, x + 1, y);
+			set_spawn(env, y, x);
+		i++;
+		env->map[x][y].id = line[i];
+		i++;
 		x++;
 	}
 }
@@ -66,7 +61,7 @@ void	parsing(char *filename, t_env *env, int fd)
 	char	*line;
 	int		i;
 
-	i = 0;
+	i = -1;
 	if ((!((fd = open(filename, O_RDONLY)) > 1)) ||
 			((read(fd, &tmp, 0)) != 0))
 		error_pars(env, 1);
@@ -75,9 +70,11 @@ void	parsing(char *filename, t_env *env, int fd)
 		env->size_x = ft_strlen(line);
 		if (valid_char_new(line) == -1)
 			error_pars(env, 2);
-		save_map(line, env, i++);
+		save_map(line, env, ++i);
 		line ? free(line) : 0;
 	}
+	if (i > 49)
+		error_pars(env, 4);
 	if (env->num_door != env->num_key)
 		error_pars(env, 3);
 	env->link_dk = env->num_key;

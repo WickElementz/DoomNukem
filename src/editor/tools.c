@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 12:47:54 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,15 @@ char	*ctoa(t_edit *edit, int i)
 	int		edittmp;
 	char	*str;
 
-	str = malloc(sizeof(char) * (51 + edit->num_key + edit->num_door));
+	str = malloc(sizeof(char) * 101);
 	strtmp = 0;
 	edittmp = 0;
-	edit->write = 51;
 	while (edittmp < 50)
 	{
 		str[strtmp] = edit->map[edittmp][i].type;
 		strtmp++;
-		if (edit->map[edittmp][i].type == 'D' ||
-			edit->map[edittmp][i].type == 'K')
-		{
-			str[strtmp] = (char)edit->map[edittmp][i].id;
-			strtmp++;
-			edit->write++;
-		}
+		str[strtmp] = edit->map[edittmp][i].id;
+		strtmp++;
 		edittmp++;
 	}
 	str[strtmp] = '\n';
@@ -51,7 +45,7 @@ void	save_map_editor(t_edit *edit)
 	while (i < 50)
 	{
 		str = ctoa(edit, i);
-		write(fd, str, edit->write);
+		write(fd, str, 101);
 		i++;
 		free(str);
 	}

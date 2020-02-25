@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 13:10:49 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 13:02:10 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,19 @@ void	link_door_key_editor(t_edit *edit, int x, int y)
 	{
 		if (edit->map[x][y].type == 'D' && edit->link_door == 0)
 		{
-			edit->map[x][y].id = (char)edit->link_dk + 48;
+			edit->map[x][y].id = edit->link_dk;
+			edit->save_dx = x;
+			edit->save_dy = y;
 			edit->link_door = 1;
 		}
 		if (edit->map[x][y].type == 'K' && edit->link_door == 1)
 		{
-			edit->map[x][y].id = (char)edit->link_dk + 48;	
-			edit->link_dk++;
+			if (edit->map[edit->save_dx][edit->save_dy].id == edit->link_dk)
+				edit->map[x][y].id = edit->link_dk;
+			else
+				edit->map[x][y].id = 'a';			
+			if (edit->map[x][y].id != 'a')
+				edit->link_dk++;
 			edit->link_door = 0;
 		}
 	}

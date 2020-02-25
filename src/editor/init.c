@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:32 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 10:35:46 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 12:44:23 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_edit_info(t_edit *edit)
 	edit->size_x = -1;
 	edit->zoom = 25;
 	edit->id = 'W';
+	edit->link_dk = '0';
 }
 
 void	init_verif_value(t_verif *verif)

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:40:36 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/20 10:22:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 12:32:15 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@ void		remove_block(int o_x, int o_y, t_edit *edit)
 	int x;
 	int y;
 
-	x = (o_x - 230) / edit->zoom;
-	y = (o_y - 50) / edit->zoom;
-	if (edit->map[x + edit->mapx][y + edit->mapy].type == 'K')
+	x = (o_x - 230) / edit->zoom + edit->mapx;
+	y = (o_y - 50) / edit->zoom + edit->mapy;
+	if (edit->map[x][y].type == 'K')
 	{
 		edit->num_key--;
-		check_link_dk_editor(edit, x + edit->mapx, y + edit->mapy, 'D');
+		if (edit->map[x][y].id != 'a')
+			check_link_dk_editor(edit, x, y, 'D');
 	}
-	else if (edit->map[x + edit->mapx][y + edit->mapy].type == 'D')
+	else if (edit->map[x][y].type == 'D')
 	{
 		edit->num_door--;
-		check_link_dk_editor(edit, x + edit->mapx, y + edit->mapy, 'K');
+		if (edit->map[x][y].id != 'a')
+			check_link_dk_editor(edit, x, y, 'K');
 	}
-	edit->map[x + edit->mapx][y + edit->mapy].type = 'F';
+	edit->map[x][y].type = 'F';
 }
 
 void		place_block(int o_x, int o_y, t_edit *edit)
@@ -38,19 +40,21 @@ void		place_block(int o_x, int o_y, t_edit *edit)
 	int x;
 	int y;
 
-	x = (o_x - 230) / edit->zoom;
-	y = (o_y - 50) / edit->zoom;
+	x = (o_x - 230) / edit->zoom + edit->mapx;
+	y = (o_y - 50) / edit->zoom + edit->mapy;
+	edit->map[x][y].type = edit->id;
 	if (edit->id == 'K')
 	{
 		edit->num_key++;
-		edit->map[x + edit->mapx][y + edit->mapy].id = 'a';
+		edit->map[x][y].id = 'a';
 	}
 	else if (edit->id == 'D')
 	{
 		edit->num_door++;
-		edit->map[x + edit->mapx][y + edit->mapy].id = 'a';
+		edit->map[x][y].id = 'a';
 	}
-	edit->map[x + edit->mapx][y + edit->mapy].type = edit->id;
+	if (edit->map[x][y].type != 'D' && edit->map[x][y].type != 'K')
+		edit->map[x][y].id = '0';
 }
 
 void		choose_block(int x, int y, t_edit *edit)

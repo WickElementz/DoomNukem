@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/20 13:22:58 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 09:51:36 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define SCREEN     831.0
 # define SENSI      3
 # define SIZE_MAP   50
+# define THREADS    8
 
 /*
 ** Color - Editeur
