@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:32:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 10:25:50 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 13:54:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void		open_door(t_env *env)
 
 	x = (env->cam.x + sin(env->cam.angle * M_PI / 180) * 32) / 64;
 	y = (env->cam.y + cos(env->cam.angle * M_PI / 180) * 32) / 64;
-	if (env->map[x][y].type == 'D' && check_key(env->player.key, env->map[x][y].id) != -1)
+	if (env->map[x][y].type == 'D' && check_key(env->player.key,
+		env->map[x][y].id) != -1 && env->map[x][y].id < 60)
 	{
 		env->map[x][y].type = 'F';
 	}

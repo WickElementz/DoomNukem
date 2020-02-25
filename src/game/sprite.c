@@ -27,6 +27,7 @@ t_ray	*cpy_spr(t_ray *spr)
 	new->id = spr->id;
 	new->mapy = spr->mapy;
 	new->mapx = spr->mapx;
+	new->door = spr->door;
 	new->next = NULL;
 	return (new);
 }

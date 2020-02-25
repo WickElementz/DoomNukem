@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 13:35:27 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 14:00:04 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void		top_right_button(int x, t_edit *edit)
 
 int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 {
-	dprintf(1, "%d || %d\n", x, y);
 	if (key == 1 && y > 82 && y < 515 && ((x > 15 && x < 185) ||
 			(x > 773 && x < 943)))
 		choose_block(x, y, edit);

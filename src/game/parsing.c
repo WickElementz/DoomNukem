@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 11:06:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 14:02:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		save_map(char *line, t_env *env, int y)
 			env->num_door++;
 		env->map[y][x].type = line[i];
 		if (line[i] == 'B')
-			set_spawn(env, x + 1, y);
+			set_spawn(env, y, x);
 		i++;
 		env->map[x][y].id = line[i];
 		i++;

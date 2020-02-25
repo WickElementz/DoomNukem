@@ -66,6 +66,7 @@ typedef struct		s_ray
 	float			id;
 	float			ang;
 	int				wall;
+	int 			door;
 	int				cmpt;
 	int				mrg;
 	int				mapy;
