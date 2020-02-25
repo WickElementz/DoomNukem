@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/25 13:06:14 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 13:38:42 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'L')
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64) , 2) + pow(env->cam.y - ((int)(xy[0] / 64) * 64) , 2)), (int)xy[1] % 64, 7);
+			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32) , 2) + pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32) , 2)), (int)xy[1] % 64, 7);
 			sprite = sprite->next;
 			dxdy[0] = (env->cam.x + cos(ang * M_PI / 180) * sprite->dist) / 64;
 			dxdy[1] = (env->cam.y + sin(ang * M_PI / 180) * sprite->dist) / 64;
