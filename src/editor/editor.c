@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/20 13:00:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 13:40:37 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 void	display_error(t_edit *edit)
 {
 	if (edit->verif.err == 1)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_VALID_DOOR);
 	else if (edit->verif.err == 2)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_NUM_DK);
 	else if (edit->verif.err == 3)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_LINK_DK);
 	else if (edit->verif.err == 4)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_START);
 	else if (edit->verif.err == 5)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_END);
 	else if (edit->verif.err == 6)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_WALL);
 	else if (edit->verif.err == 7)
-		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 20, 20, 0xFFFFFF,
+		mlx_string_put(edit->mlx_ptr, edit->win_ptr, 390, 20, 0xFF0000,
 						ERR_SUP_DK);
 }
 
@@ -49,7 +49,6 @@ void	display_editor(t_edit *edit)
 void	loop_mlx_editor(t_edit *edit)
 {
 	display_editor(edit);
-//	mlx_mouse_move(edit->win_ptr, 500, -320);
 	mlx_hook(edit->win_ptr, 2, 1, hold_key_editor, edit);
 	mlx_hook(edit->win_ptr, 4, 0, mouse_hook_editor, edit);
 	mlx_loop(edit->mlx_ptr);

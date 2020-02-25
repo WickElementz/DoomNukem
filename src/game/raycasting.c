@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/24 11:17:01 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 09:50:43 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,6 @@ t_ray	*closest_wall(t_env *env, float ang)
 	t_ray	*hor;
 	t_ray	*ver;
 
-	dprintf(1, "caca");
 	distance = create_ray(0, 0, 0);
 	distance->ang = ang;
 	if (ang != 0 && ang != 180)
@@ -225,20 +224,18 @@ t_thread	*init_thread(t_env *env)
 	return (tab);
 }
 
+
 void	ray_multi_thread(t_env *env)
 {
 	static t_thread	*tab = NULL;
 	int				i;
-
-	i = 0;
+	i = -1;
 	if (tab == NULL)
 		tab = init_thread(env);
-	while (i < 8)
-	{
+	while (++i < THREADS)
 		pthread_create(&tab[i].t, NULL, raycasting, &tab[i]);
-		i++;
-	}
-	while (i--)
+	i = -1;
+	while (++i < THREADS)
 		pthread_join(tab[i].t, NULL);
 }
 

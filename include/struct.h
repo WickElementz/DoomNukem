@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/24 10:03:54 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 13:14:31 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,10 +136,11 @@ typedef struct 		s_edit
 	int				num_key;
 	int				num_door;
 	int				link_door;
-	int				link_dk;
-	int				write;
+	int				save_dx;
+	int				save_dy;
 	unsigned int	color;
 	char			id;
+	char			link_dk;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img;
@@ -217,7 +218,6 @@ typedef	struct		s_env
 	char			*data_ptr;
 	char			*data_ptr2;
 	char			*data_ptr3;
-	char			*filename;
 	t_player		player;
 	t_reload		reload;
 	t_gun			gun;
