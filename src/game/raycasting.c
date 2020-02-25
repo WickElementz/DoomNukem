@@ -179,6 +179,8 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
 	distance->next = sprite_list(hor, ver);
+	free_listr(hor);
+	free_listr(ver);
 	return (distance);
 }
 
@@ -249,12 +251,12 @@ void	display(t_env *env)
 	draw_hud(env);
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	if (env->gun.id != 0)
+/*	if (env->gun.id != 0)
 		fire(env);
 	else if (env->reload.id != 0)
 		reload(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if(env->win != 1 && env->player.life > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->player.stock));
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, ft_itoa(env->player.stock));*/
 }

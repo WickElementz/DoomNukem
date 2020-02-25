@@ -97,7 +97,5 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 		move_base = move_base->next;
 	}
 	base = del_glass(base);
-	free_listr(hor);
-	free_listr(ver);
 	return (base);
 }

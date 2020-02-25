@@ -44,7 +44,7 @@ void		loop_mlx(t_env *env)
 {
 
 	display(env);
-	mlx_mouse_move(env->win_ptr, 500, -320);
+//	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
 	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
@@ -56,7 +56,7 @@ void		loop_mlx(t_env *env)
 void			init_info(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
-	env->cam.z = 32;
+	env->cam.z = 50.0;
 	env->up = 300;
 	env->cam.speed = 6;
 	env->player.life = 100;
