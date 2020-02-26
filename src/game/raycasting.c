@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/25 13:54:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 10:31:19 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,17 @@ void	ray_multi_thread(t_env *env)
 		pthread_join(tab[i].t, NULL);
 }
 
+void	door(t_env *env)
+{
+	if (env->map[env->x][env->y].id < 124)
+		env->map[env->x][env->y].id += 1;
+	else
+	{
+		env->map[env->x][env->y].type = 'F';
+		env->door_id = 0;
+	}
+}
+
 void	display(t_env *env)
 {
 	ray_multi_thread(env);
@@ -271,6 +282,8 @@ void	display(t_env *env)
 		fire(env);
 	else if (env->reload.id != 0)
 		reload(env);
+	if (env->door_id != 0)
+		door(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if(env->win != 1 && env->player.life > 0)

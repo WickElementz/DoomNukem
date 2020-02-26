@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/25 13:14:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 10:30:48 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,9 @@ typedef	struct		s_env
 	int				win;
 	int				clock;
 	int				editor;
+	int				x;
+	int				y;
+	short			door_id;
 	unsigned long	t;
 	void			*mlx_ptr;
 	void			*win_ptr;

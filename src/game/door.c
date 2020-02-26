@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:32:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 13:54:17 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 10:32:01 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ int		check_key(char *key, char ref)
 
 void		open_door(t_env *env)
 {
-	int x;
-	int y;
-
-	x = (env->cam.x + sin(env->cam.angle * M_PI / 180) * 32) / 64;
-	y = (env->cam.y + cos(env->cam.angle * M_PI / 180) * 32) / 64;
-	if (env->map[x][y].type == 'D' && check_key(env->player.key,
-		env->map[x][y].id) != -1 && env->map[x][y].id < 60)
+	env->x = (env->cam.x + sin(env->cam.angle * M_PI / 180) * 32) / 64;
+	env->y = (env->cam.y + cos(env->cam.angle * M_PI / 180) * 32) / 64;
+	if (env->map[env->x][env->y].type == 'D' && check_key(env->player.key,
+		env->map[env->x][env->y].id) != -1 && env->map[env->x][env->y].id < 60)
 	{
-		env->map[x][y].type = 'F';
+		env->map[env->x][env->y].id = 60;
+		env->door_id = 1;
 	}
 }
