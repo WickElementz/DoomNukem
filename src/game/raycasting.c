@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 14:33:16 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:49:11 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,14 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			dxdy[1] = (env->cam.y + cos(ang * M_PI / 180) * (sprite->dist / cos(env->cam.angle - ang))) / 64;
 			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32) , 2) + pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32) , 2)), (32 - ((32 - (int)dxdy[0] % 64) + (32 - (int)dxdy[1] % 64))), 7);
 			sprite = sprite->next;
+			dxdy[0] = (int)(env->cam.x + cos(ang * M_PI / 180) * sprite->dist) % 64;
+			dxdy[1] = (int)(env->cam.y + sin(ang * M_PI / 180) * sprite->dist) % 64;
+			sprite->mod = (env->cam.angle - ang == 0) ? sprite->mod : 32 + fabs((32 - dxdy[0]) + (32 - dxdy[1]));
+			sprite->mod = (ang < env->cam.angle) ? 64 - sprite->mod : sprite->mod;
 		//dprintf(1,"(32 - ((32 - %d + (32 - %d mod 64) = %d\n", (int)dxdy[0], (int)dxdy[1], (32 - ((32 - (int)dxdy[0] % 64) + (32 - (int)dxdy[1] % 64))));
-		//	if ((32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1])) < 64 && (32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1])) > 0)
-		//		sprite->mod = (32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1]));
+			dprintf(1, "32 - %f + 32 - %f = %f\n", dxdy[0], dxdy[1], (32 - dxdy[0]) + (32 - dxdy[1]));
+			if (sprite->mod > 64 || sprite->mod < 0)
+				sprite->mod = 0;
 		//	dprintf(1,"%f\n",sprite->mod);
 		//	dprintf(1,"sqrt(pow(%f - (%f) * 64 , 2) + pow( %f - (%f) * 64, 2)) = %f\n" , env->cam.x, (int)xy[0] / 64 + 0.5, env->cam.y, (int)xy[1] / 64 + 0.5, sprite->dist);
 			sprite->mapx = (int)xy[0] / 64;
@@ -137,11 +142,13 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			dxdy[1] = (env->cam.y + cos(ang * M_PI / 180) * (sprite->dist / cos(env->cam.angle - ang))) / 64;
 			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)xy[1] / 64 + 0.5) * 64, 2) + pow(env->cam.y - ((int)xy[0] / 64 + 0.5) * 64, 2)), (32 - ((32 - (int)dxdy[0] % 64) + (32 - (int)dxdy[1] % 64))), 7);
 			sprite = sprite->next;
-		//	dprintf(1,"(32 - ((32 - %d + (32 - %d mod 64) = %d\n", (int)dxdy[0], (int)dxdy[1], (32 - ((32 - (int)dxdy[0] % 64) + (32 - (int)dxdy[1] % 64))));	
-		//	if ((32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1])) < 64 && (32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1])) > 0)
-		//		sprite->mod = (32 + (dxdy[0] - gxgy[0]) + (dxdy[1] - gxgy[1]));
-		//	dprintf(1,"%f\n",sprite->mod);
-		//	dprintf(1,"sqrt(pow(%f - (%f) * 64 , 2) + pow( %f - (%f) * 64, 2)) = %f\n" , env->cam.x, (int)xy[0] / 64 + 0.5, env->cam.y, (int)xy[1] / 64 + 0.5, sprite->dist);
+			dxdy[0] = (int)(env->cam.x + cos(ang * M_PI / 180) * sprite->dist) % 64;
+			dxdy[1] = (int)(env->cam.y + sin(ang * M_PI / 180) * sprite->dist) % 64;
+			sprite->mod = (env->cam.angle - ang == 0) ? sprite->mod : 32 + fabs((32 - dxdy[0]) + (32 - dxdy[1]));
+			sprite->mod = (ang < env->cam.angle) ? 64 - sprite->mod : sprite->mod;
+			dprintf(1, "32 - %f + 32 - %f = %f\n", dxdy[0], dxdy[1], (32 - dxdy[0]) + (32 - dxdy[1]));
+			if (sprite->mod > 64 || sprite->mod < 0)
+				sprite->mod = 0;
 			sprite->mapx = (int)xy[0] / 64;
 			sprite->mapy = (int)xy[1] / 64;
 			sprite->type = 2;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 12:21:05 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:18:12 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	editor(char *mode, char *file)
 	{
 		fill_tab_editor(edit);
 		if (open_file_editor(edit, 0) == -1)
-			error_editor(edit, 3);
+			error_editor(edit, 1);
 	}
 	load_texture_editor(edit);
 	print_hud_editor(edit);

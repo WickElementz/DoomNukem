@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 11:38:22 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:16:48 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void		error_editor(t_edit *edit, int error)
 {
 	if (error == 1)
-		ft_putstr_fd("Le fichier n existe pas ou ne peut pas etre lu\n", 2);
+		ft_putstr_fd("File does not exist or is invalid at some point.\n", 2);
 	else if (error == 2)
-		ft_putstr_fd("Un caractere de la map n'est pas valide\n", 2);
+		ft_putstr_fd("The map contains at least one invalid char.\n", 2);
 	else if (error == 3)
-		ft_putstr_fd("Il y a un nombre different de clefs / portes\n", 2);
+		ft_putstr_fd("Numbers of doors and keys are not equals.\n", 2);
 	else if (error == 4)
-		ft_putstr_fd("Le nombre de ligne du fichier doit etre egal a 50\n", 2);
+	{
+		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
+		ft_putstr_fd("each line followed by a newline.\n", 2);
+	}
 	free(edit);
 	exit(-1);
 }
