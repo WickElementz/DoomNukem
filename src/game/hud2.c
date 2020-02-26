@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:02:28 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 11:34:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:46:42 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ void		print_gun_animation(t_env *env, int id)
 			ft_memcpy(&color, &env->gun.spr[id].data[(xy[2] +
 				(env->gun.spr[id].sl / 4) *
 					(171 * xy[3] / 342)) * 4], sizeof(int));
-			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
+			if ((int)color != NONE)
+			{
+				color = (env->sick == 0) ? color : color + 500000;
+				clr = gclr(color, 0);
+			}
+			else
+				clr = gclr(color, 255);
 			put_pxl2(env, xy[0], xy[1], clr);
 			xy[3]++;
 			xy[1]++;
@@ -58,7 +64,13 @@ void		print_reload_animation(t_env *env, int id)
 			ft_memcpy(&color, &env->reload.spr[id].data[(xy[2] +
 				(env->reload.spr[id].sl / 4) *
 					(171 * xy[3] / 342)) * 4], sizeof(int));
-			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
+			if ((int)color != NONE)
+			{
+				color = (env->sick == 0) ? color : color + 500000;
+				clr = gclr(color, 0);
+			}
+			else
+				clr = gclr(color, 255);
 			put_pxl2(env, xy[0], xy[1], clr);
 			xy[3]++;
 			xy[1]++;
@@ -69,15 +81,20 @@ void		print_reload_animation(t_env *env, int id)
 	}
 }
 
-t_clr		print_gun(t_env *env, int id, int xy[4], t_clr clr)
+t_clr		print_gun(t_env *env, int id, int xy[4])
 {
 	unsigned int	color;
 
 	ft_memcpy(&color, &env->gun.spr[id].data[(xy[2] +
 		(env->gun.spr[id].sl / 4) *
 			(171 * xy[3] / 342)) * 4], sizeof(int));
-	clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
-	return (clr);
+	if ((int)color != NONE)
+	{
+		color = (env->sick == 0) ? color : color + 500000;
+		return (gclr(color, 0));
+	}
+	else
+		return (gclr(color, 255));
 }
 
 void		gun(t_env *env, int id)
@@ -94,7 +111,7 @@ void		gun(t_env *env, int id)
 		while (xy[1] < 600)
 		{
 			if (xy[0] > 210 && xy[0] < 552 && xy[1] > 234 && (xy[3]++))
-				clr = print_gun(env, id, xy, clr);
+				clr = print_gun(env, id, xy);
 			else
 				clr = gclr(0, 255);
 			put_pxl2(env, xy[0], xy[1], clr);

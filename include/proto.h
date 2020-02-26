@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 11:59:17 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:31:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void    	door(t_env *env);
 void        jump(t_env *env);
 void	    crouch_animation(t_env *env);
 void	    corona(t_env *env);
+void		print_last_screen(t_env *env, int id);
 int		    init_mlx(t_env *env);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color, int a);

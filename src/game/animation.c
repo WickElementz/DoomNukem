@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 12:35:34 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:19:10 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	door(t_env *env)
 {
-	if (env->map[env->x][env->y].id < 124)
-		env->map[env->x][env->y].id += 1;
+	if (env->map[env->door_x][env->door_y].id < 124)
+		env->map[env->door_x][env->door_y].id += 1;
 	else
 	{
-		env->map[env->x][env->y].type = 'F';
+		env->map[env->door_x][env->door_y].type = 'F';
 		env->door_id = 0;
 	}
 }
@@ -44,7 +44,7 @@ void	corona(t_env *env)
 	clock_t	t;
 
 	t = clock();
-	if (env->clock == 0 && (env->clock = 1))
+	if (env->coro_clock == 0 && (env->coro_clock = 1))
 		env->t2 = t;
 	if (env->t2 + 200000000 > t)
 		env->sick = 1;

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 12:06:43 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:25:08 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct		s_event
 	short			walk;
 	short			run;
 	short			escape;
-	short			win;
 	short			space;
 }					t_event;
 
@@ -203,18 +202,18 @@ typedef	struct		s_env
 	int				endian;
 	int				size_line;
 	int				size_x;
-	int				sick;
-	int				num_key;
-	int				num_door;
-	int				link_dk;
-	int				win;
-	int				clock;
-	int				editor;
-	int				x;
-	int				y;
+	short			num_key;
+	short			num_door;
+	short			door_x;
+	short			door_y;
+	short			sick;
+	short			link_dk;
 	short			door_id;
 	short			jump;
 	short			crouch_id;
+	short			clock;
+	short			coro_clock;
+	short			win;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

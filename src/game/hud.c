@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:47:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/24 10:04:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:39:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		draw_life(t_env *env, int xy[2])
 		xy[1] = 8;
 		while (xy[1] < 22)
 		{
-			color = 0xD1E7C3;
+			color = (env->sick == 0) ? 0xD1E7C3 : 0xD1E7C3 + 10000;
 			clr = gclr(color, 0);
 			if (xy[0] < env->player.life + 805)
 				put_pxl(env, xy[0], xy[1], clr);
@@ -41,9 +41,12 @@ static void		print_bullet(t_env *env, int xy[6], int id, int tmp)
 
 	ft_memcpy(&color, &env->sprite[id].data[(xy[0] + (env->sprite[id].sl / 4) *
 				xy[1]) * 4], sizeof(int));
-	clr = gclr(color, 0);
 	if ((int)color != NONE)
+	{
+		color = (env->sick == 0) ? color : color + 500000;
+		clr = gclr(color, 0);	
 		put_pxl(env, xy[2], tmp, clr);
+	}
 }
 
 static void		bullet(t_env *env, int xy[6], int id)
@@ -73,6 +76,34 @@ static void		bullet(t_env *env, int xy[6], int id)
 }
 
 void			print_hud(t_env *env, int id)
+{
+	int				x;
+	int				y;
+	t_clr			clr;
+	unsigned int	color;
+
+	x = -1;
+	while (++x < 960)
+	{
+		y = -1;
+		while (++y < 600)
+		{
+			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
+					y) * 4], sizeof(int));
+			if ((int)color != NONE)
+			{
+				color = (env->sick == 0) ? color : color + 500000;
+				clr = gclr(color, 0);
+			}
+			else
+				clr = gclr(color, 255);			
+			put_pxl3(env, x, y, clr);
+
+		}
+	}
+}
+
+void			print_last_screen(t_env *env, int id)
 {
 	int				x;
 	int				y;

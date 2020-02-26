@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/26 12:05:59 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:43:31 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void		check_status(t_env *env)
 	x = (int)env->cam.x / BLOCK;
 	y = (int)env->cam.y / BLOCK;
 	if (env->player.life <= 0)
-		print_hud(env, 3);
+		print_last_screen(env, 3);
 	if (env->map[x][y].type == 'E')
-		print_hud(env, 2);
+	{
+		env->win = 1;
+		print_last_screen(env, 2);
+	}
 	if (env->map[x][y].type == 'L')
 	{
 		env->player.life += 20;
@@ -42,6 +45,9 @@ void		check_status(t_env *env)
 	}
 	if (env->map[x][y].type == 'C')
 	{
+		env->sick = 1;
+		gun(env, 0);
+		print_hud(env, 4);
 		env->player.corona = 1;
 		env->map[x][y].type = 'F';
 	}
