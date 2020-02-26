@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/24 10:38:41 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 12:05:59 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,36 @@
 
 void		check_status(t_env *env)
 {
+	int x;
+	int y;
+
+	x = (int)env->cam.x / BLOCK;
+	y = (int)env->cam.y / BLOCK;
 	if (env->player.life <= 0)
 		print_hud(env, 3);
-	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'E')
+	if (env->map[x][y].type == 'E')
 		print_hud(env, 2);
-	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'L')
+	if (env->map[x][y].type == 'L')
 	{
 		env->player.life += 20;
 		env->player.life = env->player.life >= 100 ? 100 : env->player.life;
-		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+		env->map[x][y].type = 'F';
 	}
-	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'A')
+	if (env->map[x][y].type == 'A')
 	{
 		env->player.stock += 6;
-		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+		env->map[x][y].type = 'F';
 	}
-	if (env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type == 'K')
+	if (env->map[x][y].type == 'K')
 	{
-		env->player.key[env->player.keyid] = env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].id;
-		dprintf(1, "%c", env->player.key[env->player.keyid]);
-		env->map[(int)env->cam.x / BLOCK][(int)env->cam.y / BLOCK].type = 'F';
+		env->player.key[env->player.keyid] = env->map[x][y].id;
+		env->map[x][y].type = 'F';
 		env->player.keyid++;
+	}
+	if (env->map[x][y].type == 'C')
+	{
+		env->player.corona = 1;
+		env->map[x][y].type = 'F';
 	}
 }
 

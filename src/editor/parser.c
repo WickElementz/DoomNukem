@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 12:57:52 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:38:22 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			open_file_editor(t_edit *edit, int fd)
 		error_editor(edit, 4);
 	if (edit->num_door != edit->num_key)
 		error_editor(edit, 3);
-	edit->link_dk = edit->num_key;
+	edit->link_dk = (char)edit->num_key + 48;
 	close(fd);
 	return (1);
 }

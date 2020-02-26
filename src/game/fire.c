@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fire.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:29:10 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 08:52:24 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 12:37:07 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void			reload(t_env *env)
 int				mouse_hook(int key, int x, int y, t_env *env)
 {
 	x = y;
-	dprintf(0, "%d", x);
 	if (key == 1 && env->player.ammo > 0 && env->gun.id == 0)
 	{
 		env->player.ammo--;

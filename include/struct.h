@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 10:30:48 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 12:06:43 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@
 
 typedef struct		s_event
 {
-	int				forward;
-	int				back;
-	int				s_left;
-	int				s_right;
-	int				left;
-	int				right;
-	int				m_left;
-	int				m_right;
-	int				m_up;
-	int				m_down;
-	int				hp_down;
-	int				uparrow;
-	int				downarrow;
-	int				walk;
-	int				run;
-	int				escape;
-	int				win;
-	int				space;
+	short			forward;
+	short			back;
+	short			s_left;
+	short			s_right;
+	short			left;
+	short			right;
+	short			m_left;
+	short			m_right;
+	short			m_up;
+	short			m_down;
+	short			hp_down;
+	short			uparrow;
+	short			downarrow;
+	short			walk;
+	short			run;
+	short			escape;
+	short			win;
+	short			space;
 }					t_event;
 
 /*
@@ -167,8 +167,8 @@ typedef struct		s_player
 	int				life;
 	int				ammo;
 	int				stock;
-	int				corona;
 	int				keyid;
+	short			corona;
 	char			key[10];
 }					t_player;
 
@@ -213,7 +213,8 @@ typedef	struct		s_env
 	int				x;
 	int				y;
 	short			door_id;
-	unsigned long	t;
+	short			jump;
+	short			crouch_id;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
@@ -222,6 +223,8 @@ typedef	struct		s_env
 	char			*data_ptr;
 	char			*data_ptr2;
 	char			*data_ptr3;
+	clock_t			t;
+	clock_t			t2;
 	t_player		player;
 	t_reload		reload;
 	t_gun			gun;

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 10:20:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:44:35 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 		ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + s) % 64 + (int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4], sizeof(int));
 	}
 	if (env->sick == 1)
-		color *= 12 + 255;
+		color += 15000;
 	clr = gclr(color, 0);
 	return(clr);
 }

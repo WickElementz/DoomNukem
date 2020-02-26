@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/02/25 13:54:45 by jominodi         ###   ########lyon.fr    #
+#    Updated: 2020/02/26 11:32:52 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ GAME_N		= main.c \
 				verif_map.c \
 				draw.c \
 				manage_blocks.c \
+				animation.c \
 				door.c \
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
@@ -91,7 +92,7 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -g3 -fsanitize=address
+	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true

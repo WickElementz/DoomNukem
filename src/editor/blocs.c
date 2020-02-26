@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:40:36 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/25 12:32:15 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:36:42 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void		remove_block(int o_x, int o_y, t_edit *edit)
 		if (edit->map[x][y].id != 'a')
 			check_link_dk_editor(edit, x, y, 'K');
 	}
+	if (edit->map[x][y].id == 'a')
+		edit->map[x][y].id = '0';
 	edit->map[x][y].type = 'F';
 }
 

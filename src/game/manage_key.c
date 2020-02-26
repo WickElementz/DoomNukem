@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/25 09:54:01 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 12:36:10 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int				hold_key(int key, t_env *env)
 		env->ev.right = 1;
 	if (key == KEY_E)
 		open_door(env);
+	if (key == KEY_Z && env->jump == 0)
+		env->crouch_id = env->crouch_id == 1 ? 2 : 1;
+	if (key == KEY_SPACEBAR && env->jump == 0 && env->crouch_id == 0)
+		env->jump = 1;
 	if (key == KEY_SHIFT_LEFT)
 		env->ev.run = 1;
 	else if (key == KEY_ALT)

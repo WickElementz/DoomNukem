@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 14:02:17 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:55:42 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		save_map(char *line, t_env *env, int y)
 		if (line[i] == 'B')
 			set_spawn(env, y, x);
 		i++;
-		env->map[x][y].id = line[i];
+		env->map[y][x].id = line[i];
 		i++;
 		x++;
 	}

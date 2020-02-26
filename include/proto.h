@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/24 10:20:21 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:59:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void		set_spawn(t_env *env, int x, int y);
 void	    game_to_editor(t_env *env);
 void		draw_column(t_env *env, t_ray *ray, int xy[3]);
 void		open_door(t_env *env);
+void    	door(t_env *env);
+void        jump(t_env *env);
+void	    crouch_animation(t_env *env);
+void	    corona(t_env *env);
 int		    init_mlx(t_env *env);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color, int a);
