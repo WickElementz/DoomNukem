@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fire.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:29:10 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/24 10:01:54 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 08:52:24 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "doom_nukem.h"
 
-/*void			fire(t_env *env)
+void			fire(t_env *env)
 {
 	clock_t t2;
 
@@ -71,7 +71,7 @@ void			reload(t_env *env)
 	}
 	if (env->player.ammo == 6 || env->player.ammo == env->player.stock)
 		reload2(env);
-}*/
+}
 
 int				mouse_hook(int key, int x, int y, t_env *env)
 {
