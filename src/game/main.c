@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/21 13:15:13 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 08:52:16 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		loop_mlx(t_env *env)
 void			init_info(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
-	env->cam.z = 32;
+	env->cam.z = 32.0;
 	env->up = 300;
 	env->cam.speed = 6;
 	env->player.life = 100;

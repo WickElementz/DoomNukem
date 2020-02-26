@@ -91,7 +91,7 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
+	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -g3 -fsanitize=address
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true
