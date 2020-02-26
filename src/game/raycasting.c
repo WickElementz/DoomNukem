@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 12:06:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 13:09:21 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,10 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			sprite = sprite->next;
 			dxdy[0] = (int)(env->cam.x + cos(ang * M_PI / 180) * sprite->dist) % 64;
 			dxdy[1] = (int)(env->cam.y + sin(ang * M_PI / 180) * sprite->dist) % 64;
-			sprite->mod = (env->cam.angle - ang == 0) ? 0 : 32 +fabs((32 - dxdy[0]) + (32 - dxdy[1]));
+			sprite->mod = (env->cam.angle - ang == 0) ? sprite->mod : 32 + fabs((32 - dxdy[0]) + (32 - dxdy[1]));
 			sprite->mod = (ang < env->cam.angle) ? 64 - sprite->mod : sprite->mod;
 		//dprintf(1,"(32 - ((32 - %d + (32 - %d mod 64) = %d\n", (int)dxdy[0], (int)dxdy[1], (32 - ((32 - (int)dxdy[0] % 64) + (32 - (int)dxdy[1] % 64))));
-			if (env->sick != 2)
-				dprintf(1, "32 - %f + 32 - %f = %f\n", dxdy[0], dxdy[1], (32-dxdy[0]) + (32-dxdy[1]));
+			dprintf(1, "32 - %f + 32 - %f = %f\n", dxdy[0], dxdy[1], (32 - dxdy[0]) + (32 - dxdy[1]));
 			if (sprite->mod > 64 || sprite->mod < 0)
 				sprite->mod = 0;
 		//	dprintf(1,"%f\n",sprite->mod);
@@ -141,9 +140,9 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			sprite = sprite->next;
 			dxdy[0] = (int)(env->cam.x + cos(ang * M_PI / 180) * sprite->dist) % 64;
 			dxdy[1] = (int)(env->cam.y + sin(ang * M_PI / 180) * sprite->dist) % 64;
-			sprite->mod = (env->cam.angle - ang == 0) ? 0 : 32+fabs((32 - dxdy[0]) + (32 - dxdy[1]));
+			sprite->mod = (env->cam.angle - ang == 0) ? sprite->mod : 32 + fabs((32 - dxdy[0]) + (32 - dxdy[1]));
 			sprite->mod = (ang < env->cam.angle) ? 64 - sprite->mod : sprite->mod;
-
+			dprintf(1, "32 - %f + 32 - %f = %f\n", dxdy[0], dxdy[1], (32 - dxdy[0]) + (32 - dxdy[1]));
 			if (sprite->mod > 64 || sprite->mod < 0)
 				sprite->mod = 0;
 			sprite->mapx = (int)xy[0] / 64;
