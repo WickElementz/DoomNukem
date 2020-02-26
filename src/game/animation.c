@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:19:10 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:57:37 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ void	corona(t_env *env)
 	t = clock();
 	if (env->coro_clock == 0 && (env->coro_clock = 1))
 		env->t2 = t;
-	if (env->t2 + 200000000 > t)
+	if (env->t2 + 2000000 > t)
 		env->sick = 1;
 	else
 	{
 		env->player.corona = 0;
-		env->sick = 0;	
+		env->sick = 0;
+		env->coro_clock = 0;
+		gun(env, 0);
+		print_hud(env, 4);
 	}
 }
 
