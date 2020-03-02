@@ -6,29 +6,11 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 11:34:45 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 13:57:54 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "doom_nukem.h"
-
-/*
-** text[0] = Mossy
-** text[1] = Bricks
-** text[2] = Red Bricks
-** text[3] = GreyStone
-** text[4] = Wood
-** text[5] = Sky
-** text[6] = Vitre
-** sprite[0] = Sprite
-** sprite[1] = Gun
-** sprite[2] = Balles
-** sprite[3] = Ecran de Win
-** sprite[4] = Ecran de Lose
-** sprite[5] = HUD
-** sprite[6] à sprite[12] = Gun animation
-*/
 
 static void load_texture5(t_env *env, int a, int b)
 {

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 11:55:42 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 12:44:25 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		save_map(char *line, t_env *env, int y)
 	}
 }
 
-void	parsing(char *filename, t_env *env, int fd)
+void		parsing(char *filename, t_env *env, int fd)
 {
 	char	tmp;
 	char	*line;
@@ -79,5 +79,5 @@ void	parsing(char *filename, t_env *env, int fd)
 		error_pars(env, 3);
 	env->link_dk = env->num_key;
 	close(fd);
-    check_map(env);
+	check_map(env);
 }

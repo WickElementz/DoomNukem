@@ -6,10 +6,9 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:47:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:39:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 12:25:06 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -24,10 +23,10 @@ static void		draw_life(t_env *env, int xy[2])
 		xy[1] = 8;
 		while (xy[1] < 22)
 		{
-			color = (env->sick == 0) ? 0xD1E7C3 : 0xD1E7C3 + 10000;
+			color = (env->sick == 0) ? 0xD1E7C3 : 0xD1E7C3 + 23541;
 			clr = gclr(color, 0);
 			if (xy[0] < env->player.life + 805)
-				put_pxl(env, xy[0], xy[1], clr);
+				put_pxl2(env, xy[0], xy[1], clr);
 			xy[1]++;
 		}
 		xy[0]++;
@@ -43,9 +42,9 @@ static void		print_bullet(t_env *env, int xy[6], int id, int tmp)
 				xy[1]) * 4], sizeof(int));
 	if ((int)color != NONE)
 	{
-		color = (env->sick == 0) ? color : color + 500000;
-		clr = gclr(color, 0);	
-		put_pxl(env, xy[2], tmp, clr);
+		color = (env->sick == 0) ? color : color + 23541;
+		clr = gclr(color, 0);
+		put_pxl2(env, xy[2], tmp, clr);
 	}
 }
 
@@ -92,46 +91,15 @@ void			print_hud(t_env *env, int id)
 					y) * 4], sizeof(int));
 			if ((int)color != NONE)
 			{
-				color = (env->sick == 0) ? color : color + 500000;
+				color = (env->sick == 0) ? color : color + 23541;
 				clr = gclr(color, 0);
 			}
 			else
-				clr = gclr(color, 255);			
-			put_pxl3(env, x, y, clr);
-
-		}
-	}
-}
-
-void			print_last_screen(t_env *env, int id)
-{
-	int				x;
-	int				y;
-	t_clr			clr;
-	unsigned int	color;
-
-	x = -1;
-	while (++x < 960)
-	{
-		y = -1;
-		while (++y < 600)
-		{
-			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
-					y) * 4], sizeof(int));
-			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
+				clr = gclr(color, 255);
 			put_pxl3(env, x, y, clr);
 		}
 	}
 }
-
-/*
-** 0 = Parcourt le XPM		X
-** 1 = Parcourt le XPM		Y
-** 2 = Affiche a l'ecran	X
-** 3 = Affiche a l'ecran	Y
-** 4 = Taille du XPM en 	X
-** 5 = Taille du XPM en		Y
-*/
 
 void			draw_hud(t_env *env)
 {

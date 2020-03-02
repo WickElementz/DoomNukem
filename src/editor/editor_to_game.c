@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 14:02:39 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 14:06:19 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	save_edit_to_env(t_edit *edit, t_env *env)
 void	editor_to_game(t_edit *edit)
 {
 	t_env		*env;
+
 	check_map_editor(edit);
 	if (edit->verif.err == 0)
 	{
