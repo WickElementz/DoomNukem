@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 14:49:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 14:28:36 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,14 +239,13 @@ t_thread	*init_thread(t_env *env)
 	t_thread	*tab;
 	int			i;
 
-	i = 0;
+	i = -1;
 	tab = malloc(sizeof(t_thread) * 8);
-	while (i < 8)
+	while (++i < 8)
 	{
 		tab[i].start = 120 * i;
 		tab[i].end = 120 * i + 120;
 		tab[i].env = env;
-		i++;
 	}
 	return (tab);
 }
@@ -256,14 +255,16 @@ void	ray_multi_thread(t_env *env)
 {
 	static t_thread	*tab = NULL;
 	int				i;
+
 	i = -1;
 	if (tab == NULL)
 		tab = init_thread(env);
 	while (++i < THREADS)
-		pthread_create(&tab[i].t, NULL, raycasting, &tab[i]);
+		pthread_create(&tab[i].t, NULL, raycasting, (void*)&tab[i]);
 	i = -1;
 	while (++i < THREADS)
 		pthread_join(tab[i].t, NULL);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 }
 
 void	display(t_env *env)
@@ -279,7 +280,6 @@ void	display(t_env *env)
 		jump(env);
 	if (env->crouch_id != 0)
 		crouch_animation(env);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	if (env->gun.id != 0)
 		fire(env);
 	else if (env->reload.id != 0)

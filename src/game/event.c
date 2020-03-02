@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:43:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:58:29 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		check_status(t_env *env)
 		gun(env, 0);
 		print_hud(env, 4);
 		env->player.corona = 1;
+		env->coro_clock = 0;
 		env->map[x][y].type = 'F';
 	}
 }

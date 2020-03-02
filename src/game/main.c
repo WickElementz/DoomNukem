@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 12:02:06 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:43:02 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,17 @@ int		init_mlx(t_env *env)
 	return (0);
 }
 
+int			exit_hook(t_env *env)
+{
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
+	free_env(env, 0);
+	return (0);
+}
+
 void		loop_mlx(t_env *env)
 {
-
 	display(env);
 	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
@@ -50,6 +58,8 @@ void		loop_mlx(t_env *env)
 	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
 	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
+	mlx_hook(env->win_ptr, 17, 0, exit_hook, env);
+//	mlx_mouse_hide();
 	mlx_loop(env->mlx_ptr);
 }
 

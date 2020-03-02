@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:19:10 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:55:47 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	corona(t_env *env)
 	else
 	{
 		env->player.corona = 0;
-		env->sick = 0;	
+		env->coro_clock = 0;
+		env->sick = 0;
+		gun(env, 0);
+		print_hud(env, 4);
 	}
 }
 
