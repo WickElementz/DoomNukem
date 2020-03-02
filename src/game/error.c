@@ -6,10 +6,9 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:41:02 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/20 13:21:59 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 12:20:38 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -86,6 +85,6 @@ t_ray	*create_ray(float dist, float mod, float id)
 	ray->mapy = -1;
 	ray->mapx = -1;
 	ray->door = -1;
-	ray->next = NULL ;
+	ray->next = NULL;
 	return (ray);
 }

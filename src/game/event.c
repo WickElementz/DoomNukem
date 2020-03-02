@@ -6,55 +6,30 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:58:29 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:46:15 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void		check_status(t_env *env)
+float		change_z(t_position *cam, int up)
 {
-	int x;
-	int y;
-
-	x = (int)env->cam.x / BLOCK;
-	y = (int)env->cam.y / BLOCK;
-	if (env->player.life <= 0)
-		print_last_screen(env, 3);
-	if (env->map[x][y].type == 'E')
-	{
-		env->win = 1;
-		print_last_screen(env, 2);
-	}
-	if (env->map[x][y].type == 'L')
-	{
-		env->player.life += 20;
-		env->player.life = env->player.life >= 100 ? 100 : env->player.life;
-		env->map[x][y].type = 'F';
-	}
-	if (env->map[x][y].type == 'A')
-	{
-		env->player.stock += 6;
-		env->map[x][y].type = 'F';
-	}
-	if (env->map[x][y].type == 'K')
-	{
-		env->player.key[env->player.keyid] = env->map[x][y].id;
-		env->map[x][y].type = 'F';
-		env->player.keyid++;
-	}
-	if (env->map[x][y].type == 'C')
-	{
-		env->sick = 1;
-		gun(env, 0);
-		print_hud(env, 4);
-		env->player.corona = 1;
-		env->coro_clock = 0;
-		env->map[x][y].type = 'F';
-	}
+	if (up > 500 && cam->z - 0.3 > 5)
+		return (-0.300000);
+	else if (up > 400 && cam->z - 0.2 > 5)
+		return (-0.2000000);
+	else if (up > 300 && cam->z - 0.1 > 5)
+		return (-0.10000000);
+	else if (up < 100 && cam->z + 0.3 < 62)
+		return (0.300000000);
+	else if (up < 200 && cam->z + 0.2 < 62)
+		return (0.20000000);
+	else if (up < 300 && cam->z + 0.1 < 62)
+		return (0.10000000);
+	return (0.0);
 }
 
-void		ft_move_x(t_block map[50][50], t_position *cam, int way)
+void		ft_move_x(t_block map[50][50], t_position *cam, int way, int up[2])
 {
 	double	rad;
 	double	new[2];
@@ -63,31 +38,35 @@ void		ft_move_x(t_block map[50][50], t_position *cam, int way)
 	if (way == 1)
 	{
 		tmp = (cam->angle > 270) ? cam->angle + 90 - 360 : cam->angle + 90;
-		rad = tmp * M_PI / 180;
+		rad = tmp * RAD;
 	}
 	if (way == -1)
 	{
 		tmp = (cam->angle < 90) ? cam->angle - 90 + 360 : cam->angle - 90;
-		rad = tmp * M_PI / 180;
+		rad = tmp * RAD;
 	}
+	if (up[0] != 300 && (cam->z < 62 || cam->z > 5) && up[1] != 0)
+		cam->z += change_z(cam, up[0]);
 	new[0] = cam->y + (cos(rad) * cam->speed);
 	new[1] = cam->x + (sin(rad) * cam->speed);
 	walkable_block_x(new, map, cam);
 }
 
-void		ft_move_z(t_block map[50][50], t_position *cam, int way)
+void		ft_move_z(t_block map[50][50], t_position *cam, int way, int up[2])
 {
 	double	new[2];
 	double	rad;
 	double	tmp;
 
 	if (way == 1)
-		rad = (cam->angle) * M_PI / 180;
+		rad = (cam->angle) * RAD;
 	if (way == -1)
 	{
 		tmp = (cam->angle > 180) ? cam->angle - 180 : cam->angle + 180;
-		rad = tmp * M_PI / 180;
+		rad = tmp * RAD;
 	}
+	if (up[0] != 300 && (cam->z < 62 || cam->z > 5) && up[1] != 0)
+		cam->z += change_z(cam, up[0]);
 	new[0] = cam->y + cos(rad) * cam->speed;
 	new[1] = cam->x + sin(rad) * cam->speed;
 	walkable_block_z(new, map, cam);

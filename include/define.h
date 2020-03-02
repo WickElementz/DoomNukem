@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/02/27 14:02:03 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:46:30 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define SENSI      3
 # define SIZE_MAP   50
 # define THREADS    8
+# define RAD        0.01745329251
 
 /*
 ** Color - Editeur

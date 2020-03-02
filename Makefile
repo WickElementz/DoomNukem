@@ -6,7 +6,7 @@
 #    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/02/26 14:26:26 by jominodi         ###   ########lyon.fr    #
+#    Updated: 2020/03/02 14:09:07 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,10 @@ GAME_N		= main.c \
 				draw.c \
 				manage_blocks.c \
 				animation.c \
-				door.c
-#				damage.c
+				door.c \
+				display.c \
+				status.c \
+				damage.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
 EDIT_N		= editor.c \

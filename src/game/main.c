@@ -6,10 +6,13 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/03/02 14:43:02 by videloff         ###   ########lyon.fr   */
+=======
+/*   Updated: 2020/03/02 12:27:27 by jominodi         ###   ########lyon.fr   */
+>>>>>>> 96e2a60a16b3c146fb286b97cc262e1bb661e4e2
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -40,6 +43,7 @@ int		init_mlx(t_env *env)
 	return (0);
 }
 
+<<<<<<< HEAD
 int			exit_hook(t_env *env)
 {
 	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
@@ -51,6 +55,10 @@ int			exit_hook(t_env *env)
 
 void		loop_mlx(t_env *env)
 {
+=======
+void	loop_mlx(t_env *env)
+{
+>>>>>>> 96e2a60a16b3c146fb286b97cc262e1bb661e4e2
 	display(env);
 	mlx_mouse_move(env->win_ptr, 500, -320);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
@@ -63,7 +71,7 @@ void		loop_mlx(t_env *env)
 	mlx_loop(env->mlx_ptr);
 }
 
-void			init_info(t_env *env)
+void	init_info(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
 	env->cam.z = 32.0;
@@ -79,7 +87,7 @@ void			init_info(t_env *env)
 	env->player.life = 100;
 }
 
-void			free_env(t_env *env, int set)
+void	free_env(t_env *env, int set)
 {
 	if (env)
 		free(env);
@@ -88,13 +96,14 @@ void			free_env(t_env *env, int set)
 	exit(0);
 }
 
-int				main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int		fd;
 	t_env	*env;
 
 	fd = 0;
-	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1)) && ac == 2)
+	if ((((fd = open(av[1], O_RDONLY)) < 1) || (read(fd, NULL, 0) == -1))
+			&& ac == 2)
 		error(1);
 	if (ac < 2 || ac >= 4)
 		usage();

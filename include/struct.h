@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 14:25:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 13:53:56 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,14 @@ typedef struct		s_sprite
 
 typedef struct		s_verif
 {
-	int				beginning;
-	int				ending;
-	int				door;
-	int				key;
-	int				ver_p_we;
-	int				ver_p_sn;
-	int				ver_door;
-	int				err;
+	short			beginning;
+	short			ending;
+	short			door;
+	short			key;
+	short			ver_p_we;
+	short			ver_p_sn;
+	short			ver_door;
+	short			err;
 }					t_verif;
 
 typedef struct 		s_edit
@@ -126,18 +126,18 @@ typedef struct 		s_edit
 	int				bpp;
 	int				end;
 	int				sl;
-	int				tmpx;
-	int				tmpy;
-	int				mapx;
-	int				mapy;
-	int				zoom;
-	int				size_x;
-	int				size_y;
-	int				num_key;
-	int				num_door;
-	int				link_door;
-	int				save_dx;
-	int				save_dy;
+	short			tmpx;
+	short			tmpy;
+	short			mapx;
+	short			mapy;
+	short			zoom;
+	short			size_x;
+	short			size_y;
+	short			num_key;
+	short			num_door;
+	short			link_door;
+	short			save_dx;
+	short			save_dy;
 	unsigned int	color;
 	char			id;
 	char			link_dk;
@@ -163,10 +163,10 @@ typedef struct 		s_edit
 
 typedef struct		s_player
 {
-	int				life;
-	int				ammo;
-	int				stock;
-	int				keyid;
+	short			life;
+	short			ammo;
+	short			stock;
+	short			keyid;
 	short			corona;
 	char			key[10];
 }					t_player;
@@ -182,16 +182,16 @@ typedef struct		s_clr
 
 typedef struct		s_gun
 {
-	int				obj;
+	short			obj;
 	int				time;
-	int				id;
+	short			id;
 	t_sprite		spr[8];
 }					t_gun;
 
 typedef struct		s_reload
 {
 	int				time;
-	int				id;
+	short			id;
 	t_sprite		spr[6];
 }					t_reload;
 
@@ -214,6 +214,10 @@ typedef	struct		s_env
 	short			clock;
 	short			coro_clock;
 	short			win;
+	short			coro_jump;
+	short			coro_crouch;
+	short			after_coro;
+	float			cone;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

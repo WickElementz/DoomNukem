@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:31:17 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 13:04:22 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void		free_env(t_env *env, int set);
 void		anglemove(t_position *cam, int way);
 void		free_listr(t_ray *list);
 void		free_listc(t_clr *list);
-void		ft_move_z(t_block map[50][50], t_position *cam, int way);
-void		ft_move_x(t_block map[50][50], t_position *cam, int way);
+void		ft_move_z(t_block map[50][50], t_position *cam, int way, int up[2]);
+void		ft_move_x(t_block map[50][50], t_position *cam, int way, int up[2]);
 void		init_info(t_env *env);
 void		usage();
 void		error(int error);
@@ -65,8 +65,12 @@ void    	door(t_env *env);
 void        jump(t_env *env);
 void	    crouch_animation(t_env *env);
 void	    corona(t_env *env);
+void	    z_after_coro(t_env *env);
 void		print_last_screen(t_env *env, int id);
+float		give_value(float angle, int dif);
+void    	deal_damage(t_env *env);
 int		    init_mlx(t_env *env);
+void        *raycasting(void	*data);
 t_ray       *sprite_list(t_ray *hor, t_ray *ver);
 t_clr	    gclr(unsigned int color, int a);
 t_clr		add_color(t_env *env, t_ray *ray, int xy[3]);

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   sprite.c                                         .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jominodi <jominodi@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/16 15:28:00 by yalabidi     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 15:37:44 by jominodi    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
+/*   Updated: 2020/03/02 12:53:39 by jominodi         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-t_ray	*cpy_spr(t_ray *spr)
+t_ray			*cpy_spr(t_ray *spr)
 {
 	t_ray	*new;
-	
+
 	if (!spr)
 		return (NULL);
 	if (!(new = (t_ray*)malloc(sizeof(t_ray))))
@@ -45,8 +44,10 @@ static t_ray	*del_glass(t_ray *base)
 	b = base;
 	while (b)
 	{
-		if (b->next && ((b->mapx - b->next->mapx >= -1 && b->mapx - b->next->mapx <= 1 && b->mapy - b->next->mapy == 0) ||
-			(b->mapy - b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 && b->mapx - b->next->mapx == 0)))
+		if (b->next && ((b->mapx - b->next->mapx >= -1 && b->mapx -
+		b->next->mapx <= 1 && b->mapy - b->next->mapy == 0) || (b->mapy -
+		b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 &&
+		b->mapx - b->next->mapx == 0)))
 			i = 0;
 		if (i == 1 && b->next)
 		{
@@ -60,19 +61,20 @@ static t_ray	*del_glass(t_ray *base)
 	return (clean);
 }
 
-t_ray   *sprite_list(t_ray *hor, t_ray *ver)
+t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 {
-	t_ray     *move_ver;
-	t_ray     *move_hor;
-	t_ray     *move_base;
-	t_ray     *base;
+	t_ray	*move_ver;
+	t_ray	*move_hor;
+	t_ray	*move_base;
+	t_ray	*base;
 
 	if (!hor->next && !ver->next)
 		return (NULL);
 	move_ver = ver->next;
 	move_hor = hor->next;
 	if (move_hor && move_ver)
-		base = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+		base = (move_hor->dist < move_ver->dist) ?
+			cpy_spr(move_hor) : cpy_spr(move_ver);
 	else
 		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
 	move_base = base;
@@ -80,7 +82,8 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 	{
 		if (move_hor && move_ver)
 		{
-			move_base->next = (move_hor->dist < move_ver->dist) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+			move_base->next = (move_hor->dist < move_ver->dist) ?
+				cpy_spr(move_hor) : cpy_spr(move_ver);
 			if (move_hor->dist < move_ver->dist)
 				move_hor = move_hor->next;
 			else
@@ -88,7 +91,8 @@ t_ray   *sprite_list(t_ray *hor, t_ray *ver)
 		}
 		else
 		{
-			move_base->next = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+			move_base->next = (move_hor) ?
+				cpy_spr(move_hor) : cpy_spr(move_ver);
 			if (move_hor)
 				move_hor = move_hor->next;
 			else

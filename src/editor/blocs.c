@@ -6,10 +6,9 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:40:36 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 11:36:42 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 14:06:06 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
