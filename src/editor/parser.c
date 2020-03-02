@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/27 14:07:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 15:15:31 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		error_editor(t_edit *edit, int error)
 		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
 		ft_putstr_fd("each line followed by a newline.\n", 2);
 	}
-	free(edit);
+	if (edit)
+		free(edit);
 	exit(-1);
 }
 

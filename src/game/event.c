@@ -6,11 +6,21 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/02 14:46:15 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:59:05 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+
+int			exit_hook(t_env *env)
+{
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
+	free_env(env, 0);
+	return (0);
+}
 
 float		change_z(t_position *cam, int up)
 {

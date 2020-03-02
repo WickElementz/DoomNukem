@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/02 14:47:16 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:48:31 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ int		init_mlx(t_env *env)
 	load_texture(env);
 	print_hud(env, 4);
 	gun(env, 0);
-	return (0);
-}
-
-int			exit_hook(t_env *env)
-{
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
-	free_env(env, 0);
 	return (0);
 }
 

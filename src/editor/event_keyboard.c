@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:44 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 15:02:47 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 15:15:36 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ void		zoom(t_edit *edit)
 		edit->mapy = 0;
 	}
 	edit->zoom = edit->zoom == 10 ? 25 : 10;
+}
+
+int			exit_hook_editor(t_edit *edit)
+{
+	mlx_destroy_image(edit->mlx_ptr, edit->img_ptr);
+	mlx_destroy_image(edit->mlx_ptr, edit->img_ptr2);
+	if (edit)
+		free(edit);
+	exit(0);
+	return (0);
 }
 
 int			hold_key_editor(int key, t_edit *edit)
