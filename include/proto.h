@@ -20,6 +20,7 @@
 */
 
 int			set_line(char *line, int z, t_env *env, int len);
+void		ray_multi_thread(t_env *env);
 int			set_angle(t_env *env, int x);
 int			event_key(t_env *env);
 int			hold_key(int key, t_env *env);
