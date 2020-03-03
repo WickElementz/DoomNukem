@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/02 14:09:07 by jominodi         ###   ########lyon.fr    #
+#    Updated: 2020/03/03 14:29:19 by videloff         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,7 @@ DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
 	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
+	@cp ./mlx_include_new/libmlx.dylib .
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true
@@ -119,5 +120,6 @@ fclean :
 	@make -C $(MNLBX) clean
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_P_GAME)
+	@rm -rf libmlx.dylib
 	@echo "Extra maked files got successfully $(BOLD)$(GREEN)deleted$(WHITE)"
 re : fclean all
