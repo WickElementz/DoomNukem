@@ -6,10 +6,9 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:29:10 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 12:39:02 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 12:22:47 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -34,6 +33,7 @@ void			fire(t_env *env)
 		env->gun.id = 0;
 		env->clock = 0;
 		print_gun_animation(env, env->gun.id);
+		deal_damage(env);
 	}
 	env->reload.id = 0;
 }
@@ -64,7 +64,8 @@ void			reload(t_env *env)
 				env->reload.id = 2;
 			else if (env->reload.id != 5)
 				env->reload.id++;
-			if (env->player.ammo < 6 && env->player.ammo < env->player.stock && env->reload.id == 5)
+			if (env->player.ammo < 6 && env->player.ammo < env->player.stock &&
+					env->reload.id == 5)
 				env->player.ammo++;
 			env->t += env->reload.time;
 		}

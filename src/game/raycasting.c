@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/26 14:58:56 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:46:04 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "doom_nukem.h"
 
@@ -19,11 +18,11 @@ float	give_value(float ang, int dif)
 
 	ya = 0.0;
 	if (dif == 1)
-		ya = (ang > 270 || ang < 90) ? 64 * tan(ang * M_PI / 180) :
-			-64 * tan(ang * M_PI / 180);
+		ya = (ang > 270 || ang < 90) ? 64 * tan(ang * RAD) :
+			-64 * tan(ang * RAD);
 	else if (dif == 2)
-		ya = (ang > 270 || ang < 90) ? 64 / fabs(tan(ang * M_PI / 180)) : -64 /
-			fabs(tan(ang * M_PI / 180));
+		ya = (ang > 270 || ang < 90) ? 64 / fabs(tan(ang * RAD)) : -64 /
+			fabs(tan(ang * RAD));
 	return (ya);
 }
 
@@ -54,8 +53,8 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
 	xy[1] = (ang > 270 || ang < 90) ?
-		env->cam.x - (env->cam.y - xy[0]) * tan(ang * M_PI / 180) :
-			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(ang * M_PI / 180);
+		env->cam.x - (env->cam.y - xy[0]) * tan(ang * RAD) :
+			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(ang * RAD);
 	xaya[1] = give_value(ang, 1);
 	xaya[0] = (ang > 270 || ang < 90) ? 64 : -64;
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
@@ -65,10 +64,13 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
 			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
-				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[1] + xaya[1] / 2) % 64, 4);
+			sprite->next = create_ray(sqrt(pow(env->cam.y -
+				(int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
+				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle)
+				* RAD), (int)(xy[1] + xaya[1] / 2) % 64, 4);
 			sprite = sprite->next;
-			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] / 64].id - 60;
+			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] /
+								64].id - 60;
 			sprite->type = 3;
 			sprite->mapx = (int)xy[0] / 64;
 			sprite->mapy = (int)xy[1] / 64;
@@ -89,8 +91,10 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		}
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-				(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)xy[1] % 64, 6);
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
+							pow(env->cam.x -
+				(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD),
+					(int)xy[1] % 64, 6);
 			sprite = sprite->next;
 			sprite->type = 1;
 			sprite->mapx = (int)xy[0] / 64;
@@ -99,12 +103,12 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-				break ;
+			break ;
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
 	ver->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-		(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180);
+		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
 	ver->mod = (int)xy[1] % 64;
 	return (ver);
 }
@@ -123,8 +127,8 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
 		(int)(env->cam.x / 64) * 64 - 1;
 	xy[0] = (ang < 180) ? env->cam.y - (env->cam.x - xy[1]) /
-		tan(ang * M_PI / 180) : env->cam.y - (env->cam.x - (xy[1] + 1)) /
-			tan(ang * M_PI / 180);
+		tan(ang * RAD) : env->cam.y - (env->cam.x - (xy[1] + 1)) /
+			tan(ang * RAD);
 	xaya[0] = give_value(ang, 2);
 	xaya[1] = (ang < 180) ? 64 : -64;
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
@@ -134,11 +138,14 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
 			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
 		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
-				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle) * M_PI / 180), (int)(xy[0] + xaya[0] / 2) % 64, 4);
+			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] +
+			xaya[0] / 2), 2) + pow(env->cam.x - (int)(xy[1] + xaya[1] / 2),
+			2)) * cos((ang - env->cam.angle) * RAD), (int)(xy[0] + xaya[0]
+			/ 2) % 64, 4);
 			sprite = sprite->next;
 			sprite->type = 3;
-			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] / 64].id - 60;
+			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] /
+								64].id - 60;
 			sprite->mapx = (int)xy[0] / 64;
 			sprite->mapy = (int)xy[1] / 64;
 		}
@@ -160,7 +167,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		{
 			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
 				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
-				M_PI / 180), (int)xy[0] % 64, 6);
+				RAD), (int)xy[0] % 64, 6);
 			sprite = sprite->next;
 			sprite->type = 1;
 			sprite->mapx = (int)xy[0] / 64;
@@ -169,12 +176,12 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-				break ;
+			break ;
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
 	hor->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-		(int)xy[1], 2)) * cos((ang - env->cam.angle) * M_PI / 180);
+		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
 	hor->mod = (int)xy[0] % 64;
 	return (hor);
 }
@@ -210,22 +217,20 @@ t_ray	*closest_wall(t_env *env, float ang)
 	return (distance);
 }
 
-void	*raycasting(void	*data)
+void	*raycasting(void *data)
 {
-	t_ray	*distance;
-	float	ang;
-	int		xy[3];
-	int		ray;
-	float	cone;
+	t_ray		*distance;
+	float		ang;
+	int			xy[3];
+	int			ray;
 	t_thread	*thread;
 
 	thread = (t_thread *)data;
 	ray = thread->start - 1;
-	cone = (float)FOV / (float)WIN_WIDTH;
 	xy[2] = 0;
 	while (++ray < thread->end)
 	{
-		ang = thread->env->cam.angle + (ray * cone) - 30;
+		ang = thread->env->cam.angle + (ray * 0.0625) - 30;
 		ang = (ang > 359) ? ang - 360 : ang;
 		ang = (ang < 0) ? ang + 360 : ang;
 		distance = closest_wall(thread->env, ang);

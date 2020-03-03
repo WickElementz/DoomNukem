@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:18:12 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 14:55:00 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	loop_mlx_editor(t_edit *edit)
 	display_editor(edit);
 	mlx_hook(edit->win_ptr, 2, 1, hold_key_editor, edit);
 	mlx_hook(edit->win_ptr, 4, 0, mouse_hook_editor, edit);
+	mlx_hook(edit->win_ptr, 17, 0, exit_hook_editor, edit);
 	mlx_loop(edit->mlx_ptr);
 }
 

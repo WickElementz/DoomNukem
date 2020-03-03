@@ -6,12 +6,32 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:02:28 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:46:42 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 12:25:44 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "doom_nukem.h"
+
+void		print_last_screen(t_env *env, int id)
+{
+	int				x;
+	int				y;
+	t_clr			clr;
+	unsigned int	color;
+
+	x = -1;
+	while (++x < 960)
+	{
+		y = -1;
+		while (++y < 600)
+		{
+			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
+					y) * 4], sizeof(int));
+			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
+			put_pxl3(env, x, y, clr);
+		}
+	}
+}
 
 void		print_gun_animation(t_env *env, int id)
 {
@@ -32,7 +52,7 @@ void		print_gun_animation(t_env *env, int id)
 					(171 * xy[3] / 342)) * 4], sizeof(int));
 			if ((int)color != NONE)
 			{
-				color = (env->sick == 0) ? color : color + 500000;
+				color = (env->sick == 0) ? color : color + 23541;
 				clr = gclr(color, 0);
 			}
 			else
@@ -66,7 +86,7 @@ void		print_reload_animation(t_env *env, int id)
 					(171 * xy[3] / 342)) * 4], sizeof(int));
 			if ((int)color != NONE)
 			{
-				color = (env->sick == 0) ? color : color + 500000;
+				color = (env->sick == 0) ? color : color + 23541;
 				clr = gclr(color, 0);
 			}
 			else
@@ -90,7 +110,7 @@ t_clr		print_gun(t_env *env, int id, int xy[4])
 			(171 * xy[3] / 342)) * 4], sizeof(int));
 	if ((int)color != NONE)
 	{
-		color = (env->sick == 0) ? color : color + 500000;
+		color = (env->sick == 0) ? color : color + 23541;
 		return (gclr(color, 0));
 	}
 	else

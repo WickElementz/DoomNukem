@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 13:10:49 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 14:13:54 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 14:07:10 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	link_door_key_editor(t_edit *edit, int x, int y)
 			if (edit->map[edit->save_dx][edit->save_dy].id == edit->link_dk)
 				edit->map[x][y].id = edit->link_dk;
 			else
-				edit->map[x][y].id = 'a';			
+				edit->map[x][y].id = 'a';
 			if (edit->map[x][y].id != 'a')
 				edit->link_dk++;
 			edit->link_door = 0;

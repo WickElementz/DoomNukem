@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/25 14:00:04 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 14:09:20 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void		top_right_button(int x, t_edit *edit)
 {
-	if (x > 767 && x < 823)
+	if (x > 767 && x < 823 && edit->state != 2)
+	{
+		edit->state = 2;
 		editor_to_game(edit);
+	}
 	else if (x > 827 && x < 883)
 	{
 		check_map_editor(edit);

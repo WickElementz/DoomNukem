@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/26 14:16:48 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/02 15:15:31 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void		error_editor(t_edit *edit, int error)
 		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
 		ft_putstr_fd("each line followed by a newline.\n", 2);
 	}
-	free(edit);
+	if (edit)
+		free(edit);
 	exit(-1);
 }
-
-//K D F W P B E L A G Z C
 
 int			valid_char_new(char *line)
 {
@@ -43,7 +42,7 @@ int			valid_char_new(char *line)
 			line[i] != 'E' && line[i] != 'L' && line[i] != 'A' &&
 			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' &&
 			(line[i + 1] < 48 || line[i + 1] > 57) && line[i])
-				return (-1);
+			return (-1);
 		i += 2;
 	}
 	return (0);
