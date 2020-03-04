@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 10:18:41 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 13:24:35 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				event_key(t_env *env)
 	return (0);
 }
 
-int				hold_key(int key, t_env *env)
+int				hold_key2(int key, t_env *env)
 {
 	if (key == KEY_W)
 		env->ev.forward = 1;
@@ -76,6 +76,12 @@ int				hold_key(int key, t_env *env)
 		env->crouch_id = env->crouch_id == 1 ? 2 : 1;
 	if (key == KEY_SPACEBAR && env->jump == 0 && env->crouch_id == 0)
 		env->jump = 1;
+	return (0);
+}
+
+int				hold_key(int key, t_env *env)
+{
+	hold_key2(key, env);
 	if (key == KEY_SHIFT_LEFT)
 		env->ev.run = 1;
 	else if (key == KEY_ALT)

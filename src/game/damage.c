@@ -6,11 +6,29 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/02 12:13:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 13:54:18 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+void	give_xy_value_ver(float (*xy)[2], float ang, t_env *env)
+{
+	(*xy)[0] = (ang > 270 || ang < 90) ?
+		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
+	(*xy)[1] = (ang > 270 || ang < 90) ?
+		env->cam.x - (env->cam.y - (*xy)[0]) * tan(ang * RAD) :
+			env->cam.x - (env->cam.y - ((*xy)[0] + 1)) * tan(ang * RAD);
+}
+
+void	give_xy_value_hor(float (*xy)[2], float ang, t_env *env)
+{
+	(*xy)[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
+		(int)(env->cam.x / 64) * 64 - 1;
+	(*xy)[0] = (ang < 180) ? env->cam.y - (env->cam.x - (*xy)[1]) /
+		tan(ang * RAD) : env->cam.y - (env->cam.x - ((*xy)[1] + 1)) /
+			tan(ang * RAD);
+}
 
 t_ray		find_hor_gun(t_env *env, double angle)
 {
@@ -18,11 +36,7 @@ t_ray		find_hor_gun(t_env *env, double angle)
 	float	xaya[2];
 	t_ray	hor;
 
-	xy[1] = (angle < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
-		(int)(env->cam.x / 64) * 64 - 1;
-	xy[0] = (angle < 180) ? env->cam.y - (env->cam.x - xy[1]) /
-		tan(angle * RAD) : env->cam.y - (env->cam.x - (xy[1] + 1)) /
-			tan(angle * RAD);
+	give_xy_value_hor(&xy, angle, env);
 	xaya[0] = give_value(angle, 2);
 	xaya[1] = (angle < 180) ? 64 : -64;
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
@@ -53,11 +67,7 @@ t_ray		find_ver_gun(t_env *env, double angle)
 	float	xaya[2];
 	t_ray	ver;
 
-	xy[0] = (angle > 270 || angle < 90) ?
-		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
-	xy[1] = (angle > 270 || angle < 90) ?
-		env->cam.x - (env->cam.y - xy[0]) * tan(angle * RAD) :
-			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(angle * RAD);
+	give_xy_value_ver(&xy, angle, env);
 	xaya[1] = give_value(angle, 1);
 	xaya[0] = (angle > 270 || angle < 90) ? 64 : -64;
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&

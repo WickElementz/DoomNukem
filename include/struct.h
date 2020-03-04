@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/03 14:08:49 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 12:59:04 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,10 @@ typedef	struct		s_env
 	short			coro_crouch;
 	short			after_coro;
 	float			cone;
+	float			xa;
+	float			ya;
+	float			xa2;
+	float			ya2;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

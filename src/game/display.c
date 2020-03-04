@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 13:42:57 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 10:59:33 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void		display(t_env *env)
 		fire(env);
 	else if (env->reload.id != 0)
 		reload(env);
-/*	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if (env->win != 1 && env->player.life > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3,
-						ft_itoa(env->player.stock));*/
+						ft_itoa(env->player.stock));
 }

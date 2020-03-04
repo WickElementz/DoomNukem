@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/02 12:53:39 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 13:34:54 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ t_ray			*cpy_spr(t_ray *spr)
 	return (new);
 }
 
+/*
+** Modif l 56 c = c->next
+*/
+
 static t_ray	*del_glass(t_ray *base)
 {
 	t_ray	*clean;
@@ -49,11 +53,8 @@ static t_ray	*del_glass(t_ray *base)
 		b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 &&
 		b->mapx - b->next->mapx == 0)))
 			i = 0;
-		if (i == 1 && b->next)
-		{
+		if (i == 1 && b->next && (c = c->next))
 			c->next = cpy_spr(b->next);
-			c = c->next;
-		}
 		b = b->next;
 		i = 1;
 	}
