@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:47:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 12:25:06 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 10:28:18 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		draw_life(t_env *env, int xy[2])
 			color = (env->sick == 0) ? 0xD1E7C3 : 0xD1E7C3 + 23541;
 			clr = gclr(color, 0);
 			if (xy[0] < env->player.life + 805)
-				put_pxl2(env, xy[0], xy[1], clr);
+				put_pxl(env, xy[0], xy[1], clr);
 			xy[1]++;
 		}
 		xy[0]++;
@@ -44,7 +44,7 @@ static void		print_bullet(t_env *env, int xy[6], int id, int tmp)
 	{
 		color = (env->sick == 0) ? color : color + 23541;
 		clr = gclr(color, 0);
-		put_pxl2(env, xy[2], tmp, clr);
+		put_pxl(env, xy[2], tmp, clr);
 	}
 }
 

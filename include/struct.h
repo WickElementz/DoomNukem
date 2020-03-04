@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/03 14:08:49 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 10:20:08 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ typedef	struct		s_env
 	short			clock;
 	short			coro_clock;
 	short			win;
+	short			gunner_id;
 	short			coro_jump;
 	short			coro_crouch;
 	short			after_coro;
@@ -229,6 +230,7 @@ typedef	struct		s_env
 	char			*data_ptr3;
 	clock_t			t;
 	clock_t			t2;
+	clock_t			t3;
 	t_player		player;
 	t_reload		reload;
 	t_gun			gun;

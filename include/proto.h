@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 09:55:29 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 10:22:10 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int			mouse_move(int x, int y, t_env *env);
 int			mouse_hook(int click, int x, int y, t_env *env);
 int			gun_phase(t_env *env, int (*xy)[6]);
 int         exit_hook(t_env *env);
+int			check_gunner_ver(t_env *env);
+int			check_gunner_hor(t_env *env);
+void		gunner_fire(t_env *env);
 void   		walkable_block_x(double n[2], t_block map[50][50], t_position *cam);
 void		walkable_block_z(double n[2], t_block map[50][50], t_position *cam);
 void		parsing(char *filename, t_env *env, int fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/02 14:46:04 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 10:29:46 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
 	distance->next = sprite_list(hor, ver);
-	if (ang == 0)
+	/*if (ang == 0)
 	{
 		dprintf(1, "%f ", distance->id);
 		if (distance->next)
@@ -220,7 +220,7 @@ t_ray	*closest_wall(t_env *env, float ang)
 		if (distance->next && distance->next->next)
 			dprintf(1, "%f ", distance->next->next->id);
 		dprintf(1, "\n");
-	}
+	}*/
 	free_listr(hor);
 	free_listr(ver);
 	return (distance);
