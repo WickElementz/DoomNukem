@@ -212,6 +212,15 @@ t_ray	*closest_wall(t_env *env, float ang)
 	distance->mod = (hor->dist < ver->dist) ? hor->mod : ver->mod;
 	distance->id = (hor->dist < ver->dist) ? hor->id : ver->id;
 	distance->next = sprite_list(hor, ver);
+	if (ang == 0)
+	{
+		dprintf(1, "%f ", distance->id);
+		if (distance->next)
+			dprintf(1, "%f ", distance->next->id);
+		if (distance->next && distance->next->next)
+			dprintf(1, "%f ", distance->next->next->id);
+		dprintf(1, "\n");
+	}
 	free_listr(hor);
 	free_listr(ver);
 	return (distance);
