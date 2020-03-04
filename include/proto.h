@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 15:07:08 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 09:55:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	    crouch_animation(t_env *env);
 void	    corona(t_env *env);
 void	    z_after_coro(t_env *env);
 void		print_last_screen(t_env *env, int id);
+int		    init_mlx_from_edit(t_env *env);
 float		give_value(float angle, int dif);
 void    	deal_damage(t_env *env);
 int		    init_mlx(t_env *env);

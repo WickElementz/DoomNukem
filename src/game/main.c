@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/02 14:48:31 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 09:54:44 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
-int		init_mlx(t_env *env)
-{
-	if (!(env->mlx_ptr = mlx_init()))
-		return (-1);
-	if (!(env->win_ptr =
-		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Doom-Nukem")))
-		return (-1);
-	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
-					&env->size_line, &env->endian);
-	if (!(env->img_ptr2 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr2 = mlx_get_data_addr(env->img_ptr2, &env->bpp,
-					&env->size_line, &env->endian);
-	if (!(env->img_ptr3 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr3 = mlx_get_data_addr(env->img_ptr3, &env->bpp,
-					&env->size_line, &env->endian);
-	if (env->data_ptr == NULL)
-		return (-1);
-	load_texture(env);
-	print_hud(env, 4);
-	gun(env, 0);
-	return (0);
-}
 
 void		loop_mlx(t_env *env)
 {
@@ -49,24 +22,8 @@ void		loop_mlx(t_env *env)
 	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 17, 0, exit_hook, env);
-	mlx_mouse_hide();
+//	mlx_mouse_hide();
 	mlx_loop(env->mlx_ptr);
-}
-
-void	init_info(t_env *env)
-{
-	ft_bzero(env, sizeof(t_env));
-	env->cam.z = 32.0;
-	env->up = 300;
-	env->cam.speed = 6;
-	env->player.life = 100;
-	env->player.ammo = 6;
-	env->player.stock = 12;
-	env->gun.obj = 8;
-	env->gun.time = 220000;
-	env->reload.time = 250000;
-	env->player.ammo = 6;
-	env->player.life = 100;
 }
 
 void	free_env(t_env *env, int set)

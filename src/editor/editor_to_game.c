@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor_to_game.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/03 14:11:23 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 09:56:33 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void	editor_to_game(t_edit *edit)
 		if (!(env = malloc(sizeof(t_env))))
 			error(3);
 		init_info(env);
-		init_mlx(env);
+		env->mlx_ptr = edit->mlx_ptr;
+		env->win_ptr = edit->win_ptr;
+		mlx_destroy_image(edit->mlx_ptr, edit->img_ptr);
+		mlx_destroy_image(edit->mlx_ptr, edit->img_ptr2);
+		init_mlx_from_edit(env);
 		save_edit_to_env(edit, env);
 		loop_mlx(env);
 		free(edit);

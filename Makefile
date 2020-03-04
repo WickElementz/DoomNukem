@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/03 14:29:19 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/03/04 09:55:58 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,14 @@ GAME_N		= main.c \
 				door.c \
 				display.c \
 				status.c \
+				init.c \
 				damage.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
 EDIT_N		= editor.c \
 				event_keyboard.c \
 				event_mouse.c \
-				init.c \
+				init_editor.c \
 				parser.c \
 				print_editor.c \
 				verif.c \
