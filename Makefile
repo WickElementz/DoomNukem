@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2020/03/04 13:44:06 by jominodi         ###   ########lyon.fr    #
+=======
+#    Updated: 2020/03/04 10:24:29 by kanne            ###   ########lyon.fr    #
+>>>>>>> 29c3a8c91b843407b2234022ccb6efdb5f5d604a
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +39,8 @@ GAME_N		= main.c \
 				manage_mouse.c \
 				raycasting.c \
 				texture.c \
-				fire.c\
+				fire.c \
+				init.c \
 				error.c \
 				hud.c \
 				hud2.c \
@@ -47,8 +52,8 @@ GAME_N		= main.c \
 				door.c \
 				display.c \
 				status.c \
-				init.c \
-				damage.c
+				damage.c \
+				gunner.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
 EDIT_N		= editor.c \
