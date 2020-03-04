@@ -44,7 +44,7 @@ static t_ray	*del_glass(t_ray *base)
 	b = base;
 	while (b)
 	{
-		if (b->next && ((b->mapx - b->next->mapx >= -1 && b->mapx -
+		if (b->next && b->next->id == 6 && c->id == 6 && ((b->mapx - b->next->mapx >= -1 && b->mapx -
 		b->next->mapx <= 1 && b->mapy - b->next->mapy == 0) || (b->mapy -
 		b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 &&
 		b->mapx - b->next->mapx == 0)))
