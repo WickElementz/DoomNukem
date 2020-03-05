@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/02 12:15:58 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 12:58:41 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,65 +41,39 @@ void			draw_column(t_env *env, t_ray *ray, int xy[3])
 {
 	t_clr	res;
 	t_clr	clr;
-	t_ray	*list;
+	t_ray	*l;
 
 	set_sprite(ray, env->cam.z);
-	while (xy[1] - env->up < 0)
-	{
-		list = ray;
-		while (list)
-		{
-			if (xy[1] > list->mrg && list->cmpt <= list->wall)
-				list->cmpt++;
-			list = list->next;
-		}
-		xy[1]++;
-	}
-	while (xy[1] - env->up < WIN_HEIGHT / 2)
+	xy[1] = draw_column2(env, ray, xy);
+	while (xy[1]++ - env->up < WIN_HEIGHT / 2)
 	{
 		res = add_sprite(env, ray, xy);
-		list = ray->next;
-		while (list && list->dist <= ray->dist)
+		l = ray->next;
+		while (l && l->dist <= ray->dist)
 		{
-			clr = add_sprite(env, list, xy);
+			clr = add_sprite(env, l, xy);
 			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
 			{
 				res = clr;
-				list = list->next;
+				l = l->next;
 				break ;
 			}
-			list = list->next;
+			l = l->next;
 		}
-		while (list && xy[1] > list->mrg && xy[1] < list->mrg + list->wall)
-		{
-			list->cmpt++;
-			list = list->next;
-		}
-		if (res.r == 0 && res.g == 0 && res.b == 0)
-			res = add_color(env, ray, xy);
-		if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
-			put_pxl(env, xy[0], xy[1] - env->up, res);
-		xy[1]++;
+		while (l && xy[1] > l->mrg && xy[1] < l->mrg + l->wall && (l->cmpt++))
+			l = l->next;
+		draw_column3(env, ray, res, xy);
 	}
 }
 
 t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 {
 	unsigned int	color;
-	float			s;
-	float			c;
+	float			cs[2];
 	t_clr			clr;
 
 	if (xy[1] < ray->mrg)
-	{
-		c = (((64 - env->cam.z) / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) /
-		cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
-		s = (((64 - env->cam.z) / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) /
-		cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
-		ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + s) % 64 +
-		(int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4],
-		sizeof(int));
-	}
+		color = add_color2(env, ray, xy, &cs);
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall &&
 				ray->cmpt <= ray->wall)
 	{
@@ -108,15 +82,7 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 		ray->cmpt++;
 	}
 	else
-	{
-		c = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) /
-		cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
-		s = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) /
-		cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
-		ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + s) % 64 +
-		(int)((env->text[4].sl / 4) * ((int)(c + env->cam.y) % 64))) * 4],
-		sizeof(int));
-	}
+		color = add_color3(env, ray, xy, &cs);
 	if (env->sick == 1)
 		clr = gclr(color + 5000, 245);
 	else
@@ -129,19 +95,14 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	unsigned int	color;
 	t_clr			clr;
 
+	color = 0;
 	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->type == 3 &&
 		ray->cmpt <= ray->wall)
 	{
 		if (ray->cmpt > ray->wall)
 			color = 0;
 		else
-		{
-			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod)
-					+ 64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
-			ray->cmpt++;
-			if (env->sick == 1)
-				color *= 12 + 255;
-		}
+			color = add_sprite2(env, ray, color);
 	}
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->cmpt <=
 				ray->wall)

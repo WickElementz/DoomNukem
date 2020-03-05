@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   verti_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 12:56:29 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 13:57:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 14:48:55 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
+/*
 void	check_ver_3(t_env *env, float xy[2], t_ray *spr, float ang)
 {
 	if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
@@ -108,3 +108,4 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	ver->mod = (int)xy[1] % 64;
 	return (ver);
 }
+*/

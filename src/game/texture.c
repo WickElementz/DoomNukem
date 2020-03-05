@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:54 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 15:06:27 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-static void load_texture5(t_env *env, int a, int b)
+static void	load_texture5(t_env *env, int a, int b)
 {
 	env->reload.spr[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/gun_1.xpm", &a, &b);
@@ -42,8 +42,6 @@ static void load_texture5(t_env *env, int a, int b)
 
 static void	load_texture4(t_env *env, int a, int b)
 {
-	env->gun.spr[1].data = mlx_get_data_addr(env->gun.spr[1].img,
-	&env->gun.spr[1].bpp, &env->gun.spr[1].sl, &env->gun.spr[1].end);
 	env->gun.spr[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/gun_3.xpm", &a, &b);
 	env->gun.spr[2].data = mlx_get_data_addr(env->gun.spr[2].img,
@@ -95,6 +93,8 @@ static void	load_texture3(t_env *env, int a, int b)
 		&env->gun.spr[0].bpp, &env->gun.spr[0].sl, &env->gun.spr[0].end);
 	env->gun.spr[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/gun_2.xpm", &a, &b);
+	env->gun.spr[1].data = mlx_get_data_addr(env->gun.spr[1].img,
+	&env->gun.spr[1].bpp, &env->gun.spr[1].sl, &env->gun.spr[1].end);
 	load_texture4(env, a, b);
 }
 
@@ -121,13 +121,8 @@ static void	load_texture2(t_env *env, int a, int b)
 	load_texture3(env, a, b);
 }
 
-void		load_texture(t_env *env)
+void		load_texture(t_env *env, int a, int b)
 {
-	int a;
-	int b;
-
-	a = 64;
-	b = 64;
 	env->text[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"textures/mossy.xpm", &a, &b);
 	env->text[0].data = mlx_get_data_addr(env->text[0].img,

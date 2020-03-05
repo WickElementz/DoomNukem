@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:53:57 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 13:20:20 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 15:04:13 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		init_mlx_from_edit(t_env *env)
 					&env->size_line, &env->endian);
 	if (env->data_ptr == NULL)
 		return (-1);
-	load_texture(env);
+	load_texture(env, 64, 64);
 	print_hud(env, 4);
 	gun(env, 0);
 	return (0);
@@ -55,7 +55,7 @@ int		init_mlx(t_env *env)
 					&env->size_line, &env->endian);
 	if (env->data_ptr == NULL)
 		return (-1);
-	load_texture(env);
+	load_texture(env, 64, 64);
 	print_hud(env, 4);
 	gun(env, 0);
 	return (0);

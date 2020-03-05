@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 14:14:36 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 14:59:14 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ void		display(t_env *env)
 {
 	check_status(env);
 	if ((check_gunner_hor(env) == 1) && (check_gunner_ver(env) == 1))
-	{
-		dprintf(1,"1");
 		gunner_fire(env);
-	}
 	if (env->player.corona != 0)
 		corona(env);
 	ray_multi_thread(env);

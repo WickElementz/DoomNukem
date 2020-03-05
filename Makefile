@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+         #
+#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/03/04 13:44:06 by jominodi         ###   ########lyon.fr    #
-=======
-#    Updated: 2020/03/04 10:24:29 by kanne            ###   ########lyon.fr    #
->>>>>>> 29c3a8c91b843407b2234022ccb6efdb5f5d604a
+#    Updated: 2020/03/05 12:30:08 by videloff         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +43,7 @@ GAME_N		= main.c \
 				print.c \
 				verif_map.c \
 				draw.c \
+				draw2.c \
 				manage_blocks.c \
 				animation.c \
 				door.c \
