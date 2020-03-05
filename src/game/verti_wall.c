@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 12:56:29 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 14:48:55 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 13:03:05 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,3 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 	ver->mod = (int)xy[1] % 64;
 	return (ver);
 }
-*/
