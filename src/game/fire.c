@@ -77,6 +77,7 @@ void			reload(t_env *env)
 int				mouse_hook(int key, int x, int y, t_env *env)
 {
 	x = y;
+	dprintf(0, "%d", x);
 	if (key == 1 && env->player.ammo > 0 && env->gun.id == 0)
 	{
 		env->player.ammo--;

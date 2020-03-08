@@ -39,150 +39,82 @@ float	right_angle(float ang, float fang)
 	return (res);
 }
 
+int		check_type(float xy[2], t_block map[50][50], char c)
+{
+	char t;
+
+	t = map[(int)xy[1] / 64][(int)xy[0] / 64].type;
+	if (c == 'D' && t == 'D' &&
+		(int)xy[1] / 64 == (int)(xy[1] + xy[3] / 2) / 64 &&
+		(int)(xy[0] + xy[2] / 2) / 64 == (int)xy[0] / 64)
+		return (1);
+	else if ((c == 'W' && t == 'W') ||
+		((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
+		(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
+		return (1);
+	else if (c == 'Y' && (t == 'L' || t == 'A' || t == 'C' ||
+		t == 'K' || t == 'Z' || t == 'G'))
+		return (1);
+	else if (c == 'P' && t == 'P')
+		return (1);
+	return (0);
+}
+
 t_ray	*find_ver_wall(t_env *env, float ang)
 {
-	float	xy[2];
-	float	xaya[2];
-	float	poscer[3];
+	float	xy[4];
 	t_ray	*sprite;
 	t_ray	*ver;
 
 	ver = create_ray(0, 0, 0);
 	sprite = ver;
-	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
-	xy[0] = (ang > 270 || ang < 90) ?
-		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
-	xy[1] = (ang > 270 || ang < 90) ?
-		env->cam.x - (env->cam.y - xy[0]) * tan(ang * RAD) :
-			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(ang * RAD);
-	xaya[1] = give_value(ang, 1);
-	xaya[0] = (ang > 270 || ang < 90) ? 64 : -64;
+	set_xy(env->cam, ang, &xy, 0);
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' &&
-			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
-			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y -
-				(int)(xy[0] + xaya[0] / 2), 2) + pow(env->cam.x -
-				(int)(xy[1] + xaya[1] / 2), 2)) * cos((ang - env->cam.angle)
-				* RAD), (int)(xy[1] + xaya[1] / 2) % 64, 4);
+		if (check_type(xy, env->map, 'D'))
+			sprite->next = add_doors(xy, env, ang, 0);
+		if (check_type(xy, env->map, 'Y'))
+			sprite->next = create_spr(xy, env, ang);
+		if (check_type(xy, env->map, 'P'))
+			sprite->next = add_pane(xy, env, ang, 0);
+		if (sprite->next != NULL)
 			sprite = sprite->next;
-			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] /
-								64].id - 60;
-			sprite->type = 3;
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'L')
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32) , 2) + pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32) , 2)), 23, 7);
-			sprite = sprite->next;
-			sprite->mod = 0;
-			poscer[0] = (env->cam.y - ((int)(xy[0] / 64) * 64 + 32)) / sprite->dist;
-			poscer[1] = (env->cam.x - ((int)(xy[1] / 64) * 64 + 32)) / sprite->dist;
-			poscer[2] = right_angle(ang, atan(poscer[0] / poscer[1]) * 180 / M_PI);
-			sprite->mod = 32 - sprite->dist * tan((ang - poscer[2]) * M_PI / 180);
-			sprite->mod = (sprite->mod >= 64 || sprite->mod < 0) ? 0 : sprite->mod; 
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-			sprite->type = 2;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
-							pow(env->cam.x -
-				(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD),
-					(int)xy[1] % 64, 6);
-			sprite = sprite->next;
-			sprite->type = 1;
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
+		if (check_type(xy, env->map, 'W'))
 			break ;
-		xy[1] += xaya[1];
-		xy[0] += xaya[0];
+		xy[1] += xy[3];
+		xy[0] += xy[2];
 	}
-	ver->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
-	ver->mod = (int)xy[1] % 64;
+	set_wall_v(ang, env->cam, xy, ver);
 	return (ver);
 }
 
 t_ray	*find_hor_wall(t_env *env, float ang)
 {
-	float	xy[2];
-	float	xaya[2];
-	float	poscer[3];
+	float	xy[4];
 	t_ray	*sprite;
 	t_ray	*hor;
 
 	hor = create_ray(0, 0, 0);
 	sprite = hor;
-	hor->id = (ang < 180) ? 0 : 2;
-	xy[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
-		(int)(env->cam.x / 64) * 64 - 1;
-	xy[0] = (ang < 180) ? env->cam.y - (env->cam.x - xy[1]) /
-		tan(ang * RAD) : env->cam.y - (env->cam.x - (xy[1] + 1)) /
-			tan(ang * RAD);
-	xaya[0] = give_value(ang, 2);
-	xaya[1] = (ang < 180) ? 64 : -64;
+	set_xy(env->cam, ang, &xy, 1);
 	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' &&
-			(int)xy[1] / 64 == (int)(xy[1] + xaya[1] / 2) / 64 &&
-			(int)(xy[0] + xaya[0] / 2) / 64 == (int)xy[0] / 64)
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)(xy[0] +
-			xaya[0] / 2), 2) + pow(env->cam.x - (int)(xy[1] + xaya[1] / 2),
-			2)) * cos((ang - env->cam.angle) * RAD), (int)(xy[0] + xaya[0]
-			/ 2) % 64, 4);
+		if (check_type(xy, env->map, 'D'))
+			sprite->next = add_doors(xy, env, ang, 1);
+		if (check_type(xy, env->map, 'Y'))
+			sprite->next = create_spr(xy, env, ang);
+		if (check_type(xy, env->map, 'P'))
+			sprite->next = add_pane(xy, env, ang, 1);
+		if (sprite->next != NULL)
 			sprite = sprite->next;
-			sprite->type = 3;
-			sprite->door = (int)env->map[(int)xy[1] / 64][(int)xy[0] /
-								64].id - 60;
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'L')
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32) , 2) +
-				pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32) , 2)), 23, 7);
-			sprite = sprite->next;
-			poscer[0] = (env->cam.y - ((int)(xy[0] / 64) * 64 + 32)) / sprite->dist;
-			poscer[1] = (env->cam.x - ((int)(xy[1] / 64) * 64 + 32)) / sprite->dist;
-			poscer[2] = right_angle(ang, atan(poscer[0] / poscer[1]) * 180 / M_PI);
-			sprite->mod = 32 - sprite->dist * tan((ang - poscer[2]) * M_PI / 180);
-			sprite->mod = (sprite->mod >= 64 || sprite->mod < 0) ? 0 : sprite->mod; 
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-			sprite->type = 2;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
-		{
-			sprite->next = create_ray(sqrt(pow(env->cam.y - (int)xy[0], 2) +
-				pow(env->cam.x - (int)xy[1], 2)) * cos((ang - env->cam.angle) *
-				RAD), (int)xy[0] % 64, 6);
-			sprite = sprite->next;
-			sprite->type = 1;
-			sprite->mapx = (int)xy[0] / 64;
-			sprite->mapy = (int)xy[1] / 64;
-		}
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
+		if (check_type(xy, env->map, 'W'))
 			break ;
-		xy[1] += xaya[1];
-		xy[0] += xaya[0];
+		xy[1] += xy[3];
+		xy[0] += xy[2];
 	}
-	hor->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
-	hor->mod = (int)xy[0] % 64;
+	set_wall_h(ang, env->cam, xy, hor);
 	return (hor);
 }
 
