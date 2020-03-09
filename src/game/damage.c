@@ -6,28 +6,21 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/04 13:54:18 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:16:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void	give_xy_value_ver(float (*xy)[2], float ang, t_env *env)
+t_ray		if_gunner(t_env *env, float xy[2])
 {
-	(*xy)[0] = (ang > 270 || ang < 90) ?
-		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
-	(*xy)[1] = (ang > 270 || ang < 90) ?
-		env->cam.x - (env->cam.y - (*xy)[0]) * tan(ang * RAD) :
-			env->cam.x - (env->cam.y - ((*xy)[0] + 1)) * tan(ang * RAD);
-}
+	t_ray	ret;
 
-void	give_xy_value_hor(float (*xy)[2], float ang, t_env *env)
-{
-	(*xy)[1] = (ang < 180) ? (int)(env->cam.x / 64) * 64 + 64 :
-		(int)(env->cam.x / 64) * 64 - 1;
-	(*xy)[0] = (ang < 180) ? env->cam.y - (env->cam.x - (*xy)[1]) /
-		tan(ang * RAD) : env->cam.y - (env->cam.x - ((*xy)[1] + 1)) /
-			tan(ang * RAD);
+	ret.dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+						(int)xy[1], 2));
+	ret.mapx = (int)xy[0] / 64;
+	ret.mapy = (int)xy[1] / 64;
+	return (ret);
 }
 
 t_ray		find_hor_gun(t_env *env, double angle)
@@ -47,13 +40,7 @@ t_ray		find_hor_gun(t_env *env, double angle)
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 			break ;
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
-		{
-			hor.dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-				(int)xy[1], 2));
-			hor.mapx = (int)xy[0] / 64;
-			hor.mapy = (int)xy[1] / 64;
-			return (hor);
-		}
+			return (if_gunner(env, xy));
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
@@ -78,13 +65,7 @@ t_ray		find_ver_gun(t_env *env, double angle)
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 			break ;
 		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
-		{
-			ver.dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
-				(int)xy[1], 2));
-			ver.mapx = (int)xy[0] / 64;
-			ver.mapy = (int)xy[1] / 64;
-			return (ver);
-		}
+			return (if_gunner(env, xy));
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
@@ -124,7 +105,7 @@ void		deal_damage(t_env *env)
 		return ;
 	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
 	{
-		env->map[ver.mapx][ver.mapy].id += calc_damage((int)ver.dist);
+		env->map[ver.mapy][ver.mapx].id += calc_damage((int)ver.dist);
 		if (env->map[ver.mapy][ver.mapx].id >= '9')
 			env->map[ver.mapy][ver.mapx].type = 'F';
 	}

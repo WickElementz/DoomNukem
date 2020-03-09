@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/05 12:30:08 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/03/09 11:18:13 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,9 @@ GAME_N		= main.c \
 				fire.c \
 				init.c \
 				error.c \
+				bullet_and_life.c \
+				gun.c \
 				hud.c \
-				hud2.c \
 				print.c \
 				verif_map.c \
 				draw.c \
@@ -50,6 +51,8 @@ GAME_N		= main.c \
 				display.c \
 				status.c \
 				damage.c \
+				tools.c \
+				tools2.c \
 				gunner.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
@@ -64,7 +67,7 @@ EDIT_N		= editor.c \
 				tab.c \
 				blocs.c \
 				editor_to_game.c \
-				tools.c
+				tools_editor.c
 # fichiers headers
 INC_P		= include/
 INC_N		= doom_nukem.h \

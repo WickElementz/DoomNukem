@@ -3,62 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 16:44:17 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:04:19 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
-float	give_value(float ang, int dif)
-{
-	float	ya;
-
-	ya = 0.0;
-	if (dif == 1)
-		ya = (ang > 270 || ang < 90) ? 64 * tan(ang * RAD) :
-			-64 * tan(ang * RAD);
-	else if (dif == 2)
-		ya = (ang > 270 || ang < 90) ? 64 / fabs(tan(ang * RAD)) : -64 /
-			fabs(tan(ang * RAD));
-	return (ya);
-}
-
-float	right_angle(float ang, float fang)
-{
-	float	res;
-
-	if (fang < 0)
-		res = (ang > 45 && ang < 225) ? fabs(fang) + 90 : fabs(fang) + 270;
-	else
-		res = (ang > 135 && ang < 315) ? 270 - fang : 90 - fang;
-	if (res == 360)
-		res = 0;
-	return (res);
-}
-
-int		check_type(float xy[2], t_block map[50][50], char c)
-{
-	char t;
-
-	t = map[(int)xy[1] / 64][(int)xy[0] / 64].type;
-	if (c == 'D' && t == 'D' &&
-		(int)xy[1] / 64 == (int)(xy[1] + xy[3] / 2) / 64 &&
-		(int)(xy[0] + xy[2] / 2) / 64 == (int)xy[0] / 64)
-		return (1);
-	else if ((c == 'W' && t == 'W') ||
-		((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
-		(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-		return (1);
-	else if (c == 'Y' && (t == 'L' || t == 'A' || t == 'C' ||
-		t == 'K' || t == 'Z' || t == 'G'))
-		return (1);
-	else if (c == 'P' && t == 'P')
-		return (1);
-	return (0);
-}
 
 t_ray	*find_ver_wall(t_env *env, float ang)
 {
@@ -173,4 +125,3 @@ void	*raycasting(void *data)
 	}
 	return (NULL);
 }
-

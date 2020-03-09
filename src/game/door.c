@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:32:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 12:13:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:31:40 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,16 @@ int		check_key(char *key, char ref)
 
 void	open_door(t_env *env)
 {
-	env->door_x = (env->cam.x + sin(env->cam.angle * RAD) * 32) / 64;
-	env->door_y = (env->cam.y + cos(env->cam.angle * RAD) * 32) / 64;
-	if (env->map[env->door_x][env->door_y].type == 'D' &&
-	check_key(env->player.key, env->map[env->door_x][env->door_y].id) != -1 &&
-	env->map[env->door_x][env->door_y].id < 60)
+	if (env->door_id == 0)
 	{
-		env->map[env->door_x][env->door_y].id = 60;
-		env->door_id = 1;
+		env->door_x = (env->cam.x + sin(env->cam.angle * RAD) * 32) / 64;
+		env->door_y = (env->cam.y + cos(env->cam.angle * RAD) * 32) / 64;
+		if (env->map[env->door_x][env->door_y].type == 'D' &&
+		check_key(env->player.key, env->map[env->door_x][env->door_y].id) != -1 &&
+		env->map[env->door_x][env->door_y].id < 60)
+		{
+			env->map[env->door_x][env->door_y].id = 60;
+			env->door_id = 1;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/04 13:19:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			exit_hook(t_env *env)
 	return (0);
 }
 
-float		change_z(t_position *cam, int up)
+float		change_z(t_pos *cam, int up)
 {
 	if (up > 500 && cam->z - 0.3 > 5)
 		return (-0.300000);
@@ -38,7 +38,7 @@ float		change_z(t_position *cam, int up)
 	return (0.0);
 }
 
-void		ft_move_x(t_block map[50][50], t_position *cam, int way, int up[2])
+void		ft_move_x(t_block map[50][50], t_pos *cam, int way, int up[2])
 {
 	double	rad;
 	double	new[2];
@@ -61,7 +61,7 @@ void		ft_move_x(t_block map[50][50], t_position *cam, int way, int up[2])
 	walkable_block_x(new, map, cam);
 }
 
-void		ft_move_z(t_block map[50][50], t_position *cam, int way, int up[2])
+void		ft_move_z(t_block map[50][50], t_pos *cam, int way, int up[2])
 {
 	double	new[2];
 	double	rad;
@@ -81,7 +81,7 @@ void		ft_move_z(t_block map[50][50], t_position *cam, int way, int up[2])
 	walkable_block_z(new, map, cam);
 }
 
-void		anglemove(t_position *cam, int way)
+void		anglemove(t_pos *cam, int way)
 {
 	if (cam->angle == 360 - SENSI && way == SENSI)
 		cam->angle = 0;

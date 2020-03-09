@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 13:10:49 by jominodi          #+#    #+#             */
-/*   Updated: 2020/02/27 14:07:10 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:18:36 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	down_link_dk_editor(t_edit *edit, int value)
 	edit->link_dk--;
 }
 
-void	check_link_dk_editor(t_edit *edit, int save_x, int save_y, char c)
+void	check_link_dk_editor(t_edit *edit, int s_x, int s_y, char c)
 {
 	int x;
 	int y;
@@ -46,7 +46,7 @@ void	check_link_dk_editor(t_edit *edit, int save_x, int save_y, char c)
 		{
 			if (edit->map[x][y].type == c)
 			{
-				if (edit->map[x][y].id == edit->map[save_x][save_y].id)
+				if (edit->map[x][y].id == edit->map[s_x][s_y].id)
 				{
 					c == 'K' ? edit->num_key-- : 0;
 					c == 'D' ? edit->num_door-- : 0;

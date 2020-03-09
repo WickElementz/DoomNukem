@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 14:14:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:20:49 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct		s_position
 	int				speed;
 	double			angle;
 	double			z;
-}					t_position;
+}					t_pos;
 
 typedef struct		s_ray
 {
@@ -65,7 +65,7 @@ typedef struct		s_ray
 	float			id;
 	float			ang;
 	int				wall;
-	int 			door;
+	int				door;
 	int				cmpt;
 	int				mrg;
 	int				mapy;
@@ -121,11 +121,12 @@ typedef struct		s_verif
 	short			err;
 }					t_verif;
 
-typedef struct 		s_edit
+typedef struct		s_edit
 {
 	int				bpp;
 	int				end;
 	int				sl;
+	short			test_kd;
 	short			state;
 	short			tmpx;
 	short			tmpy;
@@ -172,7 +173,6 @@ typedef struct		s_player
 	char			key[10];
 }					t_player;
 
-
 typedef struct		s_clr
 {
 	int				r;
@@ -216,8 +216,6 @@ typedef	struct		s_env
 	short			coro_clock;
 	short			win;
 	short			gunner_id;
-	short			coro_jump;
-	short			coro_crouch;
 	short			after_coro;
 	float			cone;
 	float			xa;
@@ -240,7 +238,7 @@ typedef	struct		s_env
 	t_gun			gun;
 	t_verif			verif;
 	t_block			map[50][50];
-	t_position		cam;
+	t_pos			cam;
 	t_event			ev;
 	t_texture		text[8];
 	t_sprite		sprite[5];
@@ -252,10 +250,10 @@ typedef	struct		s_env
 **	****************
 */
 
-typedef struct 		s_thread
+typedef struct		s_thread
 {
 	pthread_t		t;
-	short			start;	
+	short			start;
 	short			end;
 	t_env			*env;
 }					t_thread;
