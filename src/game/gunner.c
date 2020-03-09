@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:30:59 by kanne             #+#    #+#             */
-/*   Updated: 2020/03/09 12:39:29 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:47:27 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static int	check_gunner_ver(t_env *env, int ang)
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-				break;
+			break ;
 		else if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' &&
 		sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) < 450)
-				return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
+			return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
@@ -62,17 +62,17 @@ static int	check_gunner_hor(t_env *env, int ang)
 			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' ||
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-				break;
+			break ;
 		else if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' &&
 		sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) < 450)
-				return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
-        xy[1] += xaya[1];
+			return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
+		xy[1] += xaya[1];
 		xy[0] += xaya[0];
 	}
 	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * -1);
 }
 
-void	check_gunner(t_env *env)
+void		check_gunner(t_env *env)
 {
 	int ang;
 
@@ -84,10 +84,9 @@ void	check_gunner(t_env *env)
 		(check_gunner_ver(env, ang) < 0 && check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
 			gunner_fire(env);
 	}
-	ang = 0;	
 }
 
-void	gunner_fire(t_env *env)
+void		gunner_fire(t_env *env)
 {
 	clock_t	time;
 
