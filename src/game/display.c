@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:05:17 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:53:24 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void		display(t_env *env)
 	draw_hud(env);
 	if (env->door_id != 0)
 		door(env);
-	if (env->jump != 0 || (env->coro_jump == 1 && env->player.corona == 0))
+	if (env->jump != 0)
 		jump(env);
-	if (env->crouch_id != 0 || env->coro_crouch != 0)
+	if (env->crouch_id != 0)
 		crouch_animation(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	if (env->gun.id != 0)

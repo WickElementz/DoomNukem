@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/05 15:40:13 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:53:19 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,6 @@ typedef	struct		s_env
 	short			coro_clock;
 	short			win;
 	short			gunner_id;
-	short			coro_jump;
-	short			coro_crouch;
 	short			after_coro;
 	float			cone;
 	float			xa;

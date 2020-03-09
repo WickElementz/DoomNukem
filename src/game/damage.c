@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:49:32 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:16:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void		deal_damage(t_env *env)
 		return ;
 	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
 	{
-		env->map[ver.mapx][ver.mapy].id += calc_damage((int)ver.dist);
+		env->map[ver.mapy][ver.mapx].id += calc_damage((int)ver.dist);
 		if (env->map[ver.mapy][ver.mapx].id >= '9')
 			env->map[ver.mapy][ver.mapx].type = 'F';
 	}
