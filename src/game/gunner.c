@@ -6,11 +6,36 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:30:59 by kanne             #+#    #+#             */
-/*   Updated: 2020/03/09 12:47:27 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:14:21 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+static int	check_dist(t_env *env, float xy[2], float xaya[2])
+{
+	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
+		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
+	{
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
+			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P' ||
+			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' ||
+			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
+			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
+			break ;
+		else if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' &&
+			sqrt(pow(env->cam.y - (int)xy[0], 2) +
+			pow(env->cam.x - (int)xy[1], 2)) < 450)
+		{
+			return (sqrt(pow(env->cam.y - (int)xy[0], 2) +
+			pow(env->cam.x - (int)xy[1], 2)));
+		}
+		xy[1] += xaya[1];
+		xy[0] += xaya[0];
+	}
+	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+	(int)xy[1], 2)) * -1);
+}
 
 static int	check_gunner_ver(t_env *env, int ang)
 {
@@ -24,22 +49,7 @@ static int	check_gunner_ver(t_env *env, int ang)
 			env->cam.x - (env->cam.y - (xy[0] + 1)) * tan(ang * RAD);
 	xaya[1] = give_value(ang, 1);
 	xaya[0] = (ang > 270 || ang < 90) ? 64 : -64;
-	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
-		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
-	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-			break ;
-		else if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' &&
-		sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) < 450)
-			return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
-		xy[1] += xaya[1];
-		xy[0] += xaya[0];
-	}
-	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * -1);
+	return (check_dist(env, xy, xaya));
 }
 
 static int	check_gunner_hor(t_env *env, int ang)
@@ -54,22 +64,7 @@ static int	check_gunner_hor(t_env *env, int ang)
 			tan(ang * RAD);
 	xaya[0] = give_value(ang, 2);
 	xaya[1] = (ang < 180) ? 64 : -64;
-	while ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
-		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
-	{
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'W' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P' ||
-			env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'D' ||
-			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
-			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
-			break ;
-		else if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' &&
-		sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) < 450)
-			return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)));
-		xy[1] += xaya[1];
-		xy[0] += xaya[0];
-	}
-	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * -1);
+	return (check_dist(env, xy, xaya));
 }
 
 void		check_gunner(t_env *env)
@@ -79,9 +74,12 @@ void		check_gunner(t_env *env)
 	ang = 0;
 	while (ang++ < 360)
 	{
-		if (((check_gunner_hor(env, ang) > 0) || (check_gunner_ver(env, ang) > 0)) &&
-		((check_gunner_hor(env, ang) < 0 && check_gunner_ver(env, ang) < abs(check_gunner_hor(env, ang))) ||
-		(check_gunner_ver(env, ang) < 0 && check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
+		if (((check_gunner_hor(env, ang) > 0) ||
+		(check_gunner_ver(env, ang) > 0)) &&
+		((check_gunner_hor(env, ang) < 0 &&
+		check_gunner_ver(env, ang) < abs(check_gunner_hor(env, ang))) ||
+		(check_gunner_ver(env, ang) < 0 &&
+		check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
 			gunner_fire(env);
 	}
 }
