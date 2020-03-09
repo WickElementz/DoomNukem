@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 12:25:58 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:38:43 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,11 @@ void		ray_multi_thread(t_env *env)
 
 void		display(t_env *env)
 {
-	int ang;
-	
+	int	ang;
+
 	ang = 0;
 	check_status(env);
-	while (ang++ < 360)
-	{
-		if (((check_gunner_hor(env, ang) > 0) || (check_gunner_ver(env, ang) > 0)) &&
-		((check_gunner_hor(env, ang) < 0 && check_gunner_ver(env, ang) < abs(check_gunner_hor(env, ang))) ||
-		(check_gunner_ver(env, ang) < 0 &&  check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
-			gunner_fire(env);
-	}
+	check_gunner(env);
 	if (env->player.corona != 0)
 		corona(env);
 	ray_multi_thread(env);

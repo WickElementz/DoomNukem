@@ -6,19 +6,17 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:30:59 by kanne             #+#    #+#             */
-/*   Updated: 2020/03/09 12:25:22 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:39:29 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-int		check_gunner_ver(t_env *env, int ang)
+static int	check_gunner_ver(t_env *env, int ang)
 {
 	float	xy[2];
 	float	xaya[2];
 
-	if (ang > 359)
-		ang = 0;
 	xy[0] = (ang > 270 || ang < 90) ?
 		(int)(env->cam.y / 64) * 64 + 64 : (int)(env->cam.y / 64) * 64 - 1;
 	xy[1] = (ang > 270 || ang < 90) ?
@@ -44,7 +42,7 @@ int		check_gunner_ver(t_env *env, int ang)
 	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * -1);
 }
 
-int		check_gunner_hor(t_env *env, int ang)
+static int	check_gunner_hor(t_env *env, int ang)
 {
 	float	xy[2];
 	float	xaya[2];
@@ -72,6 +70,21 @@ int		check_gunner_hor(t_env *env, int ang)
 		xy[0] += xaya[0];
 	}
 	return (sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x - (int)xy[1], 2)) * -1);
+}
+
+void	check_gunner(t_env *env)
+{
+	int ang;
+
+	ang = 0;
+	while (ang++ < 360)
+	{
+		if (((check_gunner_hor(env, ang) > 0) || (check_gunner_ver(env, ang) > 0)) &&
+		((check_gunner_hor(env, ang) < 0 && check_gunner_ver(env, ang) < abs(check_gunner_hor(env, ang))) ||
+		(check_gunner_ver(env, ang) < 0 && check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
+			gunner_fire(env);
+	}
+	ang = 0;	
 }
 
 void	gunner_fire(t_env *env)

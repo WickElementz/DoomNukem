@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 12:26:14 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:42:31 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ int				hold_key(int key, t_env *env);
 int				unhold_key(int key, t_env *env);
 int				mouse_move(int x, int y, t_env *env);
 int				mouse_hook(int click, int x, int y, t_env *env);
-int             check_type(float xy[2], t_block map[50][50], char c);
-int             exit_hook(t_env *env);
-int		    	check_gunner_ver(t_env *env, int ang);
-int		    	check_gunner_hor(t_env *env, int ang);
+int				check_type(float xy[2], t_block map[50][50], char c);
+int				exit_hook(t_env *env);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
-void            gunner_fire(t_env *env);
-void 	  		walkable_block_x(double n[2], t_block map[50][50], t_position *cam);
+void			check_gunner(t_env *env);
+void			gunner_fire(t_env *env);
+void			walkable_block_x(double n[2], t_block map[50][50], t_position *cam);
 void			walkable_block_z(double n[2], t_block map[50][50], t_position *cam);
 void			parsing(char *filename, t_env *env, int fd);
 void			event_mouse(t_env *env);
@@ -67,12 +66,12 @@ void			open_door(t_env *env);
 void			door(t_env *env);
 void			jump(t_env *env);
 void			crouch_animation(t_env *env);
-void	        set_wall_h(float ang, t_position cam, float xy[4], t_ray *hor);
-void	        set_wall_v(float ang, t_position cam, float xy[4], t_ray *ver);
+void			set_wall_h(float ang, t_position cam, float xy[4], t_ray *hor);
+void			set_wall_v(float ang, t_position cam, float xy[4], t_ray *ver);
 void			corona(t_env *env);
 void			print_last_screen(t_env *env, int id);
 void			give_xy_value_ver(float (*xy)[2], float ang, t_env *env);
-void        	set_xy(t_position cam, float ang, float (*xy)[4], int bol);
+void			set_xy(t_position cam, float ang, float (*xy)[4], int bol);
 void			*raycasting(void	*data);
 void			deal_damage(t_env *env);
 void			give_xy_value_hor(float (*xy)[2], float ang, t_env *env);
@@ -80,11 +79,11 @@ float			give_value(float angle, int dif);
 float			right_angle(float ang, float fang);
 unsigned int	add_color2(t_env *env, t_ray *ray, int xy[3], float (*cs)[2]);
 unsigned int	add_color3(t_env *env, t_ray *ray, int xy[3], float (*cs)[2]);
-unsigned int    add_sprite2(t_env *env, t_ray *ray, unsigned int color);
+unsigned int	add_sprite2(t_env *env, t_ray *ray, unsigned int color);
 t_clr			gclr(unsigned int color, int a);
-t_ray       	*add_pane(float xy[4], t_env *env, float ang, int bol);
-t_ray       	*create_spr(float xy[4], t_env *env, float ang);
-t_ray       	*add_doors(float xy[4], t_env *env, float ang, int bol);
+t_ray			*add_pane(float xy[4], t_env *env, float ang, int bol);
+t_ray			*create_spr(float xy[4], t_env *env, float ang);
+t_ray			*add_doors(float xy[4], t_env *env, float ang, int bol);
 t_clr			add_color(t_env *env, t_ray *ray, int xy[3]);
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray			*create_ray(float dist, float mod, float id);
