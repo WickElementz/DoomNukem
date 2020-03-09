@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:53:24 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:25:58 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,17 @@ void		ray_multi_thread(t_env *env)
 
 void		display(t_env *env)
 {
+	int ang;
+	
+	ang = 0;
 	check_status(env);
-	if ((check_gunner_hor(env) == 1) && (check_gunner_ver(env) == 1))
-		gunner_fire(env);
+	while (ang++ < 360)
+	{
+		if (((check_gunner_hor(env, ang) > 0) || (check_gunner_ver(env, ang) > 0)) &&
+		((check_gunner_hor(env, ang) < 0 && check_gunner_ver(env, ang) < abs(check_gunner_hor(env, ang))) ||
+		(check_gunner_ver(env, ang) < 0 &&  check_gunner_hor(env, ang) < abs(check_gunner_ver(env, ang)))))
+			gunner_fire(env);
+	}
 	if (env->player.corona != 0)
 		corona(env);
 	ray_multi_thread(env);

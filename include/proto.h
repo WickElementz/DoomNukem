@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 12:23:34 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:26:14 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int				mouse_move(int x, int y, t_env *env);
 int				mouse_hook(int click, int x, int y, t_env *env);
 int             check_type(float xy[2], t_block map[50][50], char c);
 int             exit_hook(t_env *env);
-int             check_gunner_ver(t_env *env);
-int             check_gunner_hor(t_env *env);
+int		    	check_gunner_ver(t_env *env, int ang);
+int		    	check_gunner_hor(t_env *env, int ang);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
