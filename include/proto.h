@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/05 12:44:47 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 12:23:34 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,19 @@
 **	******
 */
 
-int				set_line(char *line, int z, t_env *env, int len);
-int				set_angle(t_env *env, int x);
 int				event_key(t_env *env);
 int				hold_key(int key, t_env *env);
 int				unhold_key(int key, t_env *env);
 int				mouse_move(int x, int y, t_env *env);
 int				mouse_hook(int click, int x, int y, t_env *env);
-int     		check_type(float xy[2], t_block map[50][50], char c);
-int				gun_phase(t_env *env, int (*xy)[6]);
-int 			exit_hook(t_env *env);
-int		    	check_gunner_ver(t_env *env);
-int		    	check_gunner_hor(t_env *env);
+int             check_type(float xy[2], t_block map[50][50], char c);
+int             exit_hook(t_env *env);
+int             check_gunner_ver(t_env *env);
+int             check_gunner_hor(t_env *env);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
-void			ray_multi_thread(t_env *env);
-void	    	gunner_fire(t_env *env);
+void            gunner_fire(t_env *env);
 void 	  		walkable_block_x(double n[2], t_block map[50][50], t_position *cam);
 void			walkable_block_z(double n[2], t_block map[50][50], t_position *cam);
 void			parsing(char *filename, t_env *env, int fd);
@@ -43,7 +39,6 @@ void			event_mouse(t_env *env);
 void			free_env(t_env *env, int set);
 void			anglemove(t_position *cam, int way);
 void			free_listr(t_ray *list);
-void			free_listc(t_clr *list);
 void			ft_move_z(t_block map[50][50], t_position *cam, int way, int up[2]);
 void			ft_move_x(t_block map[50][50], t_position *cam, int way, int up[2]);
 void			init_info(t_env *env);
@@ -56,7 +51,6 @@ void			put_pxl2(t_env *env, int x, int y, t_clr clr);
 void			put_pxl3(t_env *env, int x, int y, t_clr clr);
 void			gun(t_env *env, int id);
 void			print_hud(t_env *env, int id);
-void			add_end_lst(t_ray *base, t_ray *new);
 void			print_gun_animation(t_env *env, int id);
 void			print_reload_animation(t_env *env, int id);
 void			reload(t_env *env);
@@ -76,7 +70,6 @@ void			crouch_animation(t_env *env);
 void	        set_wall_h(float ang, t_position cam, float xy[4], t_ray *hor);
 void	        set_wall_v(float ang, t_position cam, float xy[4], t_ray *ver);
 void			corona(t_env *env);
-void			z_after_coro(t_env *env);
 void			print_last_screen(t_env *env, int id);
 void			give_xy_value_ver(float (*xy)[2], float ang, t_env *env);
 void        	set_xy(t_position cam, float ang, float (*xy)[4], int bol);
