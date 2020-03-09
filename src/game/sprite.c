@@ -105,6 +105,22 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 	return (base);
 }
 
+/*int		get_spr_id(char c)
+{
+	if (c == 'L')
+		return ();
+	if (c == 'G')
+		return ();
+	if (c == 'A')
+		return ();
+	if (c == 'C')
+		return ();
+	if (c == 'Z')
+		return ();
+	if (c == 'K')
+		return ();
+}*/
+
 t_ray	*create_spr(float xy[4], t_env *env, float ang)
 {
 	t_ray	*spr;
@@ -120,7 +136,7 @@ t_ray	*create_spr(float xy[4], t_env *env, float ang)
 	spr->mapx = (int)xy[0] / 64;
 	spr->mapy = (int)xy[1] / 64;
 	spr->type = 2;
-	/* fonction pour choisir le bon id du sprite */
+//	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
 	return (spr);
 }
 
