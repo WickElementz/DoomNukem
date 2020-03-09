@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:20:49 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ typedef	struct		s_env
 	t_gun			gun;
 	t_verif			verif;
 	t_block			map[50][50];
-	t_pos		cam;
+	t_pos			cam;
 	t_event			ev;
 	t_texture		text[8];
 	t_sprite		sprite[5];
