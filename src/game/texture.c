@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 15:06:27 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 15:45:56 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,29 @@ static void	load_texture2(t_env *env, int a, int b)
 	env->text[5].data = mlx_get_data_addr(env->text[5].img,
 		&env->text[5].bpp, &env->text[5].sl, &env->text[5].end);
 	env->text[6].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"textures/glass_o_pipi.xpm", &a, &b);
+		"textures/glass.xpm", &a, &b);
 	env->text[6].data = mlx_get_data_addr(env->text[6].img,
 		&env->text[6].bpp, &env->text[6].sl, &env->text[6].end);
 	env->text[7].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/sprite.xpm", &a, &b);
 	env->text[7].data = mlx_get_data_addr(env->text[7].img,
 		&env->text[7].bpp, &env->text[7].sl, &env->text[7].end);
+	env->text[8].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/ammo.xpm", &a, &b);
+	env->text[8].data = mlx_get_data_addr(env->text[8].img,
+		&env->text[8].bpp, &env->text[8].sl, &env->text[8].end);
+	env->text[9].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/door.xpm", &a, &b);
+	env->text[9].data = mlx_get_data_addr(env->text[9].img,
+		&env->text[9].bpp, &env->text[9].sl, &env->text[9].end);
+	env->text[10].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/key.xpm", &a, &b);
+	env->text[10].data = mlx_get_data_addr(env->text[10].img,
+		&env->text[10].bpp, &env->text[10].sl, &env->text[10].end);
+	env->text[11].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/corona.xpm", &a, &b);
+	env->text[11].data = mlx_get_data_addr(env->text[11].img,
+		&env->text[11].bpp, &env->text[11].sl, &env->text[11].end);
 	a = 6;
 	b = 20;
 	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
