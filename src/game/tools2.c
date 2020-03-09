@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:41:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_ray	*add_pane(float xy[4], t_env *env, float ang, int bol)
 	return (pane);
 }
 
-void	set_xy(t_position cam, float ang, float (*xy)[4], int bol)
+void	set_xy(t_pos cam, float ang, float (*xy)[4], int bol)
 {
 	if (bol == 0)
 	{

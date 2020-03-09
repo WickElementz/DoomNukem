@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:03:54 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 12:02:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		check_type(float xy[2], t_block map[50][50], char c)
 	return (0);
 }
 
-void	set_wall_h(float ang, t_position cam, float xy[4], t_ray *hor)
+void	set_wall_h(float ang, t_pos cam, float xy[4], t_ray *hor)
 {
 	hor->id = (ang < 180) ? 0 : 2;
 	hor->dist = sqrt(pow(cam.y - (int)xy[0], 2) + pow(cam.x -
@@ -68,7 +68,7 @@ void	set_wall_h(float ang, t_position cam, float xy[4], t_ray *hor)
 	hor->mod = (int)xy[0] % 64;
 }
 
-void	set_wall_v(float ang, t_position cam, float xy[4], t_ray *ver)
+void	set_wall_v(float ang, t_pos cam, float xy[4], t_ray *ver)
 {
 	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
 	ver->dist = sqrt(pow(cam.y - (int)xy[0], 2) + pow(cam.x -
