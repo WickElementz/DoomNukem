@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/09 10:40:04 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:44:53 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,26 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 	sprite_list2(move_hor, move_ver, move_base);
 	base = del_glass(base);
 	return (base);
+}
+
+/*
+** Fonction pour choisir le bon id du sprite
+*/
+
+t_ray			*create_spr(float xy[4], t_env *env, float ang)
+{
+	t_ray	*spr;
+	float	poscer[3];
+
+	spr = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32), 2) +
+		pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32), 2)), 0, 7);
+	poscer[0] = (env->cam.y - ((int)(xy[0] / 64) * 64 + 32)) / spr->dist;
+	poscer[1] = (env->cam.x - ((int)(xy[1] / 64) * 64 + 32)) / spr->dist;
+	poscer[2] = right_angle(ang, atan(poscer[0] / poscer[1]) * 180 / M_PI);
+	spr->mod = 32 - spr->dist * tan((ang - poscer[2]) * M_PI / 180);
+	spr->mod = (spr->mod >= 64 || spr->mod < 0) ? 0 : spr->mod;
+	spr->mapx = (int)xy[0] / 64;
+	spr->mapy = (int)xy[1] / 64;
+	spr->type = 2;
+	return (spr);
 }

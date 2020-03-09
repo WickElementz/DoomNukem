@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 09:56:33 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:46:07 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	save_edit_to_env(t_edit *edit, t_env *env)
 		while (y < 50)
 		{
 			env->map[y][x].type = edit->map[x][y].type;
-			if (edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K')
-				env->map[y][x].id = edit->map[x][y].id;
+			env->map[y][x].id = edit->map[x][y].id;
 			if (env->map[y][x].type == 'B')
 				set_spawn(env, y, x);
 			y++;

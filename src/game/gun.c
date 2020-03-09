@@ -6,31 +6,24 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:02:28 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 12:25:44 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 11:15:56 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void		print_last_screen(t_env *env, int id)
+t_clr		give_clr_value(t_env *env, unsigned int (*color))
 {
-	int				x;
-	int				y;
-	t_clr			clr;
-	unsigned int	color;
+	t_clr	clr;
 
-	x = -1;
-	while (++x < 960)
+	if ((int)(*color) != NONE)
 	{
-		y = -1;
-		while (++y < 600)
-		{
-			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
-					y) * 4], sizeof(int));
-			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
-			put_pxl3(env, x, y, clr);
-		}
+		(*color) = (env->sick == 0) ? (*color) : (*color) + 23541;
+		clr = gclr((*color), 0);
 	}
+	else
+		clr = gclr((*color), 255);
+	return (clr);
 }
 
 void		print_gun_animation(t_env *env, int id)
@@ -50,13 +43,7 @@ void		print_gun_animation(t_env *env, int id)
 			ft_memcpy(&color, &env->gun.spr[id].data[(xy[2] +
 				(env->gun.spr[id].sl / 4) *
 					(171 * xy[3] / 342)) * 4], sizeof(int));
-			if ((int)color != NONE)
-			{
-				color = (env->sick == 0) ? color : color + 23541;
-				clr = gclr(color, 0);
-			}
-			else
-				clr = gclr(color, 255);
+			clr = give_clr_value(env, &color);
 			put_pxl2(env, xy[0], xy[1], clr);
 			xy[3]++;
 			xy[1]++;
@@ -84,13 +71,7 @@ void		print_reload_animation(t_env *env, int id)
 			ft_memcpy(&color, &env->reload.spr[id].data[(xy[2] +
 				(env->reload.spr[id].sl / 4) *
 					(171 * xy[3] / 342)) * 4], sizeof(int));
-			if ((int)color != NONE)
-			{
-				color = (env->sick == 0) ? color : color + 23541;
-				clr = gclr(color, 0);
-			}
-			else
-				clr = gclr(color, 255);
+			clr = give_clr_value(env, &color);
 			put_pxl2(env, xy[0], xy[1], clr);
 			xy[3]++;
 			xy[1]++;
