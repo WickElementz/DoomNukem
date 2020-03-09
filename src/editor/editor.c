@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 14:55:00 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 10:11:03 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,42 @@ void	display_error(t_edit *edit)
 						ERR_SUP_DK);
 }
 
+void	print_key_door_link(t_edit *edit)
+{
+	int		x;
+	int		y;
+	char	*str;
+
+	x = edit->mapx;
+	str = malloc(sizeof(char) * 2);
+	str[1] = '\0';
+	while ((x < 20 && edit->zoom == 25) || (x < 50 && edit->zoom == 10))
+	{
+		y = edit->mapy;
+		while ((y < 20 && edit->zoom == 25) || (y < 50 && edit->zoom == 10))
+		{
+			if ((edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K')
+				&& edit->map[x][y].id >= '0' && edit->map[x][y].id <= '9' &&
+					edit->zoom == 25)
+			{
+				str[0] = edit->map[x][y].id;
+				mlx_string_put(edit->mlx_ptr, edit->win_ptr, (x - edit->mapx) *
+					25 + 240, (y - edit->mapy) * 25 + 63, 0xFFFFFF, str);
+			}
+			y++;
+		}
+		x++;
+	}
+	free(str);
+}
+
 void	display_editor(t_edit *edit)
 {
 	read_tab_editor(edit);
 	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr2,
 								230, 50);
 	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr, 0, 0);
+	print_key_door_link(edit);
 	display_error(edit);
 }
 

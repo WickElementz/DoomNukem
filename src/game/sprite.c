@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/04 14:53:06 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 10:40:04 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ t_ray			*cpy_spr(t_ray *spr)
 	return (new);
 }
 
-/*
-** Modif l 56 c = c->next
-*/
-
 static t_ray	*del_glass(t_ray *base)
 {
 	t_ray	*clean;
@@ -48,7 +44,8 @@ static t_ray	*del_glass(t_ray *base)
 	b = base;
 	while (b)
 	{
-		if (b->next && b->next->id == 6 && c->id == 6 && ((b->mapx - b->next->mapx >= -1 && b->mapx -
+		if (b->next && b->next->id == 6 && c->id == 6 &&
+		((b->mapx - b->next->mapx >= -1 && b->mapx -
 		b->next->mapx <= 1 && b->mapy - b->next->mapy == 0) || (b->mapy -
 		b->next->mapy >= -1 && b->mapy - b->next->mapy <= 1 &&
 		b->mapx - b->next->mapx == 0)))
@@ -62,23 +59,8 @@ static t_ray	*del_glass(t_ray *base)
 	return (clean);
 }
 
-t_ray			*sprite_list(t_ray *hor, t_ray *ver)
+void			sprite_list2(t_ray *move_hor, t_ray *move_ver, t_ray *move_base)
 {
-	t_ray	*move_ver;
-	t_ray	*move_hor;
-	t_ray	*move_base;
-	t_ray	*base;
-
-	if (!hor->next && !ver->next)
-		return (NULL);
-	move_ver = ver->next;
-	move_hor = hor->next;
-	if (move_hor && move_ver)
-		base = (move_hor->dist < move_ver->dist) ?
-			cpy_spr(move_hor) : cpy_spr(move_ver);
-	else
-		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
-	move_base = base;
 	while (move_hor || move_ver)
 	{
 		if (move_hor && move_ver)
@@ -101,6 +83,26 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 		}
 		move_base = move_base->next;
 	}
+}
+
+t_ray			*sprite_list(t_ray *hor, t_ray *ver)
+{
+	t_ray	*move_ver;
+	t_ray	*move_hor;
+	t_ray	*move_base;
+	t_ray	*base;
+
+	if (!hor->next && !ver->next)
+		return (NULL);
+	move_ver = ver->next;
+	move_hor = hor->next;
+	if (move_hor && move_ver)
+		base = (move_hor->dist < move_ver->dist) ?
+			cpy_spr(move_hor) : cpy_spr(move_ver);
+	else
+		base = (move_hor) ? cpy_spr(move_hor) : cpy_spr(move_ver);
+	move_base = base;
+	sprite_list2(move_hor, move_ver, move_base);
 	base = del_glass(base);
 	return (base);
 }

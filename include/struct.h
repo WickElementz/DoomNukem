@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 14:14:31 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 15:40:13 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct 		s_edit
 	int				bpp;
 	int				end;
 	int				sl;
+	short			test_kd;
 	short			state;
 	short			tmpx;
 	short			tmpy;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/05 12:30:08 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/03/05 13:34:30 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 

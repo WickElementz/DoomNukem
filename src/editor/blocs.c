@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:40:36 by videloff          #+#    #+#             */
-/*   Updated: 2020/02/27 14:06:06 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 15:39:57 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,24 @@ void		place_block(int o_x, int o_y, t_edit *edit)
 
 	x = (o_x - 230) / edit->zoom + edit->mapx;
 	y = (o_y - 50) / edit->zoom + edit->mapy;
-	edit->map[x][y].type = edit->id;
-	if (edit->id == 'K')
+	if (edit->map[x][y].type != 'D' && edit->map[x][y].type != 'K')
+	{
+		edit->map[x][y].type = edit->id;
+		edit->test_kd = 1;
+	}
+	if (edit->id == 'K' && edit->test_kd == 1)
 	{
 		edit->num_key++;
 		edit->map[x][y].id = 'a';
 	}
-	else if (edit->id == 'D')
+	else if (edit->id == 'D' && edit->test_kd == 1)
 	{
 		edit->num_door++;
 		edit->map[x][y].id = 'a';
 	}
 	if (edit->map[x][y].type != 'D' && edit->map[x][y].type != 'K')
 		edit->map[x][y].id = '0';
+	edit->test_kd = 0;
 }
 
 void		choose_block(int x, int y, t_edit *edit)

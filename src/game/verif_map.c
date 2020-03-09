@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.le-101.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:33:26 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 10:29:24 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/03/09 10:55:23 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int			verif_link_dk(t_env *env, char type, char id)
 		y = 0;
 		while (y < 50)
 		{
-		//	if (env->map[x][y].type == 'D')
-		//		dprintf(1, "%c | %c", env->map[x][y].type, env->map[x][y].id);
 			if (env->map[x][y].type == type && env->map[x][y].id == id
 					&& id != 'a')
 				return (0);
