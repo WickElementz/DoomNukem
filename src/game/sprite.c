@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/09 16:02:00 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 13:08:03 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,23 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 	return (base);
 }
 
-/*int		get_spr_id(char c)
+int     get_spr_id(char c)
 {
-	if (c == 'L')
-		return ();
-	if (c == 'G')
-		return ();
-	if (c == 'A')
-		return ();
-	if (c == 'C')
-		return ();
-	if (c == 'Z')
-		return ();
-	if (c == 'K')
-		return ();
-}*/
+    if (c == 'L')
+        return (7);
+    if (c == 'G')
+        return (12);
+    if (c == 'A')
+        return (8);
+    if (c == 'C')
+        return (11);
+    if (c == 'Z')
+        return (0);
+    if (c == 'K')
+        return (10);
+    else
+        return (0);
+}
 
 /*
 ** Fonction pour choisir le bon id du sprite
@@ -142,6 +144,6 @@ t_ray			*create_spr(float xy[4], t_env *env, float ang)
 	spr->mapx = (int)xy[0] / 64;
 	spr->mapy = (int)xy[1] / 64;
 	spr->type = 2;
-//	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
+	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
 	return (spr);
 }

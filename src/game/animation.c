@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 13:32:05 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 12:23:48 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	corona(t_env *env)
 	if (env->coro_clock == 0 && (env->coro_clock = 1))
 		env->t2 = t;
 	if (env->t2 + 200000000 > t)
-		env->sick = 1;
+		env->sick = 0;
 	else
 	{
 		env->player.corona = 0;

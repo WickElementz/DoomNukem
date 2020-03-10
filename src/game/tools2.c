@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 12:22:45 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_ray	*add_doors(float xy[4], t_env *env, float ang, int bol)
 	door->type = 3;
 	door->mapx = (int)xy[0] / 64;
 	door->mapy = (int)xy[1] / 64;
+	door->id = 9;
 	return (door);
 }
 

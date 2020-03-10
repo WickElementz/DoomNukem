@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 15:45:56 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 13:06:01 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,10 @@ static void	load_texture2(t_env *env, int a, int b)
 		"sprites/corona.xpm", &a, &b);
 	env->text[11].data = mlx_get_data_addr(env->text[11].img,
 		&env->text[11].bpp, &env->text[11].sl, &env->text[11].end);
+	env->text[12].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/gunner.xpm", &a, &b);
+	env->text[12].data = mlx_get_data_addr(env->text[12].img,
+		&env->text[12].bpp, &env->text[12].sl, &env->text[12].end);
 	a = 6;
 	b = 20;
 	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,

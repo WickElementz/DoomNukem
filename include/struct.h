@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 15:31:53 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 13:06:17 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ typedef	struct		s_env
 	t_block			map[50][50];
 	t_pos			cam;
 	t_event			ev;
-	t_texture		text[12];
+	t_texture		text[13];
 	t_sprite		sprite[5];
 }					t_env;
 
