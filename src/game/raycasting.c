@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 11:04:19 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 15:40:02 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ t_ray	*closest_wall(t_env *env, float ang)
 
 void	*raycasting(void *data)
 {
-	t_ray		*distance;
-	float		ang;
 	int			xy[3];
 	int			ray;
+	float		ang;
+	t_ray		*distance;
 	t_thread	*thread;
 
 	thread = (t_thread *)data;

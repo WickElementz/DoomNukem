@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 13:20:39 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:25:20 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			error_valid_map(t_env *env, int error);
 void			loop_mlx(t_env *env);
 void			set_spawn(t_env *env, int x, int y);
 void			draw_column(t_env *env, t_ray *ray, int xy[3]);
-void			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3]);
+t_clr			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3]);
 void			open_door(t_env *env);
 void			door(t_env *env);
 void			jump(t_env *env);

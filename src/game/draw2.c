@@ -6,18 +6,19 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:11:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/05 12:56:03 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 14:19:02 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3])
+t_clr			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3])
 {
 	if (res.r == 0 && res.g == 0 && res.b == 0)
 		res = add_color(env, ray, xy);
 	if (xy[1] - env->up >= 0 && xy[1] - env->up <= WIN_HEIGHT / 2)
 		put_pxl(env, xy[0], xy[1] - env->up, res);
+	return (res);
 }
 
 int				draw_column2(t_env *env, t_ray *ray, int xy[3])

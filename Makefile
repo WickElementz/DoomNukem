@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/09 11:18:13 by jominodi         ###   ########lyon.fr    #
+#    Updated: 2020/03/11 14:49:51 by videloff         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS)
+	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -g3 -fsanitize=address
 	@cp ./mlx_include_new/libmlx.dylib .
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)

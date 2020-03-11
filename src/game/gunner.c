@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gunner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:30:59 by kanne             #+#    #+#             */
-/*   Updated: 2020/03/09 13:19:30 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 12:59:19 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		gunner_fire(t_env *env)
 	time = clock();
 	if (env->gunner_id == 0 && (env->gunner_id = 1))
 		env->t3 = time;
-	if (env->t3 + 4000000 < time)
+	if (env->t3 + 6000000 < time)
 	{
 		env->player.life -= 10;
 		env->gunner_id = 0;

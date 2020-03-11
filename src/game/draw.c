@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/05 12:58:41 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 15:54:33 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,6 @@ void			set_sprite(t_ray *maillon, int z)
 						(z * maillon->wall / 64) + maillon->wall) : 0;
 		maillon->cmpt += (maillon->type == 3 && maillon->door >= 0) ?
 						maillon->wall * maillon->door / 64 : 0;
-	}
-}
-
-void			draw_column(t_env *env, t_ray *ray, int xy[3])
-{
-	t_clr	res;
-	t_clr	clr;
-	t_ray	*l;
-
-	set_sprite(ray, env->cam.z);
-	xy[1] = draw_column2(env, ray, xy);
-	while (xy[1]++ - env->up < WIN_HEIGHT / 2)
-	{
-		res = add_sprite(env, ray, xy);
-		l = ray->next;
-		while (l && l->dist <= ray->dist)
-		{
-			clr = add_sprite(env, l, xy);
-			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
-			{
-				res = clr;
-				l = l->next;
-				break ;
-			}
-			l = l->next;
-		}
-		while (l && xy[1] > l->mrg && xy[1] < l->mrg + l->wall && (l->cmpt++))
-			l = l->next;
-		draw_column3(env, ray, res, xy);
 	}
 }
 
@@ -117,4 +88,35 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 		color = 0;
 	clr = gclr(color, 0);
 	return (clr);
+}
+
+void			draw_column(t_env *env, t_ray *ray, int xy[3])
+{
+	t_clr	res;
+	t_clr	clr;
+	t_ray	*l;
+
+	set_sprite(ray, env->cam.z);
+	if (ray->mod < 64)
+		xy[1] = draw_column2(env, ray, xy);
+	while (ray->mod < 64 && xy[1]++ - env->up < WIN_HEIGHT / 2)
+	{
+		res = add_sprite(env, ray, xy);
+		l = ray->next;
+		while (l && l->dist <= ray->dist)
+		{
+			clr = add_sprite(env, l, xy);
+			if (clr.r != 0 && clr.g != 0 && clr.b != 0)
+			{
+				res = clr;
+				l = l->next;
+				break ;
+			}
+			l = l->next;
+		}
+		while (l && xy[1] > l->mrg && xy[1] < l->mrg + l->wall && (l->cmpt++))
+			l = l->next;
+		if (ray->mod < 64)
+			res = draw_column3(env, ray, res, xy);
+	}
 }
