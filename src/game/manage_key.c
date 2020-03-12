@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 13:28:09 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:47:22 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ int				hold_key2(int key, t_env *env)
 		env->crouch_id = env->crouch_id == 1 ? 2 : 1;
 	if (key == KEY_SPACEBAR && env->jump == 0 && env->crouch_id == 0)
 		env->jump = 1;
+	if (key == KEY_F && env->player.ammo > 0 && env->gun.id == 0)
+	{
+		env->player.ammo--;
+		env->player.stock--;
+		env->gun.id = 1;
+	}
+	else if (key == KEY_F && env->player.ammo == 0 && env->player.stock > 0)
+		env->reload.id = 1;
 	return (0);
 }
 

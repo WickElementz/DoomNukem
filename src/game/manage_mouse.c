@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:49:17 by kanne             #+#    #+#             */
-/*   Updated: 2020/03/02 12:37:23 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:47:34 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void			event_mouse(t_env *env)
 
 int				mouse_move(int x, int y, t_env *env)
 {
+	if (x < 0)
+        mlx_mouse_move(env->win_ptr, 960, -300);
+    else if (x > 960)
+        mlx_mouse_move(env->win_ptr, 0, -300);
+    else if (y < 0)
+        mlx_mouse_move(env->win_ptr, x, -600);
+    else if (y > 600)
+        mlx_mouse_move(env->win_ptr, x, 0);
 	vertical_move(y, env);
 	horizontal_move(x, env);
 	return (0);
