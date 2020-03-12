@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/11 15:54:33 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 10:30:10 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 				ray->cmpt <= ray->wall)
 	{
 		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-			64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+			(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 	}
 	else
@@ -79,7 +79,7 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 				ray->wall)
 	{
 		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-					64 * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+					(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 		if (env->sick == 1)
 			color *= 12 + 255;

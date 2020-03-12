@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 10:11:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 10:28:44 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	print_key_door_link(t_edit *edit)
 	x = edit->mapx;
 	str = malloc(sizeof(char) * 2);
 	str[1] = '\0';
-	while ((x < 20 && edit->zoom == 25) || (x < 50 && edit->zoom == 10))
+	while ((x - edit->mapx) < 20 && edit->zoom == 25)
 	{
 		y = edit->mapy;
-		while ((y < 20 && edit->zoom == 25) || (y < 50 && edit->zoom == 10))
+		while ((y - edit->mapy) < 20 && edit->zoom == 25)
 		{
 			if ((edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K')
 				&& edit->map[x][y].id >= '0' && edit->map[x][y].id <= '9' &&
