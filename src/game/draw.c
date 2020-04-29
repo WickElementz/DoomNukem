@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/12 10:30:10 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:43:58 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 	if (xy[1] < ray->mrg)
 		color = add_color2(env, ray, xy, &cs);
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall &&
-				ray->cmpt <= ray->wall)
+				ray->cmpt <= ray->wall && ray->cmpt < ray->wall - 1)
 	{
 		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
 			(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
@@ -78,7 +78,8 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->cmpt <=
 				ray->wall)
 	{
-		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
+		if (ray->cmpt < ray->wall - 1)
+			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
 					(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 		if (env->sick == 1)
