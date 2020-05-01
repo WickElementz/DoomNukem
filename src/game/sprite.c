@@ -6,7 +6,7 @@
 /*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/10 13:08:03 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 11:42:30 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,22 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 	return (base);
 }
 
-int     get_spr_id(char c)
+int				get_spr_id(char c)
 {
-    if (c == 'L')
-        return (7);
-    if (c == 'G')
-        return (12);
-    if (c == 'A')
-        return (8);
-    if (c == 'C')
-        return (11);
-    if (c == 'Z')
-        return (0);
-    if (c == 'K')
-        return (10);
-    else
-        return (0);
+	if (c == 'L')
+		return (7);
+	if (c == 'G')
+		return (12);
+	if (c == 'A')
+		return (8);
+	if (c == 'C')
+		return (11);
+	if (c == 'Z')
+		return (0);
+	if (c == 'K')
+		return (10);
+	else
+		return (0);
 }
 
 /*
