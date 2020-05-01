@@ -72,3 +72,49 @@ void		display(t_env *env)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3,
 						ft_itoa(env->player.stock));
 }
+
+t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
+{
+	unsigned int	color;
+	t_clr			clr;
+
+	color = 0;
+	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->type == 3 &&
+		ray->cmpt <= ray->wall)
+		color = (ray->cmpt > ray->wall) ? 0 : add_sprite2(env, ray, color);
+	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->cmpt <=
+				ray->wall)
+	{
+		if (ray->cmpt < ray->wall - 1)
+			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
+					(env->text[(int)ray->id].sl / 4) *
+					(64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+		ray->cmpt++;
+		if (env->sick == 1)
+			color *= 12 + 255;
+	}
+	else
+		color = 0;
+	clr = gclr(color, 0);
+	return (clr);
+}
+
+
+t_ray			*create_spr(float xy[4], t_env *env, float ang)
+{
+	t_ray	*spr;
+	float	poscer[3];
+
+	spr = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32), 2) +
+		pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32), 2)), 0, 7);
+	poscer[0] = (env->cam.y - ((int)(xy[0] / 64) * 64 + 32)) / spr->dist;
+	poscer[1] = (env->cam.x - ((int)(xy[1] / 64) * 64 + 32)) / spr->dist;
+	poscer[2] = right_angle(ang, atan(poscer[0] / poscer[1]) * 180 / M_PI);
+	spr->mod = 32 - spr->dist * tan((ang - poscer[2]) * M_PI / 180);
+	spr->mod = (spr->mod >= 64 || spr->mod < 0) ? 0 : spr->mod;
+	spr->mapx = (int)xy[0] / 64;
+	spr->mapy = (int)xy[1] / 64;
+	spr->type = 2;
+	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
+	return (spr);
+}

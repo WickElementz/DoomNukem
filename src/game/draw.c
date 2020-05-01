@@ -62,32 +62,6 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 	return (clr);
 }
 
-t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
-{
-	unsigned int	color;
-	t_clr			clr;
-
-	color = 0;
-	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->type == 3 &&
-		ray->cmpt <= ray->wall)
-		color = (ray->cmpt > ray->wall) ? 0 : add_sprite2(env, ray, color);
-	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->cmpt <=
-				ray->wall)
-	{
-		if (ray->cmpt < ray->wall - 1)
-			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-					(env->text[(int)ray->id].sl / 4) *
-					(64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
-		ray->cmpt++;
-		if (env->sick == 1)
-			color *= 12 + 255;
-	}
-	else
-		color = 0;
-	clr = gclr(color, 0);
-	return (clr);
-}
-
 static int		before_draw(t_env *env, t_ray *ray, int xy[3])
 {
 	set_sprite(ray, env->cam.z);

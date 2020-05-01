@@ -124,26 +124,3 @@ int				get_spr_id(char c)
 	else
 		return (0);
 }
-
-/*
-** Fonction pour choisir le bon id du sprite
-*/
-
-t_ray			*create_spr(float xy[4], t_env *env, float ang)
-{
-	t_ray	*spr;
-	float	poscer[3];
-
-	spr = create_ray(sqrt(pow(env->cam.x - ((int)(xy[1] / 64) * 64 + 32), 2) +
-		pow(env->cam.y - ((int)(xy[0] / 64) * 64 + 32), 2)), 0, 7);
-	poscer[0] = (env->cam.y - ((int)(xy[0] / 64) * 64 + 32)) / spr->dist;
-	poscer[1] = (env->cam.x - ((int)(xy[1] / 64) * 64 + 32)) / spr->dist;
-	poscer[2] = right_angle(ang, atan(poscer[0] / poscer[1]) * 180 / M_PI);
-	spr->mod = 32 - spr->dist * tan((ang - poscer[2]) * M_PI / 180);
-	spr->mod = (spr->mod >= 64 || spr->mod < 0) ? 0 : spr->mod;
-	spr->mapx = (int)xy[0] / 64;
-	spr->mapy = (int)xy[1] / 64;
-	spr->type = 2;
-	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
-	return (spr);
-}
