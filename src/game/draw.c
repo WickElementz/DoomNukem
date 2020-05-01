@@ -6,7 +6,7 @@
 /*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/01 11:31:19 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 12:46:25 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,22 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	return (clr);
 }
 
+static int		before_draw(t_env *env, t_ray *ray, int xy[3])
+{
+	set_sprite(ray, env->cam.z);
+	if (ray->mod < 64)
+		return (draw_column2(env, ray, xy));
+	else
+		return (xy[1]);
+}
+
 void			draw_column(t_env *env, t_ray *ray, int xy[3])
 {
 	t_clr	res;
 	t_clr	clr;
 	t_ray	*l;
 
-	set_sprite(ray, env->cam.z);
-	if (ray->mod < 64)
-		xy[1] = draw_column2(env, ray, xy);
+	xy[1] = before_draw(env, ray, xy);
 	while (ray->mod < 64 && xy[1]++ - env->up < WIN_HEIGHT / 2)
 	{
 		res = add_sprite(env, ray, xy);
