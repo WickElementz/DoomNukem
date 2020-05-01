@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:11:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/12 11:35:36 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 11:28:28 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ unsigned int	add_color3(t_env *env, t_ray *ray, int xy[3], float (*cs)[2])
 	cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
 	(*cs)[1] = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) /
 	cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
-//	if (((int)(env->cam.x + (*cs)[1]) % 64 +
-//	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) > 4096 || ((int)(env->cam.x + (*cs)[1]) % 64 +
-//	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) < 0)
-//		return (0);
 	ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + (*cs)[1]) % 64 +
 	(int)((env->text[4].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) * 4],
 	sizeof(int));
@@ -65,10 +61,6 @@ unsigned int	add_color2(t_env *env, t_ray *ray, int xy[3], float (*cs)[2])
 	cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
 	(*cs)[1] = (((64 - env->cam.z) / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) /
 	cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
-//	if (((int)(env->cam.x + (*cs)[1]) % 64 +
-//	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) > 4096 || ((int)(env->cam.x + (*cs)[1]) % 64 +
-//	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) < 0)
-//		return (0);
 	ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + (*cs)[1]) % 64 +
 	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) * 4],
 	sizeof(int));

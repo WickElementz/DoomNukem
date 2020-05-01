@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/04 13:23:06 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 12:09:59 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	loop_mlx(t_env *env)
 
 void	free_env(t_env *env, int set)
 {
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
+	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
 	if (env)
 		free(env);
 	if (set > 0 && set <= 4)

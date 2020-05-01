@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:14:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/12 12:43:58 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 11:31:19 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ t_clr			add_color(t_env *env, t_ray *ray, int xy[3])
 				ray->cmpt <= ray->wall && ray->cmpt < ray->wall - 1)
 	{
 		ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-			(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+			(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall))
+			* 4], sizeof(int));
 		ray->cmpt++;
 	}
 	else
@@ -69,18 +70,14 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	color = 0;
 	if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->type == 3 &&
 		ray->cmpt <= ray->wall)
-	{
-		if (ray->cmpt > ray->wall)
-			color = 0;
-		else
-			color = add_sprite2(env, ray, color);
-	}
+		color = (ray->cmpt > ray->wall) ? 0 : add_sprite2(env, ray, color);
 	else if (xy[1] > ray->mrg && xy[1] < ray->mrg + ray->wall && ray->cmpt <=
 				ray->wall)
 	{
 		if (ray->cmpt < ray->wall - 1)
 			ft_memcpy(&color, &env->text[(int)ray->id].data[(((int)ray->mod) +
-					(env->text[(int)ray->id].sl / 4) * (64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
+					(env->text[(int)ray->id].sl / 4) *
+					(64 * ray->cmpt / ray->wall)) * 4], sizeof(int));
 		ray->cmpt++;
 		if (env->sick == 1)
 			color *= 12 + 255;

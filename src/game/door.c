@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:32:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/12 11:45:45 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 11:20:51 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	open_door(t_env *env)
 		env->door_x = (env->cam.x + sin(env->cam.angle * RAD) * 32) / 64;
 		env->door_y = (env->cam.y + cos(env->cam.angle * RAD) * 32) / 64;
 		if (env->map[env->door_x][env->door_y].type == 'D' &&
-		check_key(env->player.key, env->map[env->door_x][env->door_y].id) != -1 &&
-		env->map[env->door_x][env->door_y].id < 60)
+		check_key(env->player.key, env->map[env->door_x]
+			[env->door_y].id) != -1 && env->map[env->door_x]
+			[env->door_y].id < 60)
 		{
 			env->map[env->door_x][env->door_y].id = 60;
 			env->door_id = 1;
