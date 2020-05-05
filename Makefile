@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/03/11 14:49:51 by videloff         ###   ########lyon.fr    #
+#    Updated: 2020/05/05 15:03:35 by yalabidi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ GAME_N		= main.c \
 				manage_mouse.c \
 				raycasting.c \
 				texture.c \
+				texture2.c \
 				fire.c \
 				init.c \
 				error.c \

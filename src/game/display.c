@@ -6,7 +6,7 @@
 /*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/05 14:17:44 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 15:02:25 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void			ray_multi_thread(t_env *env)
 
 void			display(t_env *env)
 {
-	int	ang;
+	char	*tmp;
 
-	ang = 0;
 	check_status(env);
 	check_gunner(env);
 	if (env->player.corona != 0)
@@ -68,9 +67,10 @@ void			display(t_env *env)
 		reload(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
+	tmp = ft_itoa(env->player.stock);
 	if (env->win != 1 && env->player.life > 0)
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3,
-		ft_itoa(env->player.stock));
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, tmp);
+	free(tmp);
 }
 
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])

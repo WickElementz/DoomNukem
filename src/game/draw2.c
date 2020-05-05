@@ -6,7 +6,7 @@
 /*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:11:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/01 11:28:28 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 15:24:12 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ unsigned int	add_color3(t_env *env, t_ray *ray, int xy[3], float (*cs)[2])
 	cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
 	(*cs)[1] = ((env->cam.z / (xy[1] - WIN_HEIGHT / 2)) * SCREEN) /
 	cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
+	(*cs)[0] = ((*cs)[0] > 63) ? 63 : (*cs)[0];
+	(*cs)[0] = ((*cs)[0] < 0) ? 0 : (*cs)[0];
+	(*cs)[1] = ((*cs)[1] > 63) ? 63 : (*cs)[1];
+	(*cs)[1] = ((*cs)[1] < 0) ? 0 : (*cs)[1];
 	ft_memcpy(&color, &env->text[4].data[((int)(env->cam.x + (*cs)[1]) % 64 +
 	(int)((env->text[4].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) * 4],
 	sizeof(int));
@@ -61,6 +65,10 @@ unsigned int	add_color2(t_env *env, t_ray *ray, int xy[3], float (*cs)[2])
 	cos((env->cam.angle - ray->ang) * RAD) * cos(ray->ang * RAD);
 	(*cs)[1] = (((64 - env->cam.z) / (WIN_HEIGHT / 2 - xy[1])) * SCREEN) /
 	cos((env->cam.angle - ray->ang) * RAD) * sin(ray->ang * RAD);
+	(*cs)[0] = ((*cs)[0] > 63) ? 63 : (*cs)[0];
+	(*cs)[0] = ((*cs)[0] < 0) ? 0 : (*cs)[0];
+	(*cs)[1] = ((*cs)[1] > 63) ? 63 : (*cs)[1];
+	(*cs)[1] = ((*cs)[1] < 0) ? 0 : (*cs)[1];
 	ft_memcpy(&color, &env->text[5].data[((int)(env->cam.x + (*cs)[1]) % 64 +
 	(int)((env->text[5].sl / 4) * ((int)((*cs)[0] + env->cam.y) % 64))) * 4],
 	sizeof(int));
