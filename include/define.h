@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/02 14:46:30 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 14:58:00 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 ** Erreur - Editeur
 */
 
-# define ERR_VALID_DOOR "La porte doit etre entoure de 2 murs + 2 objets non Mur / vitre"
+# define ERR_VALID_DOOR "La porte doit etre entoure de 2 murs seulement"
 # define ERR_NUM_DK "Le nombre de clefs doit etre egal au nombre de porte"
 # define ERR_LINK_DK "Les portes et / ou clefs ne sont pas link correctement"
 # define ERR_START "Il doit y'avoir un point de depart"
