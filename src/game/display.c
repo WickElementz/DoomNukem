@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/12 11:40:44 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 14:17:44 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-t_thread	*init_thread(t_env *env)
+t_thread		*init_thread(t_env *env)
 {
 	t_thread	*tab;
 	int			i;
@@ -29,7 +29,7 @@ t_thread	*init_thread(t_env *env)
 	return (tab);
 }
 
-void		ray_multi_thread(t_env *env)
+void			ray_multi_thread(t_env *env)
 {
 	static t_thread	*tab = NULL;
 	int				i;
@@ -44,7 +44,7 @@ void		ray_multi_thread(t_env *env)
 		pthread_join(tab[i].t, NULL);
 }
 
-void		display(t_env *env)
+void			display(t_env *env)
 {
 	int	ang;
 
@@ -70,7 +70,7 @@ void		display(t_env *env)
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	if (env->win != 1 && env->player.life > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3,
-						ft_itoa(env->player.stock));
+		ft_itoa(env->player.stock));
 }
 
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
@@ -98,7 +98,6 @@ t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3])
 	clr = gclr(color, 0);
 	return (clr);
 }
-
 
 t_ray			*create_spr(float xy[4], t_env *env, float ang)
 {

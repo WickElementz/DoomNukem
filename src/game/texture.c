@@ -3,44 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/10 13:06:01 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 14:49:03 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
 static void	load_texture5(t_env *env, int a, int b)
-{
-	env->reload.spr[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/gun_1.xpm", &a, &b);
-	env->reload.spr[0].data = mlx_get_data_addr(env->reload.spr[0].img,
-	&env->reload.spr[0].bpp, &env->reload.spr[0].sl, &env->reload.spr[0].end);
-	env->reload.spr[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/gun_4.xpm", &a, &b);
-	env->reload.spr[1].data = mlx_get_data_addr(env->reload.spr[1].img,
-	&env->reload.spr[1].bpp, &env->reload.spr[1].sl, &env->reload.spr[1].end);
-	env->reload.spr[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/reload_1.xpm", &a, &b);
-	env->reload.spr[2].data = mlx_get_data_addr(env->reload.spr[2].img,
-	&env->reload.spr[2].bpp, &env->reload.spr[2].sl, &env->reload.spr[2].end);
-	env->reload.spr[3].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/reload_2.xpm", &a, &b);
-	env->reload.spr[3].data = mlx_get_data_addr(env->reload.spr[3].img,
-	&env->reload.spr[3].bpp, &env->reload.spr[3].sl, &env->reload.spr[3].end);
-	env->reload.spr[4].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/reload_3.xpm", &a, &b);
-	env->reload.spr[4].data = mlx_get_data_addr(env->reload.spr[4].img,
-	&env->reload.spr[4].bpp, &env->reload.spr[4].sl, &env->reload.spr[4].end);
-	env->reload.spr[5].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/gun_5.xpm", &a, &b);
-	env->reload.spr[5].data = mlx_get_data_addr(env->reload.spr[5].img,
-	&env->reload.spr[5].bpp, &env->reload.spr[5].sl, &env->reload.spr[5].end);
-}
-
-static void	load_texture4(t_env *env, int a, int b)
 {
 	env->gun.spr[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/gun_3.xpm", &a, &b);
@@ -66,10 +38,10 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/gun_8.xpm", &a, &b);
 	env->gun.spr[7].data = mlx_get_data_addr(env->gun.spr[7].img,
 	&env->gun.spr[7].bpp, &env->gun.spr[7].sl, &env->gun.spr[7].end);
-	load_texture5(env, a, b);
+	load_texture6(env, a, b);
 }
 
-static void	load_texture3(t_env *env, int a, int b)
+static void	load_texture4(t_env *env, int a, int b)
 {
 	a = 960;
 	b = 600;
@@ -95,6 +67,29 @@ static void	load_texture3(t_env *env, int a, int b)
 		"sprites/gun_2.xpm", &a, &b);
 	env->gun.spr[1].data = mlx_get_data_addr(env->gun.spr[1].img,
 	&env->gun.spr[1].bpp, &env->gun.spr[1].sl, &env->gun.spr[1].end);
+	load_texture5(env, a, b);
+}
+
+static void	load_texture3(t_env *env, int a, int b)
+{
+	env->text[10].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/key.xpm", &a, &b);
+	env->text[10].data = mlx_get_data_addr(env->text[10].img,
+		&env->text[10].bpp, &env->text[10].sl, &env->text[10].end);
+	env->text[11].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/corona.xpm", &a, &b);
+	env->text[11].data = mlx_get_data_addr(env->text[11].img,
+		&env->text[11].bpp, &env->text[11].sl, &env->text[11].end);
+	env->text[12].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/gunner.xpm", &a, &b);
+	env->text[12].data = mlx_get_data_addr(env->text[12].img,
+		&env->text[12].bpp, &env->text[12].sl, &env->text[12].end);
+	a = 6;
+	b = 20;
+	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/bullet.xpm", &a, &b);
+	env->sprite[1].data = mlx_get_data_addr(env->sprite[1].img,
+		&env->sprite[1].bpp, &env->sprite[1].sl, &env->sprite[1].end);
 	load_texture4(env, a, b);
 }
 
@@ -120,24 +115,6 @@ static void	load_texture2(t_env *env, int a, int b)
 		"sprites/door.xpm", &a, &b);
 	env->text[9].data = mlx_get_data_addr(env->text[9].img,
 		&env->text[9].bpp, &env->text[9].sl, &env->text[9].end);
-	env->text[10].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/key.xpm", &a, &b);
-	env->text[10].data = mlx_get_data_addr(env->text[10].img,
-		&env->text[10].bpp, &env->text[10].sl, &env->text[10].end);
-	env->text[11].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/corona.xpm", &a, &b);
-	env->text[11].data = mlx_get_data_addr(env->text[11].img,
-		&env->text[11].bpp, &env->text[11].sl, &env->text[11].end);
-	env->text[12].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/gunner.xpm", &a, &b);
-	env->text[12].data = mlx_get_data_addr(env->text[12].img,
-		&env->text[12].bpp, &env->text[12].sl, &env->text[12].end);
-	a = 6;
-	b = 20;
-	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/bullet.xpm", &a, &b);
-	env->sprite[1].data = mlx_get_data_addr(env->sprite[1].img,
-		&env->sprite[1].bpp, &env->sprite[1].sl, &env->sprite[1].end);
 	load_texture3(env, a, b);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/11 14:25:20 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 14:43:51 by yalabidi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				mouse_move(int x, int y, t_env *env);
 int				mouse_hook(int click, int x, int y, t_env *env);
 int				check_type(float xy[2], t_block map[50][50], char c);
 int				exit_hook(t_env *env);
+int				get_spr_id(char c);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
@@ -33,6 +34,7 @@ void			check_gunner(t_env *env);
 void			gunner_fire(t_env *env);
 void			walkable_block_x(double n[2], t_block map[50][50], t_pos *cam);
 void			walkable_block_z(double n[2], t_block map[50][50], t_pos *cam);
+void		    load_texture6(t_env *env, int a, int b);
 void			parsing(char *filename, t_env *env, int fd);
 void			event_mouse(t_env *env);
 void			free_env(t_env *env, int set);
