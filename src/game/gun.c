@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hud2.c                                             :+:      :+:    :+:   */
+/*   gun.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:02:28 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:15:56 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 18:16:26 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ t_clr		print_gun(t_env *env, int id, int xy[4])
 	ft_memcpy(&color, &env->gun.spr[id].data[(xy[2] +
 		(env->gun.spr[id].sl / 4) *
 			(171 * xy[3] / 342)) * 4], sizeof(int));
-	if ((int)color != NONE)
+	color = (env->sick == 0) ? color : color + 23541;
+	if (color != NONE)
 	{
-		color = (env->sick == 0) ? color : color + 23541;
+		put_pxl2(env, xy[0], xy[1], gclr(color, 0));
 		return (gclr(color, 0));
 	}
 	else
@@ -112,10 +113,9 @@ void		gun(t_env *env, int id)
 		while (xy[1] < 600)
 		{
 			if (xy[0] > 210 && xy[0] < 552 && xy[1] > 234 && (xy[3]++))
+			{
 				clr = print_gun(env, id, xy);
-			else
-				clr = gclr(0, 255);
-			put_pxl2(env, xy[0], xy[1], clr);
+			}
 			xy[1]++;
 		}
 		xy[0]++;

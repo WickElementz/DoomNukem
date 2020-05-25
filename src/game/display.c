@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/05 15:02:25 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 18:06:11 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void			display(t_env *env)
 		jump(env);
 	if (env->crouch_id != 0)
 		crouch_animation(env);
+	print_hud(env, 4);
+	gun(env, 0);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	if (env->gun.id != 0)
 		fire(env);
 	else if (env->reload.id != 0)
 		reload(env);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr2, 0, 0);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr3, 0, 0);
 	tmp = ft_itoa(env->player.stock);
 	if (env->win != 1 && env->player.life > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, tmp);

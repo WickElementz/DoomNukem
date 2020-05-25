@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:53:57 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:14:22 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 17:57:53 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ int		init_mlx_from_edit(t_env *env)
 		return (-1);
 	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
-	if (!(env->img_ptr2 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr2 = mlx_get_data_addr(env->img_ptr2, &env->bpp,
-					&env->size_line, &env->endian);
-	if (!(env->img_ptr3 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr3 = mlx_get_data_addr(env->img_ptr3, &env->bpp,
-					&env->size_line, &env->endian);
+	env->img_ptr2 = env->img_ptr;
+	env->data_ptr2 = env->data_ptr;
+	env->img_ptr3 = env->img_ptr;
+	env->data_ptr3 = env->data_ptr;
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env, 64, 64);
@@ -45,19 +41,11 @@ int		init_mlx(t_env *env)
 		return (-1);
 	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
-	if (!(env->img_ptr2 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr2 = mlx_get_data_addr(env->img_ptr2, &env->bpp,
-					&env->size_line, &env->endian);
-	if (!(env->img_ptr3 = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
-		return (-1);
-	env->data_ptr3 = mlx_get_data_addr(env->img_ptr3, &env->bpp,
-					&env->size_line, &env->endian);
+	env->data_ptr2 = env->data_ptr;
+	env->data_ptr3 = env->data_ptr;
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env, 64, 64);
-	print_hud(env, 4);
-	gun(env, 0);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom_nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:03:15 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/09 12:33:24 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 17:44:49 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # if defined __linux__
 #  include "keys_linux.h"
-#  include "../minilibx/mlx.h"
+#  include "../libmlx/mlx.h"
 # elif __APPLE__
 #  include "keys.h"
 #  include "../mlx_include_new/mlx.h"

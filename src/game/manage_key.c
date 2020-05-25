@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/12 11:47:22 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 17:48:27 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void		event_key2(t_env *env)
 		env->ev.hp_down = 0;
 		display(env);
 	}
-	event_mouse(env);
 	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
 			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
 				env->ev.s_right == 1 || env->ev.s_left == 1 ||

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:16:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 12:01:47 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 18:13:31 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	print_hud(t_env *env, int id)
 {
 	int				x;
 	int				y;
-	t_clr			clr;
 	unsigned int	color;
 
 	x = -1;
@@ -48,14 +47,12 @@ void	print_hud(t_env *env, int id)
 		{
 			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
 					y) * 4], sizeof(int));
-			if ((int)color != NONE)
+			if (color != NONE)
 			{
 				color = (env->sick == 0) ? color : color + 23541;
-				clr = gclr(color, 0);
+				put_pxl3(env, x, y, gclr(color, 0));
+
 			}
-			else
-				clr = gclr(color, 255);
-			put_pxl3(env, x, y, clr);
 		}
 	}
 }

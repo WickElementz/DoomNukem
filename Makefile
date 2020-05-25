@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/05/05 15:03:35 by yalabidi         ###   ########lyon.fr    #
+#    Updated: 2020/05/25 17:47:06 by dgascon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,16 @@ FRKS		= -lmlx -framework OpenGL -framework AppKit
 endif
 # Linux
 ifeq ($(UNAME), Linux)
-MNLBX		= ./minilibx
-MNLBX_A		= $(MNLBX)/libmlx.a
-FRKS 		=  minilibx/libmlx.a `gnustep-config --objc-flags` -lgnustep-base -lGL -lXext -lX11 -lm
+MNLBX		= ./libmlx
+MNLBX_A		= $(MNLBX)/libmlx_Linux.a
+FRKS 		=  libmlx/libmlx_Linux.a `gnustep-config --objc-flags` -lgnustep-base -lGL -lXext -lX11 -lm
 endif
 # fichiers sources du jeu
 GAME_P		= src/game
-GAME_N		= main.c \
-				parsing.c \
+GAME_N		= 	parsing.c \
 				event.c \
 				sprite.c \
 				manage_key.c \
-				manage_mouse.c \
 				raycasting.c \
 				texture.c \
 				texture2.c \
@@ -88,7 +86,7 @@ SRCS		= $(addprefix $(GAME_P)/,$(GAME_N))
 SRCS		+= $(addprefix $(EDIT_P)/,$(EDIT_N))
 # compilateur, bibliotheques et flags de compilation
 GCC			= gcc 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Wextra
 LIB			= librairies
 LIBFT		= libft/
 LIBFT_A		= $(LIBFT)/libft.a
@@ -102,15 +100,14 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -I $(MNLBX) -L $(MNLBX) $^ -o $@ -I $(LIBFT) $(FRKS) -g3 -fsanitize=address
-	@cp ./mlx_include_new/libmlx.dylib .
+	@$(GCC) -o $(NAME) src/game/main.c $(OBJE) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true
-	@$(GCC) -I $(MNLBX) -I $(LIBFT) -I $(INC_P) $(CFLAGS) -c $< -o $@
+	@$(GCC) -Ilibmlx -Ilibft -Iinclude $(CFLAGS) -c $< -o $@
 $(OBJ_P_GAME)/%.o: $(GAME_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_GAME) 2> /dev/null || true
-	@$(GCC) -I $(MNLBX) -I $(LIBFT) -I $(INC_P) $(CFLAGS) -c $< -o $@
+	@$(GCC) -Ilibmlx -Ilibft -Iinclude $(CFLAGS) -c $< -o $@
 $(MNLBX_A) :
 	@echo "Compilation: $(START)"
 	@make -C $(MNLBX)

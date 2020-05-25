@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/01 12:09:59 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/25 17:52:03 by dgascon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "../../include/doom_nukem.h"
 
 void	loop_mlx(t_env *env)
 {
 	display(env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
-	mlx_hook(env->win_ptr, 6, 0, mouse_move, env);
-	mlx_mouse_hook(env->win_ptr, mouse_hook, env);
 	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 17, 0, exit_hook, env);
 	mlx_loop(env->mlx_ptr);
@@ -27,8 +25,6 @@ void	loop_mlx(t_env *env)
 void	free_env(t_env *env, int set)
 {
 	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
 	if (env)
 		free(env);
 	if (set > 0 && set <= 4)
