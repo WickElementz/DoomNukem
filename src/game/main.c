@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/25 17:52:03 by dgascon          ###   ########.fr       */
+/*   Updated: 2020/05/26 10:20:25 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	loop_mlx(t_env *env)
 	display(env);
 	mlx_hook(env->win_ptr, 2, 1, hold_key, env);
 	mlx_hook(env->win_ptr, 3, 2, unhold_key, env);
-	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_hook(env->win_ptr, 17, 0, exit_hook, env);
+	mlx_loop_hook(env->mlx_ptr, event_key, env);
 	mlx_loop(env->mlx_ptr);
 }
 
