@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/10 12:22:45 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 t_ray	*add_doors(float xy[4], t_env *env, float ang, int bol)
 {

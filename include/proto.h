@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/05 14:59:43 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 12:03:19 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void			ft_move_x(t_block map[50][50], t_pos *cam, int way, int up[2]);
 void			init_info(t_env *env);
 void			usage();
 void			error(int error);
-void			draw_hud(t_env *env);
+void			draw_li_bu(t_env *env);
+void			check_animation(t_env *env);
+void			ray_multi_thread(t_env *env);
 void			load_texture(t_env *env, int a, int b);
 void			put_pxl(t_env *env, int x, int y, t_clr clr);
-void			put_pxl2(t_env *env, int x, int y, t_clr clr);
-void			put_pxl3(t_env *env, int x, int y, t_clr clr);
 void			gun(t_env *env, int id);
 void			print_hud(t_env *env, int id);
 void			print_gun_animation(t_env *env, int id);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 11:16:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/25 18:13:31 by dgascon          ###   ########.fr       */
+/*   Created: 2020/05/28 12:01:26 by jominodi          #+#    #+#             */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void	print_last_screen(t_env *env, int id)
 {
@@ -27,8 +27,11 @@ void	print_last_screen(t_env *env, int id)
 		{
 			ft_memcpy(&color, &env->sprite[id].data[(x + 960 *
 					y) * 4], sizeof(int));
-			clr = ((int)color != NONE) ? gclr(color, 0) : gclr(color, 255);
-			put_pxl3(env, x, y, clr);
+			if (color != NONE)
+			{
+				clr = gclr(color, 0);
+				put_pxl(env, x, y, clr);
+			}
 		}
 	}
 }
@@ -50,8 +53,7 @@ void	print_hud(t_env *env, int id)
 			if (color != NONE)
 			{
 				color = (env->sick == 0) ? color : color + 23541;
-				put_pxl3(env, x, y, gclr(color, 0));
-
+				put_pxl(env, x, y, gclr(color, 0));
 			}
 		}
 	}

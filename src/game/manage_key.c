@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   manage_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/10 14:44:27 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/26 11:06:12 by raiko            ###   ########lyon.fr   */
+/*   Created: 2020/05/28 12:06:15 by jominodi          #+#    #+#             */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 static void		event_key2(t_env *env)
 {
+	if (env->ev.s_right == 1)
+		anglemove(&env->cam, SENSI);
+	if (env->ev.s_left == 1)
+		anglemove(&env->cam, -SENSI);
 	if (env->ev.uparrow == 1 && (env->up > 0))
 		env->up -= 5;
 	if (env->ev.downarrow == 1 && (env->up < 600))
@@ -22,16 +26,8 @@ static void		event_key2(t_env *env)
 	{
 		env->player.life -= 10;
 		env->ev.hp_down = 0;
-		display(env);
 	}
-	if (env->ev.forward == 1 || env->ev.back == 1 || env->ev.left == 1 ||
-			env->ev.right == 1 || env->ev.run == 1 || env->ev.walk == 1 ||
-			env->ev.s_right == 1 || env->ev.s_left == 1 ||
-			env->ev.downarrow == 1 || env->ev.uparrow == 1 ||
-			env->ev.m_right == 1 || env->ev.m_left == 1 ||
-			env->ev.m_down == 1 || env->ev.m_up == 1 || env->door_id == 1
-			|| env->jump == 1 || env->crouch_id != 0)
-		display(env);
+	display(env);
 }
 
 int				event_key(t_env *env)
@@ -52,10 +48,6 @@ int				event_key(t_env *env)
 		env->cam.speed = 3;
 	if (env->ev.run == 1)
 		env->cam.speed = 9;
-	if (env->ev.s_right == 1)
-		anglemove(&env->cam, SENSI);
-	if (env->ev.s_left == 1)
-		anglemove(&env->cam, -SENSI);
 	event_key2(env);
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/11 13:26:41 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void	door(t_env *env)
 {

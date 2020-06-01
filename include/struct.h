@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/03/11 14:25:15 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 12:03:03 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,9 +148,7 @@ typedef struct		s_edit
 	void			*img;
 	char			*data;
 	void			*img_ptr;
-	void			*img_ptr2;
 	char			*data_ptr;
-	char			*data_ptr2;
 	char			*filename;
 	t_block			map[50][50];
 	t_verif			verif;
@@ -225,11 +223,7 @@ typedef	struct		s_env
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
-	void			*img_ptr2;
-	void			*img_ptr3;
 	char			*data_ptr;
-	char			*data_ptr2;
-	char			*data_ptr3;
 	clock_t			t;
 	clock_t			t2;
 	clock_t			t3;
@@ -241,7 +235,7 @@ typedef	struct		s_env
 	t_pos			cam;
 	t_event			ev;
 	t_texture		text[13];
-	t_sprite		sprite[5];
+	t_sprite		sprite[4];
 }					t_env;
 
 /*

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:07:19 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/04 13:35:01 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:48:16 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void		check_status2(t_env *env, int x, int y)
 {
@@ -51,4 +51,25 @@ void		check_status(t_env *env)
 	else if (env->map[x][y].type == 'A' && (env->player.stock += 6))
 		env->map[x][y].type = 'F';
 	check_status2(env, x, y);
+}
+
+void		check_animation(t_env *env)
+{
+	ray_multi_thread(env);
+	if (env->player.corona != 0)
+		corona(env);
+	if (env->door_id != 0)
+		door(env);
+	if (env->jump != 0)
+		jump(env);
+	if (env->crouch_id != 0)
+		crouch_animation(env);
+	if (env->reload.id == 0 && env->gun.id == 0)
+		gun(env, 0);
+	if (env->gun.id != 0)
+		fire(env);
+	else if (env->reload.id != 0)
+		reload(env);
+	draw_li_bu(env);
+	print_hud(env, 0);
 }

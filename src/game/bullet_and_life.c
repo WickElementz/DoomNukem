@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hud.c                                              :+:      :+:    :+:   */
+/*   bullet_and_life.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:47:10 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:16:25 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 static void		draw_life(t_env *env, int xy[2])
 {
@@ -74,7 +74,7 @@ static void		bullet(t_env *env, int xy[6], int id)
 	}
 }
 
-void			draw_hud(t_env *env)
+void			draw_li_bu(t_env *env)
 {
 	int		xy[6];
 

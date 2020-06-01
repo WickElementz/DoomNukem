@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   editor_to_game.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 11:46:07 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void	save_edit_to_env(t_edit *edit, t_env *env)
 {
@@ -46,7 +46,6 @@ void	editor_to_game(t_edit *edit)
 		env->mlx_ptr = edit->mlx_ptr;
 		env->win_ptr = edit->win_ptr;
 		mlx_destroy_image(edit->mlx_ptr, edit->img_ptr);
-		mlx_destroy_image(edit->mlx_ptr, edit->img_ptr2);
 		init_mlx_from_edit(env);
 		save_edit_to_env(edit, env);
 		loop_mlx(env);

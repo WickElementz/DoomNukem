@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/12 11:41:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void	display_error(t_edit *edit)
 {
@@ -68,9 +68,8 @@ void	print_key_door_link(t_edit *edit)
 
 void	display_editor(t_edit *edit)
 {
+	print_hud_editor(edit);
 	read_tab_editor(edit);
-	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr2,
-								230, 50);
 	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr, 0, 0);
 	print_key_door_link(edit);
 	display_error(edit);
@@ -80,8 +79,8 @@ void	loop_mlx_editor(t_edit *edit)
 {
 	display_editor(edit);
 	mlx_hook(edit->win_ptr, 2, 1, hold_key_editor, edit);
-	mlx_hook(edit->win_ptr, 4, 0, mouse_hook_editor, edit);
-	mlx_hook(edit->win_ptr, 17, 0, exit_hook_editor, edit);
+	mlx_mouse_hook(edit->win_ptr, mouse_hook_editor, edit);
+	mlx_hook(edit->win_ptr, 33, 1L << 17, exit_hook_editor, edit);
 	mlx_loop(edit->mlx_ptr);
 }
 

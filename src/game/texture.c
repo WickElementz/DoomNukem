@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/05/25 18:02:26 by dgascon          ###   ########.fr       */
+/*   Updated: 2020/06/01 12:03:25 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 static void	load_texture5(t_env *env, int a, int b)
 {
@@ -45,6 +45,10 @@ static void	load_texture4(t_env *env, int a, int b)
 {
 	a = 960;
 	b = 600;
+	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/bullet.xpm", &a, &b);
+	env->sprite[1].data = mlx_get_data_addr(env->sprite[1].img,
+		&env->sprite[1].bpp, &env->sprite[1].sl, &env->sprite[1].end);
 	env->sprite[2].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/win.xpm", &a, &b);
 	env->sprite[2].data = mlx_get_data_addr(env->sprite[2].img,
@@ -53,10 +57,6 @@ static void	load_texture4(t_env *env, int a, int b)
 		"sprites/lose.xpm", &a, &b);
 	env->sprite[3].data = mlx_get_data_addr(env->sprite[3].img,
 		&env->sprite[3].bpp, &env->sprite[3].sl, &env->sprite[3].end);
-	env->sprite[4].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/full_hud.xpm", &a, &b);
-	env->sprite[4].data = mlx_get_data_addr(env->sprite[4].img,
-		&env->sprite[4].bpp, &env->sprite[4].sl, &env->sprite[4].end);
 	a = 171;
 	b = 183;
 	env->gun.spr[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
@@ -86,10 +86,10 @@ static void	load_texture3(t_env *env, int a, int b)
 		&env->text[12].bpp, &env->text[12].sl, &env->text[12].end);
 	a = 6;
 	b = 20;
-	env->sprite[1].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/bullet.xpm", &a, &b);
-	env->sprite[1].data = mlx_get_data_addr(env->sprite[1].img,
-		&env->sprite[1].bpp, &env->sprite[1].sl, &env->sprite[1].end);
+	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/full_hud.xpm", &a, &b);
+	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img,
+		&env->sprite[0].bpp, &env->sprite[0].sl, &env->sprite[0].end);
 	load_texture4(env, a, b);
 }
 

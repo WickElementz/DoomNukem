@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 14:47:28 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/05/05 14:49:45 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void		load_texture6(t_env *env, int a, int b)
 {

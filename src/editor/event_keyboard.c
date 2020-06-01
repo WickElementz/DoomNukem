@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event_keyboard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:44 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/02 15:15:36 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 void		zoom(t_edit *edit)
 {
@@ -35,7 +35,6 @@ void		zoom(t_edit *edit)
 int			exit_hook_editor(t_edit *edit)
 {
 	mlx_destroy_image(edit->mlx_ptr, edit->img_ptr);
-	mlx_destroy_image(edit->mlx_ptr, edit->img_ptr2);
 	if (edit)
 		free(edit);
 	exit(0);

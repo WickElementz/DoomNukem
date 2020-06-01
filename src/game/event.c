@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/03/09 13:16:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:25:37 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 int			exit_hook(t_env *env)
 {
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr2);
-	mlx_destroy_image(env->mlx_ptr, env->img_ptr3);
 	free_env(env, 0);
 	return (0);
 }

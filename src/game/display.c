@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/02 13:02:55 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/25 18:06:11 by dgascon          ###   ########.fr       */
+/*   Created: 2020/05/28 12:01:09 by jominodi          #+#    #+#             */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 t_thread		*init_thread(t_env *env)
 {
@@ -48,25 +48,11 @@ void			display(t_env *env)
 {
 	char	*tmp;
 
-	check_status(env);
 	check_gunner(env);
-	if (env->player.corona != 0)
-		corona(env);
-	ray_multi_thread(env);
-	draw_hud(env);
-	if (env->door_id != 0)
-		door(env);
-	if (env->jump != 0)
-		jump(env);
-	if (env->crouch_id != 0)
-		crouch_animation(env);
-	print_hud(env, 4);
-	gun(env, 0);
+	if (env->win == 0 && env->player.life > 0)
+		check_animation(env);
+	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	if (env->gun.id != 0)
-		fire(env);
-	else if (env->reload.id != 0)
-		reload(env);
 	tmp = ft_itoa(env->player.stock);
 	if (env->win != 1 && env->player.life > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, tmp);

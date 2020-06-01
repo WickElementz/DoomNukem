@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_editor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:32 by jominodi          #+#    #+#             */
-/*   Updated: 2020/03/09 10:34:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 int		init_mlx_editor(t_edit *edit)
 {
@@ -22,10 +22,6 @@ int		init_mlx_editor(t_edit *edit)
 	if (!(edit->img_ptr = mlx_new_image(edit->mlx_ptr, 960, 600)))
 		return (-1);
 	edit->data_ptr = mlx_get_data_addr(edit->img_ptr, &edit->bpp,
-					&edit->sl, &edit->end);
-	if (!(edit->img_ptr2 = mlx_new_image(edit->mlx_ptr, 960, 600)))
-		return (-1);
-	edit->data_ptr2 = mlx_get_data_addr(edit->img_ptr2, &edit->bpp,
 					&edit->sl, &edit->end);
 	load_texture_editor(edit);
 	print_hud_editor(edit);

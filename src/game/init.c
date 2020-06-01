@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 09:53:57 by jominodi          #+#    #+#             */
-/*   Updated: 2020/05/25 17:57:53 by dgascon          ###   ########.fr       */
+/*   Updated: 2020/06/01 11:46:18 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom_nukem.h"
+#include "wolf3d.h"
 
 int		init_mlx_from_edit(t_env *env)
 {
@@ -18,14 +18,10 @@ int		init_mlx_from_edit(t_env *env)
 		return (-1);
 	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
-	env->img_ptr2 = env->img_ptr;
-	env->data_ptr2 = env->data_ptr;
-	env->img_ptr3 = env->img_ptr;
-	env->data_ptr3 = env->data_ptr;
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env, 64, 64);
-	print_hud(env, 4);
+	print_hud(env, 0);
 	gun(env, 0);
 	return (0);
 }
@@ -35,14 +31,12 @@ int		init_mlx(t_env *env)
 	if (!(env->mlx_ptr = mlx_init()))
 		return (-1);
 	if (!(env->win_ptr =
-		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Doom-Nukem")))
+		mlx_new_window(env->mlx_ptr, WIN_WIDTH, WIN_HEIGHT / 2, "Wolf3D")))
 		return (-1);
 	if (!(env->img_ptr = mlx_new_image(env->mlx_ptr, WIN_WIDTH, 600)))
 		return (-1);
 	env->data_ptr = mlx_get_data_addr(env->img_ptr, &env->bpp,
 					&env->size_line, &env->endian);
-	env->data_ptr2 = env->data_ptr;
-	env->data_ptr3 = env->data_ptr;
 	if (env->data_ptr == NULL)
 		return (-1);
 	load_texture(env, 64, 64);

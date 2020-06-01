@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/05/25 17:47:06 by dgascon          ###   ########.fr        #
+#    Updated: 2020/06/01 11:08:35 by jominodi         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= doom-nukem
+NAME		= wolf3d
 USER		= $(shell whoami)
 UNAME		:= $(shell uname)
 # MAC
@@ -38,6 +38,7 @@ GAME_N		= 	parsing.c \
 				init.c \
 				error.c \
 				bullet_and_life.c \
+				manage_mouse.c \
 				gun.c \
 				hud.c \
 				print.c \
@@ -52,6 +53,7 @@ GAME_N		= 	parsing.c \
 				damage.c \
 				tools.c \
 				tools2.c \
+				main.c \
 				gunner.c
 # fichiers sources de l'editeur de map
 EDIT_P		= src/editor
@@ -69,7 +71,7 @@ EDIT_N		= editor.c \
 				tools_editor.c
 # fichiers headers
 INC_P		= include/
-INC_N		= doom_nukem.h \
+INC_N		= wolf3d.h \
 				struct.h \
 				proto.h \
 				define.h
@@ -100,7 +102,7 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -o $(NAME) src/game/main.c $(OBJE) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
+	@$(GCC) -o $(NAME) $(OBJE) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true
