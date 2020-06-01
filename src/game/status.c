@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:07:19 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:48:16 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 14:28:26 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		check_status2(t_env *env, int x, int y)
 	{
 		env->sick = 1;
 		gun(env, 0);
-		print_hud(env, 4);
+		print_hud(env, 0);
 		env->coro_clock = 0;
 		env->player.corona = 1;
 		env->map[x][y].type = 'F';
