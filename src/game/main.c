@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 12:06:56 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/01 12:17:05 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ void	loop_mlx(t_env *env)
 	mlx_loop(env->mlx_ptr);
 }
 
-void    destroy_textures(t_env *env)
+void	destroy_textures(t_env *env)
 {
-    int i;
-    
-    i = -1;
-    while (++i < 13)
-        mlx_destroy_image(env->mlx_ptr, env->text[i].img);
-    i = -1;
-    while (++i < 4)
-        mlx_destroy_image(env->mlx_ptr, env->sprite[i].img);
-    i = -1;
-    while (++i < 8)
-        mlx_destroy_image(env->mlx_ptr, env->gun.spr[i].img);
-    i = -1;
-    while (++i < 6)
-        mlx_destroy_image(env->mlx_ptr, env->reload.spr[i].img);
+	int i;
+
+	i = -1;
+	while (++i < 13)
+		mlx_destroy_image(env->mlx_ptr, env->text[i].img);
+	i = -1;
+	while (++i < 4)
+		mlx_destroy_image(env->mlx_ptr, env->sprite[i].img);
+	i = -1;
+	while (++i < 8)
+		mlx_destroy_image(env->mlx_ptr, env->gun.spr[i].img);
+	i = -1;
+	while (++i < 6)
+		mlx_destroy_image(env->mlx_ptr, env->reload.spr[i].img);
 }
 
 void	free_env(t_env *env, int set)
