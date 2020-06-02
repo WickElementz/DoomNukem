@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/02 12:02:33 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void		top_right_button(int x, t_edit *edit)
 			save_map_editor(edit);
 	}
 	else if (x > 887 && x < 943)
-	{
-		free(edit);
-		exit(0);
-	}
+		exit_hook_editor(edit);
 }
 
 int			mouse_hook_editor(int key, int x, int y, t_edit *edit)

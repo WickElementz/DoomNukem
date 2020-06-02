@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/02 11:39:51 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,20 @@ void	loop_mlx_editor(t_edit *edit)
 
 void	editor(char *mode, char *file)
 {
-	t_edit	*edit;
+	t_edit	edit;
 
-	if (!(edit = malloc(sizeof(t_edit))))
-		error(3);
-	init_edit_info(edit);
-	if (init_mlx_editor(edit) < 0)
-	{
-		if (edit)
-			free(edit);
+	init_edit_info(&edit);
+	if (init_mlx_editor(&edit) < 0)
 		exit(0);
-	}
-	edit->filename = malloc(sizeof(char) * (ft_strlen(file) + 1));
-	edit->filename = file;
+	edit.filename = strdup(file);
 	if (ft_strcmp(mode, "create") == 0)
-		initialise_tab_editor(edit);
+		initialise_tab_editor(&edit);
 	else
 	{
-		fill_tab_editor(edit);
-		if (open_file_editor(edit, 0) == -1)
-			error_editor(edit, 1);
+		fill_tab_editor(&edit);
+		if (open_file_editor(&edit, 0) == -1)
+			error_editor(&edit, 1);
 	}
-	load_texture_editor(edit);
-	print_hud_editor(edit);
-	loop_mlx_editor(edit);
+	print_hud_editor(&edit);
+	loop_mlx_editor(&edit);
 }

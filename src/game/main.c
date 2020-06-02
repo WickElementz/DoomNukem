@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 12:17:05 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/02 10:15:48 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	free_env(t_env *env, int set)
 	destroy_textures(env);
 	if (set > 0 && set <= 4)
 		error(set);
+	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+	free(env->mlx_ptr);
 	exit(0);
 }
 
