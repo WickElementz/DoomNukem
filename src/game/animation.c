@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/03 15:36:44 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	corona(t_env *env)
 		env->coro_clock = 0;
 		env->cam.z = 32.0000;
 		gun(env, 0);
-		print_hud(env, 4);
+		print_hud(env, 0);
 	}
 }
 
