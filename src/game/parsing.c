@@ -6,13 +6,13 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/10 23:13:07 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		error_pars(t_env *env, int error)
+void		error_pars(int error)
 {
 	if (error == 1)
 		ft_putstr_fd("Specidied filed does not exist or can't be read.\n", 2);
@@ -25,7 +25,6 @@ void		error_pars(t_env *env, int error)
 		ft_putstr_fd("The file must be a 100x100 char and each line ", 2);
 		ft_putstr_fd("must be followed by a newline.\n", 2);
 	}
-	free(env);
 	exit(-1);
 }
 
@@ -67,19 +66,20 @@ void		parsing(char *filename, t_env *env, int fd)
 	i = -1;
 	if ((!((fd = open(filename, O_RDONLY)) > 1)) ||
 			((read(fd, &tmp, 0)) != 0))
-		error_pars(env, 1);
+		error_pars(1);
 	while ((tmp = get_next_line(fd, &line) > 0))
 	{
 		env->size_x = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-			error_pars(env, 2);
+			error_pars(2);
 		save_map(line, env, ++i);
 		line ? free(line) : 0;
+		env->size_x != 49 ? error_pars(4) : 0;
 	}
-	if (i > 49)
-		error_pars(env, 4);
+	if (i != 49)
+		error_pars(4);
 	if (env->num_door != env->num_key)
-		error_pars(env, 3);
+		error_pars(3);
 	env->link_dk = env->num_key;
 	close(fd);
 	check_map(env);
