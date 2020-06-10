@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/02 11:39:51 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 00:11:11 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ void	editor(char *mode, char *file)
 	t_edit	edit;
 
 	init_edit_info(&edit);
-	if (init_mlx_editor(&edit) < 0)
-		exit(0);
 	edit.filename = strdup(file);
 	if (ft_strcmp(mode, "create") == 0)
 		initialise_tab_editor(&edit);
@@ -98,8 +96,10 @@ void	editor(char *mode, char *file)
 	{
 		fill_tab_editor(&edit);
 		if (open_file_editor(&edit, 0) == -1)
-			error_editor(&edit, 1);
+			error_editor(1);
 	}
+	if (init_mlx_editor(&edit) < 0)
+		exit(0);
 	print_hud_editor(&edit);
 	loop_mlx_editor(&edit);
 }

@@ -6,13 +6,13 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 00:24:50 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		error_editor(t_edit *edit, int error)
+void		error_editor(int error)
 {
 	if (error == 1)
 		ft_putstr_fd("File does not exist or is invalid at some point.\n", 2);
@@ -25,8 +25,6 @@ void		error_editor(t_edit *edit, int error)
 		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
 		ft_putstr_fd("each line followed by a newline.\n", 2);
 	}
-	if (edit)
-		free(edit);
 	exit(-1);
 }
 
@@ -83,14 +81,15 @@ int			open_file_editor(t_edit *edit, int fd)
 	{
 		edit->size_y = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-			error_editor(edit, 2);
+			error_editor(2);
 		save_tab_editor(line, edit, ++i);
 		line ? free(line) : 0;
+		edit->size_y != 100 ? error_editor(4) : 0;
 	}
-	if (i > 49)
-		error_editor(edit, 4);
+	if (i != 49)
+		error_editor(4);
 	if (edit->num_door != edit->num_key)
-		error_editor(edit, 3);
+		error_editor(3);
 	edit->link_dk = (char)edit->num_key + 48;
 	close(fd);
 	return (1);

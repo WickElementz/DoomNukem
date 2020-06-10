@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/10 23:13:07 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 00:19:03 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		error_pars(int error)
 {
 	if (error == 1)
-		ft_putstr_fd("Specidied filed does not exist or can't be read.\n", 2);
+		ft_putstr_fd("Specified filed does not exist or can't be read.\n", 2);
 	else if (error == 2)
 		ft_putstr_fd("Invalid char in the map file.\n", 2);
 	else if (error == 3)
@@ -74,7 +74,7 @@ void		parsing(char *filename, t_env *env, int fd)
 			error_pars(2);
 		save_map(line, env, ++i);
 		line ? free(line) : 0;
-		env->size_x != 49 ? error_pars(4) : 0;
+		env->size_x != 100 ? error_pars(4) : 0;
 	}
 	if (i != 49)
 		error_pars(4);
