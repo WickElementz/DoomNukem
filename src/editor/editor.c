@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 00:11:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 15:04:24 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	editor(char *mode, char *file)
 	{
 		fill_tab_editor(&edit);
 		if (open_file_editor(&edit, 0) == -1)
-			error_editor(1);
+			error_editor(&edit, 1, -13);
 	}
 	if (init_mlx_editor(&edit) < 0)
 		exit(0);

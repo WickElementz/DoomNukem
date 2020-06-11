@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 00:08:06 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 15:02:47 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void			read_tab_editor(t_edit *edit);
 void			fill_tab_editor(t_edit *edit);
 void			check_map_editor(t_edit *edit);
 void			init_verif_value(t_verif *verif);
-void			error_editor(int error);
+void			error_editor(t_edit *edit, int error, int fd);
 void			remove_block(int o_x, int o_y, t_edit *edit);
 void			place_block(int o_x, int o_y, t_edit *edit);
 void			choose_block(int x, int y, t_edit *edit);

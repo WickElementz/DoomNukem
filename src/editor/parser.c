@@ -3,17 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 00:24:50 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 15:07:20 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		error_editor(int error)
+void		error_editor(t_edit *edit, int error, int fd)
 {
+	char *line;
+	
+	if (fd != -13)
+	{
+		while (get_next_line(fd, &line))
+			free(line);
+		close(fd);
+	}
 	if (error == 1)
 		ft_putstr_fd("File does not exist or is invalid at some point.\n", 2);
 	else if (error == 2)
@@ -25,6 +33,8 @@ void		error_editor(int error)
 		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
 		ft_putstr_fd("each line followed by a newline.\n", 2);
 	}
+	if (edit->filename)
+		free(edit->filename);
 	exit(-1);
 }
 
@@ -33,6 +43,8 @@ int			valid_char_new(char *line)
 	int i;
 
 	i = 0;
+	if (ft_strlen(line) != 100)
+		return (-1);
 	while (line[i])
 	{
 		if (line[i] != 'K' && line[i] != 'D' && line[i] != 'F' &&
@@ -65,6 +77,7 @@ void		save_tab_editor(char *line, t_edit *edit, int i)
 		y++;
 		x++;
 	}
+	free(line);
 }
 
 int			open_file_editor(t_edit *edit, int fd)
@@ -77,19 +90,21 @@ int			open_file_editor(t_edit *edit, int fd)
 	if ((!((fd = open(edit->filename, O_RDONLY)) > 1)) ||
 			((read(fd, &tmp, 0)) != 0))
 		return (-1);
-	while ((tmp = get_next_line(fd, &line) > 0))
+	while ((tmp = get_next_line(fd, &line)) > 0)
 	{
 		edit->size_y = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-			error_editor(2);
+		{
+			free(line);
+			error_editor(edit, 2, fd);
+		}
 		save_tab_editor(line, edit, ++i);
-		line ? free(line) : 0;
-		edit->size_y != 100 ? error_editor(4) : 0;
+		edit->size_y != 100 ? error_editor(edit, 4, fd) : 0;
 	}
 	if (i != 49)
-		error_editor(4);
+		error_editor(edit, 4, fd);
 	if (edit->num_door != edit->num_key)
-		error_editor(3);
+		error_editor(edit, 3, fd);
 	edit->link_dk = (char)edit->num_key + 48;
 	close(fd);
 	return (1);

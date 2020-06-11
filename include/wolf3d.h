@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:03:15 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 11:14:11 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 15:44:46 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@
 # include <stdlib.h>
 # include <math.h>
 # include <pthread.h>
+# include <errno.h>
 #endif

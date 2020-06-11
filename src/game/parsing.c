@@ -3,17 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 00:19:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/11 15:18:29 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		error_pars(int error)
+void		error_pars(int error, int fd)
 {
+	char *line;
+
+	if (fd != -13)
+	{
+		while (get_next_line(fd, &line))
+			free(line);
+		close(fd);
+	}
 	if (error == 1)
 		ft_putstr_fd("Specified filed does not exist or can't be read.\n", 2);
 	else if (error == 2)
@@ -66,20 +74,23 @@ void		parsing(char *filename, t_env *env, int fd)
 	i = -1;
 	if ((!((fd = open(filename, O_RDONLY)) > 1)) ||
 			((read(fd, &tmp, 0)) != 0))
-		error_pars(1);
+		error_pars(1, -13);
 	while ((tmp = get_next_line(fd, &line) > 0))
 	{
 		env->size_x = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-			error_pars(2);
+		{
+			free(line);
+			error_pars(2, fd);
+		}
 		save_map(line, env, ++i);
-		line ? free(line) : 0;
-		env->size_x != 100 ? error_pars(4) : 0;
+		free(line);
+		env->size_x != 100 ? error_pars(4, fd) : 0;
 	}
 	if (i != 49)
-		error_pars(4);
+		error_pars(4, fd);
 	if (env->num_door != env->num_key)
-		error_pars(3);
+		error_pars(3, fd);
 	env->link_dk = env->num_key;
 	close(fd);
 	check_map(env);
