@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 15:07:20 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/12 12:04:22 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int			valid_char_new(char *line)
 		return (-1);
 	while (line[i])
 	{
-		if (line[i] != 'K' && line[i] != 'D' && line[i] != 'F' &&
+		if (((line[i] != 'K' && line[i] != 'D' && line[i] != 'F' &&
 			line[i] != 'W' && line[i] != 'P' && line[i] != 'B' &&
 			line[i] != 'E' && line[i] != 'L' && line[i] != 'A' &&
-			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' &&
-			(line[i + 1] < 48 || line[i + 1] > 57) && line[i])
+			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' && i % 2 == 0) ||
+			(i % 2 == 1 && !ft_isdigit(line[i]))) && line[i])
 			return (-1);
-		i += 2;
+		i++;
 	}
 	return (0);
 }
