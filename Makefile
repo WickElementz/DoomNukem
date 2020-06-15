@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/06/01 11:08:35 by jominodi         ###   ########lyon.fr    #
+#    Updated: 2020/06/15 14:35:50 by raiko            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ endif
 ifeq ($(UNAME), Linux)
 MNLBX		= ./libmlx
 MNLBX_A		= $(MNLBX)/libmlx_Linux.a
-FRKS 		=  libmlx/libmlx_Linux.a `gnustep-config --objc-flags` -lgnustep-base -lGL -lXext -lX11 -lm
+FRKS 		=  -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
+
 endif
 # fichiers sources du jeu
 GAME_P		= src/game
@@ -102,7 +103,7 @@ START		= $(BOLD)$(BACK_GR)$(WHITE)[START]\c
 DONE		= $(BOLD)$(BACK_GR)$(WHITE)[DONE]
 all : $(NAME)
 $(NAME): $(OBJS) $(OBJE) $(MNLBX_A) $(LIBFT_A)
-	@$(GCC) -o $(NAME) $(OBJE) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
+	@$(GCC) -o $(NAME) $(OBJE) $(OBJS) $(FRKS)
 	@echo "$(DONE)"
 $(OBJ_P_EDIT)/%.o: $(EDIT_P)/%.c $(INCS)
 	@mkdir $(OBJ_P_EDIT) 2> /dev/null || true
