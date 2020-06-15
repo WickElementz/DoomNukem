@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   tools_editor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 13:24:48 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	verif_path(char *file)
+{
+	char	str[5];
+	int		i;
+
+	i = -1;
+	while(++i < 4 && file[i])
+		str[i] = file[i];
+	str[4] = '\0';
+	if (ft_strcmp(str, "map/") != 0)
+	{
+		ft_putstr("The map's path does not work. ");
+		ft_putstr("Please, use the 'map/' path with the edit/create option instead.\n");
+		exit(-1);
+	}
+}
 
 char	*ctoa(t_edit *edit, int i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:41:02 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 13:07:36 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	error(int error)
 	}
 }
 
-void	error_valid_map(t_env *env, int error)
+void	error_valid_map(int error)
 {
 	if (error == 1)
 		ft_putstr_fd(ERR_VALID_DOOR, 2);
@@ -66,7 +66,6 @@ void	error_valid_map(t_env *env, int error)
 	else if (error == 7)
 		ft_putstr_fd(ERR_SUP_DK, 2);
 	ft_putchar_fd('\n', 2);
-	free(env);
 	exit(-1);
 }
 

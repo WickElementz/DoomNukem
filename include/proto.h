@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 15:02:47 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 13:24:55 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			fire(t_env *env);
 void			display(t_env *env);
 void			check_status(t_env *env);
 void			check_map(t_env *env);
-void			error_valid_map(t_env *env, int error);
+void			error_valid_map(int error);
 void			loop_mlx(t_env *env);
 void			set_spawn(t_env *env, int x, int y);
 void			draw_column(t_env *env, t_ray *ray, int xy[3]);
@@ -105,6 +105,7 @@ int				mouse_hook_editor(int key, int x, int y, t_edit *edit);
 int				init_mlx_editor(t_edit *edit);
 int				valid_char_new(char *line);
 int				open_file_editor(t_edit *edit, int fd);
+void			verif_path(char *file);
 void			editor(char *mode, char *file);
 void			init_edit_info(t_edit *edit);
 void			initialise_tab_editor(t_edit *edit);

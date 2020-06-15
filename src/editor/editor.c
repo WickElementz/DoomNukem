@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 15:04:24 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 13:25:22 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	editor(char *mode, char *file)
 		if (open_file_editor(&edit, 0) == -1)
 			error_editor(&edit, 1, -13);
 	}
+	verif_path(file);
 	if (init_mlx_editor(&edit) < 0)
 		exit(0);
 	print_hud_editor(&edit);

@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:00:33 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/02 11:00:29 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 13:06:22 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ void	editor_to_game(t_edit *edit)
 		init_mlx_from_edit(&env);
 		save_edit_to_env(edit, &env);
 		loop_mlx(&env);
-		free(edit);
 	}
 }
