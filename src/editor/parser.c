@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 15:27:02 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 15:32:02 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		error_editor(t_edit *edit, int error, int fd)
 {
 	char *line;
-	
+
 	if (fd != -13)
 	{
 		while (get_next_line(fd, &line))
@@ -55,10 +55,10 @@ int			valid_char_new(char *line)
 			line[i] != 'E' && line[i] != 'L' && line[i] != 'A' &&
 			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' && i % 2 == 0) ||
 			(i % 2 == 1 && !ft_isdigit(line[i]))) && line[i])
-			{
-				free(line);
-				return (-1);
-			}
+		{
+			free(line);
+			return (-1);
+		}
 		i++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_editor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 13:24:48 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 15:33:16 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	verif_path(char *file)
 	int		i;
 
 	i = -1;
-	while(++i < 4 && file[i])
+	while (++i < 4 && file[i])
 		str[i] = file[i];
 	str[4] = '\0';
 	if (ft_strcmp(str, "map/") != 0)
 	{
 		ft_putstr("The map's path does not work. ");
-		ft_putstr("Please, use the 'map/' path with the edit/create option instead.\n");
+		ft_putstr("Please, use the 'map/' path with the edit/create \
+		option instead.\n");
 		exit(-1);
 	}
 }
