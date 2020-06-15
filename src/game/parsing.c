@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 15:18:29 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 15:10:37 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,7 @@ void		parsing(char *filename, t_env *env, int fd)
 	{
 		env->size_x = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-		{
-			free(line);
 			error_pars(2, fd);
-		}
 		save_map(line, env, ++i);
 		free(line);
 		env->size_x != 100 ? error_pars(4, fd) : 0;

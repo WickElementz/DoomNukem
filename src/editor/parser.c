@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 13:05:55 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 15:27:02 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int			valid_char_new(char *line)
 
 	i = 0;
 	if (ft_strlen(line) != 100)
+	{
+		free(line);
 		return (-1);
+	}
 	while (line[i])
 	{
 		if (((line[i] != 'K' && line[i] != 'D' && line[i] != 'F' &&
@@ -52,7 +55,10 @@ int			valid_char_new(char *line)
 			line[i] != 'E' && line[i] != 'L' && line[i] != 'A' &&
 			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' && i % 2 == 0) ||
 			(i % 2 == 1 && !ft_isdigit(line[i]))) && line[i])
-			return (-1);
+			{
+				free(line);
+				return (-1);
+			}
 		i++;
 	}
 	return (0);
@@ -94,10 +100,7 @@ int			open_file_editor(t_edit *edit, int fd)
 	{
 		edit->size_y = ft_strlen(line);
 		if (valid_char_new(line) == -1)
-		{
-			free(line);
 			error_editor(edit, 2, fd);
-		}
 		save_tab_editor(line, edit, ++i);
 		edit->size_y != 100 ? error_editor(edit, 4, fd) : 0;
 	}
