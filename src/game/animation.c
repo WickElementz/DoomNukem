@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/03 15:36:44 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 16:38:09 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	corona(t_env *env)
 	t = clock();
 	if (env->coro_clock == 0 && (env->coro_clock = 1))
 		env->t2 = t;
-	if (env->t2 + 100000000 > t)
+	if (env->t2 + 50000000 > t)
 		env->sick = 1;
 	else
 	{

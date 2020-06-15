@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalabidi <yalabidi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/05/05 14:58:00 by yalabidi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 16:57:29 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@
 ** Erreur - Editeur
 */
 
-# define ERR_VALID_DOOR "La porte doit etre entoure de 2 murs seulement"
-# define ERR_NUM_DK "Le nombre de clefs doit etre egal au nombre de porte"
-# define ERR_LINK_DK "Les portes et / ou clefs ne sont pas link correctement"
-# define ERR_START "Il doit y'avoir un point de depart"
-# define ERR_END "Il doit y'avoir un point d'arrivee"
-# define ERR_WALL "La map doit etre entouree de murs"
-# define ERR_WALL2 " et ou avoir une taille de 50x50"
-# define ERR_SUP_DK "Il ne doit y'avoir que 10 portes / clefs maximum"
+# define ERR_VALID_DOOR "A door must be surrounded by 2 opposite walls."
+# define ERR_NUM_DK "There must be as much keys as doors."
+# define ERR_LINK_DK "At least one door or one key needs to be linked."
+# define ERR_START "There must be a beginning point."
+# define ERR_END "There must be a ending point."
+# define ERR_WALL "The map must be surrounded by walls, at every cardinal "
+# define ERR_WALL2 "points and must be a 50x50 square."
+# define ERR_SUP_DK "There must be a maximum of 10 doors and keys."
 
 # if defined __linux__
 #  define NONE      0

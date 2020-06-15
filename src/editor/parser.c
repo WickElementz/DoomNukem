@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 15:32:02 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 16:57:14 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		error_editor(t_edit *edit, int error, int fd)
 		ft_putstr_fd("Numbers of doors and keys are not equals.\n", 2);
 	else if (error == 4)
 	{
-		ft_putstr_fd("The map file must be a 100x100 characters,\n", 2);
+		ft_putstr_fd("The map file must be a 100x50 characters,\n", 2);
 		ft_putstr_fd("each line followed by a newline.\n", 2);
 	}
 	if (edit->filename)

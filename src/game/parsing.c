@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:16:17 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 15:30:28 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 17:02:04 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		error_pars(int error, int fd)
 		ft_putstr_fd("There must be at least as much keys than doors.\n", 2);
 	else if (error == 4)
 	{
-		ft_putstr_fd("The file must be a 100x100 char and each line ", 2);
+		ft_putstr_fd("The file must be a 100x50 char and each line ", 2);
 		ft_putstr_fd("must be followed by a newline.\n", 2);
 	}
 	exit(-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_editor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 15:33:16 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/15 17:01:26 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	verif_path(char *file)
 	str[4] = '\0';
 	if (ft_strcmp(str, "map/") != 0)
 	{
-		ft_putstr("The map's path does not work. ");
-		ft_putstr("Please, use the 'map/' path with the edit/create \
-		option instead.\n");
+		ft_putstr("The map's path does not work. Please, use the");
+		ft_putstr(" 'map/' path with the edit/create option instead.\n");
 		exit(-1);
 	}
 }
