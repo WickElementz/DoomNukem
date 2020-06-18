@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/18 12:39:39 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/18 18:16:22 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
 void			check_gunner(t_env *env);
+void			setup_door_v(t_env *env, float xy[4], float ang, t_ray **sprite);
+void			setup_door_h(t_env *env, float xy[4], float ang, t_ray **sprite);
 void			gunner_fire(t_env *env);
 void			walkable_block_x(double n[2], t_block map[50][50], t_pos *cam);
 void			walkable_block_z(double n[2], t_block map[50][50], t_pos *cam);
@@ -86,8 +88,10 @@ unsigned int	add_sprite2(t_env *env, t_ray *ray, unsigned int color);
 t_clr			gclr(unsigned int color, int a);
 t_ray			*add_pane(float xy[4], t_env *env, float ang, int bol);
 t_ray			*create_spr(float xy[4], t_env *env, float ang);
-t_ray			*add_doors(float xy[4], t_env *env, float ang, int bol);
-t_ray			*add_doors2(float xy[4], t_env *env, float ang, int bol);
+t_ray			*add_doors_h(float xy[4], t_env *env, float ang);
+t_ray			*add_doors_h2(float xy[4], t_env *env, float ang);
+t_ray			*add_doors_v(float xy[4], t_env *env, float ang);
+t_ray			*add_doors_v2(float xy[4], t_env *env, float ang);
 t_clr			add_color(t_env *env, t_ray *ray, int xy[3]);
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray			*create_ray(float dist, float mod, float id);
