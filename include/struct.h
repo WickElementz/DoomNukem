@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 12:03:03 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/18 11:52:04 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ typedef	struct		s_env
 	t_block			map[50][50];
 	t_pos			cam;
 	t_event			ev;
-	t_texture		text[13];
+	t_texture		text[14];
 	t_sprite		sprite[4];
 }					t_env;
 

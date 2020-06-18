@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 13:24:55 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/18 12:39:39 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int				unhold_key(int key, t_env *env);
 int				mouse_move(int x, int y, t_env *env);
 int				mouse_hook(int click, int x, int y, t_env *env);
 int				check_type(float xy[2], t_block map[50][50], char c);
+int				check_key(char *key, char ref);
 int				exit_hook(t_env *env);
 int				get_spr_id(char c);
 int				init_mlx_from_edit(t_env *env);
@@ -86,6 +87,7 @@ t_clr			gclr(unsigned int color, int a);
 t_ray			*add_pane(float xy[4], t_env *env, float ang, int bol);
 t_ray			*create_spr(float xy[4], t_env *env, float ang);
 t_ray			*add_doors(float xy[4], t_env *env, float ang, int bol);
+t_ray			*add_doors2(float xy[4], t_env *env, float ang, int bol);
 t_clr			add_color(t_env *env, t_ray *ray, int xy[3]);
 t_clr			add_sprite(t_env *env, t_ray *ray, int xy[3]);
 t_ray			*create_ray(float dist, float mod, float id);

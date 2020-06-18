@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/18 17:39:51 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
 		if (check_type(xy, env->map, 'D'))
+		{
+			if (check_key(env->player.key, env->map[(int)xy[1] / 64]
+				[(int)xy[0] / 64].id) == 0)
+			{
+				sprite->next = add_doors2(xy, env, ang, 0);
+				sprite = sprite->next;
+			}
 			sprite->next = add_doors(xy, env, ang, 0);
+		}
 		if (check_type(xy, env->map, 'Y'))
 			sprite->next = create_spr(xy, env, ang);
 		if (check_type(xy, env->map, 'P'))
@@ -54,7 +62,15 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
 	{
 		if (check_type(xy, env->map, 'D'))
+		{
+			if (check_key(env->player.key, env->map[(int)xy[1] / 64]
+				[(int)xy[0] / 64].id) == 0)
+			{
+				sprite->next = add_doors2(xy, env, ang, 1);
+				sprite = sprite->next;
+			}
 			sprite->next = add_doors(xy, env, ang, 1);
+		}
 		if (check_type(xy, env->map, 'Y'))
 			sprite->next = create_spr(xy, env, ang);
 		if (check_type(xy, env->map, 'P'))
@@ -120,6 +136,7 @@ void	*raycasting(void *data)
 		distance = closest_wall(thread->env, ang);
 		xy[0] = ray;
 		xy[1] = 0;
+		
 		draw_column(thread->env, distance, xy);
 		free_listr(distance);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/01 12:03:25 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/18 12:14:10 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ static void	load_texture3(t_env *env, int a, int b)
 		"sprites/gunner.xpm", &a, &b);
 	env->text[12].data = mlx_get_data_addr(env->text[12].img,
 		&env->text[12].bpp, &env->text[12].sl, &env->text[12].end);
+	env->text[13].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/rondvert.xpm", &a, &b);
+	env->text[13].data = mlx_get_data_addr(env->text[13].img,
+		&env->text[13].bpp, &env->text[13].sl, &env->text[13].end);
 	a = 6;
 	b = 20;
 	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
