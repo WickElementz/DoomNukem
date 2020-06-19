@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/02 12:02:33 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:59:32 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,21 @@ void		top_right_button(int x, t_edit *edit)
 		exit_hook_editor(edit);
 }
 
+void		change_wall(t_edit *edit, int x, int y)
+{
+	if (edit->map[x][y].id >= '0' && edit->map[x][y].id < '3')
+		edit->map[x][y].id += 1;
+	else if (edit->map[x][y].id == '3')
+		edit->map[x][y].id = '0';
+}
+
 int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 {
+	int	mapx;
+	int	mapy;
+
+	mapx = (x - 230) / edit->zoom + edit->mapx;
+	mapy = (y - 50) / edit->zoom + edit->mapy;
 	if (key == 1 && y > 82 && y < 515 && ((x > 15 && x < 185) ||
 			(x > 773 && x < 943)))
 		choose_block(x, y, edit);
@@ -39,8 +52,13 @@ int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 	if (key == 3 && x > 229 && x < 731 && y > 49 && y < 551)
 		remove_block(x, y, edit);
 	if (key == 2)
-		link_door_key_editor(edit, (x - 230) / edit->zoom + edit->mapx,
-						(y - 50) / edit->zoom + edit->mapy);
+	{
+		if (edit->map[mapx][mapy].type == 'K' ||
+			edit->map[mapx][mapy].type == 'D')
+			link_door_key_editor(edit, mapx, mapy);
+		else if (edit->map[mapx][mapy].type == 'W')
+			change_wall(edit, mapx, mapy);
+	}
 	display_editor(edit);
 	return (0);
 }
