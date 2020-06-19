@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:03:54 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 21:13:43 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,32 @@ int		check_type(float xy[2], t_block map[50][50], char c)
 	return (0);
 }
 
-void	set_wall_h(float ang, t_pos cam, float xy[4], t_ray *hor)
+void	set_wall_h(float ang, t_env *env, float xy[4], t_ray *hor)
 {
-	hor->id = (ang < 180) ? 0 : 2;
-	hor->dist = sqrt(pow(cam.y - (int)xy[0], 2) + pow(cam.x -
-		(int)xy[1], 2)) * cos((ang - cam.angle) * RAD);
+	int i;
+
+	if ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
+		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
+		i = ft_atoi(&(env->map[(int)xy[1] / 64][(int)xy[0] / 64].id));
+	else
+		i = 0;
+	hor->id = (float)i;
+	hor->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
 	hor->mod = (int)xy[0] % 64;
 }
 
-void	set_wall_v(float ang, t_pos cam, float xy[4], t_ray *ver)
+void	set_wall_v(float ang, t_env *env, float xy[4], t_ray *ver)
 {
-	ver->id = (ang < 90 || ang > 270) ? 1 : 3;
-	ver->dist = sqrt(pow(cam.y - (int)xy[0], 2) + pow(cam.x -
-		(int)xy[1], 2)) * cos((ang - cam.angle) * RAD);
+	int i;
+
+	if ((int)xy[0] / 64 >= 0 && (int)xy[0] / 64 < SIZE_MAP &&
+		(int)xy[1] / 64 >= 0 && (int)xy[1] / 64 < SIZE_MAP)
+		i = ft_atoi(&(env->map[(int)xy[1] / 64][(int)xy[0] / 64].id));
+	else
+		i = 0;
+	ver->id = (float)i;
+	ver->dist = sqrt(pow(env->cam.y - (int)xy[0], 2) + pow(env->cam.x -
+		(int)xy[1], 2)) * cos((ang - env->cam.angle) * RAD);
 	ver->mod = (int)xy[1] % 64;
 }

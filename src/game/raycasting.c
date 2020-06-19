@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/19 16:01:09 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:49:58 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ray	*find_ver_wall(t_env *env, float ang)
 		xy[1] += xy[3];
 		xy[0] += xy[2];
 	}
-	set_wall_v(ang, env->cam, xy, ver);
+	set_wall_v(ang, env, xy, ver);
 	return (ver);
 }
 
@@ -66,7 +66,7 @@ t_ray	*find_hor_wall(t_env *env, float ang)
 		xy[1] += xy[3];
 		xy[0] += xy[2];
 	}
-	set_wall_h(ang, env->cam, xy, hor);
+	set_wall_h(ang, env, xy, hor);
 	return (hor);
 }
 

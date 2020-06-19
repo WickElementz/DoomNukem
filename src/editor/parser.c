@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:01:00 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 16:57:14 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 21:21:47 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int			valid_char_new(char *line)
 			line[i] != 'W' && line[i] != 'P' && line[i] != 'B' &&
 			line[i] != 'E' && line[i] != 'L' && line[i] != 'A' &&
 			line[i] != 'G' && line[i] != 'Z' && line[i] != 'C' && i % 2 == 0) ||
-			(i % 2 == 1 && !ft_isdigit(line[i]))) && line[i])
+			(i % 2 == 1 && !ft_isdigit(line[i])) || (i % 2 == 1 && line[i - 1]
+			== 'W' && ft_atoi(&line[i]) > 3)) && line[i])
 		{
 			free(line);
 			return (-1);

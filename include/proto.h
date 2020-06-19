@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 16:02:08 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:52:52 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void			open_door(t_env *env);
 void			door(t_env *env);
 void			jump(t_env *env);
 void			crouch_animation(t_env *env);
-void			set_wall_h(float ang, t_pos cam, float xy[4], t_ray *hor);
-void			set_wall_v(float ang, t_pos cam, float xy[4], t_ray *ver);
+void			set_wall_h(float ang, t_env *env, float xy[4], t_ray *hor);
+void			set_wall_v(float ang, t_env *env, float xy[4], t_ray *ver);
 void			corona(t_env *env);
 void			print_last_screen(t_env *env, int id);
 void			give_xy_value_ver(float (*xy)[2], float ang, t_env *env);
