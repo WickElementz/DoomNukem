@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/18 18:16:22 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 16:02:08 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
 void			check_gunner(t_env *env);
-void			setup_door_v(t_env *env, float xy[4], float ang, t_ray **sprite);
-void			setup_door_h(t_env *env, float xy[4], float ang, t_ray **sprite);
+void			setup_door_v(t_env *env, float xy[4], float ang, t_ray **spr);
+void			setup_door_h(t_env *env, float xy[4], float ang, t_ray **spr);
 void			gunner_fire(t_env *env);
 void			walkable_block_x(double n[2], t_block map[50][50], t_pos *cam);
 void			walkable_block_z(double n[2], t_block map[50][50], t_pos *cam);
@@ -80,6 +80,7 @@ void			set_xy(t_pos cam, float ang, float (*xy)[4], int bol);
 void			*raycasting(void	*data);
 void			deal_damage(t_env *env);
 void			give_xy_value_hor(float (*xy)[2], float ang, t_env *env);
+void			display_key(t_env *env);
 float			give_value(float angle, int dif);
 float			right_angle(float ang, float fang);
 unsigned int	add_color2(t_env *env, t_ray *ray, int xy[3], float (*cs)[2]);

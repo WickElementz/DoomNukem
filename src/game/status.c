@@ -6,17 +6,36 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:07:19 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 14:28:26 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 16:00:12 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void		display_key(t_env *env)
+{
+	clock_t	t_key;
+
+	t_key = clock();
+	if (env->clock_key == 0 && (env->clock_key = 1))
+		env->t4 = t_key;
+	if (env->t4 + 20000000 > t_key)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 300, 550, 0x00FFFF,
+			"You grabbed a keycard, it has been added to your inventory.");
+	else
+	{
+		env->clock_key = 0;
+		env->player.display_key = 0;
+	}
+}
 
 void		check_status2(t_env *env, int x, int y)
 {
 	if (env->map[x][y].type == 'K')
 	{
 		env->player.key[env->player.keyid] = env->map[x][y].id;
+		env->clock_key = 0;
+		env->player.display_key = 1;
 		env->map[x][y].type = 'F';
 		env->player.keyid++;
 	}

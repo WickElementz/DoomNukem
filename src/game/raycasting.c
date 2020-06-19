@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:51:12 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/18 18:16:38 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 16:01:09 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void	*raycasting(void *data)
 		distance = closest_wall(thread->env, ang);
 		xy[0] = ray;
 		xy[1] = 0;
-		
 		draw_column(thread->env, distance, xy);
 		free_listr(distance);
 	}

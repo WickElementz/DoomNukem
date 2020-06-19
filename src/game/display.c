@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 12:01:09 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/02 10:24:22 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 15:47:52 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void			display(t_env *env)
 	check_status(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	tmp = ft_itoa(env->player.stock);
+	if (env->player.display_key != 0)
+		display_key(env);
 	if (env->win != 1 && env->player.life > 0)
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 860, 75, 0xD1E7C3, tmp);
 	free(tmp);
