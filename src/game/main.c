@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/02 10:15:48 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 21:42:40 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	destroy_textures(t_env *env)
 	int i;
 
 	i = -1;
-	while (++i < 13)
+	while (++i < 14)
 		mlx_destroy_image(env->mlx_ptr, env->text[i].img);
 	i = -1;
 	while (++i < 4)

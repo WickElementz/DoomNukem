@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 12:06:15 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 21:35:48 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void		event_key2(t_env *env)
 	if (env->ev.s_left == 1)
 		anglemove(&env->cam, -SENSI);
 	if (env->ev.uparrow == 1 && (env->up > 0))
-		env->up -= 5;
+		env->up -= 10;
 	if (env->ev.downarrow == 1 && (env->up < 600))
-		env->up += 5;
+		env->up += 10;
 	if (env->ev.hp_down == 1)
 	{
 		env->player.life -= 10;

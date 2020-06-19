@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_mouse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:49:17 by kanne             #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 21:36:35 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ void			event_mouse(t_env *env)
 {
 	if (env->ev.m_right == 0)
 	{
-		anglemove(&env->cam, SENSI);
+		anglemove(&env->cam, SENSIM);
 		env->ev.m_right = 1;
 	}
 	if (env->ev.m_left == 0)
 	{
-		anglemove(&env->cam, -SENSI);
+		anglemove(&env->cam, -SENSIM);
 		env->ev.m_left = 1;
 	}
 	if (env->ev.m_up == 0 && env->up > 0)
 	{
-		env->up -= 20;
+		env->up -= 5;
 		env->ev.m_up = 1;
 	}
 	if (env->ev.m_down == 0 && env->up < 600)
 	{
-		env->up += 20;
+		env->up += 5;
 		env->ev.m_down = 1;
 	}
 }
