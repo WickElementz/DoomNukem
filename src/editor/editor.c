@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 13:25:22 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:59:27 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	print_key_door_link(t_edit *edit)
 {
 	int		x;
 	int		y;
-	char	*str;
+	char	str[2];
 
 	x = edit->mapx;
-	str = malloc(sizeof(char) * 2);
 	str[1] = '\0';
 	while ((x - edit->mapx) < 20 && edit->zoom == 25)
 	{
 		y = edit->mapy;
 		while ((y - edit->mapy) < 20 && edit->zoom == 25)
 		{
-			if ((edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K')
+			if ((edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K' ||
+				edit->map[x][y].type == 'W')
 				&& edit->map[x][y].id >= '0' && edit->map[x][y].id <= '9' &&
 					edit->zoom == 25)
 			{
@@ -63,7 +63,6 @@ void	print_key_door_link(t_edit *edit)
 		}
 		x++;
 	}
-	free(str);
 }
 
 void	display_editor(t_edit *edit)
