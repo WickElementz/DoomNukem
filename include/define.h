@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:31:43 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/19 21:33:58 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/20 11:33:34 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define WIN_HEIGHT 1200.0
 # define HORIZON    100
 # define SCREEN     831.0
-# define SENSIM      1
+# define SENSIM     1
 # define SENSI      5
 # define SIZE_MAP   50
 # define THREADS    8
