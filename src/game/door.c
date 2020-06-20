@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:32:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 16:03:16 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/20 10:41:02 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ t_ray	*add_doors_v2(float xy[4], t_env *env, float ang)
 void	setup_door_h(t_env *env, float xy[4], float ang, t_ray **spr)
 {
 	if (check_key(env->player.key, env->map[(int)xy[1] / 64]
-		[(int)xy[0] / 64].id) == 0)
+		[(int)xy[0] / 64].id) == 0 || !ft_isdigit(env->map[(int)xy[1] / 64]
+		[(int)xy[0] / 64].id))
 	{
 		(*spr)->next = add_doors_h2(xy, env, ang);
 		*spr = (*spr)->next;
@@ -119,7 +120,8 @@ void	setup_door_h(t_env *env, float xy[4], float ang, t_ray **spr)
 void	setup_door_v(t_env *env, float xy[4], float ang, t_ray **spr)
 {
 	if (check_key(env->player.key, env->map[(int)xy[1] / 64]
-		[(int)xy[0] / 64].id) == 0)
+		[(int)xy[0] / 64].id) == 0 || !ft_isdigit(env->map[(int)xy[1] / 64]
+		[(int)xy[0] / 64].id))
 	{
 		(*spr)->next = add_doors_v2(xy, env, ang);
 		*spr = (*spr)->next;
