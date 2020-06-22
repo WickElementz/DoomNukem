@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/01 11:02:51 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 21:58:54 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ int				get_spr_id(char c)
 		return (8);
 	if (c == 'C')
 		return (11);
-	if (c == 'Z')
-		return (0);
 	if (c == 'K')
 		return (10);
 	else

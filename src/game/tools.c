@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:03:54 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 21:13:43 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 22:03:22 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		check_type(float xy[2], t_block map[50][50], char c)
 		(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 		return (1);
 	else if (c == 'Y' && (t == 'L' || t == 'A' || t == 'C' ||
-		t == 'K' || t == 'Z' || t == 'G'))
+		t == 'K' || t == 'G'))
 		return (1);
 	else if (c == 'P' && t == 'P')
 		return (1);
