@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 02:31:35 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 12:16:27 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ void	door(t_env *env)
 
 void	jump(t_env *env)
 {
-	static short i = 0;
-
 	if (env->player.corona == 0)
 	{
-		if (i > 10)
+		if (env->jump_id > 10)
 			env->cam.z -= 3;
 		else
 			env->cam.z += 3;
-		i++;
+		env->jump_id++;
 		if (env->cam.z == 32)
 		{
-			i = 0;
+			env->jump_id = 0;
 			env->jump = 0;
 		}
 	}
@@ -49,7 +47,7 @@ void	corona(t_env *env)
 	t = clock();
 	if (env->coro_clock == 0 && (env->coro_clock = 1))
 		env->t2 = t;
-	if (env->t2 + 50000000 > t)
+	if (env->t2 + 9000000 > t)
 		env->sick = 1;
 	else
 	{
@@ -58,6 +56,7 @@ void	corona(t_env *env)
 		env->coro_clock = 0;
 		env->crouch_id = 0;
 		env->jump = 0;
+		env->jump_id = 0;
 		env->cam.z = 32.0000;
 		gun(env, 0);
 		print_hud(env, 0);

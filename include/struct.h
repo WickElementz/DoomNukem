@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/23 02:21:50 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 12:14:56 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,8 @@ typedef	struct		s_env
 	short			win;
 	short			gunner_id;
 	short			after_coro;
+	short			clock_screen;
+	short			jump_id;
 	float			cone;
 	float			xa;
 	float			ya;
@@ -237,7 +239,6 @@ typedef	struct		s_env
 	clock_t			t4;
 	clock_t			t5;
 	clock_t			t6;
-	short			clock_screen;
 	t_player		player;
 	t_reload		reload;
 	t_gun			gun;
