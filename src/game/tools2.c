@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 11:36:57 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 11:43:20 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	break_glass(t_env *env, t_ray hor, t_ray ver)
 		return ;
 	if (ver.dist <= hor.dist)
 	{
-		if (env->map[ver.mapy][ver.mapx].type == 'P')
+		if (env->map[ver.mapy][ver.mapx].type == 'P' && ver.dist < 500)
 			env->map[ver.mapy][ver.mapx].type = 'F';
 		if (env->map[ver.mapy][ver.mapx].type == 'G')
 		{
@@ -86,7 +86,7 @@ void	break_glass(t_env *env, t_ray hor, t_ray ver)
 	}
 	if (hor.dist <= ver.dist)
 	{
-		if (env->map[hor.mapy][hor.mapx].type == 'P')
+		if (env->map[hor.mapy][hor.mapx].type == 'P' && hor.dist < 500)
 			env->map[hor.mapy][hor.mapx].type = 'F';
 		if (env->map[hor.mapy][hor.mapx].type == 'G')
 		{
