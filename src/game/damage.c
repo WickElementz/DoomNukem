@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   damage.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/23 09:51:36 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 10:26:04 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_ray		if_gunner(t_env *env, float xy[2])
 						(int)xy[1], 2));
 	ret.mapx = (int)xy[0] / 64;
 	ret.mapy = (int)xy[1] / 64;
+	ret.type = env->map[(int)xy[1] / 64][(int)xy[0] / 64].type;
 	return (ret);
 }
 
@@ -39,7 +40,8 @@ t_ray		find_hor_gun(t_env *env, double angle)
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 			break ;
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
+		env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
 			return (if_gunner(env, xy));
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
@@ -64,7 +66,8 @@ t_ray		find_ver_gun(t_env *env, double angle)
 			((int)xy[0] / 64 < 0 && (int)xy[0] / 64 >= SIZE_MAP &&
 			(int)xy[1] / 64 < 0 && (int)xy[1] / 64 >= SIZE_MAP))
 			break ;
-		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G')
+		if (env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'G' ||
+		env->map[(int)xy[1] / 64][(int)xy[0] / 64].type == 'P')
 			return (if_gunner(env, xy));
 		xy[1] += xaya[1];
 		xy[0] += xaya[0];
@@ -101,7 +104,7 @@ void		deal_damage(t_env *env)
 		ver = find_ver_gun(env, env->cam.angle);
 	else
 		ver.dist = 2147483648;
-	if (ver.dist == 2147483648 && hor.dist == 2147483648)
+	if ((del_glass(env, hor, ver)) == 0)
 		return ;
 	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
 	{

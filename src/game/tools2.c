@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 10:26:50 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,15 @@ void	give_xy_value_hor(float (*xy)[2], float ang, t_env *env)
 	(*xy)[0] = (ang < 180) ?
 		env->cam.y - (env->cam.x - (*xy)[1]) / tan(ang * RAD) :
 			env->cam.y - (env->cam.x - ((*xy)[1] + 1)) / tan(ang * RAD);
+}
+
+int		del_glass(t_env *env, t_ray hor, t_ray ver)
+{
+	if (ver.dist == 2147483648 && hor.dist == 2147483648)
+		return (0);
+	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'P')
+		env->map[ver.mapy][ver.mapx].type = 'F';
+	else if (env->map[hor.mapy][hor.mapx].type == 'P')
+		env->map[hor.mapy][hor.mapx].type = 'F';
+	return (1);
 }
