@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   doom_nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 11:03:15 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/11 15:44:46 by raiko            ###   ########lyon.fr   */
+/*   Created: 2020/06/22 14:23:32 by videloff          #+#    #+#             */
+/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_NUKEM_H
+# define DOOM_NUKEM_H
 
 /*
 **  *****************

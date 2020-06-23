@@ -6,11 +6,11 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:00:59 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 16:38:09 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:31:35 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	door(t_env *env)
 {
@@ -56,6 +56,8 @@ void	corona(t_env *env)
 		env->player.corona = 0;
 		env->sick = 0;
 		env->coro_clock = 0;
+		env->crouch_id = 0;
+		env->jump = 0;
 		env->cam.z = 32.0000;
 		gun(env, 0);
 		print_hud(env, 0);
@@ -77,5 +79,31 @@ void	crouch_animation(t_env *env)
 			env->cam.speed = 6;
 			env->crouch_id = 0;
 		}
+	}
+}
+
+void	display_screen(t_env *env)
+{
+	clock_t	t_screen;
+	int		x;
+	int		y;
+
+	t_screen = clock();
+	x = 0;
+	if (env->clock_screen == 0 && (env->clock_screen = 1))
+		env->t5 = t_screen;
+	if (env->t5 + 100000 > t_screen)
+	{
+		while (x++ < 960)
+		{
+			y = 0;
+			while (y++ < 600)
+				put_pxl(env, x, y, gclr(0xFF0000, 0));
+		}
+	}
+	else
+	{
+		env->clock_screen = 0;
+		env->player.screen = 0;
 	}
 }

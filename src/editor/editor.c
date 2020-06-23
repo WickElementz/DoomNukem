@@ -6,11 +6,11 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:04 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 20:59:27 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:05:17 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	display_error(t_edit *edit)
 {
@@ -51,7 +51,7 @@ void	print_key_door_link(t_edit *edit)
 		while ((y - edit->mapy) < 20 && edit->zoom == 25)
 		{
 			if ((edit->map[x][y].type == 'D' || edit->map[x][y].type == 'K' ||
-				edit->map[x][y].type == 'W')
+				edit->map[x][y].type == 'W' || edit->map[x][y].type == 'Z')
 				&& edit->map[x][y].id >= '0' && edit->map[x][y].id <= '9' &&
 					edit->zoom == 25)
 			{
@@ -68,6 +68,8 @@ void	print_key_door_link(t_edit *edit)
 void	display_editor(t_edit *edit)
 {
 	print_hud_editor(edit);
+	choose_life(edit);
+	choose_bullet(edit);
 	read_tab_editor(edit);
 	mlx_put_image_to_window(edit->mlx_ptr, edit->win_ptr, edit->img_ptr, 0, 0);
 	print_key_door_link(edit);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools_editor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:02 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/15 17:01:26 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	verif_path(char *file)
 {

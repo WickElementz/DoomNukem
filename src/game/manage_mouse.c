@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   manage_mouse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:49:17 by kanne             #+#    #+#             */
-/*   Updated: 2020/06/20 11:41:54 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 static void		horizontal_move(int x, t_env *env)
 {

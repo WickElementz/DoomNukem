@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/22 21:58:54 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 01:02:55 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 t_ray			*cpy_spr(t_ray *spr)
 {
@@ -117,6 +117,8 @@ int				get_spr_id(char c)
 		return (8);
 	if (c == 'C')
 		return (11);
+	if (c == 'Z')
+		return (0);
 	if (c == 'K')
 		return (10);
 	else

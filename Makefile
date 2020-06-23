@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+         #
+#    By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 10:04:45 by jominodi          #+#    #+#              #
-#    Updated: 2020/06/15 14:35:50 by raiko            ###   ########lyon.fr    #
+#    Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= wolf3d
+NAME		= doom-nukem
 USER		= $(shell whoami)
 UNAME		:= $(shell uname)
 # MAC
@@ -49,6 +49,7 @@ GAME_N		= 	parsing.c \
 				manage_blocks.c \
 				animation.c \
 				door.c \
+				door2.c \
 				display.c \
 				status.c \
 				damage.c \
@@ -72,7 +73,7 @@ EDIT_N		= editor.c \
 				tools_editor.c
 # fichiers headers
 INC_P		= include/
-INC_N		= wolf3d.h \
+INC_N		= doom_nukem.h \
 				struct.h \
 				proto.h \
 				define.h

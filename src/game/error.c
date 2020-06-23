@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:41:02 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/15 13:07:36 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void	usage(void)
 {
-	ft_putstr("Usage: ./doom-nukem [map]\n");
-	ft_putstr("Usage: ./doom-nukem edit [map]\n");
-	ft_putstr("Usage: ./doom-nukem create [map]\n");
+	ft_putstr("Usage: ./doom_nukem [map]\n");
+	ft_putstr("Usage: ./doom_nukem edit [map]\n");
+	ft_putstr("Usage: ./doom_nukem create [map]\n");
 	ft_putstr("You can only use one map which are located in \"./map/\"\n");
 	exit(-1);
 }

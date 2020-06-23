@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_editor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:32 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/11 15:48:49 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:10:56 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 int		init_mlx_editor(t_edit *edit)
 {
@@ -35,6 +35,8 @@ void	init_edit_info(t_edit *edit)
 	edit->zoom = 25;
 	edit->id = 'W';
 	edit->link_dk = '0';
+	edit->p_l = 10;
+	edit->p_b = 10;
 }
 
 void	init_verif_value(t_verif *verif)

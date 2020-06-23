@@ -6,11 +6,11 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:10:47 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 20:59:32 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 09:53:20 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void		top_right_button(int x, t_edit *edit)
 {
@@ -34,6 +34,25 @@ void		change_wall(t_edit *edit, int x, int y)
 		edit->map[x][y].id = '0';
 }
 
+void		change_pillar(t_edit *edit, int x, int y)
+{
+	if (edit->map[x][y].id >= '0' && edit->map[x][y].id < '9')
+		edit->map[x][y].id += 1;
+	else if (edit->map[x][y].id == '9')
+		edit->map[x][y].id = '0';
+}
+
+void		mouse_hook_editor2(t_edit *edit, int mapx, int mapy)
+{
+	if (edit->map[mapx][mapy].type == 'K' ||
+		edit->map[mapx][mapy].type == 'D')
+		link_door_key_editor(edit, mapx, mapy);
+	else if (edit->map[mapx][mapy].type == 'W')
+		change_wall(edit, mapx, mapy);
+	else if (edit->map[mapx][mapy].type == 'Z')
+		change_pillar(edit, mapx, mapy);
+}
+
 int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 {
 	int	mapx;
@@ -52,13 +71,7 @@ int			mouse_hook_editor(int key, int x, int y, t_edit *edit)
 	if (key == 3 && x > 229 && x < 731 && y > 49 && y < 551)
 		remove_block(x, y, edit);
 	if (key == 2)
-	{
-		if (edit->map[mapx][mapy].type == 'K' ||
-			edit->map[mapx][mapy].type == 'D')
-			link_door_key_editor(edit, mapx, mapy);
-		else if (edit->map[mapx][mapy].type == 'W')
-			change_wall(edit, mapx, mapy);
-	}
+		mouse_hook_editor2(edit, mapx, mapy);
 	display_editor(edit);
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:00:54 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/20 11:43:47 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/22 15:25:25 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 int			exit_hook(t_env *env)
 {
@@ -80,22 +80,9 @@ void		ft_move_z(t_block map[50][50], t_pos *cam, int way, int up[2])
 
 void		anglemove(t_pos *cam, int way)
 {
-	if (way == SENSI || way == -SENSI)
-	{
-		if (cam->angle == 360 - SENSI && way == SENSI)
-			cam->angle = 0;
-		else if (cam->angle == 0 && way == -SENSI)
-			cam->angle = 360 - SENSI;
-		else
-			cam->angle += way;
-	}
-	else if (way == SENSIM || way == -SENSIM)
-	{
-		if (cam->angle == 360 - SENSIM && way == SENSIM)
-			cam->angle = 0;
-		else if (cam->angle == 0 && way == -SENSIM)
-			cam->angle = 360 - SENSIM;
-		else
-			cam->angle += way;
-	}
+	cam->angle += way;
+	if (cam->angle >= 360)
+		cam->angle -= 360;
+	else if (cam->angle < 0)
+		cam->angle += 360;
 }

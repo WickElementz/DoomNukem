@@ -6,7 +6,7 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:09:49 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/19 15:46:07 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:21:50 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ typedef struct		s_edit
 	short			link_door;
 	short			save_dx;
 	short			save_dy;
+	short			p_l;
+	short			p_b;
 	unsigned int	color;
 	char			id;
 	char			link_dk;
@@ -169,6 +171,8 @@ typedef struct		s_player
 	short			keyid;
 	short			corona;
 	short			display_key;
+	short			display_trap;
+	short			screen;
 	char			key[10];
 }					t_player;
 
@@ -213,6 +217,7 @@ typedef	struct		s_env
 	short			crouch_id;
 	short			clock;
 	short			clock_key;
+	short			clock_trap;
 	short			coro_clock;
 	short			win;
 	short			gunner_id;
@@ -230,6 +235,9 @@ typedef	struct		s_env
 	clock_t			t2;
 	clock_t			t3;
 	clock_t			t4;
+	clock_t			t5;
+	clock_t			t6;
+	short			clock_screen;
 	t_player		player;
 	t_reload		reload;
 	t_gun			gun;

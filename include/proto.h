@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/20 11:41:47 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:35:55 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void			error_valid_map(int error);
 void			loop_mlx(t_env *env);
 void			set_spawn(t_env *env, int x, int y);
 void			draw_column(t_env *env, t_ray *ray, int xy[3]);
-t_clr			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3]);
 void			open_door(t_env *env);
 void			door(t_env *env);
 void			jump(t_env *env);
@@ -81,11 +80,14 @@ void			*raycasting(void	*data);
 void			deal_damage(t_env *env);
 void			give_xy_value_hor(float (*xy)[2], float ang, t_env *env);
 void			display_key(t_env *env);
+void			display_trap(t_env *env);
+void			display_screen(t_env *env);
 float			give_value(float angle, int dif);
 float			right_angle(float ang, float fang);
 unsigned int	add_color2(t_env *env, t_ray *ray, int xy[3], float (*cs)[2]);
 unsigned int	add_color3(t_env *env, t_ray *ray, int xy[3], float (*cs)[2]);
 unsigned int	add_sprite2(t_env *env, t_ray *ray, unsigned int color);
+t_clr			draw_column3(t_env *env, t_ray *ray, t_clr res, int xy[3]);
 t_clr			gclr(unsigned int color, int a);
 t_ray			*add_pane(float xy[4], t_env *env, float ang, int bol);
 t_ray			*create_spr(float xy[4], t_env *env, float ang);
@@ -135,6 +137,8 @@ void			place_block(int o_x, int o_y, t_edit *edit);
 void			choose_block(int x, int y, t_edit *edit);
 void			loop_mlx_editor(t_edit *edit);
 void			editor_to_game(t_edit *edit);
+void			choose_life(t_edit *edit);
+void			choose_bullet(t_edit *edit);
 t_clr			gclr_editor(t_edit *edit, int x, int y);
 
 #endif

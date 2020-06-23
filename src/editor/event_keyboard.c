@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event_keyboard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:44 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/02 12:01:30 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 09:30:32 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void		zoom(t_edit *edit)
 {
@@ -42,6 +42,60 @@ int			exit_hook_editor(t_edit *edit)
 	return (0);
 }
 
+void		choose_life(t_edit *edit)
+{
+	int	x;
+	int	y;
+	int	tmp;
+	int	tmpx;
+
+	x = 24;
+	tmp = edit->p_l;
+	while (tmp > 0)
+	{
+		tmpx = x + 12;
+		while (x < tmpx)
+		{
+			y = 563;
+			while (y < 577)
+			{
+				put_pxl_editor(edit, x, y, gclr(0xFFFFFF, 0));
+				y++;
+			}
+			x++;
+		}
+		tmp--;
+		x += 4;
+	}
+}
+
+void		choose_bullet(t_edit *edit)
+{
+	int	x;
+	int	y;
+	int	tmp;
+	int	tmpx;
+
+	x = 775;
+	tmp = edit->p_b;
+	while (tmp > 0)
+	{
+		tmpx = x + 12;
+		while (x < tmpx)
+		{
+			y = 563;
+			while (y < 577)
+			{
+				put_pxl_editor(edit, x, y, gclr(0xFFFFFF, 0));
+				y++;
+			}
+			x++;
+		}
+		tmp--;
+		x += 4;
+	}
+}
+
 int			hold_key_editor(int key, t_edit *edit)
 {
 	if (key == KEY_ESCAPE)
@@ -58,6 +112,14 @@ int			hold_key_editor(int key, t_edit *edit)
 		edit->mapy += 1;
 	if (key == KEY_TAB)
 		zoom(edit);
+	if (key == KEY_PAD_ADD)
+		edit->p_l += (edit->p_l < 10) ? 1 : 0;
+	if (key == KEY_PAD_SUB)
+		edit->p_l += (edit->p_l > 0) ? -1 : 0;
+	if (key == KEY_PAD_MULTIPLY)
+		edit->p_b += (edit->p_b < 10) ? 1 : 0;
+	if (key == KEY_PAD_DIVIDE)
+		edit->p_b += (edit->p_b > 0) ? -1 : 0;
 	display_editor(edit);
 	return (0);
 }

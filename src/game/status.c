@@ -6,11 +6,11 @@
 /*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:07:19 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/19 16:00:12 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 02:21:01 by jominodi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom_nukem.h"
 
 void		display_key(t_env *env)
 {
@@ -26,6 +26,23 @@ void		display_key(t_env *env)
 	{
 		env->clock_key = 0;
 		env->player.display_key = 0;
+	}
+}
+
+void		display_trap(t_env *env)
+{
+	clock_t	t_trap;
+
+	t_trap = clock();
+	if (env->clock_trap == 0 && (env->clock_trap = 1))
+		env->t5 = t_trap;
+	if (env->t5 + 10000000 > t_trap)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 380, 580, 0x00FFFF,
+			"Trapped, You lost some life points");
+	else
+	{
+		env->clock_trap = 0;
+		env->player.display_trap = 0;
 	}
 }
 
@@ -46,6 +63,13 @@ void		check_status2(t_env *env, int x, int y)
 		print_hud(env, 0);
 		env->coro_clock = 0;
 		env->player.corona = 1;
+		env->map[x][y].type = 'F';
+	}
+	else if (env->map[x][y].type == 'Z')
+	{
+		env->player.screen = 1;
+		env->player.display_trap = 1;
+		env->player.life -= (env->map[x][y].id - 48) * 10 + 10;
 		env->map[x][y].type = 'F';
 	}
 }
