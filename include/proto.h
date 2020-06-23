@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/06/23 11:32:37 by raiko            ###   ########lyon.fr   */
-=======
-/*   Updated: 2020/06/23 10:53:35 by kanne            ###   ########lyon.fr   */
->>>>>>> 31d210deb010c47d26c0432ee0856b3c03f8e387
+/*   Updated: 2020/06/23 11:38:02 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +31,8 @@ int				get_spr_id(char c);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);
-void				break_glass(t_env *env, t_ray hor, t_ray ver);
+int				calc_damage(int dist);
+void			break_glass(t_env *env, t_ray hor, t_ray ver);
 void			check_gunner(t_env *env);
 void			setup_door_v(t_env *env, float xy[4], float ang, t_ray **spr);
 void			setup_door_h(t_env *env, float xy[4], float ang, t_ray **spr);
