@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 10:26:50 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 11:31:50 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,30 @@ void	give_xy_value_hor(float (*xy)[2], float ang, t_env *env)
 			env->cam.y - (env->cam.x - ((*xy)[1] + 1)) / tan(ang * RAD);
 }
 
-int		del_glass(t_env *env, t_ray hor, t_ray ver)
+void	break_glass(t_env *env, t_ray hor, t_ray ver)
 {
 	if (ver.dist == 2147483648 && hor.dist == 2147483648)
-		return (0);
-	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'P')
-		env->map[ver.mapy][ver.mapx].type = 'F';
-	else if (env->map[hor.mapy][hor.mapx].type == 'P')
-		env->map[hor.mapy][hor.mapx].type = 'F';
-	return (1);
+		return ;
+	if (ver.dist <= hor.dist)
+	{
+		if (env->map[ver.mapy][ver.mapx].type == 'P')
+			env->map[ver.mapy][ver.mapx].type = 'F';
+		if (env->map[ver.mapy][ver.mapx].type == 'G')
+		{
+			env->map[ver.mapy][ver.mapx].id += calc_damage((int)ver.dist);
+			if (env->map[ver.mapy][ver.mapx].id >= '9')
+				env->map[ver.mapy][ver.mapx].type = 'F';
+		}
+	}
+	if (hor.dist <= ver.dist)
+	{
+		if (env->map[hor.mapy][hor.mapx].type == 'P')
+			env->map[hor.mapy][hor.mapx].type = 'F';
+		if (env->map[hor.mapy][hor.mapx].type == 'G')
+		{
+			env->map[hor.mapy][hor.mapx].id += calc_damage((int)hor.dist);
+			if (env->map[hor.mapy][hor.mapx].id >= '9')
+				env->map[hor.mapy][hor.mapx].type = 'F';
+		}
+	}
 }
