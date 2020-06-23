@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:07:53 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 10:26:50 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 10:59:22 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	give_xy_value_hor(float (*xy)[2], float ang, t_env *env)
 			env->cam.y - (env->cam.x - ((*xy)[1] + 1)) / tan(ang * RAD);
 }
 
-int		del_glass(t_env *env, t_ray hor, t_ray ver)
+int		break_glass(t_env *env, t_ray hor, t_ray ver)
 {
 	if (ver.dist == 2147483648 && hor.dist == 2147483648)
 		return (0);

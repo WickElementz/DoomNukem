@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/23 10:26:04 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 11:04:06 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void		deal_damage(t_env *env)
 		ver = find_ver_gun(env, env->cam.angle);
 	else
 		ver.dist = 2147483648;
-	if ((del_glass(env, hor, ver)) == 0)
-		return ;
+	if ((break_glass(env, hor, ver)) == 0)
+			return ;
 	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
 	{
 		env->map[ver.mapy][ver.mapx].id += calc_damage((int)ver.dist);
