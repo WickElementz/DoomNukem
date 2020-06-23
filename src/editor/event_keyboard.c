@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_keyboard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:31:44 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 11:47:02 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 11:55:42 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ int			hold_key_editor(int key, t_edit *edit)
 		edit->mapy += 1;
 	if (key == KEY_TAB)
 		zoom(edit);
-	if (key == KEY_F1)
+	if (key == KEY_I)
 		edit->p_l += (edit->p_l < 10) ? 1 : 0;
-	if (key == KEY_F2)
+	if (key == KEY_U)
 		edit->p_l += (edit->p_l > 0) ? -1 : 0;
-	if (key == KEY_F3)
+	if (key == KEY_P)
 		edit->p_b += (edit->p_b < 10) ? 1 : 0;
-	if (key == KEY_F4)
+	if (key == KEY_O)
 		edit->p_b += (edit->p_b > 0) ? -1 : 0;
 	display_editor(edit);
 	return (0);
