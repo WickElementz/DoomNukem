@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 10:59:05 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 16:02:01 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	destroy_textures(t_env *env)
 	int i;
 
 	i = -1;
-	while (++i < 14)
+	while (++i < 17)
 		mlx_destroy_image(env->mlx_ptr, env->text[i].img);
 	i = -1;
 	while (++i < 4)

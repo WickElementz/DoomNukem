@@ -6,7 +6,7 @@
 /*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:28:00 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/23 10:38:56 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 16:33:31 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,20 +107,28 @@ t_ray			*sprite_list(t_ray *hor, t_ray *ver)
 	return (base);
 }
 
-int				get_spr_id(char c)
+int				get_spr_id(char c, float a)
 {
 	if (c == 'L')
-		return (7);
-	if (c == 'G')
+	{
+		if (a <= 45 || a > 315)
+			return (7);
+		if (a <= 315 && a > 225)
+			return (15);
+		if (a <= 225 && a > 135)
+			return (16);
+		if (a <= 135 && a > 45)
+			return (14);
+	}
+	else if (c == 'G')
 		return (12);
-	if (c == 'A')
+	else if (c == 'A')
 		return (8);
-	if (c == 'C')
+	else if (c == 'C')
 		return (11);
-	if (c == 'Z')
+	else if (c == 'Z')
 		return (0);
-	if (c == 'K')
+	else if (c == 'K')
 		return (10);
-	else
-		return (0);
+	return (0);
 }

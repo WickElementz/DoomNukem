@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/22 14:29:22 by videloff         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 15:58:36 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,18 @@ static void	load_texture3(t_env *env, int a, int b)
 		"sprites/rondvert.xpm", &a, &b);
 	env->text[13].data = mlx_get_data_addr(env->text[13].img,
 		&env->text[13].bpp, &env->text[13].sl, &env->text[13].end);
+	env->text[14].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/sprite-left.xpm", &a, &b);
+	env->text[14].data = mlx_get_data_addr(env->text[14].img,
+		&env->text[14].bpp, &env->text[14].sl, &env->text[14].end);
+	env->text[15].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/sprite-right.xpm", &a, &b);
+	env->text[15].data = mlx_get_data_addr(env->text[15].img,
+		&env->text[15].bpp, &env->text[15].sl, &env->text[15].end);
+	env->text[16].img = mlx_xpm_file_to_image(env->mlx_ptr,
+		"sprites/sprite-back.xpm", &a, &b);
+	env->text[16].data = mlx_get_data_addr(env->text[16].img,
+		&env->text[16].bpp, &env->text[16].sl, &env->text[16].end);
 	a = 6;
 	b = 20;
 	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,

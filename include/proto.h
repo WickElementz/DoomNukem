@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 11:38:02 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 16:19:53 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				mouse_hook(int click, int x, int y, t_env *env);
 int				check_type(float xy[2], t_block map[50][50], char c);
 int				check_key(char *key, char ref);
 int				exit_hook(t_env *env);
-int				get_spr_id(char c);
+int				get_spr_id(char c, float a);
 int				init_mlx_from_edit(t_env *env);
 int				draw_column2(t_env *env, t_ray *ray, int xy[3]);
 int				init_mlx(t_env *env);

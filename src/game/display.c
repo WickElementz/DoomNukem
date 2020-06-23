@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jominodi <jominodi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 12:01:09 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 09:54:46 by jominodi         ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 16:20:12 by raiko            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ t_ray			*create_spr(float xy[4], t_env *env, float ang)
 	spr->mapx = (int)xy[0] / 64;
 	spr->mapy = (int)xy[1] / 64;
 	spr->type = 2;
-	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type);
+	spr->id = get_spr_id(env->map[spr->mapy][spr->mapx].type, poscer[2]);
 	return (spr);
 }
