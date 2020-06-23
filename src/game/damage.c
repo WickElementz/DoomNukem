@@ -6,7 +6,7 @@
 /*   By: kanne <kanne@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:10:19 by yalabidi          #+#    #+#             */
-/*   Updated: 2020/06/23 11:04:06 by kanne            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 11:28:19 by kanne            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,15 +104,16 @@ void		deal_damage(t_env *env)
 		ver = find_ver_gun(env, env->cam.angle);
 	else
 		ver.dist = 2147483648;
-	if ((break_glass(env, hor, ver)) == 0)
+	if (ver.type == 'P' || hor.type == 'P')	
+		if ((break_glass(env, hor, ver)) == 0)
 			return ;
-	else if (ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
+	if (ver.mapx > 0 && ver.mapx < 50 && ver.mapy > 0 && ver.mapy < 50 && ver.dist <= hor.dist && env->map[ver.mapy][ver.mapx].type == 'G')
 	{
 		env->map[ver.mapy][ver.mapx].id += calc_damage((int)ver.dist);
 		if (env->map[ver.mapy][ver.mapx].id >= '9')
 			env->map[ver.mapy][ver.mapx].type = 'F';
 	}
-	else if (env->map[hor.mapy][hor.mapx].type == 'G')
+	else if (hor.mapx > 0 && hor.mapx < 50 && hor.mapy > 0 && hor.mapy < 50 && env->map[hor.mapy][hor.mapx].type == 'G')
 	{
 		env->map[hor.mapy][hor.mapx].id += calc_damage((int)hor.dist);
 		if (env->map[hor.mapy][hor.mapx].id >= '9')
