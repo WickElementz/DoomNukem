@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 11:15:28 by videloff          #+#    #+#             */
-/*   Updated: 2020/06/23 15:58:36 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 22:27:23 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	load_texture5(t_env *env, int a, int b)
 	load_texture6(env, a, b);
 }
 
-static void	load_texture4(t_env *env, int a, int b)
+void		load_texture4(t_env *env, int a, int b)
 {
 	a = 960;
 	b = 600;
@@ -94,19 +94,7 @@ static void	load_texture3(t_env *env, int a, int b)
 		&env->text[14].bpp, &env->text[14].sl, &env->text[14].end);
 	env->text[15].img = mlx_xpm_file_to_image(env->mlx_ptr,
 		"sprites/sprite-right.xpm", &a, &b);
-	env->text[15].data = mlx_get_data_addr(env->text[15].img,
-		&env->text[15].bpp, &env->text[15].sl, &env->text[15].end);
-	env->text[16].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/sprite-back.xpm", &a, &b);
-	env->text[16].data = mlx_get_data_addr(env->text[16].img,
-		&env->text[16].bpp, &env->text[16].sl, &env->text[16].end);
-	a = 6;
-	b = 20;
-	env->sprite[0].img = mlx_xpm_file_to_image(env->mlx_ptr,
-		"sprites/full_hud.xpm", &a, &b);
-	env->sprite[0].data = mlx_get_data_addr(env->sprite[0].img,
-		&env->sprite[0].bpp, &env->sprite[0].sl, &env->sprite[0].end);
-	load_texture4(env, a, b);
+	load_texture7(env, a, b);
 }
 
 static void	load_texture2(t_env *env, int a, int b)

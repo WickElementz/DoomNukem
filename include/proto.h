@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raiko <raiko@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: videloff <videloff@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:42:18 by jominodi          #+#    #+#             */
-/*   Updated: 2020/06/23 16:19:53 by raiko            ###   ########lyon.fr   */
+/*   Updated: 2020/06/23 22:26:31 by videloff         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void			draw_li_bu(t_env *env);
 void			check_animation(t_env *env);
 void			ray_multi_thread(t_env *env);
 void			load_texture(t_env *env, int a, int b);
+void			load_texture4(t_env *env, int a, int b);
+void			load_texture7(t_env *env, int a, int b);
 void			put_pxl(t_env *env, int x, int y, t_clr clr);
 void			gun(t_env *env, int id);
 void			print_hud(t_env *env, int id);
